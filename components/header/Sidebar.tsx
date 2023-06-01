@@ -8,7 +8,6 @@ import type { Props as SearchbarProps } from "$store/components/search/Searchbar
 import type { INavItem } from "./NavItem.tsx";
 
 export interface Props {
-  alerts: string[];
   /**
    * @title Autoplay interval
    * @description time (in seconds) to start the carousel autoplay
@@ -18,16 +17,18 @@ export interface Props {
   searchbar: SearchbarProps;
 }
 
-function Sidebar({ alerts = [], interval = 5, items, searchbar }: Props) {
+function Sidebar({ interval = 5, items, searchbar }: Props) {
   const id = useId();
 
   return (
     <div id={id}>
       <div class="w-[70px] h-full bg-white">
-        {/* <div class="w-full">
+        {
+          /* <div class="w-full">
           <Buttons variant="search" />
-        </div> */}
-         <div class="w-full">
+        </div> */
+        }
+        <div class="w-full">
           <Buttons variant="cart" />
         </div>
         <div class="w-full">
@@ -36,7 +37,11 @@ function Sidebar({ alerts = [], interval = 5, items, searchbar }: Props) {
           </a>
         </div>
         <div class="w-full">
-          <a class="btn btn-square btn-ghost" href="/orders" aria-label="Orders">
+          <a
+            class="btn btn-square btn-ghost"
+            href="/orders"
+            aria-label="Orders"
+          >
             <Icon id="Truck" width={20} height={20} strokeWidth={0.4} />
           </a>
         </div>

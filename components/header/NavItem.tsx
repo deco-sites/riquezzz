@@ -16,15 +16,18 @@ function NavItem({ item }: { item: INavItem }) {
   return (
     <li class="group flex items-center border-b-2 border-transparent hover:border-black b pt-[10px] pb-[10px] box-border h-[70px] ease-out duration-300">
       <a href={href} class="px-4 py-3">
-        { colorRed && (<span class="text-red-500">
+        <span class={colorRed ? "text-red-500" : ""}>
           {label}
-          {children && children.length > 0 && (<Icon id="ChevronDown" strokeWidth={1} height="15px" width="15px" class="inline" />)}
-        </span>)}
-        { !colorRed && (<span>
-          {label}
-          {children && children.length > 0 && (<Icon id="ChevronDown" strokeWidth={1} height="15px" width="15px" class="inline" />)}
-        </span>)}
-        
+          {children && children.length > 0 && (
+            <Icon
+              id="ChevronDown"
+              strokeWidth={1}
+              height="15px"
+              width="15px"
+              class="inline"
+            />
+          )}
+        </span>
       </a>
 
       {children && children.length > 0 &&

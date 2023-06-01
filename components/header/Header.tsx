@@ -3,7 +3,7 @@ import type { Image } from "deco-sites/std/components/types.ts";
 import type { EditableProps as SearchbarProps } from "$store/components/search/Searchbar.tsx";
 import type { LoaderReturnType } from "$live/types.ts";
 import type { Product, Suggestion } from "deco-sites/std/commerce/types.ts";
-
+import type { INavItem } from "./NavItem.tsx";
 import Alert from "./Alert.tsx";
 import Navbar from "./Navbar.tsx";
 import Sidebar from "./Sidebar.tsx";
@@ -28,7 +28,7 @@ export interface NavItem {
 }
 
 export interface Props {
-  alerts: string[];
+  // alerts: string[];
   /** @title Search Bar */
   searchbar?: SearchbarProps;
   /**
@@ -50,7 +50,7 @@ export interface Props {
 }
 
 function Header({
-  alerts,
+  // alerts,
   searchbar: _searchbar,
   products,
   navItems,
@@ -61,16 +61,20 @@ function Header({
     <>
       <header style={{ height: headerHeight }}>
         <div class="fixed w-full z-50 bg-gradient-to-r from-white to-gray-100">
-          {navItems && <Navbar items={navItems} searchbar={searchbar} />}
+          {navItems && (
+            <Navbar items={navItems as INavItem[]} searchbar={searchbar} />
+          )}
         </div>
         <div class="fixed bg-white h-full z-50 right-0 top-[70px]">
-          {navItems && <Sidebar items={navItems} searchbar={searchbar} />}
+          {navItems && (
+            <Sidebar items={navItems as INavItem[]} searchbar={searchbar} />
+          )}
         </div>
         {/* <Alert alerts={alerts} /> */}
 
         {navItems && (
           <Modals
-            menu={{ items: navItems }}
+            menu={{ items: navItems as INavItem[] }}
             searchbar={searchbar}
           />
         )}

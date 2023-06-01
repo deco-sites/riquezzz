@@ -9,7 +9,7 @@
  * no JavaScript is shipped to the browser!
  */
 
-import { useEffect, useRef } from "preact/compat";
+import { RefObject, useEffect, useRef } from "preact/compat";
 import { useState } from "preact/hooks";
 import Icon from "$store/components/ui/Icon.tsx";
 import Button from "$store/components/ui/Button.tsx";
@@ -29,10 +29,13 @@ declare global {
   }
 }
 
-function closeSearchOutsideClick(ref: HTMLElement, close: () => void) {
+function closeSearchOutsideClick(
+  ref: RefObject<HTMLDivElement>,
+  close: () => void,
+) {
   useEffect(() => {
     function handleClickOutside(event: Event) {
-      if (ref.current && !ref.current.contains(event.target)) {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
         close();
       }
     }
