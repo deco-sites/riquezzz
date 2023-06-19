@@ -8169,7 +8169,7 @@
       "required": [],
       "title": "OptionalColors"
     },
-    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors&f6d883c2eb3ad5e6bb1c1ebef35b92f1": {
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@9b1229f3cb5839855be1e939114c272c&Colors": {
       "allOf": [
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors"
@@ -8185,7 +8185,7 @@
           "required": []
         }
       ],
-      "title": "Colors&f6d883c2eb3ad5e6bb1c1ebef35b92f1"
+      "title": "9b1229f3cb5839855be1e939114c272c&Colors"
     },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Miscellaneous": {
       "type": "object",
@@ -8288,7 +8288,7 @@
       "type": "object",
       "properties": {
         "colors": {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors&f6d883c2eb3ad5e6bb1c1ebef35b92f1",
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@9b1229f3cb5839855be1e939114c272c&Colors",
           "title": "Colors"
         },
         "miscellaneous": {
@@ -8439,6 +8439,18 @@
             {
               "type": "string",
               "const": "ArrowsPointingOut"
+            },
+            {
+              "type": "string",
+              "const": "F Facebook"
+            },
+            {
+              "type": "string",
+              "const": "TwitterLogo"
+            },
+            {
+              "type": "string",
+              "const": ">"
             }
           ],
           "type": "string",
@@ -8491,13 +8503,15 @@
           "title": "Label"
         },
         "href": {
-          "type": "string",
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "Href"
         }
       },
       "required": [
-        "label",
-        "href"
+        "label"
       ],
       "title": "StringItem"
     },
@@ -8637,14 +8651,31 @@
             {
               "type": "string",
               "const": "ArrowsPointingOut"
+            },
+            {
+              "type": "string",
+              "const": "F Facebook"
+            },
+            {
+              "type": "string",
+              "const": "TwitterLogo"
+            },
+            {
+              "type": "string",
+              "const": ">"
             }
           ],
           "type": "string",
           "title": "Icon"
+        },
+        "href": {
+          "type": "string",
+          "title": "Href"
         }
       },
       "required": [
-        "icon"
+        "icon",
+        "href"
       ],
       "title": "IconItem"
     },
@@ -8694,12 +8725,53 @@
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL2Zvb3Rlci9Gb290ZXIudHN4@Props": {
       "type": "object",
       "properties": {
+        "Service": {
+          "type": "string",
+          "title": " Service"
+        },
+        "Phone_Number": {
+          "type": "string",
+          "title": " Phone_ Number"
+        },
+        "Href_Instagram": {
+          "type": "string",
+          "title": " Href_ Instagram"
+        },
+        "Href_Facebook": {
+          "type": "string",
+          "title": " Href_ Facebook"
+        },
+        "Href_Twitter": {
+          "type": "string",
+          "title": " Href_ Twitter"
+        },
         "sections": {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL2Zvb3Rlci9Gb290ZXIudHN4@Section[]",
           "title": "Sections"
+        },
+        "titleNewsletter": {
+          "type": "string",
+          "title": "Title Newsletter"
+        },
+        "descNewsletter": {
+          "type": "string",
+          "title": "Desc Newsletter"
+        },
+        "imgFooter": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+          "title": "Img Footer"
         }
       },
-      "required": [],
+      "required": [
+        "Service",
+        "Phone_Number",
+        "Href_Instagram",
+        "Href_Facebook",
+        "Href_Twitter",
+        "titleNewsletter",
+        "descNewsletter",
+        "imgFooter"
+      ],
       "title": "deco-sites/riquezzz/components/footer/Footer.tsx@Props"
     },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0hlYWRCYW5uZXIudHN4@Props": {
