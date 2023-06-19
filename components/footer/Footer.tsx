@@ -176,12 +176,11 @@ function Footer(
                             />
                           </a>
                         </div>
-                     
                       </li>
                     </ul>
                   </div>
                 </li>
-                      <Newsletter Title={titleNewsletter} desc={descNewsletter} />
+                <Newsletter Title={titleNewsletter} desc={descNewsletter} />
               </ul>
 
               {/* Mobile view */}

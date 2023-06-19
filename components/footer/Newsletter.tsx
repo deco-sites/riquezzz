@@ -4,7 +4,6 @@ import Icon from "$store/components/ui/Icon.tsx";
 
 import type { JSX } from "preact";
 
-
 const subscribe = Runtime.create(
   "deco-sites/std/actions/vtex/newsletter/subscribe.ts",
 );
@@ -13,7 +12,7 @@ export type StringNewsletter = {
   desc?: string;
 };
 
-function Newsletter({Title,desc}:StringNewsletter) {
+function Newsletter({ Title, desc }: StringNewsletter) {
   const loading = useSignal(false);
 
   const handleSubmit: JSX.GenericEventHandler<HTMLFormElement> = async (e) => {
@@ -51,14 +50,17 @@ function Newsletter({Title,desc}:StringNewsletter) {
             class="flex-grow input w-[85%] input-primary h-[40px] focus:outline-none border-none"
             placeholder="e-mail"
           />
-          <button class="bg-transparent  border-none w-[15%]  text-center px-5 pt-4 " disabled={loading}>
-          <Icon
-                            class="text-black"
-                            width={20}
-                            height={20}
-                            id=">"
-                            strokeWidth={1}
-                          />
+          <button
+            class="bg-transparent  border-none w-[15%]  text-center px-5 pt-4 "
+            disabled={loading}
+          >
+            <Icon
+              class="text-black"
+              width={20}
+              height={20}
+              id=">"
+              strokeWidth={1}
+            />
           </button>
         </div>
       </form>
