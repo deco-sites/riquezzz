@@ -7806,16 +7806,16 @@
           "type": "string",
           "title": "Href"
         },
-        "label": {
+        "buttonText": {
           "type": "string",
-          "title": "Label"
+          "title": "Button Text"
         }
       },
       "required": [
         "src",
         "alt",
         "href",
-        "label"
+        "buttonText"
       ],
       "title": "Highlight"
     },
