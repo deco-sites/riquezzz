@@ -30,6 +30,21 @@ export default {
       center: true,
     },
     extend: {
+      colors: {
+        "white": "#fff",
+        "primary-dark": "#000",
+        "primary-default": "#2d2d2d",
+        "primary-light": "#f4f4f4",
+        "secondary-dark": "#4a3c7d",
+        "secondary-default": "#1ba14e",
+        "secondary-light": "#21c05e",
+        "system-alert-default": "#e32000",
+        "system-alert-light": "#fee7e5",
+        "system-warning-default": "#ffe01a",
+        "system-warning-light": "#fefbc1",
+        "system-success-default": "#00a95b",
+        "system-success-light": "#e6f6ec",
+      },
       animation: {
         "slide-left": "slide-left-frame 0.4s ease normal",
         "slide-right": "slide-right-frame 0.4s ease normal",

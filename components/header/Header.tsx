@@ -3,14 +3,16 @@ import type { Image } from "deco-sites/std/components/types.ts";
 import type { EditableProps as SearchbarProps } from "$store/components/search/Searchbar.tsx";
 import type { LoaderReturnType } from "$live/types.ts";
 import type { Product, Suggestion } from "deco-sites/std/commerce/types.ts";
-
+import type { INavItem } from "./NavItem.tsx";
 import Alert from "./Alert.tsx";
 import Navbar from "./Navbar.tsx";
+import Sidebar from "./Sidebar.tsx";
 import { headerHeight } from "./constants.ts";
 
 export interface NavItem {
   label: string;
   href: string;
+  colorRed: boolean;
   children?: Array<{
     label: string;
     href: string;
@@ -26,14 +28,14 @@ export interface NavItem {
 }
 
 export interface Props {
-  alerts: string[];
+  // alerts: string[];
   /** @title Search Bar */
   searchbar?: SearchbarProps;
   /**
    * @title Navigation items
    * @description Navigation items used both on mobile and desktop menus
    */
-  navItems?: NavItem[];
+  navItems?: NavItem[] | undefined;
 
   /**
    * @title Product suggestions
@@ -47,28 +49,35 @@ export interface Props {
   suggestions?: LoaderReturnType<Suggestion | null>;
 }
 
-function Header(
-  {
-    alerts,
-    searchbar: _searchbar,
-    products,
-    navItems = [],
-    suggestions,
-  }: Props,
-) {
+function Header({
+  // alerts,
+  searchbar: _searchbar,
+  products,
+  navItems,
+  suggestions,
+}: Props) {
   const searchbar = { ..._searchbar, products, suggestions };
   return (
     <>
       <header style={{ height: headerHeight }}>
-        <div class="bg-base-100 fixed w-full z-50">
-          <Alert alerts={alerts} />
-          <Navbar items={navItems} searchbar={searchbar} />
+        <div class="fixed w-full z-50 bg-gradient-to-r from-white to-gray-100">
+          {navItems && (
+            <Navbar items={navItems as INavItem[]} searchbar={searchbar} />
+          )}
         </div>
+        <div class="hidden md:fixed md:flex bg-white h-full z-50 right-0 top-[70px] w-[50px]">
+          {navItems && (
+            <Sidebar items={navItems as INavItem[]} searchbar={searchbar} />
+          )}
+        </div>
+        {/* <Alert alerts={alerts} /> */}
 
-        <Modals
-          menu={{ items: navItems }}
-          searchbar={searchbar}
-        />
+        {navItems && (
+          <Modals
+            menu={{ items: navItems as INavItem[] }}
+            searchbar={searchbar}
+          />
+        )}
       </header>
     </>
   );
