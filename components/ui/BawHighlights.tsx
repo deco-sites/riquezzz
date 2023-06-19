@@ -22,7 +22,7 @@ function Highlights({ highlights = [], title }: Props) {
         <span class="font-medium text-2xl">{title}</span>
       </h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 px-5 ">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-16 px-5 ">
         {highlights.map(({ href, src, alt, buttonText }) => (
           <div class="bg-[#eaeaea] p-5 text-center">
             <a href={href} class="bg-[#eaeaea] pb-6 group">
@@ -35,8 +35,10 @@ function Highlights({ highlights = [], title }: Props) {
                 border-none 
                 rounded-none 
                 text-xl
-                px-6 
-                group-hover:bg-white group-hover:scale-125 group-hover:rotate-[-3deg] group-hover:translate-y-[-3rem]">{buttonText || 'Comprar agora'}</Button>
+                px-8 
+                group-hover:bg-white group-hover:scale-125 group-hover:rotate-[-3deg] group-hover:translate-y-[-3rem]">
+                  {buttonText || "Comprar agora"}
+                </Button>
               </figure>
             </a>
           </div>
