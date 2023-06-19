@@ -57,6 +57,7 @@
               "deco-sites/std/loaders/vtex/legacy/productListingPage.ts",
               "deco-sites/std/loaders/vtex/legacy/relatedProductsLoader.ts",
               "deco-sites/std/loaders/vtex/navbar.ts",
+              "deco-sites/std/loaders/vtex/proxy.ts",
               "deco-sites/std/loaders/vtex/user.ts",
               "deco-sites/std/loaders/vtex/wishlist.ts",
               "./islands/AddToCartButton.tsx",
@@ -83,11 +84,16 @@
               "$live/sections/UseSlot.tsx",
               "deco-sites/riquezzz/sections/BannerGrid.tsx",
               "deco-sites/riquezzz/sections/BannerPLP.tsx",
+              "deco-sites/riquezzz/sections/BawBanner.tsx",
+              "deco-sites/riquezzz/sections/BawFeatures.tsx",
+              "deco-sites/riquezzz/sections/BawHighlights.tsx",
+              "deco-sites/riquezzz/sections/BawProductShelf.tsx",
               "deco-sites/riquezzz/sections/Carousel.tsx",
               "deco-sites/riquezzz/sections/CookieConsent.tsx",
               "deco-sites/riquezzz/sections/DesignSystem.tsx",
               "deco-sites/riquezzz/sections/Features.tsx",
               "deco-sites/riquezzz/sections/Footer.tsx",
+              "deco-sites/riquezzz/sections/HeadBanner.tsx",
               "deco-sites/riquezzz/sections/Header.tsx",
               "deco-sites/riquezzz/sections/Highlights.tsx",
               "deco-sites/riquezzz/sections/LinkTree.tsx",
@@ -433,8 +439,7 @@
             }
           },
           "required": [],
-          "title": "deco-sites/std/commerce/butterCMS/types.ts@BlogPage",
-          "additionalProperties": false
+          "title": "deco-sites/std/commerce/butterCMS/types.ts@BlogPage"
         },
         {
           "title": "Butter CMS Page Loader",
@@ -820,8 +825,7 @@
         }
       },
       "required": [],
-      "title": "omitQHR5cGU=Thing",
-      "additionalProperties": false
+      "title": "omitQHR5cGU=Thing"
     },
     "ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@ListItem": {
       "type": "object",
@@ -1019,8 +1023,7 @@
       ],
       "properties": {},
       "required": [],
-      "title": "ProductLeaf",
-      "additionalProperties": false
+      "title": "ProductLeaf"
     },
     "ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@ProductLeaf[]": {
       "type": "array",
@@ -1082,8 +1085,7 @@
         }
       },
       "required": [],
-      "title": "QuantitativeValue",
-      "additionalProperties": false
+      "title": "QuantitativeValue"
     },
     "ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@omitQHR5cGU=PriceSpecification": {
       "type": "object",
@@ -2633,6 +2635,7 @@
             "null"
           ],
           "description": "FullText term",
+          "$comment": "https://developers.vtex.com/docs/api-reference/search-api#get-/api/catalog_system/pub/products/search",
           "title": "Ft"
         },
         "fq": {
@@ -2640,6 +2643,7 @@
             "string",
             "null"
           ],
+          "$comment": "https://developers.vtex.com/docs/api-reference/search-api#get-/api/catalog_system/pub/products/search",
           "title": "Fq"
         },
         "map": {
@@ -2806,8 +2810,7 @@
             }
           },
           "required": [],
-          "title": "Image",
-          "additionalProperties": false
+          "title": "Image"
         }
       },
       "required": [
@@ -2833,8 +2836,7 @@
         }
       },
       "required": [],
-      "title": "Navbar",
-      "additionalProperties": false
+      "title": "Navbar"
     },
     "ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@Navbar[]": {
       "type": "array",
@@ -2913,8 +2915,7 @@
         }
       },
       "required": [],
-      "title": "deco-sites/std/functions/vtexNavbar.ts@Props",
-      "additionalProperties": false
+      "title": "deco-sites/std/functions/vtexNavbar.ts@Props"
     },
     "ZGVjby1zaXRlcy9zdGQvZnVuY3Rpb25zL3Z0ZXhQcm9kdWN0TGlzdC50cw==@Props": {
       "type": "object",
@@ -3140,8 +3141,7 @@
         }
       },
       "required": [],
-      "title": "Suggestion",
-      "additionalProperties": false
+      "title": "Suggestion"
     },
     "ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@Suggestion|null": {
       "anyOf": [
@@ -3220,8 +3220,7 @@
         }
       },
       "required": [],
-      "title": "deco-sites/std/functions/vtexSuggestions.ts@Props",
-      "additionalProperties": false
+      "title": "deco-sites/std/functions/vtexSuggestions.ts@Props"
     },
     "ZGVjby1zaXRlcy9zdGQvZnVuY3Rpb25zL3Z0ZXhXaXNobGlzdC50cw==@Props": {
       "type": "object",
@@ -3242,8 +3241,7 @@
       "type": "object",
       "properties": {},
       "required": [],
-      "title": "Account",
-      "additionalProperties": false
+      "title": "Account"
     },
     "ZGVjby1zaXRlcy9zdGQvY29tbWVyY2Uvb2NjL2NsaWVudC50cw==@ConfigOCC": {
       "type": "object",
@@ -3340,6 +3338,14 @@
           "type": "string",
           "description": "VTEX Account name. For more info, read here: https://help.vtex.com/en/tutorial/o-que-e-account-name--i0mIGLcg3QyEy8OCicEoC.",
           "title": "Account"
+        },
+        "publicUrl": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Public store URL",
+          "description": "Domain that is registered on License Manager (e.g: www.mystore.com.br)"
         },
         "defaultLocale": {
           "type": "string",
@@ -3632,8 +3638,7 @@
         }
       },
       "required": [],
-      "title": "indexedAccessinputWorkflowExecution",
-      "additionalProperties": false
+      "title": "indexedAccessinputWorkflowExecution"
     },
     "ZGVjby1jeC9saXZlL2NvbW1vbnMvd29ya2Zsb3dzL3R5cGVzLnRz@WorkflowExecution": {
       "anyOf": [
@@ -3739,8 +3744,7 @@
         }
       },
       "required": [],
-      "title": "Fields",
-      "additionalProperties": false
+      "title": "Fields"
     },
     "ZGVjby1zaXRlcy9zdGQvcGFja3MvdnRleC90eXBlcy50cw==@Message": {
       "type": "object",
@@ -4372,8 +4376,7 @@
           "type": "object",
           "properties": {},
           "required": [],
-          "title": "Product Categories",
-          "additionalProperties": false
+          "title": "Product Categories"
         },
         "quantity": {
           "type": "number",
@@ -6203,8 +6206,7 @@
         }
       },
       "required": [],
-      "title": "CommonProps",
-      "additionalProperties": false
+      "title": "CommonProps"
     },
     "ZGVjby1zaXRlcy9zdGQvcGFja3MvdnRleC9sb2FkZXJzL2ludGVsbGlnZW50U2VhcmNoL3Byb2R1Y3RMaXN0LnRz@partialCollectionProps": {
       "type": "object",
@@ -6265,8 +6267,7 @@
         }
       },
       "required": [],
-      "title": "partialCollectionProps",
-      "additionalProperties": false
+      "title": "partialCollectionProps"
     },
     "ZGVjby1zaXRlcy9zdGQvcGFja3MvdnRleC9sb2FkZXJzL2ludGVsbGlnZW50U2VhcmNoL3Byb2R1Y3RMaXN0LnRz@partialQueryProps": {
       "type": "object",
@@ -6327,8 +6328,7 @@
         }
       },
       "required": [],
-      "title": "partialQueryProps",
-      "additionalProperties": false
+      "title": "partialQueryProps"
     },
     "ZGVjby1zaXRlcy9zdGQvcGFja3MvdnRleC90eXBlcy50cw==@ProductID": {
       "type": "string",
@@ -6357,8 +6357,7 @@
         }
       },
       "required": [],
-      "title": "partialProductIDProps",
-      "additionalProperties": false
+      "title": "partialProductIDProps"
     },
     "ZGVjby1zaXRlcy9zdGQvcGFja3MvdnRleC9sb2FkZXJzL2ludGVsbGlnZW50U2VhcmNoL3Byb2R1Y3RMaXN0LnRz@partialCollectionProps&partialProductIDProps&partialQueryProps": {
       "allOf": [
@@ -6395,8 +6394,7 @@
         }
       },
       "required": [],
-      "title": "deco-sites/std/packs/vtex/loaders/intelligentSearch/suggestions.ts@Props",
-      "additionalProperties": false
+      "title": "deco-sites/std/packs/vtex/loaders/intelligentSearch/suggestions.ts@Props"
     },
     "ZGVjby1zaXRlcy9zdGQvcGFja3MvdnRleC9sb2FkZXJzL2xlZ2FjeS9wcm9kdWN0RGV0YWlsc1BhZ2UudHM=@Props": {
       "type": "object",
@@ -6474,8 +6472,7 @@
         }
       },
       "required": [],
-      "title": "partialCollectionProps",
-      "additionalProperties": false
+      "title": "partialCollectionProps"
     },
     "ZGVjby1zaXRlcy9zdGQvcGFja3MvdnRleC9sb2FkZXJzL2xlZ2FjeS9wcm9kdWN0TGlzdC50cw==@partialTermProps": {
       "type": "object",
@@ -6542,8 +6539,7 @@
         }
       },
       "required": [],
-      "title": "partialTermProps",
-      "additionalProperties": false
+      "title": "partialTermProps"
     },
     "ZGVjby1zaXRlcy9zdGQvcGFja3MvdnRleC9sb2FkZXJzL2xlZ2FjeS9wcm9kdWN0TGlzdC50cw==@partialProductIDProps": {
       "type": "object",
@@ -6555,8 +6551,7 @@
         }
       },
       "required": [],
-      "title": "partialProductIDProps",
-      "additionalProperties": false
+      "title": "partialProductIDProps"
     },
     "ZGVjby1zaXRlcy9zdGQvcGFja3MvdnRleC9sb2FkZXJzL2xlZ2FjeS9wcm9kdWN0TGlzdC50cw==@partialCollectionProps&partialProductIDProps&partialTermProps": {
       "allOf": [
@@ -6658,8 +6653,76 @@
         }
       },
       "required": [],
-      "title": "deco-sites/std/packs/vtex/loaders/navbar.ts@Props",
-      "additionalProperties": false
+      "title": "deco-sites/std/packs/vtex/loaders/navbar.ts@Props"
+    },
+    "ZGVjby1jeC9saXZlL2Jsb2Nrcy9oYW5kbGVyLnRz@Handler": {
+      "$ref": "#/root/handlers",
+      "title": "Handler"
+    },
+    "ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Route": {
+      "type": "object",
+      "properties": {
+        "pathTemplate": {
+          "type": "string",
+          "title": "Path Template"
+        },
+        "isHref": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "if true so the path will be checked agaisnt the coming from request instead of using urlpattern.",
+          "title": "Is Href"
+        },
+        "handler": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "$ref": "#/definitions/ZGVjby1jeC9saXZlL2Jsb2Nrcy9oYW5kbGVyLnRz@Handler",
+              "title": "Value"
+            }
+          },
+          "required": [
+            "value"
+          ],
+          "title": "Handler"
+        }
+      },
+      "required": [
+        "pathTemplate",
+        "handler"
+      ],
+      "title": "Route"
+    },
+    "ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Route[]": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/Resolvable"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Route"
+          },
+          "title": "deco-cx/live/flags/audience.ts@Route[]"
+        },
+        {
+          "title": "VTEX Proxy Routes",
+          "type": "object",
+          "required": [
+            "__resolveType"
+          ],
+          "properties": {
+            "__resolveType": {
+              "type": "string",
+              "enum": [
+                "deco-sites/std/loaders/vtex/proxy.ts"
+              ],
+              "default": "deco-sites/std/loaders/vtex/proxy.ts"
+            }
+          }
+        }
+      ]
     },
     "ZGVjby1zaXRlcy9zdGQvcGFja3MvdnRleC9sb2FkZXJzL3VzZXIudHM=@User": {
       "type": "object",
@@ -6825,8 +6888,7 @@
         }
       },
       "required": [],
-      "title": "EditableProps",
-      "additionalProperties": false
+      "title": "EditableProps"
     },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3NlYXJjaC9IZWFkZXJTZWFyY2hiYXIudHN4@2f3e1f40df63be5627dc2ae9f2ac630b&EditableProps": {
       "allOf": [
@@ -6851,8 +6913,7 @@
               "title": "Variant"
             }
           },
-          "required": [],
-          "additionalProperties": false
+          "required": []
         }
       ],
       "title": "deco-sites/riquezzz/components/search/HeaderSearchbar.tsx@2f3e1f40df63be5627dc2ae9f2ac630b&EditableProps"
@@ -6937,6 +6998,14 @@
           ],
           "description": "the base path of the url.",
           "title": "Base Path"
+        },
+        "host": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Host that should be used when proxying the request",
+          "title": "Host"
         }
       },
       "required": [
@@ -6971,52 +7040,6 @@
       ],
       "title": "deco-cx/live/handlers/redirect.ts@RedirectConfig"
     },
-    "ZGVjby1jeC9saXZlL2Jsb2Nrcy9oYW5kbGVyLnRz@Handler": {
-      "$ref": "#/root/handlers",
-      "title": "Handler"
-    },
-    "ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Route": {
-      "type": "object",
-      "properties": {
-        "pathTemplate": {
-          "type": "string",
-          "title": "Path Template"
-        },
-        "isHref": {
-          "type": [
-            "boolean",
-            "null"
-          ],
-          "description": "if true so the path will be checked agaisnt the coming from request instead of using urlpattern.",
-          "title": "Is Href"
-        },
-        "handler": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "$ref": "#/definitions/ZGVjby1jeC9saXZlL2Jsb2Nrcy9oYW5kbGVyLnRz@Handler",
-              "title": "Value"
-            }
-          },
-          "required": [
-            "value"
-          ],
-          "title": "Handler"
-        }
-      },
-      "required": [
-        "pathTemplate",
-        "handler"
-      ],
-      "title": "Route"
-    },
-    "ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Route[]": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Route"
-      },
-      "title": "Route[]"
-    },
     "ZGVjby1jeC9saXZlL2hhbmRsZXJzL3JvdXRlci50cw==@RouterConfig": {
       "type": "object",
       "properties": {
@@ -7037,21 +7060,32 @@
       ],
       "title": "deco-cx/live/handlers/router.ts@RouterConfig"
     },
+    "ZGVjby1jeC9saXZlL2Jsb2Nrcy9mbGFnLnRz@15b1ddc7b4bb6e032bd22948a3dc02c4|9cc5443ad72a10e9797a691a19b4ce81|Flag": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1jeC9saXZlL2Jsb2Nrcy9mbGFnLnRz@Flag"
+        },
+        {
+          "$ref": "#/definitions/JGxpdmUvZmxhZ3MvYXVkaWVuY2UudHM="
+        },
+        {
+          "$ref": "#/definitions/JGxpdmUvZmxhZ3MvZXZlcnlvbmUudHM="
+        }
+      ],
+      "title": "Audiences"
+    },
+    "ZGVjby1jeC9saXZlL2Jsb2Nrcy9mbGFnLnRz@15b1ddc7b4bb6e032bd22948a3dc02c4|9cc5443ad72a10e9797a691a19b4ce81|Flag[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1jeC9saXZlL2Jsb2Nrcy9mbGFnLnRz@15b1ddc7b4bb6e032bd22948a3dc02c4|9cc5443ad72a10e9797a691a19b4ce81|Flag"
+      },
+      "title": "15b1ddc7b4bb6e032bd22948a3dc02c4|9cc5443ad72a10e9797a691a19b4ce81|Flag[]"
+    },
     "ZGVjby1jeC9saXZlL2hhbmRsZXJzL3JvdXRlc1NlbGVjdGlvbi50cw==@SelectionConfig": {
       "type": "object",
       "properties": {
         "audiences": {
-          "type": "array",
-          "items": {
-            "anyOf": [
-              {
-                "$ref": "#/definitions/JGxpdmUvZmxhZ3MvYXVkaWVuY2UudHM="
-              },
-              {
-                "$ref": "#/definitions/JGxpdmUvZmxhZ3MvZXZlcnlvbmUudHM="
-              }
-            ]
-          },
+          "$ref": "#/definitions/ZGVjby1jeC9saXZlL2Jsb2Nrcy9mbGFnLnRz@15b1ddc7b4bb6e032bd22948a3dc02c4|9cc5443ad72a10e9797a691a19b4ce81|Flag[]",
           "title": "Audiences"
         }
       },
@@ -7097,10 +7131,6 @@
             "null"
           ],
           "title": "Path"
-        },
-        "layout": {
-          "$ref": "#/definitions/ZGVjby1jeC9saXZlL2Jsb2Nrcy9wYWdlLnRz@Page",
-          "title": "Layout"
         },
         "sections": {
           "$ref": "#/definitions/ZGVjby1jeC9saXZlL2Jsb2Nrcy9zZWN0aW9uLnRz@Section[]",
@@ -7179,8 +7209,7 @@
         }
       },
       "required": [],
-      "title": "deco-cx/live/sections/Slot.tsx@Props",
-      "additionalProperties": false
+      "title": "deco-cx/live/sections/Slot.tsx@Props"
     },
     "ZGVjby1jeC9saXZlL3NlY3Rpb25zL1VzZVNsb3QudHN4@Props": {
       "type": "object",
@@ -7331,7 +7360,6 @@
           },
           "required": [],
           "title": "Items Per Line",
-          "additionalProperties": false,
           "description": "Default is 2 for mobile and all for desktop"
         },
         "borderRadius": {
@@ -7416,7 +7444,6 @@
           },
           "required": [],
           "title": "Border Radius",
-          "additionalProperties": false,
           "description": "Item's border radius in px"
         },
         "banners": {
@@ -7507,8 +7534,339 @@
         }
       },
       "required": [],
-      "title": "deco-sites/riquezzz/components/ui/BannerPLP.tsx@Props",
-      "additionalProperties": false
+      "title": "deco-sites/riquezzz/components/ui/BannerPLP.tsx@Props"
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhd0Jhbm5lci50c3g=@Banner": {
+      "type": "object",
+      "properties": {
+        "srcMobile": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+          "title": "Src Mobile"
+        },
+        "srcDesktop": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+          "title": "Src Desktop"
+        },
+        "alt": {
+          "type": "string",
+          "description": "Image alt text",
+          "title": "Alt"
+        },
+        "href": {
+          "type": "string",
+          "description": "When you click you go to",
+          "title": "Href"
+        },
+        "shrink": {
+          "type": "boolean",
+          "description": "It will shrink the image to fit the container",
+          "title": "Shrink"
+        },
+        "size_cols": {
+          "type": "number",
+          "description": "It will set the number of columns for the image",
+          "title": "Size_cols"
+        },
+        "size_rows": {
+          "type": "number",
+          "description": "It will set the number of rows for the image",
+          "title": "Size_rows"
+        }
+      },
+      "required": [
+        "srcMobile",
+        "alt",
+        "href",
+        "shrink",
+        "size_cols",
+        "size_rows"
+      ],
+      "title": "Banner"
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhd0Jhbm5lci50c3g=@Banner[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhd0Jhbm5lci50c3g=@Banner"
+      },
+      "title": "Banner[]"
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhd0Jhbm5lci50c3g=@Props": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Title"
+        },
+        "itemsPerLine": {
+          "type": "object",
+          "properties": {
+            "mobile": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "const": 1
+                },
+                {
+                  "type": "number",
+                  "const": 2
+                }
+              ],
+              "type": "number",
+              "title": "Mobile"
+            },
+            "desktop": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "const": 1
+                },
+                {
+                  "type": "number",
+                  "const": 2
+                },
+                {
+                  "type": "number",
+                  "const": 5
+                },
+                {
+                  "type": "number",
+                  "const": 4
+                },
+                {
+                  "type": "number",
+                  "const": 6
+                },
+                {
+                  "type": "number",
+                  "const": 8
+                }
+              ],
+              "type": "number",
+              "title": "Desktop"
+            }
+          },
+          "required": [],
+          "title": "Items Per Line",
+          "description": "Default is 2 for mobile and all for desktop"
+        },
+        "borderRadius": {
+          "type": "object",
+          "properties": {
+            "mobile": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "const": "none"
+                },
+                {
+                  "type": "string",
+                  "const": "sm"
+                },
+                {
+                  "type": "string",
+                  "const": "md"
+                },
+                {
+                  "type": "string",
+                  "const": "lg"
+                },
+                {
+                  "type": "string",
+                  "const": "xl"
+                },
+                {
+                  "type": "string",
+                  "const": "2xl"
+                },
+                {
+                  "type": "string",
+                  "const": "3xl"
+                },
+                {
+                  "type": "string",
+                  "const": "full"
+                }
+              ],
+              "type": "string",
+              "title": "Mobile"
+            },
+            "desktop": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "const": "none"
+                },
+                {
+                  "type": "string",
+                  "const": "sm"
+                },
+                {
+                  "type": "string",
+                  "const": "md"
+                },
+                {
+                  "type": "string",
+                  "const": "lg"
+                },
+                {
+                  "type": "string",
+                  "const": "xl"
+                },
+                {
+                  "type": "string",
+                  "const": "2xl"
+                },
+                {
+                  "type": "string",
+                  "const": "3xl"
+                },
+                {
+                  "type": "string",
+                  "const": "full"
+                }
+              ],
+              "type": "string",
+              "title": "Desktop"
+            }
+          },
+          "required": [],
+          "title": "Border Radius",
+          "description": "Item's border radius in px"
+        },
+        "banners": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhd0Jhbm5lci50c3g=@Banner[]",
+          "title": "Banners"
+        }
+      },
+      "required": [
+        "itemsPerLine",
+        "borderRadius",
+        "banners"
+      ],
+      "title": "deco-sites/riquezzz/components/ui/BawBanner.tsx@Props"
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhd0ZlYXR1cmVzLnRzeA==@Feature": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Title",
+          "title": "Title"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description and Image alt text",
+          "title": "Description"
+        }
+      },
+      "required": [
+        "title",
+        "description"
+      ],
+      "title": "Feature"
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhd0ZlYXR1cmVzLnRzeA==@Props": {
+      "type": "object",
+      "properties": {
+        "feature_1": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhd0ZlYXR1cmVzLnRzeA==@Feature",
+          "title": "Feature_1"
+        },
+        "feature_2": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhd0ZlYXR1cmVzLnRzeA==@Feature",
+          "title": "Feature_2"
+        },
+        "feature_3": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhd0ZlYXR1cmVzLnRzeA==@Feature",
+          "title": "Feature_3"
+        }
+      },
+      "required": [
+        "feature_1",
+        "feature_2",
+        "feature_3"
+      ],
+      "title": "deco-sites/riquezzz/components/ui/BawFeatures.tsx@Props"
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhd0hpZ2hsaWdodHMudHN4@Highlight": {
+      "type": "object",
+      "properties": {
+        "src": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+          "title": "Src"
+        },
+        "alt": {
+          "type": "string",
+          "title": "Alt"
+        },
+        "href": {
+          "type": "string",
+          "title": "Href"
+        },
+        "label": {
+          "type": "string",
+          "title": "Label"
+        }
+      },
+      "required": [
+        "src",
+        "alt",
+        "href",
+        "label"
+      ],
+      "title": "Highlight"
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhd0hpZ2hsaWdodHMudHN4@Highlight[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhd0hpZ2hsaWdodHMudHN4@Highlight"
+      },
+      "title": "Highlight[]"
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhd0hpZ2hsaWdodHMudHN4@Props": {
+      "type": "object",
+      "properties": {
+        "highlights": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhd0hpZ2hsaWdodHMudHN4@Highlight[]",
+          "title": "Highlights"
+        },
+        "title": {
+          "type": "string",
+          "title": "Title"
+        }
+      },
+      "required": [
+        "title"
+      ],
+      "title": "deco-sites/riquezzz/components/ui/BawHighlights.tsx@Props"
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3Byb2R1Y3QvQmF3UHJvZHVjdFNoZWxmLnRzeA==@Props": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "title": "Title"
+        },
+        "products": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@Product[]|null",
+          "title": "Products"
+        },
+        "itemsPerPage": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "title": "Items Per Page"
+        }
+      },
+      "required": [
+        "title",
+        "products"
+      ],
+      "title": "deco-sites/riquezzz/components/product/BawProductShelf.tsx@Props"
     },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckNhcm91c2VsLnRzeA==@Banner": {
       "type": "object",
@@ -7596,8 +7954,7 @@
         }
       },
       "required": [],
-      "title": "deco-sites/riquezzz/components/ui/BannerCarousel.tsx@Props",
-      "additionalProperties": false
+      "title": "deco-sites/riquezzz/components/ui/BannerCarousel.tsx@Props"
     },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors": {
       "type": "object",
@@ -7810,8 +8167,7 @@
         }
       },
       "required": [],
-      "title": "OptionalColors",
-      "additionalProperties": false
+      "title": "OptionalColors"
     },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors&f6d883c2eb3ad5e6bb1c1ebef35b92f1": {
       "allOf": [
@@ -7826,8 +8182,7 @@
               "title": "Optional"
             }
           },
-          "required": [],
-          "additionalProperties": false
+          "required": []
         }
       ],
       "title": "Colors&f6d883c2eb3ad5e6bb1c1ebef35b92f1"
@@ -7946,8 +8301,7 @@
         }
       },
       "required": [],
-      "title": "deco-sites/riquezzz/sections/DesignSystem.tsx@Props",
-      "additionalProperties": false
+      "title": "deco-sites/riquezzz/sections/DesignSystem.tsx@Props"
     },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0ZlYXR1cmVzLnRzeA==@Feature": {
       "type": "object",
@@ -8346,8 +8700,35 @@
         }
       },
       "required": [],
-      "title": "deco-sites/riquezzz/components/footer/Footer.tsx@Props",
-      "additionalProperties": false
+      "title": "deco-sites/riquezzz/components/footer/Footer.tsx@Props"
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0hlYWRCYW5uZXIudHN4@Props": {
+      "type": "object",
+      "properties": {
+        "srcMobile": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+          "title": "Src Mobile"
+        },
+        "srcDesktop": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+          "title": "Src Desktop"
+        },
+        "alt": {
+          "type": "string",
+          "title": "Alt"
+        },
+        "href": {
+          "type": "string",
+          "description": "When you click you go to",
+          "title": "Href"
+        }
+      },
+      "required": [
+        "srcMobile",
+        "alt",
+        "href"
+      ],
+      "title": "deco-sites/riquezzz/components/ui/HeadBanner.tsx@Props"
     },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hiYXIudHN4@EditableProps": {
       "type": "object",
@@ -8388,8 +8769,7 @@
         }
       },
       "required": [],
-      "title": "EditableProps",
-      "additionalProperties": false
+      "title": "EditableProps"
     },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL2hlYWRlci9IZWFkZXIudHN4@NavItem": {
       "type": "object",
@@ -8464,8 +8844,7 @@
             }
           },
           "required": [],
-          "title": "Image",
-          "additionalProperties": false
+          "title": "Image"
         }
       },
       "required": [
@@ -8516,8 +8895,7 @@
         }
       },
       "required": [],
-      "title": "deco-sites/riquezzz/components/header/Header.tsx@Props",
-      "additionalProperties": false
+      "title": "deco-sites/riquezzz/components/header/Header.tsx@Props"
     },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0hpZ2hsaWdodHMudHN4@Highlight": {
       "type": "object",
@@ -8666,8 +9044,7 @@
         }
       },
       "required": [],
-      "title": "deco-sites/riquezzz/components/ui/LinkTree.tsx@Props",
-      "additionalProperties": false
+      "title": "deco-sites/riquezzz/components/ui/LinkTree.tsx@Props"
     },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3Byb2R1Y3QvUHJvZHVjdERldGFpbHMudHN4@Props": {
       "type": "object",
@@ -8745,8 +9122,7 @@
         }
       },
       "required": [],
-      "title": "Columns",
-      "additionalProperties": false
+      "title": "Columns"
     },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hSZXN1bHQudHN4@Props": {
       "type": "object",
@@ -8794,8 +9170,7 @@
         }
       },
       "required": [],
-      "title": "deco-sites/riquezzz/components/ui/WhatsApp.tsx@Props",
-      "additionalProperties": false
+      "title": "deco-sites/riquezzz/components/ui/WhatsApp.tsx@Props"
     },
     "ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy9BbmFseXRpY3MudHN4@Props": {
       "type": "object",
@@ -8815,11 +9190,18 @@
           ],
           "description": "custom url for serving google tag manager. Set either this url or the tracking id",
           "title": "Src"
+        },
+        "dangerouslyRunOnMainThread": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "run GTM directly on the main thread, without Partytown. This is useful for debugging purposes. Default: false",
+          "title": "Dangerously Run On Main Thread"
         }
       },
       "required": [],
-      "title": "deco-sites/std/components/Analytics.tsx@Props",
-      "additionalProperties": false
+      "title": "deco-sites/std/components/Analytics.tsx@Props"
     },
     "ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvYnV0dGVyQ01TL2NsaWVudC50cw==@Locale": {
       "type": "object",
@@ -8957,14 +9339,21 @@
           ],
           "title": "Canonical URL"
         },
+        "noIndexNoFollow": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "title": "Disable indexing",
+          "description": "In testing, you can use this to prevent search engines from indexing your site"
+        },
         "context": {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@ProductDetailsPage|null|ProductListingPage|null",
           "title": "Context"
         }
       },
       "required": [],
-      "title": "deco-sites/std/components/seo/types.ts@Props",
-      "additionalProperties": false
+      "title": "deco-sites/std/components/seo/types.ts@Props"
     },
     "ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy9zZW8vU0VPUERQLnRzeA==@Props": {
       "type": "object",
@@ -9072,8 +9461,7 @@
         }
       },
       "required": [],
-      "title": "deco-cx/live/matchers/MatchDate.ts@Props",
-      "additionalProperties": false
+      "title": "deco-cx/live/matchers/MatchDate.ts@Props"
     },
     "ZGVjby1jeC9saXZlL21hdGNoZXJzL01hdGNoRGV2aWNlLnRz@Props": {
       "type": "object",
@@ -9147,8 +9535,7 @@
         }
       },
       "required": [],
-      "title": "deco-cx/live/matchers/MatchHost.ts@Props",
-      "additionalProperties": false
+      "title": "deco-cx/live/matchers/MatchHost.ts@Props"
     },
     "ZGVjby1jeC9saXZlL2Jsb2Nrcy9tYXRjaGVyLnRz@Matcher": {
       "$ref": "#/root/matchers",
@@ -9234,8 +9621,7 @@
         }
       },
       "required": [],
-      "title": "deco-cx/live/matchers/MatchUserAgent.ts@Props",
-      "additionalProperties": false
+      "title": "deco-cx/live/matchers/MatchUserAgent.ts@Props"
     },
     "ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Override": {
       "type": "object",
@@ -9273,9 +9659,8 @@
           "type": "string",
           "title": "The audience name (will be used on cookies).",
           "description": "Add a meaningful short word for the audience name.",
-          "maxLength": 22,
           "minLength": 3,
-          "pattern": "^[A-Za-z0-9_]+$"
+          "pattern": "^[A-Za-z0-9_-]+$"
         },
         "routes": {
           "$ref": "#/definitions/ZGVjby1jeC9saXZlL2ZsYWdzL2F1ZGllbmNlLnRz@Route[]",
@@ -9305,8 +9690,7 @@
         }
       },
       "required": [],
-      "title": "deco-cx/live/flags/everyone.ts@EveryoneConfig",
-      "additionalProperties": false
+      "title": "deco-cx/live/flags/everyone.ts@EveryoneConfig"
     },
     "ZGVjby1jeC9saXZlL2FjdGlvbnMvd29ya2Zsb3dzL2NhbmNlbC50cw==@Props": {
       "type": "object",
@@ -9392,7 +9776,7 @@
       ],
       "title": "WorkflowRef"
     },
-    "ZGVjby1jeC9saXZlL2FjdGlvbnMvd29ya2Zsb3dzL3N0YXJ0LnRz@924abc28674faba8aec48ee07541fb71|WorkflowRef": {
+    "ZGVjby1jeC9saXZlL2FjdGlvbnMvd29ya2Zsb3dzL3N0YXJ0LnRz@WorkflowRef|bfe6ccba30e7af0b18b9e42b06cabfe4": {
       "anyOf": [
         {
           "$ref": "#/definitions/ZGVjby1jeC9saXZlL2FjdGlvbnMvd29ya2Zsb3dzL3N0YXJ0LnRz@WorkflowRef"
@@ -9410,13 +9794,13 @@
           ]
         }
       ],
-      "title": "924abc28674faba8aec48ee07541fb71|WorkflowRef"
+      "title": "WorkflowRef|bfe6ccba30e7af0b18b9e42b06cabfe4"
     },
     "ZGVjby1jeC9saXZlL2FjdGlvbnMvd29ya2Zsb3dzL3N0YXJ0LnRz@Props": {
       "type": "object",
       "properties": {
         "workflow": {
-          "$ref": "#/definitions/ZGVjby1jeC9saXZlL2FjdGlvbnMvd29ya2Zsb3dzL3N0YXJ0LnRz@924abc28674faba8aec48ee07541fb71|WorkflowRef",
+          "$ref": "#/definitions/ZGVjby1jeC9saXZlL2FjdGlvbnMvd29ya2Zsb3dzL3N0YXJ0LnRz@WorkflowRef|bfe6ccba30e7af0b18b9e42b06cabfe4",
           "title": "Workflow"
         },
         "id": {
@@ -10792,6 +11176,22 @@
         }
       }
     },
+    "ZGVjby1zaXRlcy9zdGQvbG9hZGVycy92dGV4L3Byb3h5LnRz": {
+      "title": "VTEX Proxy Routes",
+      "type": "object",
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "deco-sites/std/loaders/vtex/proxy.ts"
+          ],
+          "default": "deco-sites/std/loaders/vtex/proxy.ts"
+        }
+      }
+    },
     "ZGVjby1zaXRlcy9zdGQvbG9hZGVycy92dGV4L3VzZXIudHM=": {
       "title": "deco-sites/std/loaders/vtex/user.ts",
       "type": "object",
@@ -11292,6 +11692,90 @@
         }
       }
     },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9CYXdCYW5uZXIudHN4": {
+      "title": "deco-sites/riquezzz/sections/BawBanner.tsx",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhd0Jhbm5lci50c3g=@Props"
+        }
+      ],
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "deco-sites/riquezzz/sections/BawBanner.tsx"
+          ],
+          "default": "deco-sites/riquezzz/sections/BawBanner.tsx"
+        }
+      }
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9CYXdGZWF0dXJlcy50c3g=": {
+      "title": "deco-sites/riquezzz/sections/BawFeatures.tsx",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhd0ZlYXR1cmVzLnRzeA==@Props"
+        }
+      ],
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "deco-sites/riquezzz/sections/BawFeatures.tsx"
+          ],
+          "default": "deco-sites/riquezzz/sections/BawFeatures.tsx"
+        }
+      }
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9CYXdIaWdobGlnaHRzLnRzeA==": {
+      "title": "deco-sites/riquezzz/sections/BawHighlights.tsx",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhd0hpZ2hsaWdodHMudHN4@Props"
+        }
+      ],
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "deco-sites/riquezzz/sections/BawHighlights.tsx"
+          ],
+          "default": "deco-sites/riquezzz/sections/BawHighlights.tsx"
+        }
+      }
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9CYXdQcm9kdWN0U2hlbGYudHN4": {
+      "title": "deco-sites/riquezzz/sections/BawProductShelf.tsx",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3Byb2R1Y3QvQmF3UHJvZHVjdFNoZWxmLnRzeA==@Props"
+        }
+      ],
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "deco-sites/riquezzz/sections/BawProductShelf.tsx"
+          ],
+          "default": "deco-sites/riquezzz/sections/BawProductShelf.tsx"
+        }
+      }
+    },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9DYXJvdXNlbC50c3g=": {
       "title": "deco-sites/riquezzz/sections/Carousel.tsx",
       "type": "object",
@@ -11389,6 +11873,27 @@
             "deco-sites/riquezzz/sections/Footer.tsx"
           ],
           "default": "deco-sites/riquezzz/sections/Footer.tsx"
+        }
+      }
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9IZWFkQmFubmVyLnRzeA==": {
+      "title": "deco-sites/riquezzz/sections/HeadBanner.tsx",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0hlYWRCYW5uZXIudHN4@Props"
+        }
+      ],
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "deco-sites/riquezzz/sections/HeadBanner.tsx"
+          ],
+          "default": "deco-sites/riquezzz/sections/HeadBanner.tsx"
         }
       }
     },
@@ -12605,6 +13110,9 @@
           "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvbG9hZGVycy92dGV4L25hdmJhci50cw=="
         },
         {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvbG9hZGVycy92dGV4L3Byb3h5LnRz"
+        },
+        {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvbG9hZGVycy92dGV4L3VzZXIudHM="
         },
         {
@@ -12719,6 +13227,18 @@
           "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9CYW5uZXJQTFAudHN4"
         },
         {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9CYXdCYW5uZXIudHN4"
+        },
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9CYXdGZWF0dXJlcy50c3g="
+        },
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9CYXdIaWdobGlnaHRzLnRzeA=="
+        },
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9CYXdQcm9kdWN0U2hlbGYudHN4"
+        },
+        {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9DYXJvdXNlbC50c3g="
         },
         {
@@ -12732,6 +13252,9 @@
         },
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9Gb290ZXIudHN4"
+        },
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9IZWFkQmFubmVyLnRzeA=="
         },
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9IZWFkZXIudHN4"
@@ -12918,7 +13441,8 @@
       "required": [
         "./routes/_middleware.ts",
         "./routes/[...catchall].tsx",
-        "./routes/index.tsx"
+        "./routes/index.tsx",
+        "./routes/live/previews/index.tsx"
       ],
       "properties": {
         "./routes/_middleware.ts": {
@@ -12939,6 +13463,13 @@
           "anyOf": [
             {
               "$ref": "#/definitions/ZGVjby1jeC9saXZlL2Jsb2Nrcy9oYW5kbGVyLnRz@Handler"
+            }
+          ]
+        },
+        "./routes/live/previews/index.tsx": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ZGVjby1jeC9saXZlL2Jsb2Nrcy9wYWdlLnRz@Page"
             }
           ]
         }

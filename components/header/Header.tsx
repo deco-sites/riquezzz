@@ -65,7 +65,7 @@ function Header({
             <Navbar items={navItems as INavItem[]} searchbar={searchbar} />
           )}
         </div>
-        <div class="fixed bg-white h-full z-50 right-0 top-[70px]">
+        <div class="hidden md:fixed md:flex bg-white h-full z-50 right-0 top-[70px] w-[50px]">
           {navItems && (
             <Sidebar items={navItems as INavItem[]} searchbar={searchbar} />
           )}
