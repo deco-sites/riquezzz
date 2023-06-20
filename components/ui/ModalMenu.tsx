@@ -5,10 +5,9 @@ import { useSignal } from "@preact/signals";
 import type { JSX } from "preact";
 import { navbarHeight } from "../header/constants.ts";
 import Buttons from "$store/islands/HeaderButton.tsx";
-import Searchbar from "../search/Searchbar.tsx"
+import Searchbar from "../search/Searchbar.tsx";
 import Icon from "./Icon.tsx";
 import type { Props as SearchbarProps } from "$store/components/search/HeaderSearchbar.tsx";
-
 
 // Lazy load a <dialog> polyfill.
 if (IS_BROWSER && typeof window.HTMLDialogElement === "undefined") {
@@ -85,9 +84,7 @@ const ModalMenu = ({
         class={`w-full h-full flex bg-transparent ${sectionStyles[mode]}`}
       >
         <div
-          class={`bg-base-100 flex flex-col  ${
-            containerStyles[mode]
-          }`}
+          class={`bg-base-100 flex flex-col  ${containerStyles[mode]}`}
         >
           <header class="flex px-4 py-6 justify-between items-center bg-[#f4f4f4] ">
             <Button class="btn btn-ghost" onClick={onClose}>
@@ -121,7 +118,6 @@ const ModalMenu = ({
                 aria-label="Log in"
               >
                 <Icon id="User" width={32} height={32} strokeWidth={1} />
-               
               </a>
               <span class="text-[12px] ">MINHA CONTA</span>
             </div>
@@ -136,7 +132,6 @@ const ModalMenu = ({
                   width="50"
                   class="shrink-0 w-[32px] h-[32px]"
                 />
-             
               </a>
               <span class="text-[12px] ">MEUS PEDIDOS</span>
             </div>
@@ -146,18 +141,22 @@ const ModalMenu = ({
                 href="/wishlist"
                 aria-label="Wishlist"
               >
-                <Icon id="Heart" width={32} height={32}  strokeWidth={1} fill="none" />
-             
+                <Icon
+                  id="Heart"
+                  width={32}
+                  height={32}
+                  strokeWidth={1}
+                  fill="none"
+                />
               </a>
               <span class="text-[12px] ">MEUS LIKES</span>
             </div>
           </div>
 
           <div class="w-full h-[70px]">
-            <Searchbar  />
+            <Searchbar />
           </div>
 
-          
           <div class="overflow-y-auto flex-grow flex flex-col  text-[26px] border-none">
             {loading === "lazy" ? lazy.value && children : children}
           </div>

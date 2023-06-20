@@ -17,7 +17,7 @@ function Navbar({ items, searchbar }: {
         style={{ height: navbarHeight }}
         class="md:hidden flex flex-row justify-between px-4 py-6 items-center  w-full"
       >
-        <Buttons variant="menu"  />
+        <Buttons variant="menu" />
         <a
           href="/"
           class="flex-grow inline-flex items-center"

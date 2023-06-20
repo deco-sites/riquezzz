@@ -35,13 +35,12 @@ function MenuButton() {
   return (
     <Button
       class="btn-square btn-ghost text-black"
-      
       aria-label="open menu"
       onClick={() => {
         displayMenu.value = true;
       }}
     >
-      <Icon id="Bars3" width={20} height={20} strokeWidth={1}  />
+      <Icon id="Bars3" width={20} height={20} strokeWidth={1} />
     </Button>
   );
 }

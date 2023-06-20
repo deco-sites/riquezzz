@@ -21,7 +21,6 @@ export interface NavItem {
       href: string;
     }>;
   }>;
- 
 }
 
 export interface Props {
