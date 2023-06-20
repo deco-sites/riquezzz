@@ -19,7 +19,7 @@ function NavItem({ item }: { item: INavItem }) {
           {children && children.length > 0 && (
             <Icon
               id="ChevronDown"
-              strokeWidth={1}
+              strokeWidth={2}
               height="15px"
               width="15px"
               class="inline mx-2"
@@ -49,11 +49,16 @@ function NavItem({ item }: { item: INavItem }) {
             </ul>
           </div>
         )}
-        <div class="absolute flex justify-center w-full"
-         style={{ bottom: "0px"}}>
-        <div class="w-0 group-hover:w-full h-[2px] m-[auto] transition-all duration-500 ease-in-out bg-black "
-        style={{ bottom: "0px"}}></div>
+      <div
+        class="absolute flex justify-center w-full"
+        style={{ bottom: "0px" }}
+      >
+        <div
+          class="w-0 group-hover:w-full h-[2px] m-[auto] transition-all duration-500 ease-in-out bg-black "
+          style={{ bottom: "0px" }}
+        >
         </div>
+      </div>
     </li>
   );
 }
