@@ -7,7 +7,7 @@ export interface Highlight {
   src: LiveImage;
   alt: string;
   href: string;
-  label: string;
+  buttonText: string;
 }
 
 export interface Props {
@@ -17,37 +17,33 @@ export interface Props {
 
 function Highlights({ highlights = [], title }: Props) {
   return (
-    <div class="container grid grid-cols-1 grid-rows-[48px_1fr] py-10">
+    <div class="grid grid-cols-1 grid-rows-[48px_1fr] py-10">
       <h2 class="text-center text-transparent">
         <span class="font-medium text-2xl">{title}</span>
       </h2>
 
-      <Slider class="carousel carousel-center sm:carousel-end gap-6 grid-cols-6 justify-evenly">
-        {highlights.map(({ href, src, alt, label }, index) => (
-          <Slider.Item
-            index={index}
-            class="carousel-item first:ml-6 sm:first:ml-0 last:mr-6 sm:last:mr-0 min-w-[300px] col-span-2"
-          >
-            <a href={href} class="bg-[#eaeaea]">
-              <figure>
-                <Image
-                  class="rounded-[0px]"
-                  src={src}
-                  alt={alt}
-                  width={380}
-                  height={530}
-                />
-                <Button>Comprar agora</Button>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-16 px-5 ">
+        {highlights.map(({ href, src, alt, buttonText }) => (
+          <div class="bg-[#eaeaea] p-5 text-center">
+            <a href={href} class="bg-[#eaeaea] pb-6 group">
+              <figure class="relative">
+                <img src={src} alt={alt} class="w-full" />
+                <Button class="
+                bg-white 
+                text-black 
+                uppercase 
+                border-none 
+                rounded-none 
+                text-xl
+                px-8 
+                group-hover:bg-white group-hover:scale-125 group-hover:rotate-[-3deg] group-hover:translate-y-[-3rem]">
+                  {buttonText || "Comprar agora"}
+                </Button>
               </figure>
-              {
-                /* <div class="card-body items-center">
-                <h2 class="card-title text-base font-medium">{label}</h2>
-              </div> */
-              }
             </a>
-          </Slider.Item>
+          </div>
         ))}
-      </Slider>
+      </div>
     </div>
   );
 }
