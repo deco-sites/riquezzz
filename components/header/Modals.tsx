@@ -1,4 +1,6 @@
 import Modal from "$store/components/ui/Modal.tsx";
+import ModalMenu from "$store/components/ui/ModalMenu.tsx";
+
 import { lazy, Suspense } from "preact/compat";
 import { useUI } from "$store/sdk/useUI.ts";
 
@@ -20,7 +22,7 @@ function Modals({ menu, searchbar }: Props) {
 
   return (
     <>
-      <Modal
+      <ModalMenu
         title="Menu"
         mode="sidebar-left"
         loading="lazy"
@@ -32,7 +34,7 @@ function Modals({ menu, searchbar }: Props) {
         <Suspense fallback={<Loading />}>
           <Menu {...menu} />
         </Suspense>
-      </Modal>
+      </ModalMenu>
 
       <Modal
         title="Buscar"

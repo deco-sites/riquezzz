@@ -160,103 +160,90 @@ function Searchbar({
             aria-controls="search-suggestion"
             autocomplete="off"
           />
-          <button
-            type="button"
-            aria-label="Clean search"
-            class="focus:outline-none"
-            tabIndex={-1}
-            onClick={(e) => {
-              e.stopPropagation();
-              if (searchInputRef.current === null) return;
-
-              searchInputRef.current.value = "";
-              setSearch("");
-            }}
-          >
-            <span class="text-sm">limpar</span>
-          </button>
         </form>
         {variant === "desktop" && <CloseButton />}
       </div>
       {term.length > 0
         ? (
-          <div class="fixed top-[70px] right-[70px] p-3 flex flex-col gap-6 divide-y divide-base-200 empty:mt-0 md:flex-row md:divide-y-0 bg-gray-100">
-            <div onClick={() => setTerm("")}>
-              <CloseButton />
-            </div>
-            {notFound
-              ? (
-                <div class="py-16 md:py-6! flex flex-col w-full">
-                  <span
-                    class="font-medium text-xl text-center"
-                    role="heading"
-                    aria-level={3}
-                  >
-                    Nenhum resultado encontrado
-                  </span>
-                  <span class="text-center text-base-300">
-                    Vamos tentar de outro jeito? Verifique a ortografia ou use
-                    um termo diferente
-                  </span>
-                </div>
-              )
-              : (
-                <>
-                  <div class="bg-gray-100 flex flex-col md:w-[15.25rem] md:max-w-[15.25rem]\ pl-2">
-                    <div class="flex gap-2 items-center">
-                      <span
-                        class="font-medium text-xl mb-4"
-                        role="heading"
-                        aria-level={3}
-                      >
-                        Pesquisas
-                      </span>
-                      {loading.value && <Spinner />}
-                    </div>
-                    <ul id="search-suggestion" class="flex flex-col gap-6">
-                      {suggestions.value!.searches?.map(({ term }) => (
-                        <li>
-                          <a
-                            href={`/s?q=${term}`}
-                            class="flex gap-4 items-center"
-                          >
-                            <span>
-                              <Icon
-                                id="MagnifyingGlass"
-                                size={20}
-                                strokeWidth={0.01}
-                              />
-                            </span>
-                            <span>{term}</span>
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
+          <div class="fixed flex top-[70px] right-[50px]  w-full h-full p-3  flex-col gap-6 divide-y divide-base-200 empty:mt-0 md:flex-row md:divide-y-0  bg-[#0000003b]">
+            <div class="fixed top-[70px] right-[50px] max-w-[755px] w-full p-3 flex flex-col gap-6 divide-y divide-base-200 empty:mt-0 md:flex-row md:divide-y-0 bg-gray-100">
+              <div onClick={() => setTerm("")}>
+                <CloseButton />
+              </div>
+              {notFound
+                ? (
+                  <div class="py-16 md:py-6! flex flex-col w-full">
+                    <span
+                      class="font-medium text-xl text-center"
+                      role="heading"
+                      aria-level={3}
+                    >
+                      Nenhum resultado encontrado
+                    </span>
+                    <span class="text-center text-base-300">
+                      Vamos tentar de outro jeito? Verifique a ortografia ou use
+                      um termo diferente
+                    </span>
                   </div>
-                  <div class="flex flex-col pt-6 md:pt-0 gap-6 overflow-x-hidden">
-                    <div class="flex gap-2 items-center">
-                      <span
-                        class="font-medium text-xl"
-                        role="heading"
-                        aria-level={3}
-                      >
-                        Sugestões
-                      </span>
-                      {loading.value && <Spinner />}
-                    </div>
-                    <Slider class="carousel">
-                      {suggestions.value!.products?.map((product, index) => (
-                        <Slider.Item
-                          index={index}
-                          class="carousel-item first:ml-4 last:mr-4 min-w-[200px] max-w-[200px]"
+                )
+                : (
+                  <>
+                    <div class="bg-gray-100 flex flex-col md:w-[15.25rem] md:max-w-[15.25rem]\ pl-2">
+                      <div class="flex gap-2 items-center">
+                        <span
+                          class="font-medium text-xl mb-4"
+                          role="heading"
+                          aria-level={3}
                         >
-                          <ProductCard product={product} />
-                        </Slider.Item>
-                      ))}
-                    </Slider>
-                  </div>
-                </>
-              )}
+                          Pesquisas
+                        </span>
+                        {loading.value && <Spinner />}
+                      </div>
+                      <ul id="search-suggestion" class="flex flex-col gap-6">
+                        {suggestions.value!.searches?.map(({ term }) => (
+                          <li>
+                            <a
+                              href={`/s?q=${term}`}
+                              class="flex gap-4 items-center"
+                            >
+                              <span>
+                                <Icon
+                                  id="MagnifyingGlass"
+                                  size={20}
+                                  strokeWidth={0.01}
+                                />
+                              </span>
+                              <span>{term}</span>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div class="flex flex-col pt-6 md:pt-0 gap-6 overflow-x-hidden">
+                      <div class="flex gap-2 items-center">
+                        <span
+                          class="font-medium text-xl"
+                          role="heading"
+                          aria-level={3}
+                        >
+                          Sugestões
+                        </span>
+                        {loading.value && <Spinner />}
+                      </div>
+                      <Slider class="carousel">
+                        {suggestions.value!.products?.map((product, index) => (
+                          <Slider.Item
+                            index={index}
+                            class="carousel-item first:ml-4 last:mr-4 min-w-[200px] max-w-[200px]"
+                          >
+                            <ProductCard product={product} />
+                          </Slider.Item>
+                        ))}
+                      </Slider>
+                    </div>
+                  </>
+                )}
+            </div>
           </div>
         )
         : null}
