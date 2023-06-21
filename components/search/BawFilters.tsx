@@ -4,8 +4,6 @@ import { formatPrice } from "$store/sdk/format.ts";
 import { useState } from "preact/hooks";
 import Icon from "$store/components/ui/Icon.tsx";
 
-
-
 import type {
   Filter,
   FilterToggle,
@@ -25,7 +23,10 @@ function ValueItem(
 ) {
   return (
     <a href={url} class="flex items-center gap-2">
-      <div aria-checked={selected} class="checkbox bg-gray-200 rounded-none border-none" />
+      <div
+        aria-checked={selected}
+        class="checkbox bg-gray-200 rounded-none border-none"
+      />
       <span class="text-sm ">{label}</span>
       {quantity > 0 && <span class="text-sm text-base-300">({quantity})</span>}
     </a>
@@ -33,16 +34,14 @@ function ValueItem(
 }
 
 function FilterValues({ key, values }: FilterToggle) {
-  const flexDirection = key === "tamanho" || key === "cor"
-    ? "flex-row"
-    : "flex-col";
+  const flexDirection = key === "cor" ? "flex-row" : "flex-col";
 
   return (
     <ul class={`flex flex-wrap gap-2 ${flexDirection}`}>
       {values.map((item) => {
-        const { url, selected, value, quantity } = item;
+        const { url, selected, value } = item;
 
-        if (key === "cor" || key === "tamanho") {
+        if (key === "cor") {
           return (
             <a href={url}>
               <Avatar
@@ -70,39 +69,46 @@ function FilterValues({ key, values }: FilterToggle) {
   );
 }
 
-function BawFilters({ filters }: Props) {
-  return (
-    <ul class="flex flex-col gap-6 p-4">
-      {filters
-        .filter(isToggle)
-        .map((filter, index) => (
-          <BawFilter index={index} filter={filter} />
-        ))}
-    </ul>
-  );
-}
-
-function BawFilter({ filter, index }: any) {
+function BawFilter(filter: FilterToggle) {
   const [isOpen, setIsOpen] = useState(false);
 
   function toggle() {
-    setIsOpen(!isOpen)
+    setIsOpen(!isOpen);
   }
 
   return (
-    <li class="flex flex-col gap-4 w-[260px]" >
+    <li class="flex flex-col gap-4 w-[260px]">
       <div class="relative cursor-pointer  pr-12" onClick={() => toggle()}>
         <span class="font-semibold text-xl">{filter.label}</span>
-        <Icon class="absolute right-4 top-auto bottom-1" size={20} id={isOpen ? "ChevronUp" : "ChevronDown"} strokeWidth={3} />
+        <Icon
+          class="absolute right-4 top-auto bottom-1"
+          size={20}
+          id={isOpen ? "ChevronUp" : "ChevronDown"}
+          strokeWidth={3}
+        />
       </div>
-      <div class={`grid ${ isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]' } transition-[grid-template-rows] duration-600 ease-in-out`} >
+      <div
+        class={`grid ${
+          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        } transition-[grid-template-rows] duration-600 ease-in-out`}
+      >
         <div class={`overflow-hidden`}>
           <FilterValues {...filter} />
         </div>
       </div>
       <div class="w-full h-[1px] bg-gray-200"></div>
     </li>
-  )
+  );
+}
+
+function BawFilters({ filters }: Props) {
+  return (
+    <ul class="flex flex-col gap-6 p-4">
+      {filters
+        .filter(isToggle)
+        .map((filter) => <BawFilter {...filter} />)}
+    </ul>
+  );
 }
 
 export default BawFilters;
