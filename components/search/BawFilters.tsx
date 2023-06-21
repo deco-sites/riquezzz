@@ -34,14 +34,14 @@ function ValueItem(
 }
 
 function FilterValues({ key, values }: FilterToggle) {
-  const flexDirection = key === "cor" ? "flex-row" : "flex-col";
+  const flexDirection = key === "avatar" ? "flex-row" : "flex-col";
 
   return (
     <ul class={`flex flex-wrap gap-2 ${flexDirection}`}>
       {values.map((item) => {
         const { url, selected, value } = item;
 
-        if (key === "cor") {
+        if (key === "avatar") {
           return (
             <a href={url}>
               <Avatar
