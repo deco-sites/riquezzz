@@ -1,4 +1,5 @@
 import Filters from "$store/components/search/Filters.tsx";
+import BawFilters from "$store/components/search/BawFilters.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import SearchControls from "$store/islands/SearchControls.tsx";
 import { SendEventOnLoad } from "$store/sdk/analytics.tsx";
@@ -50,6 +51,9 @@ function Result({
               <Filters filters={filters} />
             </aside>
           )}
+          <div class="flex-grow">
+            <BawFilters filters={filters} />
+          </div>
           <div class="flex-grow">
             <ProductGallery products={products} />
           </div>
