@@ -22,7 +22,7 @@ function ValueItem(
   { url, selected, label, quantity }: FilterToggleValue,
 ) {
   return (
-    <a href={url} class="flex items-center gap-2">
+    <a href={url} class="flex items-center gap-2 mb-2">
       <div
         aria-checked={selected}
         class="checkbox bg-gray-200 rounded-none border-none"
@@ -78,17 +78,17 @@ function BawFilter(filter: FilterToggle) {
 
   return (
     <li class="flex flex-col gap-4 w-[260px]">
-      <div class="relative cursor-pointer  pr-12" onClick={() => toggle()}>
-        <span class="font-semibold text-xl">{filter.label}</span>
+      <div class="flex justify-between relative cursor-pointer items-center pt-2 pr-5" onClick={() => toggle()}>
+        <span class="flex font-semibold text-xl">{filter.label}</span>
         <Icon
-          class="absolute right-4 top-auto bottom-1"
-          size={20}
+          class="flex items-center"
+          size={15}
           id={isOpen ? "ChevronUp" : "ChevronDown"}
           strokeWidth={3}
         />
       </div>
       <div
-        class={`grid ${
+        class={`grid border-solid border-b border-gray-200 ${
           isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
         } transition-[grid-template-rows] duration-600 ease-in-out`}
       >
@@ -96,14 +96,13 @@ function BawFilter(filter: FilterToggle) {
           <FilterValues {...filter} />
         </div>
       </div>
-      <div class="w-full h-[1px] bg-gray-200"></div>
     </li>
   );
 }
 
 function BawFilters({ filters }: Props) {
   return (
-    <ul class="flex flex-col gap-6 p-4">
+    <ul class="flex flex-col gap-2 p-4">
       {filters
         .filter(isToggle)
         .map((filter) => <BawFilter {...filter} />)}
