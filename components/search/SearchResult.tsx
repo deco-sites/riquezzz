@@ -37,7 +37,7 @@ function Result({
 
   return (
     <>
-      <div class="container px-4 sm:py-10">
+      <div class="px-4 sm:py-10">
         <SearchControls
           sortOptions={sortOptions}
           filters={filters}
@@ -48,12 +48,15 @@ function Result({
         <div class="flex flex-row">
           {variant === "aside" && filters.length > 0 && (
             <aside class="hidden sm:block w-min min-w-[250px]">
-              <Filters filters={filters} />
+              <BawFilters filters={filters} />
             </aside>
           )}
-          <div class="flex-grow">
-            <BawFilters filters={filters} />
-          </div>
+
+          {filters.length > 0 && (
+            <aside class="hidden sm:block w-min min-w-[250px]">
+              <BawFilters filters={filters} />
+            </aside>
+          )}
           <div class="flex-grow">
             <ProductGallery products={products} />
           </div>

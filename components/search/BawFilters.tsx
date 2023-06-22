@@ -77,8 +77,11 @@ function BawFilter(filter: FilterToggle) {
   }
 
   return (
-    <li class="flex flex-col gap-4 w-[260px]">
-      <div class="flex justify-between relative cursor-pointer items-center pt-2 pr-5" onClick={() => toggle()}>
+    <li class="flex flex-col gap-4">
+      <div
+        class="flex justify-between relative cursor-pointer items-center pt-2 pr-5"
+        onClick={() => toggle()}
+      >
         <span class="flex font-semibold text-xl">{filter.label}</span>
         <Icon
           class="flex items-center"
@@ -92,7 +95,7 @@ function BawFilter(filter: FilterToggle) {
           isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
         } transition-[grid-template-rows] duration-600 ease-in-out`}
       >
-        <div class={`overflow-hidden`}>
+        <div class={`overflow-hidden`}> 
           <FilterValues {...filter} />
         </div>
       </div>
@@ -102,7 +105,7 @@ function BawFilter(filter: FilterToggle) {
 
 function BawFilters({ filters }: Props) {
   return (
-    <ul class="flex flex-col gap-2 p-4">
+    <ul class="flex-col gap-2 p-4 flex">
       {filters
         .filter(isToggle)
         .map((filter) => <BawFilter {...filter} />)}

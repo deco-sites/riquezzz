@@ -1,6 +1,6 @@
 import Button from "$store/components/ui/Button.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
-import Filters from "$store/components/search/Filters.tsx";
+import BawFilters from "$store/components/search/BawFilters.tsx";
 import Sort from "$store/components/search/Sort.tsx";
 import Modal from "$store/components/ui/Modal.tsx";
 import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
@@ -46,7 +46,7 @@ function SearchControls(
           open.value = false;
         }}
       >
-        <Filters filters={filters} />
+        <BawFilters filters={filters} />
       </Modal>
     </div>
   );
