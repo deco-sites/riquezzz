@@ -30,44 +30,52 @@ function FeatureHighlights(
       <div class="bg-gray-100 overflow-hidden">
         <div class="container relative overflow-hidden justify-between group">
           <div class="flex flex-col justify-between mx-6 sm:flex-row sm:mx-0 overflow-hidden h-[120px]">
-            
             <div class="flex flex-row gap-8 py-3 sm:flex-col sm:py-0 sm:px-2 relative h-full justify-center">
               <div class="flex flex-col gap-1">
-                <span class="text-lg transform transition duration-300 group-hover:scale-125">{feature_1.title}</span>
+                <span class="text-lg transform transition duration-300 group-hover:scale-125">
+                  {feature_1.title}
+                </span>
                 <span class="text-lg transform transition duration-300 group-hover:scale-125 font-extrabold uppercase">
                   {feature_1.description}
                 </span>
               </div>
             </div>
             <div class="flex flex-row py-6 sm:flex-col sm:py-0 sm:px-8 relative w-[290px]">
-                <img class="mt-[-15px] max-w-none" src={IMAGE_SRC[0]} />
-              </div>
+              <img class="mt-[-15px] max-w-none" src={IMAGE_SRC[0]} />
+            </div>
             <div class="flex flex-row gap-8 py-3 sm:flex-col sm:py-0 sm:px-2 relative  h-full justify-center">
               <div class="flex flex-col gap-1">
-                <span class="text-lg transform transition duration-300 group-hover:scale-125">{feature_2.title}</span>
+                <span class="text-lg transform transition duration-300 group-hover:scale-125">
+                  {feature_2.title}
+                </span>
                 <span class="text-lg transform transition duration-300 group-hover:scale-125 font-extrabold uppercase">
                   {feature_2.description}
                 </span>
               </div>
             </div>
             <div class="flex flex-row py-6 sm:flex-col sm:py-0 sm:px-8 relative w-[290px]">
-                <img class="mt-[-85px] max-w-none" src={IMAGE_SRC[1]} />
-              </div>
+              <img class="mt-[-85px] max-w-none" src={IMAGE_SRC[1]} />
+            </div>
 
             <div class="flex flex-row gap-8 py-3 sm:flex-col sm:py-0 sm:px-2 relative  h-full justify-center">
               <div class="flex flex-col gap-1">
-                <span class="text-lg transform transition duration-300 group-hover:scale-125">{feature_3.title}</span>
+                <span class="text-lg transform transition duration-300 group-hover:scale-125">
+                  {feature_3.title}
+                </span>
                 <span class="text-lg transform transition duration-300 group-hover:scale-125 font-extrabold uppercase">
-                  {feature_3.description}               </span>
+                  {feature_3.description}
+                </span>
               </div>
             </div>
           </div>
-          {/* <div class="flex absolute top-0 items-center justify-around ">
+          {
+            /* <div class="flex absolute top-0 items-center justify-around ">
             <div class="container flex justify-evenly w-[90vw]">
-              
-              
+
+
             </div>
-          </div> */}
+          </div> */
+          }
         </div>
       </div>
     </div>
