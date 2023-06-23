@@ -66,7 +66,9 @@ function ProductCard({ product, preload, itemListName }: Props) {
           <WishlistIcon productGroupID={productGroupID} productID={productID} />
         </div>
         <div class="absolute flex justify-center top-0 left-0 z-10 mt-3 ml-2">
-          <span class="rounded-[100px] font-bold bg-black text-white p-1 px-2  text-xs">{Math.floor((price!/listPrice!*100))}% OFF </span>
+          <span class="rounded-[100px] font-bold bg-black text-white p-1 px-2  text-xs">
+            {Math.floor(price! / listPrice! * 100)}% OFF
+          </span>
         </div>
         {/* Product Images */}
         <a
@@ -100,12 +102,9 @@ function ProductCard({ product, preload, itemListName }: Props) {
           {/* SKU Selector */}
           <ul class="flex justify-center items-center gap-2 w-full">
             {variants.map(([value, [link]]) => (
-              
               <a href={link}>
-
                 <Avatar
                   variant={link === url ? "active" : "default"}
-                  
                   content={value}
                 />
               </a>
@@ -115,9 +114,10 @@ function ProductCard({ product, preload, itemListName }: Props) {
       </figure>
       {/* Prices & Name */}
       <div class="card-body">
-        <h2 class="card-title whitespace-nowrap overflow-hidden  text-base-300 text-base font-normal uppercase">{name}</h2>
+        <h2 class="card-title whitespace-nowrap overflow-hidden  text-base-300 text-base font-normal uppercase">
+          {name}
+        </h2>
         <div class="flex items-end gap-1">
-          
           <span class="line-through text-base text-base-300 ">
             {formatPrice(listPrice, offers!.priceCurrency!)}
           </span>
@@ -130,4 +130,4 @@ function ProductCard({ product, preload, itemListName }: Props) {
   );
 }
 
-export default ProductCard
+export default ProductCard;
