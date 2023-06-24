@@ -126,6 +126,8 @@ function ProductCard({ product, preload, itemListName }: Props) {
       {/* Prices & Name */}
       <div class="card-body">
         <h2 class="card-title whitespace-nowrap overflow-hidden  text-base-300 text-base font-normal uppercase">
+
+          
           {name}
         </h2>
         <div class="flex items-end gap-1">
