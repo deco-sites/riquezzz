@@ -20,7 +20,6 @@ function ProductShelf({
   products,
 }: Props) {
   const id = useId();
-  
 
   if (!products || products.length === 0) {
     return null;
