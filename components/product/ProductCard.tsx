@@ -26,7 +26,7 @@ const WIDTH = 280;
 const HEIGHT = 420;
 
 function ProductCard({ product, preload, itemListName }: Props) {
-  const {
+ const {
     url,
     productID,
     name,
@@ -36,7 +36,7 @@ function ProductCard({ product, preload, itemListName }: Props) {
   } = product;
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
-  const { listPrice, price } = useOffer(offers);
+  const { listPrice, price, installments,availability,seller } = useOffer(offers);
   const possibilities = useVariantPossibilities(product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
   const clickEvent = {
@@ -52,7 +52,6 @@ function ProductCard({ product, preload, itemListName }: Props) {
       ],
     },
   };
-
   return (
     <div
       class="card card-compact card-bordered rounded-none border-transparent group w-full"
@@ -98,7 +97,20 @@ function ProductCard({ product, preload, itemListName }: Props) {
             decoding="async"
           />
         </a>
-        <figcaption class="card-body card-actions absolute bottom-0 left-0 w-full transition-opacity opacity-0 group-hover:opacity-100 bg-white">
+        <div class="group/edit">
+        <figcaption class=" card-body card-actions absolute bottom-0 left-0 w-full  transition-opacity opacity-0 group-hover:opacity-100 bg-green-600">
+          {/* COMPRA */}
+          <ul class="flex justify-center items-center  w-full">
+            
+              <a class="uppercase w-full text-white text-center font-bold text-xl" >
+                
+                Compra
+           
+              </a>
+  
+          </ul>
+        </figcaption>
+        <figcaption class="card-body card-actions absolute bottom-0 left-0 w-full mb- transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white">
           {/* SKU Selector */}
           <ul class="flex justify-center items-center gap-2 w-full">
             {variants.map(([value, [link]]) => (
@@ -111,6 +123,7 @@ function ProductCard({ product, preload, itemListName }: Props) {
             ))}
           </ul>
         </figcaption>
+        </div>
       </figure>
       {/* Prices & Name */}
       <div class="card-body">
@@ -118,8 +131,13 @@ function ProductCard({ product, preload, itemListName }: Props) {
           {name}
         </h2>
         <div class="flex items-end gap-1">
+          <span class="text-base-300 text-base font-bold">
+            {installments}
+          </span>
+        </div>
+        <div class="flex items-end gap-1">
           <span class="line-through text-base text-base-300 ">
-            {formatPrice(listPrice, offers!.priceCurrency!)}
+            {listPrice !== price ? (formatPrice(listPrice, offers!.priceCurrency!)):('')}
           </span>
           <span class="text-red-700 text-base font-bold">
             {formatPrice(price, offers!.priceCurrency!)}

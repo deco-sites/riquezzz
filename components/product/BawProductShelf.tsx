@@ -20,11 +20,11 @@ function ProductShelf({
   products,
 }: Props) {
   const id = useId();
+  
 
   if (!products || products.length === 0) {
     return null;
   }
-
   return (
     <div
       id={id}
@@ -38,7 +38,7 @@ function ProductShelf({
         {products?.map((product, index) => (
           <Slider.Item
             index={index}
-            class="carousel-item w-[230px] sm:w-[230px] first:ml-6 sm:first:ml-0 last:mr-6 sm:last:mr-0"
+            class="carousel-item w-[230px] sm:w-[280px] first:ml-6 sm:first:ml-0 last:mr-6 sm:last:mr-0"
           >
             <ProductCard product={product} itemListName={title} />
           </Slider.Item>
