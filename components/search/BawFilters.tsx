@@ -95,7 +95,7 @@ function BawFilter(filter: FilterToggle) {
           isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
         } transition-[grid-template-rows] duration-600 ease-in-out`}
       >
-        <div class={`overflow-hidden`}>
+        <div class={`overflow-hidden`}> 
           <FilterValues {...filter} />
         </div>
       </div>
