@@ -65,6 +65,16 @@ function ProductCard({ product, preload, itemListName }: Props) {
         <div class="absolute top-0 right-0 z-10">
           <WishlistIcon productGroupID={productGroupID} productID={productID} />
         </div>
+        {listPrice !== price
+          ? (
+            <div class="absolute flex justify-center top-0 left-0 z-10 mt-3 ml-2">
+              <span class="rounded-[100px] font-bold bg-black text-white p-1 px-2  text-xs">
+                {Math.floor(price! / listPrice! * 100)}% OFF
+              </span>
+            </div>
+          )
+          : ("")}
+
         {/* Product Images */}
         <a
           href={url && relative(url)}
