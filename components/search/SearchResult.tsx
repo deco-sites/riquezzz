@@ -1,4 +1,5 @@
 import Filters from "$store/components/search/Filters.tsx";
+import BawFilters from "$store/components/search/BawFilters.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import SearchControls from "$store/islands/SearchControls.tsx";
 import { SendEventOnLoad } from "$store/sdk/analytics.tsx";
@@ -36,7 +37,7 @@ function Result({
 
   return (
     <>
-      <div class="container px-4 sm:py-10">
+      <div class="px-4 sm:py-10">
         <SearchControls
           sortOptions={sortOptions}
           filters={filters}
@@ -47,7 +48,13 @@ function Result({
         <div class="flex flex-row">
           {variant === "aside" && filters.length > 0 && (
             <aside class="hidden sm:block w-min min-w-[250px]">
-              <Filters filters={filters} />
+              <BawFilters filters={filters} />
+            </aside>
+          )}
+
+          {filters.length > 0 && (
+            <aside class="hidden sm:block w-min min-w-[250px]">
+              <BawFilters filters={filters} />
             </aside>
           )}
           <div class="flex-grow">
