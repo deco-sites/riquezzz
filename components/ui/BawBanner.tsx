@@ -135,23 +135,23 @@ export default function BawBannner({
           <div
             class={` ${IMAGE_SIZE[size_cols ?? 2]} ${
               ROW_SIZE[size_rows ?? 1]
-            } transform transition duration-500 hover:scale-110 `}
+            } transform transition duration-500 hover:scale-95 `}
           >
             <Picture class="w-full">
               <Source
                 media="(max-width: 767px)"
                 src={srcMobile}
-                width={100}
-                height={100}
+                width={1920}
+                height={1920}
               />
               <Source
                 media="(min-width: 768px)"
                 src={srcDesktop ? srcDesktop : srcMobile}
-                width={250}
-                height={250}
+                width={1920}
+                height={1920}
               />
               <img
-                class="h-auto w-full object-center max"
+                class="w-full object-cover"
                 //   sizes="(max-width: 640px) 100vw, 30vw"
                 src={srcMobile}
                 alt={alt}
