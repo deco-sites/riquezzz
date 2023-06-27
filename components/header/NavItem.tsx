@@ -12,7 +12,7 @@ function NavItem({ item }: { item: INavItem }) {
   const { href, label, children, colorRed } = item;
 
   return (
-    <li class=" relative   group font-bold flex items-center border-b-2 border-transparent  b pt-[10px] pb-[10px] box-border h-[70px] ease-out duration-300">
+    <li class=" relative   group font-thin flex items-center border-b-2 border-transparent  b pt-[10px] pb-[10px] box-border h-[70px] ease-out duration-300">
       <a href={href} class="px-4 py-3">
         <span class={colorRed ? "text-red-500" : ""}>
           {label}

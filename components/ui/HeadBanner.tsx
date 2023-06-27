@@ -17,11 +17,11 @@ function HeadBanner({ srcDesktop, srcMobile, alt }: Props) {
   const id = useId();
 
   return (
-    <div id={id}>
-      <div class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full gap-2">
+    <div id={id} class="px-4 w-full">
+      <div class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full mb-3 mx-auto">
         <img class="w-full" src={srcMobile} alt={alt} />
       </div>
-      <div class="hidden md:flex flex-row justify-between items-center border-b border-base-200 w-full pl-2 gap-2">
+      <div class="hidden md:flex flex-row justify-between items-center border-b border-base-200 w-full gap mb-3 mx-auto">
         <img class="w-full" src={srcDesktop} alt={alt} />
       </div>
     </div>

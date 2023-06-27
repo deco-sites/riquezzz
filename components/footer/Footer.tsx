@@ -89,7 +89,7 @@ function Footer(
           <div class="container w-full flex flex-col divide-y divide-primary-content border-b border-[#9a9a9a79]">
             <FooterContainer>
               {/* Desktop view */}
-              <ul class="hidden sm:flex flex-row justify-start gap-52">
+              <ul class="hidden sm:flex flex-row justify-start gap-28">
                 {sections.map((section) => (
                   <li>
                     <div>
