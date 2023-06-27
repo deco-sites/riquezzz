@@ -24,21 +24,20 @@ function ProductShelf({
   if (!products || products.length === 0) {
     return null;
   }
-
   return (
     <div
       id={id}
-      class="container grid grid-cols-[48px_1fr_48px] grid-rows-[48px_1fr_48px_1fr] py-10 px-0 sm:px-5"
+      class="grid grid-cols-[48px_1fr_48px] grid-rows-[48px_1fr_48px_1fr] py-10 px-0 sm:pl-8 sm:pr-[75px]"
     >
-      <h2 class="text-center row-start-1 col-span-full">
-        <span class="font-medium text-2xl">{title}</span>
+      <h2 class="text-left row-start-1 col-span-full">
+        <span class="font-black text-3xl">{title}</span>
       </h2>
 
       <Slider class="carousel carousel-center sm:carousel-end gap-6 col-span-full row-start-2 row-end-5">
         {products?.map((product, index) => (
           <Slider.Item
             index={index}
-            class="carousel-item w-[270px] sm:w-[292px] first:ml-6 sm:first:ml-0 last:mr-6 sm:last:mr-0"
+            class="carousel-item w-[230px] sm:w-[280px] first:ml-6 sm:first:ml-0 last:mr-6 sm:last:mr-0"
           >
             <ProductCard product={product} itemListName={title} />
           </Slider.Item>
