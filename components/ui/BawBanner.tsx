@@ -123,21 +123,21 @@ export default function BawBannner({
   banners = [],
 }: Props) {
   return (
-    <section class="w-full px-1 md:pl-2 mx-auto md:pr-[50px]">
+    <section class="w-[99vw] px-1 md:pl-2 mx-auto md:pr-[50px]">
       <div
         class={`grid grid-flow-row-dense grid-rows-2 gap-4 md:gap-4 ${
           MOBILE_COLUMNS[itemsPerLine.mobile ?? 2]
         } ${DESKTOP_COLUMNS[itemsPerLine.desktop ?? 4]}`}
       >
         {banners.map((
-          { href, srcMobile, srcDesktop, alt, size_cols, size_rows },
+          { href, srcMobile, srcDesktop, alt, size_cols, size_rows }, index
         ) => (
           <div
             class={` ${IMAGE_SIZE[size_cols ?? 2]} ${
               ROW_SIZE[size_rows ?? 1]
             } transform transition duration-500 hover:scale-95 `}
           >
-            <Picture class="w-full">
+            <Picture class={ index > 1 ? "hidden md:block text-center" : "w-full"}>
               <Source
                 media="(max-width: 767px)"
                 src={srcMobile}

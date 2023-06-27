@@ -26,16 +26,16 @@ function FeatureHighlights(
     1: "data:image/svg+xml;charset=utf-8,%3Csvg width='228' height='228' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M104.654.172c-20.999 1.87-41.032 9.293-57.385 21.21-9.202 6.728-18.977 16.504-25.705 25.706-9.112 12.49-15.78 27.606-19.099 43.265-2.685 12.702-3.107 26.943-1.207 40.037 4.496 30.684 21.331 58.109 46.946 76.363 26.55 18.977 61.428 25.524 93.198 17.559 28.874-7.271 53.674-25.344 69.363-50.536 10.651-17.137 16.413-36.477 16.987-56.993 1.056-38.136-16.806-73.738-48.364-96.276C164.604 9.977 146.381 3.008 127.222.595 122.938.05 108.908-.19 104.654.172zm2.444 6.728C89.961 25.365 77.681 46.334 70.531 69.324c-3.892 12.581-5.883 24.137-6.698 39.222l-.181 3.56H3.008l.181-3.56c1.418-24.288 9.504-45.558 24.439-64.324 3.862-4.828 11.947-12.913 16.775-16.775C58.855 15.952 74.876 8.469 92.465 5.03c4.284-.845 10.862-1.72 14.693-1.931 4.134-.242 4.134-.694-.06 3.801zm19.671-3.228c20.426 2.263 39.977 10.44 56.722 23.775 4.737 3.771 12.853 11.887 16.624 16.624 15.116 18.917 23.111 39.976 24.559 64.626l.211 3.409h-60.643l-.181-1.9c-.091-1.026-.242-3.5-.332-5.492-.392-7.723-1.931-17.62-4.103-26.339-2.686-10.74-6.276-20.546-11.435-30.985-7.452-15.146-16.323-27.878-28.15-40.4l-3.952-4.163 3.319.211c1.81.09 5.129.393 7.361.634zm-9.413 5.008c8.448 8.63 16.655 19.49 23.141 30.684 3.048 5.28 8.086 15.659 10.198 21 5.944 15.175 9.474 31.558 10.077 46.824l.181 4.918H67.031v-3.409c0-6.457 1.116-16.111 2.896-24.65 5.009-24.438 16.504-47.941 33.309-68.186C106.314 12.15 113.072 5 113.524 5c.121 0 1.841 1.659 3.832 3.68zM63.833 118.955c.362 6.276.815 11.314 1.418 15.629 3.289 23.171 11.616 44.713 25.162 65.018 5.401 8.086 9.957 13.788 17.319 21.693l3.137 3.349-2.232-.151c-17.258-1.297-28.964-4.254-42.39-10.68-11.707-5.642-21.27-12.401-30.624-21.754C15.861 172.327 4.85 147.467 3.22 118.955l-.212-3.53h60.644l.18 3.53zm96.939 2.263c-1.026 33.037-14.934 66.979-38.468 94.013-1.84 2.112-4.375 4.857-5.642 6.094l-2.293 2.263-4.133-4.224c-10.892-11.133-19.943-24.016-27.486-39.071-9.504-19.008-14.965-39.645-15.628-59.377l-.181-5.491h94.012l-.181 5.793zm64.053-5.129c0 .392-.151 2.655-.302 5.069-1.086 15.357-4.887 29.175-11.736 42.691-16.383 32.223-47.157 54.368-82.85 59.558-3.952.573-11.615 1.237-11.887 1.026-.06-.03 1.237-1.479 2.897-3.198 10.952-11.375 21.843-27.456 28.752-42.391 7.06-15.326 11.586-31.196 13.396-47.127.423-3.53 1.056-13.003 1.086-15.477v-.815h60.644v.664z' fill='%23000'/%3E%3C/svg%3E",
   };
   return (
-    <div class="p-6 sm:px-2 sm:py-10">
+    <div class="p-6 sm:px-2 sm:py-10 hidden lg:block w-full">
       <div class="bg-gray-100 overflow-hidden">
         <div class="container relative overflow-hidden justify-between group">
           <div class="flex flex-col justify-between mx-6 sm:flex-row sm:mx-0 overflow-hidden h-[120px]">
-            <div class="flex flex-row gap-8 py-3 sm:flex-col sm:py-0 sm:px-2 relative h-full justify-center">
+            <div class="flex flex-row gap-8 py-3 px-3 sm:flex-col sm:py-0 sm:px-2 relative h-full justify-center">
               <div class="flex flex-col gap-1">
-                <span class="text-lg transform transition duration-300 group-hover:scale-125">
+                <span class="text-lg transform transition duration-300 group-hover:scale-110">
                   {feature_1.title}
                 </span>
-                <span class="text-lg transform transition duration-300 group-hover:scale-125 font-extrabold uppercase">
+                <span class="text-lg transform transition duration-300 group-hover:scale-110 font-extrabold uppercase">
                   {feature_1.description}
                 </span>
               </div>
@@ -45,10 +45,10 @@ function FeatureHighlights(
             </div>
             <div class="flex flex-row gap-8 py-3 sm:flex-col sm:py-0 sm:px-2 relative  h-full justify-center">
               <div class="flex flex-col gap-1">
-                <span class="text-lg transform transition duration-300 group-hover:scale-125">
+                <span class="text-lg transform transition duration-300 group-hover:scale-110">
                   {feature_2.title}
                 </span>
-                <span class="text-lg transform transition duration-300 group-hover:scale-125 font-extrabold uppercase">
+                <span class="text-lg transform transition duration-300 group-hover:scale-110 font-extrabold uppercase">
                   {feature_2.description}
                 </span>
               </div>

@@ -55,7 +55,7 @@ function ProductCard({ product, preload, itemListName }: Props) {
 
   return (
     <div
-      class="card card-compact card-bordered border-transparent hover:border-base-200 group w-full"
+      class="card card-compact card-bordered border-transparent hover:border-base-200 group w-full rounded-none"
       data-deco="view-product"
       id={`product-card-${productID}`}
       {...sendEventOnClick(clickEvent)}
@@ -86,7 +86,7 @@ function ProductCard({ product, preload, itemListName }: Props) {
             alt={front.alternateName}
             width={WIDTH}
             height={HEIGHT}
-            class="absolute transition-opacity rounded w-full opacity-100 group-hover:opacity-0"
+            class="absolute transition-opacity rounded-none w-full opacity-100 group-hover:opacity-0"
             sizes="(max-width: 640px) 50vw, 20vw"
             preload={preload}
             loading={preload ? "eager" : "lazy"}
@@ -97,7 +97,7 @@ function ProductCard({ product, preload, itemListName }: Props) {
             alt={back?.alternateName ?? front.alternateName}
             width={WIDTH}
             height={HEIGHT}
-            class="absolute transition-opacity rounded w-full opacity-0 group-hover:opacity-100"
+            class="absolute transition-opacity rounded-none w-full opacity-0 group-hover:opacity-100"
             sizes="(max-width: 640px) 50vw, 20vw"
             loading="lazy"
             decoding="async"
