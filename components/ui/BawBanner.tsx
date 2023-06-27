@@ -130,14 +130,17 @@ export default function BawBannner({
         } ${DESKTOP_COLUMNS[itemsPerLine.desktop ?? 4]}`}
       >
         {banners.map((
-          { href, srcMobile, srcDesktop, alt, size_cols, size_rows }, index
+          { href, srcMobile, srcDesktop, alt, size_cols, size_rows },
+          index,
         ) => (
           <div
             class={` ${IMAGE_SIZE[size_cols ?? 2]} ${
               ROW_SIZE[size_rows ?? 1]
             } transform transition duration-500 hover:scale-95 `}
           >
-            <Picture class={ index > 1 ? "hidden md:block text-center" : "w-full"}>
+            <Picture
+              class={index > 1 ? "hidden md:block text-center" : "w-full"}
+            >
               <Source
                 media="(max-width: 767px)"
                 src={srcMobile}
