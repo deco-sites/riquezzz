@@ -8451,6 +8451,22 @@
             },
             {
               "type": "string",
+              "const": "Modelo"
+            },
+            {
+              "type": "string",
+              "const": "Cor"
+            },
+            {
+              "type": "string",
+              "const": "Tamanho"
+            },
+            {
+              "type": "string",
+              "const": "Estilo"
+            },
+            {
+              "type": "string",
               "const": ">"
             }
           ],
@@ -8660,6 +8676,22 @@
             {
               "type": "string",
               "const": "TwitterLogo"
+            },
+            {
+              "type": "string",
+              "const": "Modelo"
+            },
+            {
+              "type": "string",
+              "const": "Cor"
+            },
+            {
+              "type": "string",
+              "const": "Tamanho"
+            },
+            {
+              "type": "string",
+              "const": "Estilo"
             },
             {
               "type": "string",
