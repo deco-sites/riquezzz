@@ -69,8 +69,28 @@ function FilterValues({ key, values }: FilterToggle) {
   );
 }
 
+interface FilterIconInterface {
+  [key: string]: string;
+}
+
+function FilterIcon({ key }: FilterToggle) {
+  const icons = {
+    modelo: "https://bawclothing.vtexassets.com/assets/vtex/assets-builder/bawclothing.theme/4.5.13/icons/filter-modelo___1c41ef834aa83dacb579f04e502978ee.svg",
+    cor: "https://bawclothing.vtexassets.com/assets/vtex/assets-builder/bawclothing.theme/4.5.13/icons/icon-filter-color___158735669d0fc878cae0e4170bd4dddd.svg",
+    tamanho: "https://bawclothing.vtexassets.com/assets/vtex/assets-builder/bawclothing.theme/4.5.13/icons/filter-tamanho___e4e57b5416928185d3a00ccf3d1e965b.svg",
+    estilo: "https://bawclothing.vtexassets.com/assets/vtex/assets-builder/bawclothing.theme/4.5.13/icons/filter-estilo___921a36e559279e91c1f84465941a15fb.svg"
+  }
+
+  return (
+    <span class={ key in icons ? "w-[37px] mr-3" : ""}>
+      { key in icons ? <img src={(icons as FilterIconInterface)[key]} /> : '' }
+    </span>
+  )
+}
+
 function BawFilter(filter: FilterToggle) {
   const [isOpen, setIsOpen] = useState(false);
+  const { key } = filter;
 
   function toggle() {
     setIsOpen(!isOpen);
@@ -82,7 +102,7 @@ function BawFilter(filter: FilterToggle) {
         class="flex justify-between relative cursor-pointer items-center pt-2 pr-5"
         onClick={() => toggle()}
       >
-        <span class="flex font-semibold text-xl">{filter.label}</span>
+        <span class="flex font-semibold text-xl justify-center items-center"><FilterIcon {...filter} />{filter.label}</span>
         <Icon
           class="flex items-center"
           size={15}
