@@ -2,6 +2,7 @@ import Avatar from "$store/components/ui/Avatar.tsx";
 import { parseRange } from "deco-sites/std/utils/filters.ts";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useState } from "preact/hooks";
+import { AvailableIcons } from "$store/components/ui/Icon.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 
 import type {
@@ -70,20 +71,31 @@ function FilterValues({ key, values }: FilterToggle) {
 }
 
 interface FilterIconInterface {
-  [key: string]: string;
+  [key: string]: AvailableIcons;
 }
 
 function FilterIcon({ key }: FilterToggle) {
-  const icons = {
-    modelo: "https://bawclothing.vtexassets.com/assets/vtex/assets-builder/bawclothing.theme/4.5.13/icons/filter-modelo___1c41ef834aa83dacb579f04e502978ee.svg",
-    cor: "https://bawclothing.vtexassets.com/assets/vtex/assets-builder/bawclothing.theme/4.5.13/icons/icon-filter-color___158735669d0fc878cae0e4170bd4dddd.svg",
-    tamanho: "https://bawclothing.vtexassets.com/assets/vtex/assets-builder/bawclothing.theme/4.5.13/icons/filter-tamanho___e4e57b5416928185d3a00ccf3d1e965b.svg",
-    estilo: "https://bawclothing.vtexassets.com/assets/vtex/assets-builder/bawclothing.theme/4.5.13/icons/filter-estilo___921a36e559279e91c1f84465941a15fb.svg"
-  }
+  const icons = [
+    "modelo",
+    "cor",
+    "tamanho",
+    "estilo"
+  ]
 
   return (
-    <span class={ key in icons ? "w-[37px] mr-3" : ""}>
-      { key in icons ? <img src={(icons as FilterIconInterface)[key]} /> : '' }
+    <span class={ icons.includes(key) ? "w-[37px] mr-3" : ""}>
+      {
+        key === "modelo" ? <Icon width={25} height={24} id="Modelo" /> : ''
+      }
+      {
+        key === "cor" ? <Icon width={27} height={23} id="Cor" /> : ''
+      }
+      {
+        key === "tamanho" ? <Icon width={37} height={23} id="Tamanho" /> : ''
+      }
+      {
+        key === "estilo" ? <Icon width={33} height={27} id="Estilo" /> : ''
+      }
     </span>
   )
 }
