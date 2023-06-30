@@ -42,7 +42,7 @@ function Cart() {
         <header class="flex  py-2 justify-between items-center text-white bg-black text-xs">
           <div class="w-full flex flex-col justify-between items-center">
             <div class="flex flex-row w-full items-center content-start">
-              <Button class="btn btn-ghost">
+              <Button class="btn btn-ghost" onClick={()=>displayCart.value = !displayCart.value}>
                 <Icon id="XMark" width={20} height={20} strokeWidth={2} />
               </Button>{" "}
               <div class="px-2 py-4">

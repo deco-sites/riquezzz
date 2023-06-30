@@ -1,6 +1,8 @@
 import Icon from "$store/components/ui/Icon.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import Button from "$store/components/ui/Button.tsx";
+import { useUI } from "$store/sdk/useUI.ts";
+ 
 
 interface Props {
   total: number;
@@ -12,11 +14,11 @@ interface Props {
 function FreeShippingProgressBar({ target, total, currency, locale }: Props) {
   const remaining = target - total;
   const percent = Math.floor((total / target) * 100);
-
+  const { displayCart } = useUI();
   return (
     <div class="flex flex-col w-full gap-2">
       <div class="flex justify-start items-center gap-2 text-white w-full">
-        <Button class="btn btn-ghost">
+        <Button class="btn btn-ghost" onClick={()=>displayCart.value = !displayCart.value}>
           <Icon id="XMark" width={20} height={20} strokeWidth={2} />
         </Button>{" "}
         {remaining > 0
