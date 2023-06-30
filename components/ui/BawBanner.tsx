@@ -151,7 +151,9 @@ export default function BawBannner({
             } transform transition duration-500 hover:scale-95  `}
           >
             <Picture
-              class={index > 1 ? "hidden md:block text-center  " : "w-full flex "}
+              class={index > 1
+                ? "hidden md:block text-center  "
+                : "w-full flex "}
             >
               <Source
                 media="(max-width: 767px)"
