@@ -89,7 +89,6 @@ const ModalCart = ({
               containerStyles[mode]
             }`}
           >
-           
             <div class="overflow-y-auto flex flex-col">
               {loading === "lazy" ? lazy.value && children : children}
             </div>

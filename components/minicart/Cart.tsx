@@ -7,6 +7,7 @@ import { useUI } from "$store/sdk/useUI.ts";
 import CartItem from "./CartItem.tsx";
 import Coupon from "./Coupon.tsx";
 import Icon from "../ui/Icon.tsx";
+import FreeShippingProgressBar from "./FreeShippingProgressBar.tsx";
 
 declare global {
   interface Window {
@@ -21,6 +22,9 @@ function Cart() {
   const { cart, loading, mapItemsToAnalyticsItems } = useCart();
   const isCartEmpty = cart.value?.items.length === 0;
   const total = cart.value?.totalizers.find((item) => item.id === "Items");
+  const totalizers = cart.value?.totalizers;
+  const total2 = totalizers?.find((item) => item.id === "Items")?.value || 0;
+
   const discounts = cart.value?.totalizers.find((item) =>
     item.id === "Discounts"
   );
@@ -33,74 +37,59 @@ function Cart() {
 
   // Empty State
   if (isCartEmpty) {
-    return (<>
-      <header class="flex  py-2 justify-between items-center text-white bg-black text-xs">
-      <div class="w-full flex flex-col justify-between items-center">
-        <div class="flex flex-row w-full items-center content-start">
-          <Button class="btn btn-ghost" >
-            <Icon id="XMark" width={20} height={20} strokeWidth={2} />
-          </Button>{" "}
-          <span class="w-full text-center mr-10">
-          Faltam {total?.value && total?.value < 29900 ? (formatPrice(((total.value/ 100)-299)*-1 , currencyCode!, locale, )):("0,00")} para ao frete grátis 
-          </span>
-        </div>
-
-        <div class="flex flex-row w-full items-center px-4">
-          <span class="w-[85px] text-xs">
-            {total?.value && (formatPrice(total.value / 100, currencyCode!, locale))}
-          </span>
-          <div class="w-full h-[10px] rounded bg-white mx-2">
-            <div class="w-0 h-[10px] rounded bg-green-600" ></div>
+    return (
+      <>
+        <header class="flex  py-2 justify-between items-center text-white bg-black text-xs">
+          <div class="w-full flex flex-col justify-between items-center">
+            <div class="flex flex-row w-full items-center content-start">
+              <Button class="btn btn-ghost">
+                <Icon id="XMark" width={20} height={20} strokeWidth={2} />
+              </Button>{" "}
+              <div class="px-2 py-4">
+                <FreeShippingProgressBar
+                  total={total2 / 100}
+                  target={1000}
+                  locale={locale!}
+                  currency={currencyCode!}
+                />
+              </div>
+            </div>
           </div>
-          <span class="w-[85px] text-xs">
-            R$ 299, 90
+        </header>
+        <div class="flex flex-col justify-center items-center  h-[200px] gap-6">
+          <span class="font-medium text-[14px] uppercase text-[#a2a2a2]">
+            {"Seu carrinho está vazio :("}
+          </span>
+          <span class="font-medium text-[14px] uppercase">
+            continue comprando
           </span>
         </div>
-      </div>
-    </header>
-      <div class="flex flex-col justify-center items-center  h-[200px] gap-6">
-        <span class="font-medium text-[14px] uppercase text-[#a2a2a2]">
-          {"Seu carrinho está vazio :("}
-        </span>
-        <span class="font-medium text-[14px] uppercase">
-          continue comprando
-        </span>
-      </div>
       </>
     );
   }
 
   return (
     <>
-     <header class="flex  py-2 justify-between items-center text-white bg-black text-xs">
-      <div class="w-full flex flex-col justify-between items-center">
-        <div class="flex flex-row w-full items-center content-start">
-          <Button class="btn btn-ghost" >
-            <Icon id="XMark" width={20} height={20} strokeWidth={2} />
-          </Button>{" "}
-          <span class="w-full text-center mr-10">
-
-          Faltam {total?.value && total?.value < 29900 ? (formatPrice(((total.value/ 100)-299)*-1 , currencyCode!, locale, )):("0,00")} para ao frete grátis 
-          </span>
-        </div>
-
-        <div class="flex flex-row w-full items-center px-4">
-          <span class="w-[85px] text-xs">
-            {total?.value && (formatPrice(total.value / 100, currencyCode!, locale))}
-          </span>
-          <div class="w-full h-[10px] rounded bg-white mx-2">
-            <div class="w-0 h-[10px] rounded bg-green-600"></div>
+      
+      <header class="flex  py-2 justify-between items-center text-white bg-black text-xs">
+          <div class="w-full flex flex-col justify-between items-center">
+            <div class="flex flex-row w-full items-center content-start">
+              
+              <div class="px-2 py-4">
+                <FreeShippingProgressBar
+                  total={total2 / 100}
+                  target={299}
+                  locale={locale!}
+                  currency={currencyCode!}
+                />
+              </div>
+            </div>
           </div>
-          <span class="w-[85px] text-xs">
-            R$ 299, 90
-          </span>
-        </div>
-      </div>
-    </header>
+        </header>
       {/* Cart Items */}
       <ul
         role="list"
-        class="mt-6 p-2  flex-grow overflow-y-auto flex flex-col gap-6 "
+        class="mt-6 p-2 max-h-[60vh] flex-grow overflow-y-auto flex flex-col gap-6 "
       >
         {cart.value.items.map((_, index) => (
           <li>
