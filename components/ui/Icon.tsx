@@ -37,6 +37,10 @@ export type AvailableIcons =
   | "ArrowsPointingOut"
   | "F Facebook"
   | "TwitterLogo"
+  | "Modelo"
+  | "Cor"
+  | "Tamanho"
+  | "Estilo"
   | ">";
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {

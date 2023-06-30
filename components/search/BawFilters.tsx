@@ -2,6 +2,7 @@ import Avatar from "$store/components/ui/Avatar.tsx";
 import { parseRange } from "deco-sites/std/utils/filters.ts";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useState } from "preact/hooks";
+import { AvailableIcons } from "$store/components/ui/Icon.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 
 import type {
@@ -69,8 +70,39 @@ function FilterValues({ key, values }: FilterToggle) {
   );
 }
 
+interface FilterIconInterface {
+  [key: string]: AvailableIcons;
+}
+
+function FilterIcon({ key }: FilterToggle) {
+  const icons = [
+    "modelo",
+    "cor",
+    "tamanho",
+    "estilo"
+  ]
+
+  return (
+    <span class={ icons.includes(key) ? "w-[37px] mr-3" : ""}>
+      {
+        key === "modelo" ? <Icon width={25} height={24} id="Modelo" /> : ''
+      }
+      {
+        key === "cor" ? <Icon width={27} height={23} id="Cor" /> : ''
+      }
+      {
+        key === "tamanho" ? <Icon width={37} height={23} id="Tamanho" /> : ''
+      }
+      {
+        key === "estilo" ? <Icon width={33} height={27} id="Estilo" /> : ''
+      }
+    </span>
+  )
+}
+
 function BawFilter(filter: FilterToggle) {
   const [isOpen, setIsOpen] = useState(false);
+  const { key } = filter;
 
   function toggle() {
     setIsOpen(!isOpen);
@@ -82,7 +114,7 @@ function BawFilter(filter: FilterToggle) {
         class="flex justify-between relative cursor-pointer items-center pt-2 pr-5"
         onClick={() => toggle()}
       >
-        <span class="flex font-semibold text-xl">{filter.label}</span>
+        <span class="flex font-semibold text-xl justify-center items-center"><FilterIcon {...filter} />{filter.label}</span>
         <Icon
           class="flex items-center"
           size={15}
