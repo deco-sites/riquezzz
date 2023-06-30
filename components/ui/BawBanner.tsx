@@ -25,6 +25,8 @@ export interface Banner {
    * @description It will set the number of rows for the image
    */
   size_rows: number;
+  largura:number,
+  altura:number,
 }
 
 export type BorderRadius =
@@ -58,6 +60,7 @@ export interface Props {
     desktop?: BorderRadius;
   };
   banners: Banner[];
+  
 }
 
 const MOBILE_COLUMNS = {
@@ -120,17 +123,19 @@ export default function BawBannner({
   title,
   itemsPerLine,
   borderRadius,
+
+  
   banners = [],
 }: Props) {
   return (
-    <section class="w-[99vw] px-1 md:pl-2 mx-auto md:pr-[50px]">
+    <section class="w-full  md:pl-2 mx-auto md:pr-[42px]">
       <div
-        class={`grid grid-flow-row-dense grid-rows-2 gap-4 md:gap-4 ${
+        class={` sm:pl-2 grid  grid-flow-row-dense grid-rows-2 gap-4 md:gap-4 ${
           MOBILE_COLUMNS[itemsPerLine.mobile ?? 2]
         } ${DESKTOP_COLUMNS[itemsPerLine.desktop ?? 4]}`}
       >
         {banners.map((
-          { href, srcMobile, srcDesktop, alt, size_cols, size_rows },
+          { href, srcMobile, srcDesktop, alt, size_cols, size_rows,altura, largura },
           index,
         ) => (
           <div
@@ -144,18 +149,18 @@ export default function BawBannner({
               <Source
                 media="(max-width: 767px)"
                 src={srcMobile}
-                width={1920}
-                height={1920}
+                width={0}
+                height={0}
               />
               <Source
                 media="(min-width: 768px)"
                 src={srcDesktop ? srcDesktop : srcMobile}
-                width={1920}
-                height={1920}
+                width={0}
+                height={0}
               />
               <img
                 class="w-full object-cover"
-                //   sizes="(max-width: 640px) 100vw, 30vw"
+                //sizes="(max-width: 640px) 100vw, 30vw"
                 src={srcMobile}
                 alt={alt}
                 decoding="async"
