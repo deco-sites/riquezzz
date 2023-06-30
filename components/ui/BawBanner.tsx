@@ -25,8 +25,8 @@ export interface Banner {
    * @description It will set the number of rows for the image
    */
   size_rows: number;
-  largura:number,
-  altura:number,
+  largura: number;
+  altura: number;
 }
 
 export type BorderRadius =
@@ -60,7 +60,6 @@ export interface Props {
     desktop?: BorderRadius;
   };
   banners: Banner[];
-  
 }
 
 const MOBILE_COLUMNS = {
@@ -124,7 +123,6 @@ export default function BawBannner({
   itemsPerLine,
   borderRadius,
 
-  
   banners = [],
 }: Props) {
   return (
@@ -135,7 +133,16 @@ export default function BawBannner({
         } ${DESKTOP_COLUMNS[itemsPerLine.desktop ?? 4]}`}
       >
         {banners.map((
-          { href, srcMobile, srcDesktop, alt, size_cols, size_rows,altura, largura },
+          {
+            href,
+            srcMobile,
+            srcDesktop,
+            alt,
+            size_cols,
+            size_rows,
+            altura,
+            largura,
+          },
           index,
         ) => (
           <div

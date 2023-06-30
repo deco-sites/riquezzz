@@ -79,25 +79,17 @@ function FilterIcon({ key }: FilterToggle) {
     "modelo",
     "cor",
     "tamanho",
-    "estilo"
-  ]
+    "estilo",
+  ];
 
   return (
-    <span class={ icons.includes(key) ? "w-[37px] mr-3" : ""}>
-      {
-        key === "modelo" ? <Icon width={25} height={24} id="Modelo" /> : ''
-      }
-      {
-        key === "cor" ? <Icon width={27} height={23} id="Cor" /> : ''
-      }
-      {
-        key === "tamanho" ? <Icon width={37} height={23} id="Tamanho" /> : ''
-      }
-      {
-        key === "estilo" ? <Icon width={33} height={27} id="Estilo" /> : ''
-      }
+    <span class={icons.includes(key) ? "w-[37px] mr-3" : ""}>
+      {key === "modelo" ? <Icon width={25} height={24} id="Modelo" /> : ""}
+      {key === "cor" ? <Icon width={27} height={23} id="Cor" /> : ""}
+      {key === "tamanho" ? <Icon width={37} height={23} id="Tamanho" /> : ""}
+      {key === "estilo" ? <Icon width={33} height={27} id="Estilo" /> : ""}
     </span>
-  )
+  );
 }
 
 function BawFilter(filter: FilterToggle) {
@@ -114,7 +106,10 @@ function BawFilter(filter: FilterToggle) {
         class="flex justify-between relative cursor-pointer items-center pt-2 pr-5"
         onClick={() => toggle()}
       >
-        <span class="flex font-semibold text-xl justify-center items-center"><FilterIcon {...filter} />{filter.label}</span>
+        <span class="flex font-semibold text-xl justify-center items-center">
+          <FilterIcon {...filter} />
+          {filter.label}
+        </span>
         <Icon
           class="flex items-center"
           size={15}
