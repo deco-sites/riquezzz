@@ -49,7 +49,7 @@ const ModalCart = ({
 }: Props) => {
   const lazy = useSignal(false);
   const ref = useRef<HTMLDialogElement>(null);
-  const WIDTH = "50%";
+  const wh = "50%";
 
   useEffect(() => {
     if (open === false) {
@@ -89,31 +89,7 @@ const ModalCart = ({
               containerStyles[mode]
             }`}
           >
-            <header class="flex  py-2 justify-between items-center text-white bg-black text-xs">
-              <div class="w-full flex flex-col justify-between items-center">
-                <div class="flex flex-row w-full items-center content-start">
-                  <Button class="btn btn-ghost" onClick={onClose}>
-                    <Icon id="XMark" width={20} height={20} strokeWidth={2} />
-                  </Button>{" "}
-                  <span class="w-full text-center mr-10">
-                    Faltam R$ 299,90 para ao frete grátis
-                  </span>
-                </div>
-
-                <div class="flex flex-row w-full items-center px-4">
-                  <span class="w-[85px] text-xs">
-                    R$ 0,00
-                  </span>
-                  <div class="w-full h-[10px] rounded bg-white mx-2">
-                    <div class={`w-[${WIDTH}] h-[10px] rounded bg-green-600`}>
-                    </div>
-                  </div>
-                  <span class="w-[85px] text-xs">
-                    R$ 299, 90
-                  </span>
-                </div>
-              </div>
-            </header>
+           
             <div class="overflow-y-auto flex flex-col">
               {loading === "lazy" ? lazy.value && children : children}
             </div>

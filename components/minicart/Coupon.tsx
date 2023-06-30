@@ -4,7 +4,6 @@ import { useCart } from "deco-sites/std/packs/vtex/hooks/useCart.ts";
 import Button from "$store/components/ui/Button.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 
-
 function Coupon() {
   const { cart, loading, addCouponsToCart } = useCart();
   const ref = useRef<HTMLInputElement>(null);
@@ -28,33 +27,32 @@ function Coupon() {
 
   return (
     <div class="flex flex-col justify-between items-center gap-2 px-4 py-2 bg-[#f4f4f4]">
-      <span class="text-sm uppercase font-bold text-[#a2a2a2]">Cupom de desconto</span>
+      <span class="text-sm uppercase font-bold text-[#a2a2a2]">
+        Cupom de desconto
+      </span>
       <form class="flex gap-2 bg-white rounded-none w-full border-b  border-black">
-        
         <input
-            class="flex-grow input w-[85%] input-primary h-[40px] focus:outline-none border-none"               
-            id="coupon"
-            name="coupon"
-            ref={ref}
-            type="text"
-            value={coupon ?? ""}
-            placeholder={"Insira o código"}
+          class="flex-grow input w-[85%] input-primary h-[40px] focus:outline-none border-none"
+          id="coupon"
+          name="coupon"
+          ref={ref}
+          type="text"
+          value={coupon ?? ""}
+          placeholder={"Insira o código"}
+        />
+        <button
+          class="bg-transparent  border-none w-[15%]  text-center px-5 pt-4 "
+          disabled={loading}
+          onClick={applyCouponToCart}
+        >
+          <Icon
+            class="text-black"
+            width={20}
+            height={20}
+            id=">"
+            strokeWidth={1}
           />
-          <button
-            class="bg-transparent  border-none w-[15%]  text-center px-5 pt-4 "
-            disabled={loading}
-            onClick={applyCouponToCart}
-          >
-            <Icon
-              class="text-black"
-              width={20}
-              height={20}
-              id=">"
-              strokeWidth={1}
-            />
-          </button>
-       
-        
+        </button>
       </form>
     </div>
   );

@@ -6,6 +6,7 @@ import { sendEvent } from "$store/sdk/analytics.tsx";
 import { useUI } from "$store/sdk/useUI.ts";
 import CartItem from "./CartItem.tsx";
 import Coupon from "./Coupon.tsx";
+import Icon from "../ui/Icon.tsx";
 
 declare global {
   interface Window {
@@ -32,7 +33,31 @@ function Cart() {
 
   // Empty State
   if (isCartEmpty) {
-    return (
+    return (<>
+      <header class="flex  py-2 justify-between items-center text-white bg-black text-xs">
+      <div class="w-full flex flex-col justify-between items-center">
+        <div class="flex flex-row w-full items-center content-start">
+          <Button class="btn btn-ghost" >
+            <Icon id="XMark" width={20} height={20} strokeWidth={2} />
+          </Button>{" "}
+          <span class="w-full text-center mr-10">
+          Faltam {total?.value && total?.value < 29900 ? (formatPrice(((total.value/ 100)-299)*-1 , currencyCode!, locale, )):("0,00")} para ao frete grátis 
+          </span>
+        </div>
+
+        <div class="flex flex-row w-full items-center px-4">
+          <span class="w-[85px] text-xs">
+            {total?.value && (formatPrice(total.value / 100, currencyCode!, locale))}
+          </span>
+          <div class="w-full h-[10px] rounded bg-white mx-2">
+            <div class="w-0 h-[10px] rounded bg-green-600" ></div>
+          </div>
+          <span class="w-[85px] text-xs">
+            R$ 299, 90
+          </span>
+        </div>
+      </div>
+    </header>
       <div class="flex flex-col justify-center items-center  h-[200px] gap-6">
         <span class="font-medium text-[14px] uppercase text-[#a2a2a2]">
           {"Seu carrinho está vazio :("}
@@ -41,11 +66,37 @@ function Cart() {
           continue comprando
         </span>
       </div>
+      </>
     );
   }
 
   return (
     <>
+     <header class="flex  py-2 justify-between items-center text-white bg-black text-xs">
+      <div class="w-full flex flex-col justify-between items-center">
+        <div class="flex flex-row w-full items-center content-start">
+          <Button class="btn btn-ghost" >
+            <Icon id="XMark" width={20} height={20} strokeWidth={2} />
+          </Button>{" "}
+          <span class="w-full text-center mr-10">
+
+          Faltam {total?.value && total?.value < 29900 ? (formatPrice(((total.value/ 100)-299)*-1 , currencyCode!, locale, )):("0,00")} para ao frete grátis 
+          </span>
+        </div>
+
+        <div class="flex flex-row w-full items-center px-4">
+          <span class="w-[85px] text-xs">
+            {total?.value && (formatPrice(total.value / 100, currencyCode!, locale))}
+          </span>
+          <div class="w-full h-[10px] rounded bg-white mx-2">
+            <div class="w-0 h-[10px] rounded bg-green-600"></div>
+          </div>
+          <span class="w-[85px] text-xs">
+            R$ 299, 90
+          </span>
+        </div>
+      </div>
+    </header>
       {/* Cart Items */}
       <ul
         role="list"
@@ -81,7 +132,6 @@ function Cart() {
                 {formatPrice(total.value / 100, currencyCode!, locale)}
               </span>
             </div>
-            
           </div>
         )}
         <div class="p-4">
