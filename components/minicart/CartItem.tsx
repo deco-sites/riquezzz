@@ -36,27 +36,27 @@ function CartItem({ index }: Props) {
   const isGift = sellingPrice < 0.01;
 
   return (
-    <div class="flex flex-row justify-between items-start gap-4">
+    <div class="flex flex-row justify-between items-start gap-4 min-h-[40px] max-h-[120px]">
       <Image
         src={imageUrl}
         alt={skuName}
-        width={108}
-        height={150}
+        width={80}
+        height={120}
         class="object-cover object-center"
       />
-      <div class="flex-grow">
-        <span>{name}</span>
-        <div class="flex items-center gap-2">
-          <span class="line-through text-base-300 text-sm">
+      <div class="flex-grow w-full">
+        <span class="text-[12px] leading-[0px]">{name}</span>
+        <div class="flex items-start text-xs flex-col">
+          <span class="line-through text-base-300 text-xs">
             {formatPrice(listPrice / 100, currencyCode!, locale)}
           </span>
-          <span class="text-sm text-secondary">
+          <span class="text-xs text-secondary">
             {isGift
               ? "Grátis"
               : formatPrice(sellingPrice / 100, currencyCode!, locale)}
           </span>
         </div>
-        <div class="mt-6 max-w-min">
+        <div class="mt-1 ">
           <QuantitySelector
             disabled={loading.value || isGift}
             quantity={quantity}
@@ -97,7 +97,7 @@ function CartItem({ index }: Props) {
           });
         }}
         disabled={loading.value || isGift}
-        loading={loading.value}
+        // loading={loading.value}
         class="btn btn-ghost"
       >
         <Icon id="Trash" width={20} height={20} />

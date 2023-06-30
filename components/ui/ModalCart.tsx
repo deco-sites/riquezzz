@@ -79,25 +79,27 @@ const ModalCart = ({
       onClose={onClose}
     >
       <section
-        class={`w-full h-full flex   m-0  bg ${sectionStyles[mode]}`}
+        class={`w-full flex   m-0  bg ${sectionStyles[mode]}`}
       >
         <section
-          class={`w-[360px] h-[360px] flex m-0  bg ${sectionStyles[mode]}`}
+          class={`w-[330px] flex m-0 mr-2 shadow-lg bg ${sectionStyles[mode]}`}
         >
           <div
-            class={`w-[360px] h-[360px] bg-base-100 flex flex-col   ${
+            class={`w-[330px]  bg-base-100  shadow-lg flex flex-col   ${
               containerStyles[mode]
             }`}
           >
             <header class="flex  py-2 justify-between items-center text-white bg-black text-xs">
               <div class="w-full flex flex-col justify-between items-center">
-                <div class="flex flex-row w-full items-center content-start" >
+                <div class="flex flex-row w-full items-center content-start">
                   <Button class="btn btn-ghost" onClick={onClose}>
-                    <Icon id="XMark" width={10} height={10} strokeWidth={1} />
+                    <Icon id="XMark" width={20} height={20} strokeWidth={2} />
                   </Button>{" "}
-                 <span class="w-full text-center mr-10"> Faltam R$ 299,90 para ao frete grátis</span>
+                  <span class="w-full text-center mr-10">
+                    Faltam R$ 299,90 para ao frete grátis
+                  </span>
                 </div>
-                
+
                 <div class="flex flex-row w-full items-center px-4">
                   <span class="w-[85px] text-xs">
                     R$ 0,00
@@ -112,11 +114,15 @@ const ModalCart = ({
                 </div>
               </div>
             </header>
-            <div class="overflow-y-auto flex-grow flex flex-col">
+            <div class="overflow-y-auto flex flex-col">
               {loading === "lazy" ? lazy.value && children : children}
             </div>
           </div>
         </section>
+        <div
+          class={`hidden sm:flex w-[30px] h-[30px] mt-4  z-10 absolute bg-black rotate-45 shadow-lg `}
+        >
+        </div>
       </section>
     </dialog>
   );
