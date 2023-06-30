@@ -12,12 +12,13 @@ import * as $$$$$2 from "./islands/WishlistButton.tsx";
 import * as $$$$$3 from "./islands/ShippingSimulation.tsx";
 import * as $$$$$4 from "./islands/HeaderSearchbar.tsx";
 import * as $$$$$5 from "./islands/HeaderButton.tsx";
-import * as $$$$$6 from "./islands/AddToCartButton.tsx";
-import * as $$$$$7 from "./islands/HeaderModals.tsx";
-import * as $$$$$8 from "./islands/SliderJS.tsx";
-import * as $$$$$9 from "./islands/ProductImageZoom.tsx";
-import * as $$$$$10 from "./islands/OutOfStock.tsx";
-import * as $$$$$11 from "./islands/SearchControls.tsx";
+import * as $$$$$6 from "./islands/ModalCart.tsx";
+import * as $$$$$7 from "./islands/AddToCartButton.tsx";
+import * as $$$$$8 from "./islands/HeaderModals.tsx";
+import * as $$$$$9 from "./islands/SliderJS.tsx";
+import * as $$$$$10 from "./islands/ProductImageZoom.tsx";
+import * as $$$$$11 from "./islands/OutOfStock.tsx";
+import * as $$$$$12 from "./islands/SearchControls.tsx";
 import * as $$$$$$$$0 from "./sections/WishlistGallery.tsx";
 import * as $$$$$$$$1 from "./sections/LinkTree.tsx";
 import * as $$$$$$$$2 from "./sections/Features.tsx";
@@ -169,17 +170,18 @@ const manifest = {
     "./routes/styles.css.ts": $$$$0,
   },
   "islands": {
-    "./islands/AddToCartButton.tsx": $$$$$6,
+    "./islands/AddToCartButton.tsx": $$$$$7,
     "./islands/BawFilters.tsx": $$$$$1,
     "./islands/HeaderButton.tsx": $$$$$5,
-    "./islands/HeaderModals.tsx": $$$$$7,
+    "./islands/HeaderModals.tsx": $$$$$8,
     "./islands/HeaderSearchbar.tsx": $$$$$4,
+    "./islands/ModalCart.tsx": $$$$$6,
     "./islands/Newsletter.tsx": $$$$$0,
-    "./islands/OutOfStock.tsx": $$$$$10,
-    "./islands/ProductImageZoom.tsx": $$$$$9,
-    "./islands/SearchControls.tsx": $$$$$11,
+    "./islands/OutOfStock.tsx": $$$$$11,
+    "./islands/ProductImageZoom.tsx": $$$$$10,
+    "./islands/SearchControls.tsx": $$$$$12,
     "./islands/ShippingSimulation.tsx": $$$$$3,
-    "./islands/SliderJS.tsx": $$$$$8,
+    "./islands/SliderJS.tsx": $$$$$9,
     "./islands/WishlistButton.tsx": $$$$$2,
   },
   "sections": {

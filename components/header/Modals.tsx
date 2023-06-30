@@ -1,5 +1,6 @@
 import Modal from "$store/components/ui/Modal.tsx";
 import ModalMenu from "$store/components/ui/ModalMenu.tsx";
+import ModalCart from "$store/components/ui/ModalCart.tsx";
 
 import { lazy, Suspense } from "preact/compat";
 import { useUI } from "$store/sdk/useUI.ts";
@@ -51,7 +52,7 @@ function Modals({ menu, searchbar }: Props) {
         </Suspense>
       </Modal>
 
-      <Modal
+      <ModalCart
         title="Minha sacola"
         mode="sidebar-right"
         loading="lazy"
@@ -63,7 +64,7 @@ function Modals({ menu, searchbar }: Props) {
         <Suspense fallback={<Loading />}>
           <Cart />
         </Suspense>
-      </Modal>
+      </ModalCart>
     </>
   );
 }
