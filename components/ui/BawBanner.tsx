@@ -128,7 +128,7 @@ export default function BawBannner({
   return (
     <section class="w-full  md:pl-2 mx-auto md:pr-[42px]">
       <div
-        class={` sm:pl-2 grid  grid-flow-row-dense grid-rows-2 gap-4 md:gap-4 ${
+        class={` sm:pl-2 grid  grid-flow-row-dense grid-rows-2 gap-4 md:gap-4  ${
           MOBILE_COLUMNS[itemsPerLine.mobile ?? 2]
         } ${DESKTOP_COLUMNS[itemsPerLine.desktop ?? 4]}`}
       >
@@ -148,10 +148,10 @@ export default function BawBannner({
           <div
             class={` ${IMAGE_SIZE[size_cols ?? 2]} ${
               ROW_SIZE[size_rows ?? 1]
-            } transform transition duration-500 hover:scale-95 `}
+            } transform transition duration-500 hover:scale-95  `}
           >
             <Picture
-              class={index > 1 ? "hidden md:block text-center" : "w-full"}
+              class={index > 1 ? "hidden md:block text-center  " : "w-full flex "}
             >
               <Source
                 media="(max-width: 767px)"
@@ -166,7 +166,7 @@ export default function BawBannner({
                 height={0}
               />
               <img
-                class="w-full object-cover"
+                class="w-full object-cover "
                 //sizes="(max-width: 640px) 100vw, 30vw"
                 src={srcMobile}
                 alt={alt}
