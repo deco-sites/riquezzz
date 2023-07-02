@@ -70,9 +70,7 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
   return (
     <>
       {/* Breadcrumb */}
-      <Breadcrumb
-        itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
-      />
+      
       {/* Code and name */}
       <div class="mt-4 sm:mt-8">
         <div>
@@ -233,9 +231,13 @@ function Details({
   page,
   variant,
 }: { page: ProductDetailsPage; variant: Variant }) {
-  const { product } = page;
+  const {
+    breadcrumbList,
+    product,
+  } = page;
   const id = `product-image-gallery:${useId()}`;
   const images = useStableImages(product);
+
 
   /**
    * Product slider variant
@@ -247,6 +249,9 @@ function Details({
   if (variant === "slider") {
     return (
       <>
+      <Breadcrumb
+        itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
+      />
         <div
           id={id}
           class="grid grid-cols-1 gap-4 sm:grid-cols-[max-content_40vw_40vw] sm:grid-rows-1 sm:justify-center"
@@ -335,6 +340,7 @@ function Details({
   return (
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-[50vw_25vw] sm:grid-rows-1 sm:justify-center">
       {/* Image slider */}
+      
       <ul class="carousel carousel-center gap-6">
         {[images[0], images[1] ?? images[0]].map((img, index) => (
           <li class="carousel-item min-w-[100vw] sm:min-w-[24vw]">
@@ -374,7 +380,7 @@ function ProductDetails({ page, variant: maybeVar = "auto" }: Props) {
     : maybeVar;
 
   return (
-    <div class="container py-0 sm:py-10">
+    <div class=" px-10 sm:py-10">
       {page ? <Details page={page} variant={variant} /> : <NotFound />}
     </div>
   );
