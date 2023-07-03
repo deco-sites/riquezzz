@@ -41,7 +41,8 @@ export type AvailableIcons =
   | "Cor"
   | "Tamanho"
   | "Estilo"
-  | ">";
+  | ">"
+  | "home";
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**

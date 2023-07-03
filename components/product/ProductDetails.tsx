@@ -15,7 +15,7 @@ import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/product
 import type { ProductDetailsPage } from "deco-sites/std/commerce/types.ts";
 import type { LoaderReturnType } from "$live/types.ts";
 
-import ProductSelector from "./ProductVariantSelector.tsx";
+import ProductSelector from "./ProductVariantSelectoPDP.tsx";
 import ProductImageZoom from "$store/islands/ProductImageZoom.tsx";
 import WishlistButton from "../wishlist/WishlistButton.tsx";
 
@@ -30,8 +30,8 @@ export interface Props {
   variant?: Variant;
 }
 
-const WIDTH = 360;
-const HEIGHT = 500;
+const WIDTH = 620;
+const HEIGHT = 930;
 const ASPECT_RATIO = `${WIDTH} / ${HEIGHT}`;
 
 /**
@@ -69,34 +69,31 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
 
   return (
     <>
-      {/* Breadcrumb */}
-      <Breadcrumb
-        itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
-      />
       {/* Code and name */}
-      <div class="mt-4 sm:mt-8">
-        <div>
-          <span class="text-sm text-base-300">
-            Cod. {gtin}
-          </span>
-        </div>
+      <div class="mt-4 sm:mt-4">
         <h1>
-          <span class="font-medium text-xl">{name}</span>
+          <span class="font-medium text-2xl">{name}</span>
         </h1>
       </div>
       {/* Prices */}
       <div class="mt-4">
-        <div class="flex flex-row gap-2 items-center">
-          <span class="line-through text-base-300 text-xs">
+        <div class="flex flex-col gap-2">
+          <span class="line-through text-black text-lg">
             {formatPrice(listPrice, offers!.priceCurrency!)}
           </span>
-          <span class="font-medium text-xl text-secondary">
+          <span class=" text-2xl text-red-600 font-bold">
             {formatPrice(price, offers!.priceCurrency!)}
+            {listPrice !== price
+              ? (
+                <div class="absolute flex justify-center top-0 left-0 z-10 mt-3 ml-2">
+                  <span class="rounded-[100px] font-bold bg-black text-white p-1 px-2  text-xs">
+                    {Math.floor(price! / listPrice! * 100)}% OFF
+                  </span>
+                </div>
+              )
+              : ("")}
           </span>
         </div>
-        <span class="text-sm text-base-300">
-          {installments}
-        </span>
       </div>
       {/* Sku Selector */}
       <div class="mt-4 sm:mt-6">
@@ -117,15 +114,52 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
                   productGroupId={product.isVariantOf?.productGroupID ?? ""}
                 />
               )}
-              <WishlistButton
-                variant="full"
-                productGroupID={isVariantOf?.productGroupID}
-                productID={productID}
-              />
             </>
           )
           : <OutOfStock productID={productID} />}
       </div>
+
+      {/* Description card */}
+      <div class="mt-4 sm:mt-6">
+        <span class="text-lg">
+          {description && (
+            <details open class="border-t  border-b border-black">
+              <summary class="cursor-pointer transform transition  duration-700 hover:font-extrabold uppercase">
+                Descrição da peça
+              </summary>
+              <div class="ml-2 py-4 text-base whitespace-pre-line">
+                {description}
+              </div>
+            </details>
+          )}
+        </span>
+      </div>
+
+      <div class="sm:mt-6">
+        <span class="text-lg">
+          {description && (
+            <details class="  border-b border-black">
+              <summary class="cursor-pointer  transform transition duration-700   hover:font-extrabold">
+                TROCA E DEVOLUÇÃO
+              </summary>
+              <div class="ml-2 py-4 text-base whitespace-pre-line">
+                Visando a sua total satisfação, a BAW Clothing possui uma
+                Política de Trocas e Devolução alinhada às mais recentes normas
+                do Código de Defesa do Consumidor.
+
+                Nosso objetivo é fornecer um atendimento personalizado, que
+                atenda a sua necessidade com excelência e rapidez.
+
+                <a href="https://bawclothing.troquefacil.com.br">
+                  Clique aqui e acesse o Troque Fácil para solicitar uma troca
+                  ou devolução
+                </a>
+              </div>
+            </details>
+          )}
+        </span>
+      </div>
+
       {/* Shipping Simulation */}
       <div class="mt-8">
         <ShippingSimulation
@@ -135,17 +169,6 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
             seller: seller ?? "1",
           }]}
         />
-      </div>
-      {/* Description card */}
-      <div class="mt-4 sm:mt-6">
-        <span class="text-sm">
-          {description && (
-            <details>
-              <summary class="cursor-pointer">Descrição</summary>
-              <div class="ml-2 mt-2">{description}</div>
-            </details>
-          )}
-        </span>
       </div>
       {/* Analytics Event */}
       <SendEventOnLoad
@@ -233,7 +256,10 @@ function Details({
   page,
   variant,
 }: { page: ProductDetailsPage; variant: Variant }) {
-  const { product } = page;
+  const {
+    breadcrumbList,
+    product,
+  } = page;
   const id = `product-image-gallery:${useId()}`;
   const images = useStableImages(product);
 
@@ -247,9 +273,12 @@ function Details({
   if (variant === "slider") {
     return (
       <>
+        <Breadcrumb
+          itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
+        />
         <div
           id={id}
-          class="grid grid-cols-1 gap-4 sm:grid-cols-[max-content_40vw_40vw] sm:grid-rows-1 sm:justify-center"
+          class="grid grid-cols-1 pt-4 gap-4 sm:grid-cols-[max-content_40vw_40vw] sm:grid-rows-1 sm:justify-center"
         >
           {/* Image Slider */}
           <div class="relative sm:col-start-2 sm:col-span-1 sm:row-start-1">
@@ -257,11 +286,11 @@ function Details({
               {images.map((img, index) => (
                 <Slider.Item
                   index={index}
-                  class="carousel-item min-w-[100vw] sm:min-w-[40vw]"
+                  class="carousel-item min-w-[100vw] sm:min-w-[40vw]  justify-center"
                 >
                   <Image
-                    class="w-full"
-                    sizes="(max-width: 640px) 100vw, 40vw"
+                    class="w-[620px] h-[930px] object-cover"
+                    // sizes="(max-width: 640px) 100vw, 40vw"
                     style={{ aspectRatio: ASPECT_RATIO }}
                     src={img.url!}
                     alt={img.alternateName}
@@ -288,32 +317,26 @@ function Details({
             >
               <Icon size={20} id="ChevronRight" strokeWidth={3} />
             </Slider.NextButton>
-
-            <div class="absolute top-2 right-2 bg-base-100 rounded-full">
-              <ProductImageZoom
-                images={images}
-                width={1280}
-                height={1280 * HEIGHT / WIDTH}
-              />
-            </div>
           </div>
 
           {/* Dots */}
-          <ul class="flex gap-2 sm:justify-start overflow-auto px-4 sm:px-0 sm:flex-col sm:col-start-1 sm:col-span-1 sm:row-start-1">
-            {images.map((img, index) => (
-              <li class="min-w-[63px] sm:min-w-[100px]">
-                <Slider.Dot index={index}>
-                  <Image
-                    style={{ aspectRatio: ASPECT_RATIO }}
-                    class="group-disabled:border-base-300 border rounded "
-                    width={63}
-                    height={87.5}
-                    src={img.url!}
-                    alt={img.alternateName}
-                  />
-                </Slider.Dot>
-              </li>
-            ))}
+          <ul class="flex gap-2 sm:justify-start  sm:px-0 sm:flex-col sm:col-start-1 sm:col-span-1 sm:row-start-1">
+            <Slider class="flex flex-col carousel overflow-y-scroll  max-h-[800px] gap-6 mt-[100px]">
+              {images.map((img, index) => (
+                <li class="min-w-[180px] sm:min-w-[100px]  ">
+                  <Slider.Dot index={index}>
+                    <Image
+                      //  style={{ aspectRatio: ASPECT_RATIO }}
+                      class="group-disabled:border-base-300 group-disabled:border px-5 w-full h-[180px] "
+                      width={160}
+                      height={180}
+                      src={img.url!}
+                      alt={img.alternateName}
+                    />
+                  </Slider.Dot>
+                </li>
+              ))}
+            </Slider>
           </ul>
 
           {/* Product Info */}
@@ -335,6 +358,7 @@ function Details({
   return (
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-[50vw_25vw] sm:grid-rows-1 sm:justify-center">
       {/* Image slider */}
+
       <ul class="carousel carousel-center gap-6">
         {[images[0], images[1] ?? images[0]].map((img, index) => (
           <li class="carousel-item min-w-[100vw] sm:min-w-[24vw]">
@@ -374,7 +398,7 @@ function ProductDetails({ page, variant: maybeVar = "auto" }: Props) {
     : maybeVar;
 
   return (
-    <div class="container py-0 sm:py-10">
+    <div class=" px-10 sm:pb-10">
       {page ? <Details page={page} variant={variant} /> : <NotFound />}
     </div>
   );
