@@ -70,7 +70,7 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
   return (
     <>
       {/* Breadcrumb */}
-      
+
       {/* Code and name */}
       <div class="mt-4 sm:mt-8">
         <div>
@@ -238,7 +238,6 @@ function Details({
   const id = `product-image-gallery:${useId()}`;
   const images = useStableImages(product);
 
-
   /**
    * Product slider variant
    *
@@ -249,12 +248,12 @@ function Details({
   if (variant === "slider") {
     return (
       <>
-      <Breadcrumb
-        itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
-      />
+        <Breadcrumb
+          itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
+        />
         <div
           id={id}
-          class="grid grid-cols-1 gap-4 sm:grid-cols-[max-content_40vw_40vw] sm:grid-rows-1 sm:justify-center"
+          class="grid grid-cols-1 pt-0 gap-4 sm:grid-cols-[max-content_40vw_40vw] sm:grid-rows-1 sm:justify-center"
         >
           {/* Image Slider */}
           <div class="relative sm:col-start-2 sm:col-span-1 sm:row-start-1">
@@ -294,31 +293,29 @@ function Details({
               <Icon size={20} id="ChevronRight" strokeWidth={3} />
             </Slider.NextButton>
 
-            <div class="absolute top-2 right-2 bg-base-100 rounded-full">
-              <ProductImageZoom
-                images={images}
-                width={1280}
-                height={1280 * HEIGHT / WIDTH}
-              />
-            </div>
+          
           </div>
 
           {/* Dots */}
-          <ul class="flex gap-2 sm:justify-start overflow-auto px-4 sm:px-0 sm:flex-col sm:col-start-1 sm:col-span-1 sm:row-start-1">
-            {images.map((img, index) => (
-              <li class="min-w-[63px] sm:min-w-[100px]">
-                <Slider.Dot index={index}>
-                  <Image
-                    style={{ aspectRatio: ASPECT_RATIO }}
-                    class="group-disabled:border-base-300 border rounded "
-                    width={63}
-                    height={87.5}
-                    src={img.url!}
-                    alt={img.alternateName}
-                  />
-                </Slider.Dot>
-              </li>
-            ))}
+          <ul class="flex gap-2 sm:justify-start  sm:px-0 sm:flex-col sm:col-start-1 sm:col-span-1 sm:row-start-1">
+            <Slider class="flex flex-col carousel overflow-y-scroll  max-h-[800px] gap-6 mt-[100px]">
+              {images.map((img, index) => (
+                <li class="min-w-[180px] sm:min-w-[100px]  ">
+               
+                    <Slider.Dot index={index}>
+                      <Image
+                        //  style={{ aspectRatio: ASPECT_RATIO }}
+                        class="group-disabled:border-base-300 group-disabled:border px-5 w-full h-[180px] "
+                        width={160}
+                        height={180}
+                        src={img.url!}
+                        alt={img.alternateName}
+                      />
+                    </Slider.Dot>
+                </li>
+              ))}
+            </Slider>
+           
           </ul>
 
           {/* Product Info */}
@@ -340,7 +337,7 @@ function Details({
   return (
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-[50vw_25vw] sm:grid-rows-1 sm:justify-center">
       {/* Image slider */}
-      
+
       <ul class="carousel carousel-center gap-6">
         {[images[0], images[1] ?? images[0]].map((img, index) => (
           <li class="carousel-item min-w-[100vw] sm:min-w-[24vw]">

@@ -42,7 +42,7 @@ export type AvailableIcons =
   | "Tamanho"
   | "Estilo"
   | ">"
-  |  "home";
+  | "home";
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**
