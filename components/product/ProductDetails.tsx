@@ -292,8 +292,6 @@ function Details({
             >
               <Icon size={20} id="ChevronRight" strokeWidth={3} />
             </Slider.NextButton>
-
-          
           </div>
 
           {/* Dots */}
@@ -301,21 +299,19 @@ function Details({
             <Slider class="flex flex-col carousel overflow-y-scroll  max-h-[800px] gap-6 mt-[100px]">
               {images.map((img, index) => (
                 <li class="min-w-[180px] sm:min-w-[100px]  ">
-               
-                    <Slider.Dot index={index}>
-                      <Image
-                        //  style={{ aspectRatio: ASPECT_RATIO }}
-                        class="group-disabled:border-base-300 group-disabled:border px-5 w-full h-[180px] "
-                        width={160}
-                        height={180}
-                        src={img.url!}
-                        alt={img.alternateName}
-                      />
-                    </Slider.Dot>
+                  <Slider.Dot index={index}>
+                    <Image
+                      //  style={{ aspectRatio: ASPECT_RATIO }}
+                      class="group-disabled:border-base-300 group-disabled:border px-5 w-full h-[180px] "
+                      width={160}
+                      height={180}
+                      src={img.url!}
+                      alt={img.alternateName}
+                    />
+                  </Slider.Dot>
                 </li>
               ))}
             </Slider>
-           
           </ul>
 
           {/* Product Info */}
