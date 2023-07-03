@@ -27,7 +27,8 @@ interface Props {
 }
 
 const variants = {
-  active: "ring ring-1 ring-offset-base-100 ring-offset-2 bg-black text-white border-none",
+  active:
+    "ring ring-1 ring-offset-base-100 ring-offset-2 bg-black text-white border-none",
   disabled:
     `relative after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-red-800 after:w-full after:block after:-rotate-45 after:content-[""]`,
   default: "",

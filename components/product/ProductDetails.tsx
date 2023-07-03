@@ -79,7 +79,7 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
       <div class="mt-4">
         <div class="flex flex-col gap-2">
           <span class="line-through text-black text-lg">
-                        {formatPrice(listPrice, offers!.priceCurrency!)}
+            {formatPrice(listPrice, offers!.priceCurrency!)}
           </span>
           <span class=" text-2xl text-red-600 font-bold">
             {formatPrice(price, offers!.priceCurrency!)}
@@ -290,7 +290,7 @@ function Details({
                 >
                   <Image
                     class="w-[620px] h-[930px] object-cover"
-                   // sizes="(max-width: 640px) 100vw, 40vw"
+                    // sizes="(max-width: 640px) 100vw, 40vw"
                     style={{ aspectRatio: ASPECT_RATIO }}
                     src={img.url!}
                     alt={img.alternateName}
