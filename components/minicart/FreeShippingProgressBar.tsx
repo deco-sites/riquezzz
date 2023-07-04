@@ -26,7 +26,7 @@ function FreeShippingProgressBar({ target, total, currency, locale }: Props) {
         {remaining > 0
           ? (
             <span>
-              Faltam ${formatPrice(remaining, currency, locale)}{" "}
+              Faltam {formatPrice(remaining, currency, locale)}{" "}
               para ganhar frete grátis!
             </span>
           )
@@ -37,7 +37,7 @@ function FreeShippingProgressBar({ target, total, currency, locale }: Props) {
           )}
       </div>
       <div class="flex flex-row w-full items-center px-4">
-        <span class="w-[85px] text-xs">
+        <span class="w-[100px] text-xs">
           {total &&
             (formatPrice(total, currency!, locale))}
         </span>
@@ -46,7 +46,7 @@ function FreeShippingProgressBar({ target, total, currency, locale }: Props) {
           value={percent}
           max={100}
         />
-        <span class="w-[85px] text-xs">
+        <span class="w-[100px] text-xs">
           R$ 299, 90
         </span>
       </div>
