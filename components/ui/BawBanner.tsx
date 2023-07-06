@@ -137,7 +137,7 @@ export default function BawBannner({
             srcDesktop,
             alt,
             size_cols,
-            size_rows
+            size_rows,
           },
           index,
         ) => (
