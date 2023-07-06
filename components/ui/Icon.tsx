@@ -41,6 +41,10 @@ export type AvailableIcons =
   | "Cor"
   | "Tamanho"
   | "Estilo"
+  | "BawCart"
+  | "BawLogin"
+  | "BawOrders"
+  | "BawWishlist"
   | ">"
   | "home";
 

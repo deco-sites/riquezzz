@@ -10,7 +10,7 @@ export const sendEvent = <E extends AnalyticsEvent>(event: E) =>
 export const sendEventOnClick = <E extends AnalyticsEvent>(event: E) => ({
   onclick: IS_BROWSER
     ? () => sendEvent(event)
-    : `(${sendEvent})(${JSON.stringify(event)})`,
+    : () => `(${sendEvent})(${JSON.stringify(event)})`,
 });
 
 /**

@@ -7415,26 +7415,6 @@
       ],
       "title": "deco-sites/riquezzz/components/search/HeaderSearchbar.tsx@4f2a67071966a2f109c06f6dedc088d6&EditableProps"
     },
-    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL2Zvb3Rlci9OZXdzbGV0dGVyLnRzeA==@StringNewsletter": {
-      "type": "object",
-      "properties": {
-        "Title": {
-          "type": "string",
-          "title": " Title"
-        },
-        "desc": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "title": "Desc"
-        }
-      },
-      "required": [
-        "Title"
-      ],
-      "title": "deco-sites/riquezzz/components/footer/Newsletter.tsx@StringNewsletter"
-    },
     "ZGVjby1zaXRlcy9zdGQvcGFja3MvdnRleC90eXBlcy50cw==@SKU": {
       "type": "object",
       "properties": {
@@ -8188,14 +8168,6 @@
           "type": "number",
           "description": "It will set the number of rows for the image",
           "title": "Size_rows"
-        },
-        "largura": {
-          "type": "number",
-          "title": "Largura"
-        },
-        "altura": {
-          "type": "number",
-          "title": "Altura"
         }
       },
       "required": [
@@ -8204,9 +8176,7 @@
         "href",
         "shrink",
         "size_cols",
-        "size_rows",
-        "largura",
-        "altura"
+        "size_rows"
       ],
       "title": "Banner"
     },
@@ -8820,7 +8790,7 @@
       "required": [],
       "title": "OptionalColors"
     },
-    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@7ef9282781ee96d7d0c7f6ca831970fe&Colors": {
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors&f6d883c2eb3ad5e6bb1c1ebef35b92f1": {
       "allOf": [
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors"
@@ -8836,7 +8806,7 @@
           "required": []
         }
       ],
-      "title": "7ef9282781ee96d7d0c7f6ca831970fe&Colors"
+      "title": "Colors&f6d883c2eb3ad5e6bb1c1ebef35b92f1"
     },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Miscellaneous": {
       "type": "object",
@@ -8939,7 +8909,7 @@
       "type": "object",
       "properties": {
         "colors": {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@7ef9282781ee96d7d0c7f6ca831970fe&Colors",
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors&f6d883c2eb3ad5e6bb1c1ebef35b92f1",
           "title": "Colors"
         },
         "miscellaneous": {
@@ -9153,6 +9123,26 @@
               "type": "string",
               "const": "Estilo",
               "default": "Estilo"
+            },
+            {
+              "type": "string",
+              "const": "BawCart",
+              "default": "BawCart"
+            },
+            {
+              "type": "string",
+              "const": "BawLogin",
+              "default": "BawLogin"
+            },
+            {
+              "type": "string",
+              "const": "BawOrders",
+              "default": "BawOrders"
+            },
+            {
+              "type": "string",
+              "const": "BawWishlist",
+              "default": "BawWishlist"
             },
             {
               "type": "string",
@@ -9426,6 +9416,26 @@
               "type": "string",
               "const": "Estilo",
               "default": "Estilo"
+            },
+            {
+              "type": "string",
+              "const": "BawCart",
+              "default": "BawCart"
+            },
+            {
+              "type": "string",
+              "const": "BawLogin",
+              "default": "BawLogin"
+            },
+            {
+              "type": "string",
+              "const": "BawOrders",
+              "default": "BawOrders"
+            },
+            {
+              "type": "string",
+              "const": "BawWishlist",
+              "default": "BawWishlist"
             },
             {
               "type": "string",
@@ -10615,7 +10625,7 @@
       ],
       "title": "deco-cx/live/actions/workflows/cancel.ts@Props"
     },
-    "ZGVjby1jeC9kdXJhYmxlL2NvbnRleHQudHM=@05a2cc66449ee3cc43ad1783938e3940&Metadata": {
+    "ZGVjby1jeC9kdXJhYmxlL2NvbnRleHQudHM=@922a64c7ae05c6ecf72f25fa681e42d6&Metadata": {
       "allOf": [
         {
           "type": "object",
@@ -10633,9 +10643,9 @@
           "$ref": "#/definitions/ZGVjby1jeC9kdXJhYmxlL2NvbnRleHQudHM=@Metadata"
         }
       ],
-      "title": "05a2cc66449ee3cc43ad1783938e3940&Metadata"
+      "title": "922a64c7ae05c6ecf72f25fa681e42d6&Metadata"
     },
-    "ZGVjby1jeC9kdXJhYmxlL2hhbmRsZXIudHM=@RunRequest+Arg+05a2cc66449ee3cc43ad1783938e3940&Metadata": {
+    "ZGVjby1jeC9kdXJhYmxlL2hhbmRsZXIudHM=@RunRequest+Arg+922a64c7ae05c6ecf72f25fa681e42d6&Metadata": {
       "type": "object",
       "properties": {
         "results": {
@@ -10646,7 +10656,7 @@
           "title": "Execution Id"
         },
         "metadata": {
-          "$ref": "#/definitions/ZGVjby1jeC9kdXJhYmxlL2NvbnRleHQudHM=@05a2cc66449ee3cc43ad1783938e3940&Metadata",
+          "$ref": "#/definitions/ZGVjby1jeC9kdXJhYmxlL2NvbnRleHQudHM=@922a64c7ae05c6ecf72f25fa681e42d6&Metadata",
           "title": "Metadata"
         }
       },
@@ -10655,7 +10665,7 @@
         "executionId",
         "metadata"
       ],
-      "title": "deco-cx/durable/handler.ts@RunRequest+Arg+05a2cc66449ee3cc43ad1783938e3940&Metadata"
+      "title": "deco-cx/durable/handler.ts@RunRequest+Arg+922a64c7ae05c6ecf72f25fa681e42d6&Metadata"
     },
     "ZGVjby1jeC9saXZlL2FjdGlvbnMvd29ya2Zsb3dzL3NpZ25hbC50cw==@Props": {
       "type": "object",
@@ -12402,11 +12412,6 @@
     "Li9pc2xhbmRzL05ld3NsZXR0ZXIudHN4": {
       "title": "./islands/Newsletter.tsx",
       "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL2Zvb3Rlci9OZXdzbGV0dGVyLnRzeA==@StringNewsletter"
-        }
-      ],
       "required": [
         "__resolveType"
       ],
@@ -13776,7 +13781,7 @@
       "type": "object",
       "allOf": [
         {
-          "$ref": "#/definitions/ZGVjby1jeC9kdXJhYmxlL2hhbmRsZXIudHM=@RunRequest+Arg+05a2cc66449ee3cc43ad1783938e3940&Metadata"
+          "$ref": "#/definitions/ZGVjby1jeC9kdXJhYmxlL2hhbmRsZXIudHM=@RunRequest+Arg+922a64c7ae05c6ecf72f25fa681e42d6&Metadata"
         }
       ],
       "required": [
