@@ -25,8 +25,6 @@ export interface Banner {
    * @description It will set the number of rows for the image
    */
   size_rows: number;
-  largura: number;
-  altura: number;
 }
 
 export type BorderRadius =
@@ -140,8 +138,6 @@ export default function BawBannner({
             alt,
             size_cols,
             size_rows,
-            altura,
-            largura,
           },
           index,
         ) => (
