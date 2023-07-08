@@ -42,7 +42,7 @@ function Cart() {
         <header class="flex  py-2 justify-between items-center text-white bg-black text-xs">
           <div class="w-full flex flex-col justify-between items-center">
             <div class="flex flex-row w-full items-center content-start">
-              <div class="px-2 py-4">
+              <div class="px-2 py-4 w-full">
                 <FreeShippingProgressBar
                   total={total2 / 100}
                   target={299}
@@ -70,7 +70,7 @@ function Cart() {
       <header class="flex  py-2 justify-between items-center text-white bg-black text-xs">
         <div class="w-full flex flex-col justify-between items-center">
           <div class="flex flex-row w-full items-center content-start">
-            <div class="px-2 py-4">
+            <div class="px-2 py-4 w-full">
               <FreeShippingProgressBar
                 total={total2 / 100}
                 target={299}
