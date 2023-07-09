@@ -15,6 +15,7 @@ interface Props {
 
   /** @description used for analytics event */
   itemListName?: string;
+  colorRed?: boolean;
 }
 
 const relative = (url: string) => {
@@ -25,7 +26,9 @@ const relative = (url: string) => {
 const WIDTH = 280;
 const HEIGHT = 420;
 
-function ProductCard({ product, preload, itemListName }: Props) {
+function ProductCard(
+  { product, preload, itemListName, colorRed = false }: Props,
+) {
   const {
     url,
     productID,
@@ -144,7 +147,7 @@ function ProductCard({ product, preload, itemListName }: Props) {
               ? (formatPrice(listPrice, offers!.priceCurrency!))
               : ("")}
           </span>
-          <span class="text-red-700 text-base font-bold">
+          <span class={`${colorRed ? "text-red-700 " : ""}text-base font-bold`}>
             {formatPrice(price, offers!.priceCurrency!)}
           </span>
         </div>

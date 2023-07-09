@@ -8481,11 +8481,16 @@
             "null"
           ],
           "title": "Items Per Page"
+        },
+        "colorRed": {
+          "type": "boolean",
+          "title": "Color Red"
         }
       },
       "required": [
         "title",
-        "products"
+        "products",
+        "colorRed"
       ],
       "title": "deco-sites/riquezzz/components/product/BawProductShelf.tsx@Props"
     },

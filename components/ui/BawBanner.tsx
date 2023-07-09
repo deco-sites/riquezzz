@@ -154,14 +154,14 @@ export default function BawBannner({
               <Source
                 media="(max-width: 767px)"
                 src={srcMobile}
-                width={0}
-                height={0}
+                width={810}
+                height={920}
               />
               <Source
                 media="(min-width: 768px)"
                 src={srcDesktop ? srcDesktop : srcMobile}
-                width={0}
-                height={0}
+                width={810}
+                height={920}
               />
               <img
                 class="w-full object-cover "
