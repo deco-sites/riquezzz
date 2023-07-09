@@ -12,7 +12,7 @@ function NavItem({ item }: { item: INavItem }) {
   const { href, label, children, colorRed } = item;
 
   return (
-    <li class=" relative   group font-thin flex items-center border-b-2 border-transparent  b pt-[10px] pb-[10px] box-border h-[70px] ease-out duration-300">
+    <li class=" relative   group font-medium flex items-center border-b-2 border-transparent  b pt-[10px] pb-[10px] box-border h-[70px] ease-out duration-300">
       <a href={href} class="px-4 py-3">
         <span class={colorRed ? "text-red-500" : ""}>
           {label}
@@ -35,7 +35,7 @@ function NavItem({ item }: { item: INavItem }) {
             style={{ top: "0px", marginTop: "70px" }}
           >
             {/* items-start justify-center */}
-            <ul class="flex flex-row items-center justify-start flex-wrap min-w-[450px] gap-[10px] ">
+            <ul class="flex flex-row items-center justify-start flex-wrap min-w-[450px] gap-[20px] ">
               {children.map((node) => (
                 <li class="font-medium w-[135px] text-start">
                   <a
