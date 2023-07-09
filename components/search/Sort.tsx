@@ -37,7 +37,7 @@ function Sort({ sortOptions }: Props) {
     "release:desc": "Mais recentes",
     "relevance:desc": "Relevância",
     "orders:desc": "Mais Vendidos",
-    "discount:desc": "Descontos"
+    "discount:desc": "Descontos",
   };
 
   return (
