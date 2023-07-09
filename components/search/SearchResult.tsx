@@ -37,7 +37,7 @@ function Result({
 
   return (
     <>
-      <div class="px-4 sm:py-10">
+      <div class="px-4 sm:py-10 pr-14">
         <SearchControls
           sortOptions={sortOptions}
           filters={filters}
@@ -57,7 +57,7 @@ function Result({
               <BawFilters filters={filters} />
             </aside>
           )}
-          <div class="flex-grow">
+          <div class="flex-grow pt-10">
             <ProductGallery products={products} />
           </div>
         </div>
