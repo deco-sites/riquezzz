@@ -30,7 +30,7 @@ function NavItem({ item }: { item: INavItem }) {
       {children && children.length > 0 &&
         (
           <div
-            class=" bg-gray-200 fixed hidden hover:flex group-hover:flex bg-base-100 z-50
+            class=" bg-gray-100 fixed hidden hover:flex group-hover:flex bg-base-100 z-50
               items-center justify-center  border-b-2 border-base-200 pl-10 py-8  max-w-[500px] "
             style={{ top: "0px", marginTop: "70px" }}
           >
