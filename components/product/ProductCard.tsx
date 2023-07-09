@@ -42,6 +42,10 @@ function ProductCard(
   const { listPrice, price, installments, availability, seller } = useOffer(
     offers,
   );
+  const installmentText = installments?.replace(" sem juros", "").replace(
+    ".",
+    ",",
+  ).replace(" de", "");
   const possibilities = useVariantPossibilities(product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
   const clickEvent = {
@@ -137,16 +141,16 @@ function ProductCard(
           {name}
         </h2>
         <div class="flex items-end gap-1">
-          <span class="text-base-300 text-base font-bold">
-            {installments}
+          <span class="text-base font-bold">
+            {installmentText}
           </span>
-        </div>
-        <div class="flex items-end gap-1">
+          /
           <span class="line-through text-base text-base-300 ">
             {listPrice !== price
-              ? (formatPrice(listPrice, offers!.priceCurrency!))
+              ? (`${formatPrice(listPrice, offers!.priceCurrency!)}`)
               : ("")}
           </span>
+          {listPrice !== price ? (`/`) : ("")}
           <span class={`${colorRed ? "text-red-700 " : ""}text-base font-bold`}>
             {formatPrice(price, offers!.priceCurrency!)}
           </span>
