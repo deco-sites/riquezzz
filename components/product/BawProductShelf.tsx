@@ -16,7 +16,7 @@ export interface Props {
   colorRed: boolean;
 }
 
-function ProductShelf({ colorRed , title, products }: Props) {
+function ProductShelf({ colorRed, title, products }: Props) {
   const id = useId();
 
   if (!products || products.length === 0) {
