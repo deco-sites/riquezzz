@@ -31,15 +31,15 @@ function NavItem({ item }: { item: INavItem }) {
         (
           <div
             class=" bg-gray-200 fixed hidden hover:flex group-hover:flex bg-base-100 z-50
-              items-center justify-center  border-b-2 border-base-200 pl-10 py-10  max-w-[500px] "
+              items-center justify-center  border-b-2 border-base-200 pl-10 py-8  max-w-[500px] "
             style={{ top: "0px", marginTop: "70px" }}
           >
             {/* items-start justify-center */}
             <ul class="flex flex-row items-center justify-start flex-wrap min-w-[450px] gap-[20px] ">
               {children.map((node) => (
-                <li class="font-medium w-[135px] text-start">
+                <li class="font-light w-[135px] text-start">
                   <a
-                    class="hover:underline uppercase text-black  text-[18px]"
+                    class="uppercase text-black hover:font-medium"
                     href={node.href}
                   >
                     <span>{node.label}</span>
