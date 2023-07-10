@@ -23,18 +23,18 @@ export interface Props {
 
 function NotFound() {
   return (
-    <div class="w-full flex justify-center items-center h-full bg-[#f4f4f4] pb-[60px] ">
-      <div class="flex flex-col justify-center text-center w-[600px] ">
-        <span class="text-[10.5rem] text-[#ccc] font-extrabold ">Oops!</span>
-        <span class="mt-[-60px] text-[30px] text-black font-extrabold">
+    <div class="w-full flex flex-col sm:flex-row justify-center items-center h-full bg-[#f4f4f4] pb-[30px] sm:pb-[60px] ">
+      <div class="flex flex-col justify-center text-center w-full sm:w-[600px] ">
+        <span class="text-[8rem] sm:text-[10.5rem] text-[#ccc] font-extrabold ">Oops!</span>
+        <span class="sm:mt-[-60px] text-[20px] sm:text-[30px] text-black font-extrabold">
           Nenhum produto foi encontrado
         </span>
       </div>
-      <div class="flex flex-col justify-center min-h-[230px] w-[600px] pl-[50px] mt-10 border-l-2 rounded-sm border-black bg-white shadow ">
-        <h1 class="text-[30px] font-bold text-black">O que eu faço?</h1>
-        <ul class="gap-8  text-black ">
-          <li class="flex flex-row justify-start items-center text-xl font-medium  text-[#868686]">
-            <div class="bg-[#eee] flex justify-center rounded-full mr-4 p-[3px]">
+      <div class="flex flex-col justify-center min-h-[230px] w-[90vw] sm:w-[600px] pl-[15px] sm:pl-[50px] mt-10 border-l-2 rounded-sm border-black bg-white shadow ">
+        <h1 class="text-[25px] sm:text-[30px] font-bold text-black">O que eu faço?</h1>
+        <ul class="gap-3 sm:gap-8  text-black ">
+          <li class="flex flex-row justify-start items-center text-sm sm:text-xl font-medium  text-[#868686]">
+            <div class="bg-[#eee] flex justify-center rounded-full mr-1 sm:mr-4 p-[3px]">
               <Icon
                 class="text-black "
                 width={12}
@@ -45,8 +45,8 @@ function NotFound() {
             </div>
             Verifique os termos digitados.
           </li>
-          <li class="flex flex-row justify-start items-center text-xl  font-medium  text-[#868686]">
-            <div class="bg-[#eee] flex justify-center rounded-full mr-4 p-[3px] ">
+          <li class="flex flex-row justify-start items-center text-sm sm:text-xl  font-medium  text-[#868686]">
+            <div class="bg-[#eee] flex justify-center rounded-full mr-1 sm:mr-4 p-[3px] ">
               <Icon
                 class="text-black "
                 width={12}
@@ -56,8 +56,8 @@ function NotFound() {
               />
             </div>Tente utilizar uma única palavra.
           </li>
-          <li class="flex flex-row justify-start items-center text-xl  font-medium  text-[#868686]">
-            <div class="bg-[#eee] flex justify-center rounded-full mr-4 p-[3px] ">
+          <li class="flex flex-row justify-start items-center text-sm  sm:text-xl font-medium  text-[#868686]">
+            <div class="bg-[#eee] flex justify-center rounded-full mr-1 sm:mr-4 p-[3px] ">
               <Icon
                 class="text-black "
                 width={12}
@@ -67,8 +67,8 @@ function NotFound() {
               />
             </div>Utilize termos genéricos na busca.
           </li>
-          <li class="flex flex-row justify-start items-center text-xl  font-medium  text-[#868686]">
-            <div class="bg-[#eee] flex justify-center rounded-full mr-4 p-[3px]">
+          <li class="flex flex-row justify-start items-center text-sm sm:text-xl  font-medium  text-[#868686]">
+            <div class="bg-[#eee] flex justify-center rounded-full mr-1 sm:mr-4 p-[3px]">
               <Icon
                 class="text-black "
                 width={12}
