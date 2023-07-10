@@ -18,41 +18,39 @@ function SearchControls(
 ) {
   const open = useSignal(false);
 
-  return (<>
-    <div class="flex flex-row items-center sm:p-0 mb-2">
+  return (
+    <>
+      <div class="flex flex-row items-center sm:p-0 mb-2">
         <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
       </div>
-    <div class="flex flex-col justify-between mb-4 p-4 sm:mb-0 sm:p-0 sm:gap-4 sm:flex-row sm:h-[53px] ">
-      
+      <div class="flex flex-col justify-between mb-4 p-4 sm:mb-0 sm:p-0 sm:gap-4 sm:flex-row sm:h-[53px] ">
+        <div class="flex flex-row items-center justify-between border-b border-base-200 bg-transparent sm:gap-4 sm:border-none">
+          <Button
+            class={displayFilter ? "btn-ghost" : "btn-ghost sm:hidden"}
+            onClick={() => {
+              open.value = true;
+            }}
+          >
+            Filtrar
+            <Icon id="FilterList" width={16} height={16} />
+          </Button>
+          {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />}
+        </div>
 
-      <div class="flex flex-row items-center justify-between border-b border-base-200 bg-transparent sm:gap-4 sm:border-none">
-        <Button
-          class={displayFilter ? "btn-ghost" : "btn-ghost sm:hidden"}
-          onClick={() => {
-            open.value = true;
+        <Modal
+          loading="lazy"
+          title="Filtrar"
+          mode="sidebar-right"
+          open={open.value}
+          onClose={() => {
+            open.value = false;
           }}
         >
-          Filtrar
-          <Icon id="FilterList" width={16} height={16} />
-        </Button>
-        {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />}
+          <BawFilters filters={filters} />
+        </Modal>
       </div>
-
-      <Modal
-        loading="lazy"
-        title="Filtrar"
-        mode="sidebar-right"
-        open={open.value}
-        onClose={() => {
-          open.value = false;
-        }}
-      >
-        <BawFilters filters={filters} />
-      </Modal>
-    </div>
     </>
   );
 }
 
 export default SearchControls;
-

@@ -23,7 +23,6 @@ export interface Props {
   columns: Columns;
 }
 
-
 function NotFound() {
   return (
     <div class="w-full flex flex-col justify-center items-center">
