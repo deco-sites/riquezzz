@@ -59,17 +59,16 @@ function BannerUI({ banner }: { banner: Banner }) {
           <img class="w-full" src={image.desktop} alt={image.alt ?? title} />
         </Picture>
       </div>
-      <div class=" container flex flex-col items-center text-center justify-center sm:items-start col-start-1 col-span-1 row-start-1 row-span-1 w-full max-w-[660px] py-10 gap-5">
+      <div class="container flex flex-col items-center text-center justify-center sm:items-start col-start-1 col-span-1 row-start-1 row-span-1 w-full max-w-[660px] py-10 sm:gap-5 font-bold">
         <h1 class="w-full ">
-          <span class="text-5xl font-medium text-black ">
+          <span class="text-3xl sm:text-5xl uppercase font-medium text-black ">
             {title}
           </span>
         </h1>
-        <h2>
-          <span class="text-sm font-medium text-[#a8a8a8] w-full">
-            {subtitle}
-          </span>
-        </h2>
+
+        <span class="text-xs px-5 text-justify sm:text-center sm:text-sm font-medium text-[#5e5e5e] w-full ">
+          {subtitle}
+        </span>
       </div>
     </>
   );
