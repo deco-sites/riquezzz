@@ -12,9 +12,9 @@ export interface Banner {
   subtitle?: string;
   image: {
     /** @description Image for big screens */
-    desktop: LiveImage;
+    desktop?: LiveImage | undefined;
     /** @description Image for small screens */
-    mobile: LiveImage;
+    mobile?: LiveImage | undefined;
     /** @description image alt text */
     alt?: string;
   };
@@ -29,36 +29,49 @@ function BannerUI({ banner }: { banner: Banner }) {
   const { title, subtitle, image } = banner;
 
   return (
-    <div class="grid grid-cols-1 grid-rows-1">
-      <Picture preload class="col-start-1 col-span-1 row-start-1 row-span-1">
-        <Source
-          src={image.mobile}
-          width={360}
-          height={120}
-          media="(max-width: 767px)"
-        />
-        <Source
-          src={image.desktop}
-          width={1440}
-          height={200}
-          media="(min-width: 767px)"
-        />
-        <img class="w-full" src={image.desktop} alt={image.alt ?? title} />
-      </Picture>
+    <>
+      <div class="grid grid-cols-1 grid-rows-1">
+        <Picture
+          preload
+          class="col-start-1 col-span-1 row-start-1 row-span-1"
+        >
+          {image?.mobile
+            ? (
+              <Source
+                src={image?.mobile}
+                width={360}
+                height={120}
+                media="(max-width: 767px)"
+              />
+            )
+            : ("")}
+          {image?.desktop
+            ? (
+              <Source
+                src={image.desktop}
+                width={1440}
+                height={200}
+                media="(min-width: 767px)"
+              />
+            )
+            : ("")}
 
-      <div class="container flex flex-col items-center justify-center sm:items-start col-start-1 col-span-1 row-start-1 row-span-1 w-full">
-        <h1>
-          <span class="text-5xl font-medium text-base-100">
+          <img class="w-full" src={image.desktop} alt={image.alt ?? title} />
+        </Picture>
+      </div>
+      <div class=" container flex flex-col items-center text-center justify-center sm:items-start col-start-1 col-span-1 row-start-1 row-span-1 w-full max-w-[660px] py-10 gap-5">
+        <h1 class="w-full ">
+          <span class="text-5xl font-medium text-black ">
             {title}
           </span>
         </h1>
         <h2>
-          <span class="text-xl font-medium text-base-100">
+          <span class="text-sm font-medium text-[#a8a8a8] w-full">
             {subtitle}
           </span>
         </h2>
       </div>
-    </div>
+    </>
   );
 }
 
