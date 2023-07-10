@@ -10,7 +10,7 @@ import type { LoaderReturnType } from "$live/types.ts";
 import type { ProductListingPage } from "deco-sites/std/commerce/types.ts";
 
 export interface Props {
-  page: LoaderReturnType<ProductListingPage | null>;
+  page: LoaderReturnType<ProductListingPage>;
   /**
    * @description Use drawer for mobile like behavior on desktop. Aside for rendering the filters alongside the products
    */
@@ -23,8 +23,74 @@ export interface Props {
 
 function NotFound() {
   return (
-    <div class="w-full flex justify-center items-center py-10">
-      <span>Not Found!</span>
+    <div class="w-full flex flex-col justify-center items-center">
+      <div class="w-full flex flex-col sm:flex-row justify-center items-center h-full pb-[30px] sm:pb-[60px] ">
+        <div class="flex flex-col justify-center text-center w-full sm:w-[600px] ">
+          <span class="text-[8rem] sm:text-[10.5rem] text-[#ccc] font-extrabold ">
+            Oops!
+          </span>
+          <span class="sm:mt-[-60px] text-[20px] sm:text-[30px] text-black font-extrabold">
+            Nenhum produto foi encontrado
+          </span>
+        </div>
+        <div class="flex flex-col justify-center min-h-[230px] w-[90vw] sm:w-[600px] pl-[15px] sm:pl-[50px] mt-10 border-l-2 rounded-sm border-black bg-white shadow ">
+          <h1 class="text-[25px] sm:text-[30px] font-bold text-black">
+            O que eu faço?
+          </h1>
+          <ul class="gap-3 sm:gap-8  text-black ">
+            <li class="flex flex-row justify-start items-center text-sm sm:text-xl font-medium  text-[#868686]">
+              <div class="bg-[#eee] flex justify-center rounded-full mr-1 sm:mr-4 p-[3px]">
+                <Icon
+                  class="text-black "
+                  width={12}
+                  height={12}
+                  id=">"
+                  strokeWidth={3}
+                />
+              </div>
+              Verifique os termos digitados.
+            </li>
+            <li class="flex flex-row justify-start items-center text-sm sm:text-xl  font-medium  text-[#868686]">
+              <div class="bg-[#eee] flex justify-center rounded-full mr-1 sm:mr-4 p-[3px] ">
+                <Icon
+                  class="text-black "
+                  width={12}
+                  height={12}
+                  id=">"
+                  strokeWidth={3}
+                />
+              </div>Tente utilizar uma única palavra.
+            </li>
+            <li class="flex flex-row justify-start items-center text-sm  sm:text-xl font-medium  text-[#868686]">
+              <div class="bg-[#eee] flex justify-center rounded-full mr-1 sm:mr-4 p-[3px] ">
+                <Icon
+                  class="text-black "
+                  width={12}
+                  height={12}
+                  id=">"
+                  strokeWidth={3}
+                />
+              </div>Utilize termos genéricos na busca.
+            </li>
+            <li class="flex flex-row justify-start items-center text-sm sm:text-xl  font-medium  text-[#868686]">
+              <div class="bg-[#eee] flex justify-center rounded-full mr-1 sm:mr-4 p-[3px]">
+                <Icon
+                  class="text-black "
+                  width={12}
+                  height={12}
+                  id=">"
+                  strokeWidth={3}
+                />
+              </div>Procure utilizar sinônimos ao termo desejado.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <span
+        class={"hidden w-full flex justify-center items-center text-center sm:flex text-[3rem]  text-[#ccc] font-extrabold"}
+      >
+        Eita, alguma coisa se perdeu por aqui.. talvez esses produtos te ajudem?
+      </span>
     </div>
   );
 }
@@ -112,9 +178,15 @@ function Result({
   );
 }
 
-function SearchResult({ page, ...props }: Props) {
-  if (!page) {
-    return <NotFound />;
+function SearchResult(
+  { page, ...props }: Props,
+) {
+  if (page!.products.length === 0) {
+    return (
+      <>
+        <NotFound />
+      </>
+    );
   }
 
   return <Result {...props} page={page} />;
