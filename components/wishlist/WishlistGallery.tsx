@@ -2,7 +2,7 @@ import SearchResult, {
   Props as SearchResultProps,
 } from "$store/components/search/SearchResult.tsx";
 
-export type Props = SearchResultProps;
+export type Props = SearchResultProps ;
 
 function WishlistGallery(props: Props) {
   const isEmpty = !props.page || props.page.products.length === 0;

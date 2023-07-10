@@ -10,7 +10,7 @@ import type { LoaderReturnType } from "$live/types.ts";
 import type { ProductListingPage } from "deco-sites/std/commerce/types.ts";
 
 export interface Props {
-  page: LoaderReturnType<ProductListingPage | null>;
+  page: LoaderReturnType<ProductListingPage>;
   /**
    * @description Use drawer for mobile like behavior on desktop. Aside for rendering the filters alongside the products
    */
@@ -23,8 +23,63 @@ export interface Props {
 
 function NotFound() {
   return (
-    <div class="w-full flex justify-center items-center py-10">
-      <span>Not Found!</span>
+    <div class="w-full flex justify-center items-center h-full bg-[#f4f4f4] pb-[60px] ">
+      <div class="flex flex-col justify-center text-center w-[600px] ">
+        <span class="text-[10.5rem] text-[#ccc] font-extrabold ">Oops!</span>
+        <span class="mt-[-60px] text-[30px] text-black font-extrabold">
+          Nenhum produto foi encontrado
+        </span>
+      </div>
+      <div class="flex flex-col justify-center min-h-[230px] w-[600px] pl-[50px] mt-10 border-l-2 rounded-sm border-black bg-white shadow ">
+        <h1 class="text-[30px] font-bold text-black">O que eu faço?</h1>
+        <ul class="gap-8  text-black ">
+          <li class="flex flex-row justify-start items-center text-xl font-medium  text-[#868686]">
+            <div class="bg-[#eee] flex justify-center rounded-full mr-4 p-[3px]">
+              <Icon
+                class="text-black "
+                width={12}
+                height={12}
+                id=">"
+                strokeWidth={3}
+              />
+            </div>
+            Verifique os termos digitados.
+          </li>
+          <li class="flex flex-row justify-start items-center text-xl  font-medium  text-[#868686]">
+            <div class="bg-[#eee] flex justify-center rounded-full mr-4 p-[3px] ">
+              <Icon
+                class="text-black "
+                width={12}
+                height={12}
+                id=">"
+                strokeWidth={3}
+              />
+            </div>Tente utilizar uma única palavra.
+          </li>
+          <li class="flex flex-row justify-start items-center text-xl  font-medium  text-[#868686]">
+            <div class="bg-[#eee] flex justify-center rounded-full mr-4 p-[3px] ">
+              <Icon
+                class="text-black "
+                width={12}
+                height={12}
+                id=">"
+                strokeWidth={3}
+              />
+            </div>Utilize termos genéricos na busca.
+          </li>
+          <li class="flex flex-row justify-start items-center text-xl  font-medium  text-[#868686]">
+            <div class="bg-[#eee] flex justify-center rounded-full mr-4 p-[3px]">
+              <Icon
+                class="text-black "
+                width={12}
+                height={12}
+                id=">"
+                strokeWidth={3}
+              />
+            </div>Procure utilizar sinônimos ao termo desejado.
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }
@@ -112,9 +167,15 @@ function Result({
   );
 }
 
-function SearchResult({ page, ...props }: Props) {
-  if (!page) {
-    return <NotFound />;
+function SearchResult(
+  { page, ...props }: Props,
+) {
+  if (page!.products.length === 0) {
+    return (
+      <>
+        <NotFound />
+      </>
+    );
   }
 
   return <Result {...props} page={page} />;
