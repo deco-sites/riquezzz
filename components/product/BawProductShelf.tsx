@@ -26,7 +26,7 @@ function ProductShelf({ colorRed, title, products }: Props) {
   return (
     <div
       id={id}
-      class="grid grid-cols-[48px_1fr_48px] grid-rows-[48px_1fr_48px_1fr] py-10 px-0 sm:pl-8 sm:pr-[75px]"
+      class="grid grid-cols-[48px_1fr_48px] grid-rows-[48px_1fr_48px_1fr] py-10 px-0 sm:pl-8 sm:pr-12"
     >
       <h2 class="text-left row-start-1 col-span-full">
         <span class="font-black text-3xl">{title}</span>
@@ -49,12 +49,12 @@ function ProductShelf({ colorRed, title, products }: Props) {
 
       <>
         <div class="hidden relative sm:block z-10 col-start-1 row-start-3">
-          <Slider.PrevButton class="btn btn-outline absolute right-1/2 bg-base-100 border-none rounded-none">
+          <Slider.PrevButton class="btn btn-outline absolute right-0 bg-base-100 border-none rounded-none">
             <Icon size={20} id="ChevronLeft" strokeWidth={3} />
           </Slider.PrevButton>
         </div>
         <div class="hidden relative sm:block z-10 col-start-3 row-start-3">
-          <Slider.NextButton class="btn btn-outline absolute left-1/2 bg-base-100 border-none rounded-none">
+          <Slider.NextButton class="btn btn-outline absolute left-0 bg-base-100 border-none rounded-none">
             <Icon size={20} id="ChevronRight" strokeWidth={3} />
           </Slider.NextButton>
         </div>
