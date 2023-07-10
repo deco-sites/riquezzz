@@ -2,6 +2,8 @@ import Filters from "$store/components/search/Filters.tsx";
 import BawFilters from "$store/components/search/BawFilters.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import SearchControls from "$store/islands/SearchControls.tsx";
+import BreadcrumbControls from "$store/islands/BreadcrumbControls.tsx";
+
 import { SendEventOnLoad } from "$store/sdk/analytics.tsx";
 import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/productToAnalyticsItem.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
@@ -10,7 +12,7 @@ import type { LoaderReturnType } from "$live/types.ts";
 import type { ProductListingPage } from "deco-sites/std/commerce/types.ts";
 
 export interface Props {
-  page: LoaderReturnType<ProductListingPage>;
+  page: LoaderReturnType<ProductListingPage | null>;
   /**
    * @description Use drawer for mobile like behavior on desktop. Aside for rendering the filters alongside the products
    */
@@ -20,6 +22,7 @@ export interface Props {
    */
   columns: Columns;
 }
+
 
 function NotFound() {
   return (
@@ -87,7 +90,7 @@ function NotFound() {
         </div>
       </div>
       <span
-        class={"hidden w-full flex justify-center items-center text-center sm:flex text-[3rem]  text-[#ccc] font-extrabold"}
+        class={"hidden w-full  justify-center items-center text-center sm:flex text-[3rem]  text-[#ccc] font-extrabold"}
       >
         Eita, alguma coisa se perdeu por aqui.. talvez esses produtos te ajudem?
       </span>
@@ -188,8 +191,7 @@ function SearchResult(
       </>
     );
   }
-
-  return <Result {...props} page={page} />;
+  return <Result {...props} page={page!} />;
 }
 
 export default SearchResult;

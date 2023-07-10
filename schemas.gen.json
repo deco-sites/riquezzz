@@ -67,6 +67,7 @@
               "deco-sites/std/loaders/vtex/wishlist.ts",
               "./islands/AddToCartButton.tsx",
               "./islands/BawFilters.tsx",
+              "./islands/BreadcrumbControls.tsx",
               "./islands/HeaderButton.tsx",
               "./islands/HeaderModals.tsx",
               "./islands/HeaderSearchbar.tsx",
@@ -9975,7 +9976,7 @@
       "type": "object",
       "properties": {
         "page": {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@ProductListingPage",
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@ProductListingPage|null",
           "title": "Page"
         },
         "variant": {
@@ -12345,6 +12346,22 @@
         }
       }
     },
+    "Li9pc2xhbmRzL0JyZWFkY3J1bWJDb250cm9scy50c3g=": {
+      "title": "./islands/BreadcrumbControls.tsx",
+      "type": "object",
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "./islands/BreadcrumbControls.tsx"
+          ],
+          "default": "./islands/BreadcrumbControls.tsx"
+        }
+      }
+    },
     "Li9pc2xhbmRzL0hlYWRlckJ1dHRvbi50c3g=": {
       "title": "./islands/HeaderButton.tsx",
       "type": "object",
@@ -14383,6 +14400,9 @@
         },
         {
           "$ref": "#/definitions/Li9pc2xhbmRzL0Jhd0ZpbHRlcnMudHN4"
+        },
+        {
+          "$ref": "#/definitions/Li9pc2xhbmRzL0JyZWFkY3J1bWJDb250cm9scy50c3g="
         },
         {
           "$ref": "#/definitions/Li9pc2xhbmRzL0hlYWRlckJ1dHRvbi50c3g="
