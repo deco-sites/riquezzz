@@ -2,8 +2,6 @@ import Filters from "$store/components/search/Filters.tsx";
 import BawFilters from "$store/components/search/BawFilters.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import SearchControls from "$store/islands/SearchControls.tsx";
-import BreadcrumbControls from "$store/islands/BreadcrumbControls.tsx";
-
 import { SendEventOnLoad } from "$store/sdk/analytics.tsx";
 import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/productToAnalyticsItem.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";

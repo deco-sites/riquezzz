@@ -110,6 +110,7 @@
               "deco-sites/riquezzz/sections/LinkTree.tsx",
               "deco-sites/riquezzz/sections/ProductDetails.tsx",
               "deco-sites/riquezzz/sections/ProductShelf.tsx",
+              "deco-sites/riquezzz/sections/SearchBreadControls.tsx",
               "deco-sites/riquezzz/sections/SearchResult.tsx",
               "deco-sites/riquezzz/sections/WhatsApp.tsx",
               "deco-sites/riquezzz/sections/WishlistGallery.tsx",
@@ -9951,6 +9952,17 @@
       ],
       "title": "deco-sites/riquezzz/components/product/ProductShelf.tsx@Props"
     },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hCcmVhZENvbnRyb2xzLnRzeA==@Props": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@ProductListingPage|null",
+          "title": "Page"
+        }
+      },
+      "required": [],
+      "title": "deco-sites/riquezzz/components/search/SearchBreadControls.tsx@Props"
+    },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3Byb2R1Y3QvUHJvZHVjdEdhbGxlcnkudHN4@Columns": {
       "type": "object",
       "properties": {
@@ -13188,6 +13200,27 @@
         }
       }
     },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9TZWFyY2hCcmVhZENvbnRyb2xzLnRzeA==": {
+      "title": "deco-sites/riquezzz/sections/SearchBreadControls.tsx",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hCcmVhZENvbnRyb2xzLnRzeA==@Props"
+        }
+      ],
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "deco-sites/riquezzz/sections/SearchBreadControls.tsx"
+          ],
+          "default": "deco-sites/riquezzz/sections/SearchBreadControls.tsx"
+        }
+      }
+    },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9TZWFyY2hSZXN1bHQudHN4": {
       "title": "deco-sites/riquezzz/sections/SearchResult.tsx",
       "type": "object",
@@ -14553,6 +14586,9 @@
         },
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9Qcm9kdWN0U2hlbGYudHN4"
+        },
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9TZWFyY2hCcmVhZENvbnRyb2xzLnRzeA=="
         },
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9TZWFyY2hSZXN1bHQudHN4"
