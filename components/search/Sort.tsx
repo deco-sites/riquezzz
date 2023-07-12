@@ -41,18 +41,21 @@ function Sort({ sortOptions }: Props) {
   };
 
   return (
-    <select
-      id="sort"
-      name="sort"
-      onInput={applySort}
-      class="w-min h-[36px] px-1 m-2 bg-transparent  text-button font-button text-base-content cursor-pointer outline-none border-b border-black"
-    >
-      {sortOptions.map(({ value, label }) => (
-        <option key={value} value={value} selected={value === sort}>
-          <span class="text-sm">{labels[label]}</span>
-        </option>
-      ))}
-    </select>
+    <div class="flex flex-col w-[150px]  bg-transparent text-button font-button text-base-content  text-start">
+      <span class="text-sm font-semibold">Ordernar por:</span>
+      <select
+        id="sort"
+        name="sort"
+        onInput={applySort}
+        class="w-full h-[30px] px-1  bg-transparent text-button font-button text-base-content cursor-pointer outline-none border-b border-black"
+      >
+        {sortOptions.map(({ value, label }) => (
+          <option key={value} value={value} selected={value === sort}>
+            <span class="text-sm items-center w-full">{labels[label]}</span>
+          </option>
+        ))}
+      </select>
+    </div>
   );
 }
 

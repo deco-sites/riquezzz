@@ -8,6 +8,7 @@ import { useOffer } from "$store/sdk/useOffer.ts";
 import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
 import type { LoaderReturnType } from "$live/types.ts";
 import type { ProductListingPage } from "deco-sites/std/commerce/types.ts";
+import { useState } from "preact/hooks";
 
 export interface Props {
   page: LoaderReturnType<ProductListingPage | null>;
@@ -100,20 +101,14 @@ function Result({
   variant,
 }: Omit<Props, "page"> & { page: ProductListingPage }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
+  const [value, setValue] = useState(2);
 
   return (
     <>
       <div class="px-4 sm:py-10 pr-14">
-        <SearchControls
-          sortOptions={sortOptions}
-          filters={filters}
-          breadcrumb={breadcrumb}
-          displayFilter={variant === "drawer"}
-        />
-
         <div class="flex flex-row">
           {variant === "aside" && filters.length > 0 && (
-            <aside class="hidden sm:block w-min min-w-[250px]">
+            <aside class="hidden sm:block w-min min-w-[250px] mt-5">
               <BawFilters filters={filters} />
             </aside>
           )}
@@ -124,7 +119,43 @@ function Result({
             </aside>
           )}
           <div class="flex-grow pt-10">
-            <ProductGallery products={products} />
+            <div class="flex flex-row w-full justify-between pb-10">
+              <div class="flex flex-row w-full justify-between mr-10 gap-5">
+                <span class="pl-5 font-bold text-base">
+                  {products.length} produtos
+                </span>
+
+                <div>
+                  <span class=" font-bold text-base">Visualização</span>
+                  <button
+                    class="p-1 font-semibold hover:font-bold hover:bg-black hover:text-white cursor-pointer m-1"
+                    onClick={() => setValue(2)}
+                  >
+                    2
+                  </button>
+                  <button
+                    class="p-1 font-semibold hover:font-bold hover:bg-black hover:text-white cursor-pointer m-1"
+                    onClick={() => setValue(4)}
+                  >
+                    4
+                  </button>
+                  <button
+                    class="p-1 font-semibold hover:font-bold hover:bg-black hover:text-white cursor-pointer m-1"
+                    onClick={() => setValue(6)}
+                  >
+                    6
+                  </button>
+                </div>
+              </div>
+
+              <SearchControls
+                sortOptions={sortOptions}
+                filters={filters}
+                breadcrumb={breadcrumb}
+                displayFilter={variant === "drawer"}
+              />
+            </div>
+            <ProductGallery  products={products} />
           </div>
         </div>
 
