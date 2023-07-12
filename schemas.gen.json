@@ -8057,6 +8057,17 @@
       ],
       "title": "deco-sites/riquezzz/components/ui/BannerGrid.tsx@Props"
     },
+    "ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image|null": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Image|null"
+    },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lclBMUC50c3g=@Banner": {
       "type": "object",
       "properties": {
@@ -8085,11 +8096,11 @@
           "type": "object",
           "properties": {
             "desktop": {
-              "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+              "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image|null",
               "title": "Desktop"
             },
             "mobile": {
-              "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+              "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image|null",
               "title": "Mobile"
             },
             "alt": {
@@ -8100,10 +8111,7 @@
               "title": "Alt"
             }
           },
-          "required": [
-            "desktop",
-            "mobile"
-          ],
+          "required": [],
           "title": "Image"
         }
       },
@@ -8797,7 +8805,7 @@
       "required": [],
       "title": "OptionalColors"
     },
-    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@9b1229f3cb5839855be1e939114c272c&Colors": {
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors&f6d883c2eb3ad5e6bb1c1ebef35b92f1": {
       "allOf": [
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors"
@@ -8813,7 +8821,7 @@
           "required": []
         }
       ],
-      "title": "9b1229f3cb5839855be1e939114c272c&Colors"
+      "title": "Colors&f6d883c2eb3ad5e6bb1c1ebef35b92f1"
     },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Miscellaneous": {
       "type": "object",
@@ -8916,7 +8924,7 @@
       "type": "object",
       "properties": {
         "colors": {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@9b1229f3cb5839855be1e939114c272c&Colors",
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9EZXNpZ25TeXN0ZW0udHN4@Colors&f6d883c2eb3ad5e6bb1c1ebef35b92f1",
           "title": "Colors"
         },
         "miscellaneous": {
@@ -9952,16 +9960,31 @@
       ],
       "title": "deco-sites/riquezzz/components/product/ProductShelf.tsx@Props"
     },
-    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hCcmVhZENvbnRyb2xzLnRzeA==@Props": {
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hCcmVhZENvbnRyb2xzLnRzeA==@omitcGFnZQ==Props": {
       "type": "object",
-      "properties": {
-        "page": {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@ProductListingPage|null",
-          "title": "Page"
-        }
-      },
+      "properties": {},
       "required": [],
-      "title": "deco-sites/riquezzz/components/search/SearchBreadControls.tsx@Props"
+      "title": "omitcGFnZQ==Props"
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hCcmVhZENvbnRyb2xzLnRzeA==@6848d2a625ea4ca1dfbbc1c3213ffa0e&omitcGFnZQ==Props": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hCcmVhZENvbnRyb2xzLnRzeA==@omitcGFnZQ==Props"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "page": {
+              "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@ProductListingPage",
+              "title": "Page"
+            }
+          },
+          "required": [
+            "page"
+          ]
+        }
+      ],
+      "title": "deco-sites/riquezzz/components/search/SearchBreadControls.tsx@6848d2a625ea4ca1dfbbc1c3213ffa0e&omitcGFnZQ==Props"
     },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3Byb2R1Y3QvUHJvZHVjdEdhbGxlcnkudHN4@Columns": {
       "type": "object",
@@ -13205,7 +13228,7 @@
       "type": "object",
       "allOf": [
         {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hCcmVhZENvbnRyb2xzLnRzeA==@Props"
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hCcmVhZENvbnRyb2xzLnRzeA==@6848d2a625ea4ca1dfbbc1c3213ffa0e&omitcGFnZQ==Props"
         }
       ],
       "required": [
