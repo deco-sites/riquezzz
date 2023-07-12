@@ -155,7 +155,7 @@ function Result({
                 displayFilter={variant === "drawer"}
               />
             </div>
-            <ProductGallery  products={products} />
+            <ProductGallery products={products} />
           </div>
         </div>
 
