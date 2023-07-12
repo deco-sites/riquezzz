@@ -22,7 +22,7 @@ function Sidebar({ interval = 5, items, searchbar }: Props) {
 
   return (
     <div id={id}>
-      <div class="w-[70px] h-full bg-white">
+      <div class="w-[70px]  bg-white">
         {
           /* <div class="w-full">
           <Buttons variant="search" />

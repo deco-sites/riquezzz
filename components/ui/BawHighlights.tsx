@@ -22,7 +22,7 @@ function Highlights({ highlights = [], title }: Props) {
         <span class="font-medium text-2xl">{title}</span>
       </h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-16 px-5 ">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-16 px-10 ">
         {highlights.map(({ href, src, alt, buttonText }) => (
           <div class="bg-[#eaeaea] p-5 text-center">
             <a href={href} class="bg-[#eaeaea] pb-6 group">
