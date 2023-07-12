@@ -22,36 +22,35 @@ function Sidebar({ interval = 5, items, searchbar }: Props) {
 
   return (
     <div id={id}>
-      <div class="w-[70px]  bg-white">
-        {
-          /* <div class="w-full">
-          <Buttons variant="search" />
-        </div> */
-        }
-        <div class="w-full mb-2">
+      <div class="w-[80px] flex flex-col  bg-white pr-8 justify-center items-center ">
+        <div class="w-[30px] text-center justify-center flex p-0 m-0 mb-5">
           <Buttons variant="cart" />
         </div>
-        <div class="w-full mb-2">
-          <a class="btn btn-square btn-ghost" href="/login" aria-label="Log in">
-            <Icon id="BawLogin" width={20} height={20} strokeWidth={0.4} />
+        <div class="w-full flex text-center justify-center items-start mb-6">
+          <a
+            class="transform transition   duration-100 hover:scale-125  text-center justify-center items-start"
+            href="/login"
+            aria-label="Log in"
+          >
+            <Icon id="BawLogin" width={25} height={25} strokeWidth={0.4} />
           </a>
         </div>
-        <div class="w-full mb-2">
+        <div class="w-full flex text-center justify-center items-start mb-6">
           <a
-            class="btn btn-square btn-ghost"
+            class=" transform transition  duration-100 hover:scale-125  text-center justify-center  items-start "
             href="/orders"
             aria-label="Orders"
           >
-            <Icon id="BawOrders" width={20} height={20} strokeWidth={0.4} />
+            <Icon id="BawOrders" width={25} height={25} strokeWidth={0.4} />
           </a>
         </div>
-        <div class="w-full mb-2">
+        <div class="w-full flex text-center justify-center items-start mb-6">
           <a
-            class="btn btn-square btn-ghost"
+            class="transform transition  duration-100 hover:scale-125  text-center justify-center  items-start"
             href="/wishlist"
             aria-label="Wishlist"
           >
-            <Icon id="BawWishlist" size={20} strokeWidth={2} fill="none" />
+            <Icon id="BawWishlist" size={25} strokeWidth={2} fill="none" />
           </a>
         </div>
       </div>

@@ -72,15 +72,15 @@ function CartButton() {
 
   return (
     <Button
-      class="btn-square btn-ghost relative"
+      class="bg-white hover:bg-white border-none p-0 m-0 w-[30px]"
       aria-label="open cart"
       data-deco={displayCart.value && "open-cart"}
       loading={loading.value}
       onClick={onClick}
     >
-      <div class="indicator">
+      <div class="w-[30px] p-0 m-0 transform transition duration-100 hover:scale-125 text-start justify-start items-start">
         {totalItems && (
-          <span class="indicator-item bg-black badge badge-secondary badge-sm">
+          <span class=" badge-sm">
             {totalItems > 9 ? "9+" : totalItems}
           </span>
         )}
