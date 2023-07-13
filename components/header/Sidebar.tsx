@@ -22,7 +22,7 @@ function Sidebar({ interval = 5, items, searchbar }: Props) {
 
   return (
     <div id={id}>
-      <div class="w-[80px] flex flex-col  bg-white pr-8 justify-center items-center ">
+      <div class="w-[80px] flex flex-col min-h-[300px]  bg-white pr-8 justify-center items-center ">
         <div class="w-[30px] text-center justify-center flex p-0 m-0 mb-5">
           <Buttons variant="cart" />
         </div>
