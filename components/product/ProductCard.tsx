@@ -165,7 +165,7 @@ function ProductCard(
       {/* Prices & Name */}
       <div class="card-body">
         <h2 class="card-title whitespace-nowrap overflow-hidden  text-base-300 text-base font-normal uppercase">
-          {name}
+          {product.isVariantOf!.name}
         </h2>
         <div class="flex items-end gap-1">
           <span class="text-base font-bold">
