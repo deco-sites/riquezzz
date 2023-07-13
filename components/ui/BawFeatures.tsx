@@ -32,10 +32,10 @@ function FeatureHighlights(
           <div class="flex flex-col justify-between mx-6 sm:flex-row sm:mx-0 overflow-hidden h-[120px]">
             <div class="flex flex-row gap-8 py-3 px-3 sm:flex-col sm:py-0 sm:px-2 relative h-full justify-center">
               <div class="flex flex-col gap-1">
-                <span class="text-lg transform transition duration-300 group-hover:scale-110">
+                <span class="text-lg transform transition duration-300 group-hover:scale-125  px-10">
                   {feature_1.title}
                 </span>
-                <span class="text-lg transform transition duration-300 group-hover:scale-110 font-extrabold uppercase">
+                <span class="text-lg transform transition duration-300 group-hover:scale-125 font-extrabold uppercase  px-10">
                   {feature_1.description}
                 </span>
               </div>
@@ -45,10 +45,10 @@ function FeatureHighlights(
             </div>
             <div class="flex flex-row gap-8 py-3 sm:flex-col sm:py-0 sm:px-2 relative  h-full justify-center">
               <div class="flex flex-col gap-1">
-                <span class="text-lg transform transition duration-300 group-hover:scale-110">
+                <span class="text-lg transform transition duration-300 group-hover:scale-125">
                   {feature_2.title}
                 </span>
-                <span class="text-lg transform transition duration-300 group-hover:scale-110 font-extrabold uppercase">
+                <span class="text-lg transform transition duration-300 group-hover:scale-125 font-extrabold uppercase">
                   {feature_2.description}
                 </span>
               </div>
@@ -59,10 +59,10 @@ function FeatureHighlights(
 
             <div class="flex flex-row gap-8 py-3 sm:flex-col sm:py-0 sm:px-2 relative  h-full justify-center">
               <div class="flex flex-col gap-1">
-                <span class="text-lg transform transition duration-300 group-hover:scale-125">
+                <span class="text-lg transform transition duration-300 group-hover:scale-125  px-10">
                   {feature_3.title}
                 </span>
-                <span class="text-lg transform transition duration-300 group-hover:scale-125 font-extrabold uppercase">
+                <span class="text-lg transform transition duration-300 group-hover:scale-125 font-extrabold uppercase px-10">
                   {feature_3.description}
                 </span>
               </div>

@@ -169,15 +169,17 @@ function ProductCard(
         </h2>
         <div class="flex items-end gap-1">
           <span class="text-base font-bold">
-            {installmentText}
+            {installmentText ? (installmentText + " /") : ("")}
           </span>
-          /
+
           <span class="line-through text-base text-base-300 ">
             {listPrice !== price
               ? (`${formatPrice(listPrice, offers!.priceCurrency!)}`)
               : ("")}
           </span>
-          {listPrice !== price ? (`/`) : ("")}
+          <span class="text-base font-bold">
+            {listPrice !== price ? (`/`) : ("")}
+          </span>
           <span class={`${colorRed ? "text-red-700 " : ""}text-base font-bold`}>
             {formatPrice(price, offers!.priceCurrency!)}
           </span>
