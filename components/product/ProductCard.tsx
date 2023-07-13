@@ -18,6 +18,33 @@ interface Props {
   colorRed?: boolean;
 }
 
+export interface Layout {
+  basics?: {
+    contentAlignment?: "Left" | "Center";
+    oldPriceSize?: "Small" | "Normal";
+    ctaText?: string;
+  };
+  elementsPositions?: {
+    skuSelector?: "Top" | "Bottom";
+    favoriteIcon?: "Top right" | "Top left";
+  };
+  hide?: {
+    productName?: boolean;
+    productDescription?: boolean;
+    allPrices?: boolean;
+    installments?: boolean;
+    skuSelector?: boolean;
+    cta?: boolean;
+  };
+  onMouseOver?: {
+    image?: "Change image" | "Zoom image";
+    card?: "None" | "Move up";
+    showFavoriteIcon?: boolean;
+    showSkuSelector?: boolean;
+    showCardShadow?: boolean;
+    showCta?: boolean;
+  };
+}
 const relative = (url: string) => {
   const link = new URL(url);
   return `${link.pathname}${link.search}`;

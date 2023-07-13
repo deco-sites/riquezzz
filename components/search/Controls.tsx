@@ -14,15 +14,17 @@ type Props =
   };
 
 function SearchControls(
-  { filters, breadcrumb, displayFilter, sortOptions }: Props,
+  { filters, displayFilter, sortOptions }: Props,
 ) {
   const open = useSignal(false);
 
   return (
     <div class="flex flex-col justify-between mb-4 p-4 sm:mb-0 sm:p-0 sm:gap-4 sm:flex-row sm:h-[53px] ">
-      <div class="flex flex-row items-center sm:p-0 mb-2">
+      {
+        /* <div class="flex flex-row items-center sm:p-0 mb-2">flex flex-col justify-between mb-4 p-4 sm:mb-0 sm:p-0 sm:gap-4 sm:flex-row sm:h-[53px]
         <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
-      </div>
+      </div> */
+      }
 
       <div class="flex flex-row items-center justify-between border-b border-base-200 sm:gap-4 sm:border-none">
         <Button
