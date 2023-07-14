@@ -14,7 +14,7 @@ import { useState } from "preact/hooks";
 import Icon from "$store/components/ui/Icon.tsx";
 import Button from "$store/components/ui/Button.tsx";
 import Spinner from "$store/components/ui/Spinner.tsx";
-import ProductCard from "$store/components/product/ProductCard.tsx";
+import ProductCard from "$store/components/product/ProductSearch.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import { useAutocomplete } from "deco-sites/std/packs/vtex/hooks/useAutocomplete.ts";
 import { useUI } from "$store/sdk/useUI.ts";
@@ -51,7 +51,7 @@ function CloseButton() {
 
   return (
     <Button
-      class="btn-ghost btn-circle"
+      class="bg-transparent p-0 m-0 w-[28px] border-none justify-center items-center text-black hover:bg-transparent transform transition  duration-100 hover:scale-125"
       onClick={() => (displaySearchbar.value = false)}
     >
       <Icon id="XMark" width={20} height={20} strokeWidth={2} />
@@ -124,7 +124,7 @@ function Searchbar({
           class="flex-grow flex gap-3 px-3 py-2"
         >
           <Button
-            class="btn-ghost"
+            class="bg-transparent hover:bg-transparent transform transition  duration-100 hover:scale-125 border-none"
             aria-label="Search"
             htmlFor="searchbar"
             tabIndex={-1}
@@ -166,10 +166,7 @@ function Searchbar({
       {term.length > 0
         ? (
           <div class="fixed flex top-[70px] right-[50px]  w-full h-full p-3  flex-col gap-6 divide-y divide-base-200 empty:mt-0 md:flex-row md:divide-y-0  bg-[#0000003b]">
-            <div class="fixed top-[70px] right-[50px] max-w-[755px] w-full p-3 flex flex-col gap-6 divide-y divide-base-200 empty:mt-0 md:flex-row md:divide-y-0 bg-gray-100">
-              <div onClick={() => setTerm("")}>
-                <CloseButton />
-              </div>
+            <div class="fixed top-[70px] right-[50px] max-w-[755px] w-full  h-full p-3 flex flex-col gap-6 divide-y divide-base-200 empty:mt-0 md:flex-row md:divide-y-0 bg-gray-100">
               {notFound
                 ? (
                   <div class="py-16 md:py-6! flex flex-col w-full">
@@ -189,9 +186,13 @@ function Searchbar({
                 : (
                   <>
                     <div class="bg-gray-100 flex flex-col md:w-[15.25rem] md:max-w-[15.25rem]\ pl-2">
-                      <div class="flex gap-2 items-center">
+                      <div class="flex gap-2  items-center ">
+                        <div onClick={() => setTerm("")}>
+                          <CloseButton />
+                        </div>
+
                         <span
-                          class="font-medium text-xl mb-4"
+                          class="font-medium text-xl text-center pb-[6px]"
                           role="heading"
                           aria-level={3}
                         >

@@ -90,7 +90,7 @@ function ProductCard(
   };
   return (
     <div
-      class="card card-compact card-bordered rounded-none border-transparent group w-full"
+      class="card card-compact card-bordered rounded-none border-transparent group w-full "
       data-deco="view-product"
       id={`product-card-${productID}`}
       {...sendEventOnClick(clickEvent)}
@@ -163,24 +163,23 @@ function ProductCard(
         </div>
       </figure>
       {/* Prices & Name */}
-      <div class="card-body">
-        <h2 class="card-title whitespace-nowrap overflow-hidden  text-base-300 text-base font-normal uppercase">
+      <div class="card-body gap-0">
+        <h2 class="card-title m-0 whitespace-nowrap overflow-hidden  text-black text-[16px] font-normal uppercase">
           {isVariantOf!.name}
         </h2>
-        <div class="flex items-end gap-1">
-          <span class="text-base font-bold">
-            {installmentText ? (installmentText + " /") : ("")}
-          </span>
+        <div class="flex flex-col items-start ">
+      
 
-          <span class="line-through text-base text-base-300 ">
+          <span class="line-through text-[14px]  text-base-300 ">
             {listPrice !== price
               ? (`${formatPrice(listPrice, offers!.priceCurrency!)}`)
               : ("")}
           </span>
-          <span class="text-base font-bold">
-            {listPrice !== price ? (`/`) : ("")}
-          </span>
-          <span class={`${colorRed ? "text-red-700 " : ""}text-base font-bold`}>
+         
+        
+          <span
+            class={`${colorRed ? "text-red-700 " : ""}text-[14px] font-bold`}
+          >
             {formatPrice(price, offers!.priceCurrency!)}
           </span>
         </div>
