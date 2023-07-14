@@ -185,7 +185,7 @@ function Searchbar({
                 )
                 : (
                   <>
-                    <div class="bg-gray-100 flex flex-col md:w-[15.25rem] md:max-w-[15.25rem]\ pl-2">
+                    <div class="bg-gray-100 flex flex-col md:w-[200px] md:max-w-[200px] pl-2">
                       <div class="flex gap-2  items-center ">
                         <div onClick={() => setTerm("")}>
                           <CloseButton />
@@ -220,7 +220,7 @@ function Searchbar({
                         ))}
                       </ul>
                     </div>
-                    <div class="flex flex-col pt-6 md:pt-0 gap-6 overflow-x-hidden">
+                    <div class="flex flex-col pt-6 md:pt-0 gap-3 overflow-x-hidden w-full">
                       <div class="flex gap-2 items-center">
                         <span
                           class="font-medium text-xl"
@@ -231,16 +231,28 @@ function Searchbar({
                         </span>
                         {loading.value && <Spinner />}
                       </div>
-                      <Slider class="carousel">
+                      <Slider class="flex flex-row flex-wrap  gap-1 justify-start w-[600px]">
                         {suggestions.value!.products?.map((product, index) => (
                           <Slider.Item
                             index={index}
-                            class="carousel-item first:ml-4 last:mr-4 min-w-[200px] max-w-[200px]"
+                            class="carousel-item   min-w-[170px] max-w-[170px]"
                           >
                             <ProductCard product={product} />
                           </Slider.Item>
                         ))}
                       </Slider>
+                      {
+                        /* <div class="flex-grow pt-10">
+                        <div
+                          class={`grid grid-cols-2 gap-12 items-center lg:grid-cols-4 `}
+                        >
+                          {suggestions.value!.products?.map((
+                            product,
+                            index,
+                          ) => <ProductCard product={product} />)}
+                        </div>
+                      </div> */
+                      }
                     </div>
                   </>
                 )}
