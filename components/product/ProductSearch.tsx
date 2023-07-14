@@ -1,5 +1,5 @@
 import Image from "deco-sites/std/components/Image.tsx";
-import Avatar from "$store/components/ui/Avatar.tsx";
+import Avatar from "$store/components/ui/AvatarSearch.tsx";
 import WishlistIcon from "$store/islands/WishlistButton.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { formatPrice } from "$store/sdk/format.ts";
@@ -147,7 +147,7 @@ function ProductCard(
               </a>
             </ul>
           </figcaption>
-          <figcaption class="card-body card-actions absolute bottom-2 left-0 w-full mb- transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white">
+          <figcaption class="card-body card-actions p-0 m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white">
             {/* SKU Selector */}
             <ul class="flex justify-center items-center gap-2 w-full">
               {variants.map(([value, [link]]) => (
