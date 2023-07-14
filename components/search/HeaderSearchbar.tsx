@@ -114,7 +114,6 @@ function Searchbar({
 
     searchInputRef.current.focus();
   }, []);
-
   return (
     <div ref={searchBoxRef} class="flex flex-col md:px-2 relative">
       <div class="flex items-center gap-4">
@@ -166,20 +165,15 @@ function Searchbar({
       {term.length > 0
         ? (
           <div class="fixed flex top-[70px] right-[50px]  w-full h-full p-3  flex-col gap-6 divide-y divide-base-200 empty:mt-0 md:flex-row md:divide-y-0  bg-[#0000003b]">
-            <div class="fixed top-[70px] right-[50px] max-w-[755px] w-full  h-full p-3 flex flex-col gap-6 divide-y divide-base-200 empty:mt-0 md:flex-row md:divide-y-0 bg-gray-100">
+            <div class="fixed top-[70px] right-[50px] max-w-[760px] w-full pb-10 pl-2 flex flex-col gap-6 divide-y divide-base-200 empty:mt-0 md:flex-row md:divide-y-0 bg-gray-100">
               {notFound
                 ? (
-                  <div class="py-16 md:py-6! flex flex-col w-full">
-                    <span
-                      class="font-medium text-xl text-center"
-                      role="heading"
-                      aria-level={3}
-                    >
-                      Nenhum resultado encontrado
+                  <div class="  flex flex-col w-full  items-center ">
+                    <span class="text-[8rem] sm:text-[10.5rem] text-[#ccc] font-extrabold ">
+                      Oops!
                     </span>
-                    <span class="text-center text-base-300">
-                      Vamos tentar de outro jeito? Verifique a ortografia ou use
-                      um termo diferente
+                    <span class="sm:mt-[-60px] text-[20px] sm:text-[30px] text-black font-extrabold">
+                      Nenhum produto foi encontrado
                     </span>
                   </div>
                 )
@@ -241,18 +235,6 @@ function Searchbar({
                           </Slider.Item>
                         ))}
                       </Slider>
-                      {
-                        /* <div class="flex-grow pt-10">
-                        <div
-                          class={`grid grid-cols-2 gap-12 items-center lg:grid-cols-4 `}
-                        >
-                          {suggestions.value!.products?.map((
-                            product,
-                            index,
-                          ) => <ProductCard product={product} />)}
-                        </div>
-                      </div> */
-                      }
                     </div>
                   </>
                 )}
