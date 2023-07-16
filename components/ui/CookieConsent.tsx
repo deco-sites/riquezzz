@@ -39,7 +39,11 @@ function CookieConsent({ image }: Props) {
         class="transform-gpu px-5  transition fixed top-0 w-screen z-50"
       >
         <div class="container max-w-[500px]  flex-row px-6 py-6 rounded-sm border  border-base-200 flex gap-4 items-start  shadow bg-base-100">
-          <img class="w-[80px]" src={"https://dito-browser-notification-images.s3.amazonaws.com/MjAyMC0wMy0yNCAxMTo0OToxNyAtMDMwMEJhdyBDbG90aGluZyBPZmljaWFsODc5/modal/1587406327-logo%2080.jpg"} alt="logo" />
+          <img
+            class="w-[80px]"
+            src={"https://dito-browser-notification-images.s3.amazonaws.com/MjAyMC0wMy0yNCAxMTo0OToxNyAtMDMwMEJhdyBDbG90aGluZyBPZmljaWFsODc5/modal/1587406327-logo%2080.jpg"}
+            alt="logo"
+          />
           <div class="flex w-full flex-col  gap-2  rounded-xl ">
             <span class="flex-grow text-lg font-medium text-black mb-2">
               <div class="flex relative  justify-end">
