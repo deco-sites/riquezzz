@@ -1,5 +1,6 @@
 import Button from "$store/components/ui/Button.tsx";
 import { useId } from "preact/hooks";
+import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
 
 const script = (id: string) => `
 const callback = () => {
@@ -25,30 +26,41 @@ const callback = () => {
 window.addEventListener('scroll', callback, { once: true });
 `;
 
-function CookieConsent() {
+export interface Props {
+  image?: LiveImage | undefined;
+}
+function CookieConsent({ image }: Props) {
   const id = `cookie-consent-${useId()}`;
 
   return (
     <>
       <div
         id={id}
-        class="transform-gpu translate-y-[200%] transition fixed bottom-0 sm:bottom-4 w-screen z-50"
+        class="transform-gpu px-5  transition fixed top-0 w-screen z-50"
       >
-        <div class="container px-4 py-4 rounded border border-base-200 flex flex-col sm:flex-row gap-4 items-start sm:items-center shadow bg-base-100">
-          <span class="flex-grow text-sm">
-            Utilizamos cookies em nosso site para melhorar seu desempenho,
-            segurança e personalizar conteúdo e anúncios.
-          </span>
-
-          <a href="https://www.deco.cx">
-            <span class="underline text-sm">
-              Nossa política de privacidade
+        <div class="container max-w-[500px]  flex-row px-6 py-6 rounded-sm border  border-base-200 flex gap-4 items-start  shadow bg-base-100">
+          <img class="w-[80px]" src={"https://dito-browser-notification-images.s3.amazonaws.com/MjAyMC0wMy0yNCAxMTo0OToxNyAtMDMwMEJhdyBDbG90aGluZyBPZmljaWFsODc5/modal/1587406327-logo%2080.jpg"} alt="logo" />
+          <div class="flex w-full flex-col  gap-2  rounded-xl ">
+            <span class="flex-grow text-lg font-medium text-black mb-2">
+              <div class="flex relative  justify-end">
+                <Button
+                  data-button-cc-close
+                  class="btn-outline mt-[-20px] hover:text-black text-black bg-transparent hover:bg-transparent absolute border-none max-h-[20px] w-[20px] p-0 m-0 rounded"
+                >
+                  X
+                </Button>
+              </div>
+              Quer receber notificações das nossas campanhas, lançamentos e
+              promoções antes de todo mundo?
             </span>
-          </a>
-
-          <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-            <Button data-button-cc-accept>Aceitar</Button>
-            <Button data-button-cc-close class="btn-outline">Fechar</Button>
+            <div class="flex w-full justify-end">
+              <Button
+                class=" bg-[#444] rounded-sm text-white  h-[40px] py-0  px-5 w-[120px] border-none transition duration-75 hover:bg-[#7a7a7a]"
+                data-button-cc-accept
+              >
+                SIM!
+              </Button>
+            </div>
           </div>
         </div>
       </div>
