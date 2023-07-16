@@ -38,9 +38,9 @@ function CookieConsent({ image }: Props) {
         id={id}
         class="transform-gpu px-5  transition fixed top-0 w-screen z-50"
       >
-        <div class="container max-w-[500px]  flex-row px-6 py-6 rounded-sm border  border-base-200 flex gap-4 items-start  shadow bg-base-100">
+        <div class="container max-w-[500px] justify-center flex-row px-6 py-6 rounded-sm border  border-base-200 flex gap-4 items-start p-4 shadow bg-base-100">
           <img
-            class="w-[80px]"
+            class="w-[100px] mr-4"
             src={"https://dito-browser-notification-images.s3.amazonaws.com/MjAyMC0wMy0yNCAxMTo0OToxNyAtMDMwMEJhdyBDbG90aGluZyBPZmljaWFsODc5/modal/1587406327-logo%2080.jpg"}
             alt="logo"
           />
@@ -49,7 +49,7 @@ function CookieConsent({ image }: Props) {
               <div class="flex relative  justify-end">
                 <Button
                   data-button-cc-close
-                  class="btn-outline mt-[-20px] hover:text-black text-black bg-transparent hover:bg-transparent absolute border-none max-h-[20px] w-[20px] p-0 m-0 rounded"
+                  class="btn-outline mt-[-30px] mr-[-15px] hover:text-black text-black bg-transparent hover:bg-transparent absolute border-none max-h-[20px] w-[20px] p-0 m-0 rounded"
                 >
                   X
                 </Button>
@@ -59,7 +59,7 @@ function CookieConsent({ image }: Props) {
             </span>
             <div class="flex w-full justify-end">
               <Button
-                class=" bg-[#444] rounded-sm text-white  h-[40px] py-0  px-5 w-[120px] border-none transition duration-75 hover:bg-[#7a7a7a]"
+                class=" bg-[#444] rounded-sm text-white  max-h-[30px] py-0  px-5 w-[120px] border-none transition duration-75 hover:bg-[#7a7a7a]"
                 data-button-cc-accept
               >
                 SIM!
