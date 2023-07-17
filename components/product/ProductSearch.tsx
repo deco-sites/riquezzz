@@ -1,5 +1,5 @@
 import Image from "deco-sites/std/components/Image.tsx";
-import Avatar from "$store/components/ui/Avatar.tsx";
+import Avatar from "$store/components/ui/AvatarSearch.tsx";
 import WishlistIcon from "$store/islands/WishlistButton.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { formatPrice } from "$store/sdk/format.ts";
@@ -90,7 +90,7 @@ function ProductCard(
   };
   return (
     <div
-      class="card card-compact card-bordered rounded-none border-transparent group w-full"
+      class="card card-compact card-bordered rounded-none border-transparent group w-full "
       data-deco="view-product"
       id={`product-card-${productID}`}
       {...sendEventOnClick(clickEvent)}
@@ -100,15 +100,6 @@ function ProductCard(
         <div class="absolute top-0 right-0 z-10">
           <WishlistIcon productGroupID={productGroupID} productID={productID} />
         </div>
-        {listPrice !== price
-          ? (
-            <div class="absolute flex justify-center top-0 left-0 z-10 mt-3 ml-2">
-              <span class="rounded-[100px] font-bold bg-black text-white p-1 px-2  text-xs">
-                {Math.floor(price! / listPrice! * 100)}% OFF
-              </span>
-            </div>
-          )
-          : ("")}
 
         {/* Product Images */}
         <a
@@ -147,7 +138,7 @@ function ProductCard(
               </a>
             </ul>
           </figcaption>
-          <figcaption class="card-body card-actions absolute bottom-2 left-0 w-full mb- transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white">
+          <figcaption class="card-body card-actions p-0 m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white">
             {/* SKU Selector */}
             <ul class="flex justify-center items-center gap-2 w-full">
               {variants.map(([value, [link]]) => (
@@ -163,24 +154,20 @@ function ProductCard(
         </div>
       </figure>
       {/* Prices & Name */}
-      <div class="card-body">
-        <h2 class="card-title whitespace-nowrap overflow-hidden  text-base-300 text-base font-normal uppercase">
+      <div class=" gap-0 p-0">
+        <h2 class="card-title m-0 whitespace-nowrap overflow-hidden  text-black text-[14px] font-normal uppercase">
           {isVariantOf!.name}
         </h2>
-        <div class="flex items-end gap-1">
-          <span class="text-base font-bold">
-            {installmentText ? (installmentText + " /") : ("")}
-          </span>
-
-          <span class="line-through text-base text-base-300 ">
+        <div class="flex flex-col items-start ">
+          <span class="line-through text-[14px]  text-base-300 ">
             {listPrice !== price
               ? (`${formatPrice(listPrice, offers!.priceCurrency!)}`)
               : ("")}
           </span>
-          <span class="text-base font-bold">
-            {listPrice !== price ? (`/`) : ("")}
-          </span>
-          <span class={`${colorRed ? "text-red-700 " : ""}text-base font-bold`}>
+
+          <span
+            class={`${colorRed ? "text-red-700 " : ""}text-[14px] font-bold`}
+          >
             {formatPrice(price, offers!.priceCurrency!)}
           </span>
         </div>
