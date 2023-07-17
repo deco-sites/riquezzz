@@ -20,13 +20,8 @@ function SearchControls(
 
   return (
     <div class="flex flex-col justify-between mb-4 p-4 sm:mb-0 sm:p-0 sm:gap-4 sm:flex-row sm:h-[53px] ">
-      {
-        /* <div class="flex flex-row items-center sm:p-0 mb-2">flex flex-col justify-between mb-4 p-4 sm:mb-0 sm:p-0 sm:gap-4 sm:flex-row sm:h-[53px]
-        <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
-      </div> */
-      }
-
       <div class="flex flex-row items-center justify-between border-b border-base-200 sm:gap-4 sm:border-none">
+        {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />}
         <Button
           class={displayFilter ? "btn-ghost" : "btn-ghost sm:hidden"}
           onClick={() => {
@@ -34,9 +29,7 @@ function SearchControls(
           }}
         >
           Filtrar
-          <Icon id="FilterList" width={16} height={16} />
         </Button>
-        {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />}
       </div>
 
       <Modal

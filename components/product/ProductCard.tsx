@@ -163,31 +163,50 @@ function ProductCard(
         </div>
       </figure>
       {/* Prices & Name */}
-      <div class="card-body sm:h-[90px]">
-        <h2 class="card-title whitespace-nowrap overflow-hidden  text-base-300 text-xs 2xl:text-base  font-normal uppercase">
+      <div class=" flex flex-col p-0 m-0 h-[90px] max-h-[90px] justify-start items-start">
+        <h2 class="card-title w-full sm:whitespace-nowrap sm:overflow-hidden  text-base-300 text-sm 2xl:text-base  font-normal uppercase">
           {isVariantOf!.name}
         </h2>
-        <div class="flex items-end gap-1">
-          <span class="text-xs 2xl:text-base font-bold">
-            {installmentText ? (installmentText?.length === 8 ?( installmentText+",00" + " /"):(installmentText + " /")) : ("")}
-       
+        <div class="flex flex-col  sm:flew-row items-start sm:items-end gap-1">
+          <span class="text-xs 2xl:text-base font-bold sm:flex hidden">
+            {installmentText
+              ? (installmentText?.length === 8
+                ? (installmentText + ",00" + " /")
+                : (installmentText + " /"))
+              : ("")}
           </span>
 
-          <span class="line-through text-xs 2xl:text-base  text-base-300 ">
+          <span class="line-through text-xs 2xl:text-base  text-base-300 sm:flex hidden">
             {listPrice !== price
               ? (`${formatPrice(listPrice, offers!.priceCurrency!)}`)
               : ("")}
           </span>
-          <span class="text-xs 2xl:text-base  font-bold">
-            {listPrice !== price ? (`/`) : ("")}
+
+          <span class="text-xs 2xl:text-base font-bold">
+            {installmentText
+              ? (installmentText?.length === 8
+                ? (installmentText + ",00" + " /")
+                : (installmentText + " /"))
+              : ("")}
           </span>
-          <span
-            class={`${
-              colorRed ? "text-red-700 " : ""
-            }text-xs 2xl:text-base font-bold`}
-          >
-            {formatPrice(price, offers!.priceCurrency!)}
-          </span>
+          <div class="flex flew-row  items-start sm:items-end gap-1">
+            <span class="line-through text-xs 2xl:text-base  text-base-300 ">
+              {listPrice !== price
+                ? (`${formatPrice(listPrice, offers!.priceCurrency!)}`)
+                : ("")}
+            </span>
+
+            <span class="text-xs 2xl:text-base  font-bold">
+              {listPrice !== price ? (`/`) : ("")}
+            </span>
+            <span
+              class={`${
+                colorRed ? "text-red-700 " : ""
+              }text-xs 2xl:text-base font-bold`}
+            >
+              {price ? (formatPrice(price, offers!.priceCurrency!)):("Produto esgotado")} 
+            </span>
+          </div>
         </div>
       </div>
     </div>

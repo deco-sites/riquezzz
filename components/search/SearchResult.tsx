@@ -105,7 +105,7 @@ function Result({
 
   return (
     <>
-      <div class="px-4 sm:py-10 pr-14">
+      <div class="px-4 sm:py-10 sm:pr-14 w-full">
         <div class="flex flex-row">
           {variant === "aside" && filters.length > 0 && (
             <aside class="hidden sm:block w-min min-w-[250px] mt-5">
@@ -118,14 +118,14 @@ function Result({
               <BawFilters filters={filters} />
             </aside>
           )}
-          <div class="flex-grow pt-10">
-            <div class="flex flex-row w-full justify-between pb-10">
-              <div class="flex flex-row w-full justify-between mr-10 gap-5">
-                <span class="pl-5 font-bold text-base">
+          <div class="flex-grow sm:pt-10 w-full">
+            <div class="flex flex-row w-full sm:justify-between pb-10">
+              <div class="flex flex-row w-full justify-between items-center sm:mr-10 sm:gap-5">
+                <span class="sm:pl-5 min-w-[80px] font-bold text-base flex flex-row">
                   {products.length} produtos
                 </span>
 
-                <div>
+                <div class="sm:flex hidden">
                   <span class=" font-bold text-base">Visualização</span>
                   <button
                     class="p-1 font-semibold hover:font-bold hover:bg-black hover:text-white cursor-pointer m-1"
