@@ -181,11 +181,10 @@ function ProductCard(
               {listPrice !== price
                 ? (`${formatPrice(listPrice, offers!.priceCurrency!)} `)
                 : ("")}
-             
             </span>
             <span class="text-xs 2xl:text-base  font-bold text-black sm:flex hidden">
-                {listPrice !== price ? (` /`) : ("")}
-              </span>
+              {listPrice !== price ? (` /`) : ("")}
+            </span>
             <span
               class={`${
                 colorRed ? "text-red-700 " : ""
