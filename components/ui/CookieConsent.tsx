@@ -1,5 +1,6 @@
 import Button from "$store/components/ui/Button.tsx";
 import { useId } from "preact/hooks";
+import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
 
 const script = (id: string) => `
 const callback = () => {
@@ -25,7 +26,10 @@ const callback = () => {
 window.addEventListener('scroll', callback, { once: true });
 `;
 
-function CookieConsent() {
+export interface Props {
+  image?: LiveImage | undefined;
+}
+function CookieConsent({ image }: Props) {
   const id = `cookie-consent-${useId()}`;
 
   return (

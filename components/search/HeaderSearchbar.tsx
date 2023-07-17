@@ -14,7 +14,7 @@ import { useState } from "preact/hooks";
 import Icon from "$store/components/ui/Icon.tsx";
 import Button from "$store/components/ui/Button.tsx";
 import Spinner from "$store/components/ui/Spinner.tsx";
-import ProductCard from "$store/components/product/ProductCard.tsx";
+import ProductCard from "$store/components/product/ProductSearch.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import { useAutocomplete } from "deco-sites/std/packs/vtex/hooks/useAutocomplete.ts";
 import { useUI } from "$store/sdk/useUI.ts";
@@ -51,7 +51,7 @@ function CloseButton() {
 
   return (
     <Button
-      class="btn-ghost btn-circle"
+      class="bg-transparent p-0 m-0 w-[28px] border-none justify-center items-center text-black hover:bg-transparent transform transition  duration-100 hover:scale-125"
       onClick={() => (displaySearchbar.value = false)}
     >
       <Icon id="XMark" width={20} height={20} strokeWidth={2} />
@@ -114,7 +114,6 @@ function Searchbar({
 
     searchInputRef.current.focus();
   }, []);
-
   return (
     <div ref={searchBoxRef} class="flex flex-col md:px-2 relative">
       <div class="flex items-center gap-4">
@@ -124,7 +123,7 @@ function Searchbar({
           class="flex-grow flex gap-3 px-3 py-2"
         >
           <Button
-            class="btn-ghost"
+            class="bg-transparent hover:bg-transparent transform transition  duration-100 hover:scale-125 border-none"
             aria-label="Search"
             htmlFor="searchbar"
             tabIndex={-1}
@@ -166,32 +165,28 @@ function Searchbar({
       {term.length > 0
         ? (
           <div class="fixed flex top-[70px] right-[50px]  w-full h-full p-3  flex-col gap-6 divide-y divide-base-200 empty:mt-0 md:flex-row md:divide-y-0  bg-[#0000003b]">
-            <div class="fixed top-[70px] right-[50px] max-w-[755px] w-full p-3 flex flex-col gap-6 divide-y divide-base-200 empty:mt-0 md:flex-row md:divide-y-0 bg-gray-100">
-              <div onClick={() => setTerm("")}>
-                <CloseButton />
-              </div>
+            <div class="fixed top-[70px] right-[50px] max-w-[760px] w-full pb-10 pl-2 flex flex-col gap-6 divide-y divide-base-200 empty:mt-0 md:flex-row md:divide-y-0 bg-gray-100">
               {notFound
                 ? (
-                  <div class="py-16 md:py-6! flex flex-col w-full">
-                    <span
-                      class="font-medium text-xl text-center"
-                      role="heading"
-                      aria-level={3}
-                    >
-                      Nenhum resultado encontrado
+                  <div class="  flex flex-col w-full  items-center ">
+                    <span class="text-[8rem] sm:text-[10.5rem] text-[#ccc] font-extrabold ">
+                      Oops!
                     </span>
-                    <span class="text-center text-base-300">
-                      Vamos tentar de outro jeito? Verifique a ortografia ou use
-                      um termo diferente
+                    <span class="sm:mt-[-60px] text-[20px] sm:text-[30px] text-black font-extrabold">
+                      Nenhum produto foi encontrado
                     </span>
                   </div>
                 )
                 : (
                   <>
-                    <div class="bg-gray-100 flex flex-col md:w-[15.25rem] md:max-w-[15.25rem]\ pl-2">
-                      <div class="flex gap-2 items-center">
+                    <div class="bg-gray-100 flex flex-col md:w-[200px] md:max-w-[200px] pl-2">
+                      <div class="flex gap-2  items-center ">
+                        <div onClick={() => setTerm("")}>
+                          <CloseButton />
+                        </div>
+
                         <span
-                          class="font-medium text-xl mb-4"
+                          class="font-medium text-xl text-center pb-[6px]"
                           role="heading"
                           aria-level={3}
                         >
@@ -219,7 +214,7 @@ function Searchbar({
                         ))}
                       </ul>
                     </div>
-                    <div class="flex flex-col pt-6 md:pt-0 gap-6 overflow-x-hidden">
+                    <div class="flex flex-col pt-6 md:pt-0 gap-3 overflow-x-hidden w-full">
                       <div class="flex gap-2 items-center">
                         <span
                           class="font-medium text-xl"
@@ -230,11 +225,11 @@ function Searchbar({
                         </span>
                         {loading.value && <Spinner />}
                       </div>
-                      <Slider class="carousel">
+                      <Slider class="flex flex-row flex-wrap  gap-1 justify-start w-[600px]">
                         {suggestions.value!.products?.map((product, index) => (
                           <Slider.Item
                             index={index}
-                            class="carousel-item first:ml-4 last:mr-4 min-w-[200px] max-w-[200px]"
+                            class="carousel-item   min-w-[170px] max-w-[170px]"
                           >
                             <ProductCard product={product} />
                           </Slider.Item>
