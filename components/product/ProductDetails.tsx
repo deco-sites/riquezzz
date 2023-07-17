@@ -255,7 +255,7 @@ function imgZoom() {
   // let zomm1: Element | null;
   // let img: Element | null;
 
-  const img =  document.getElementById("imgzom");
+  const img = document.getElementById("imgzom");
   const box = document.getElementById("box");
 
   box!.addEventListener("mousemove", (e) => {
@@ -271,8 +271,6 @@ function imgZoom() {
     img!.style.transformOrigin = "center center";
     img!.style.transform = "scale(1)";
   });
-
-
 }
 
 function Details({
@@ -326,7 +324,7 @@ function Details({
                       // Preload LCP image for better web vitals
                       preload={index === 0}
                       loading={index === 0 ? "eager" : "lazy"}
-                      id='imgzom'
+                      id="imgzom"
                     />
                     <script
                       dangerouslySetInnerHTML={{
