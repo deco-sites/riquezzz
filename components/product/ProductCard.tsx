@@ -204,7 +204,9 @@ function ProductCard(
                 colorRed ? "text-red-700 " : ""
               }text-xs 2xl:text-base font-bold`}
             >
-              {price ? (formatPrice(price, offers!.priceCurrency!)):("Produto esgotado")} 
+              {price
+                ? (formatPrice(price, offers!.priceCurrency!))
+                : ("Produto esgotado")}
             </span>
           </div>
         </div>
