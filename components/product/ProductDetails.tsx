@@ -251,6 +251,30 @@ const useStableImages = (product: ProductDetailsPage["product"]) => {
   });
 };
 
+function imgZoom() {
+  // let zomm1: Element | null;
+  // let img: Element | null;
+
+  const img =  document.getElementById("imgzom");
+  const box = document.getElementById("box");
+
+  box!.addEventListener("mousemove", (e) => {
+    const x = e.offsetX;
+    const y = e.offsetY;
+
+    console.log(x, y);
+
+    img!.style.transformOrigin = `${x}px ${y}px`;
+    img!.style.transform = "scale(2)";
+  });
+  box!.addEventListener("mouseleave", () => {
+    img!.style.transformOrigin = "center center";
+    img!.style.transform = "scale(1)";
+  });
+
+
+}
+
 function Details({
   page,
   variant,
@@ -287,18 +311,29 @@ function Details({
                   index={index}
                   class="carousel-item min-w-[100vw] sm:min-w-[40vw]  justify-center"
                 >
-                  <Image
-                    class="w-[620px] h-[930px] object-cover"
-                    // sizes="(max-width: 640px) 100vw, 40vw"
-                    style={{ aspectRatio: ASPECT_RATIO }}
-                    src={img.url!}
-                    alt={img.alternateName}
-                    width={WIDTH}
-                    height={HEIGHT}
-                    // Preload LCP image for better web vitals
-                    preload={index === 0}
-                    loading={index === 0 ? "eager" : "lazy"}
-                  />
+                  <div
+                    id="box"
+                    class="flex items-center justify-center m-0 min-h-[930px] overflow-hidden"
+                  >
+                    <Image
+                      class="w-[620px] h-[930px] object-cover  origin-center "
+                      // sizes="(max-width: 640px) 100vw, 40vw"
+                      style={{ aspectRatio: ASPECT_RATIO }}
+                      src={img.url!}
+                      alt={img.alternateName}
+                      width={WIDTH}
+                      height={HEIGHT}
+                      // Preload LCP image for better web vitals
+                      preload={index === 0}
+                      loading={index === 0 ? "eager" : "lazy"}
+                      id='imgzom'
+                    />
+                    <script
+                      dangerouslySetInnerHTML={{
+                        __html: `(${imgZoom.toString()})()`,
+                      }}
+                    />
+                  </div>
                 </Slider.Item>
               ))}
             </Slider>
@@ -326,6 +361,7 @@ function Details({
                   <Slider.Dot index={index}>
                     <Image
                       //  style={{ aspectRatio: ASPECT_RATIO }}
+                      id="zom"
                       class="group-disabled:border-base-300 group-disabled:border px-5 w-full h-[180px] "
                       width={160}
                       height={180}
