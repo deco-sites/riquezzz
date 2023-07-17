@@ -126,7 +126,7 @@ function Result({
                 </span>
 
                 <div class="sm:flex hidden">
-                  <span class=" font-bold text-base">Visualização</span>
+                  <span class="p-1 font-bold text-base">Visualização</span>
                   <button
                     class="p-1 font-semibold hover:font-bold hover:bg-black hover:text-white cursor-pointer m-1"
                     onClick={() => setValue(2)}
@@ -155,7 +155,7 @@ function Result({
                 displayFilter={variant === "drawer"}
               />
             </div>
-            <ProductGallery products={products} />
+            <ProductGallery products={products} value={value} />
           </div>
         </div>
 
