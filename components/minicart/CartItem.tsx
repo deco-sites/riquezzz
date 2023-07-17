@@ -31,23 +31,30 @@ function CartItem({ index }: Props) {
     listPrice,
     name,
     quantity,
+    bundleItems,
   } = item;
-
   const isGift = sellingPrice < 0.01;
-
+  const newName = name!.split(" ").slice(0, -2).join(" ");
+  const tamanho = name!.split(" ").slice(-1);
   return (
-    <div class="flex flex-row justify-between items-start gap-4 min-h-[40px] max-h-[120px]">
+    <div class="flex flex-row justify-between items-start gap-4 min-h-[40px] max-h-[130px]">
       <Image
         src={imageUrl}
         alt={skuName}
         width={80}
-        height={120}
+        height={140}
         class="object-cover object-center"
       />
+
       <div class="flex-grow w-full">
-        <span class="text-[12px] leading-[0px]">{name}</span>
-        <div class="flex items-start text-xs flex-col">
-          <span class="line-through text-base-300 text-xs">
+        <span class="text-xs text-black font-normal uppercase leading-[0px] max-w-[150px] ">
+          {newName}
+        </span>
+        <div class="flex items-start text-xs flex-col ">
+          <span class="text-black text-base">
+            Tamanho: {tamanho}
+          </span>
+          <span class="line-through text-base-300 text-xs ">
             {formatPrice(listPrice / 100, currencyCode!, locale)}
           </span>
           <span class="text-xs text-secondary">
@@ -56,7 +63,7 @@ function CartItem({ index }: Props) {
               : formatPrice(sellingPrice / 100, currencyCode!, locale)}
           </span>
         </div>
-        <div class="mt-1 ">
+        <div>
           <QuantitySelector
             disabled={loading.value || isGift}
             quantity={quantity}

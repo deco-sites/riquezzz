@@ -78,9 +78,9 @@ function CartButton() {
       loading={loading.value}
       onClick={onClick}
     >
-      <div class="w-[30px] p-0 m-0 transform transition duration-100 hover:scale-125 text-start justify-start items-start">
+      <div class="indicator  ">
         {totalItems && (
-          <span class=" badge-sm">
+          <span class="w-[10px] mr-1  indicator-item bg-black badge badge-secondary badge-sm">
             {totalItems > 9 ? "9+" : totalItems}
           </span>
         )}

@@ -66,13 +66,12 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
   const { price, listPrice, seller, installments, availability } = useOffer(
     offers,
   );
-
   return (
     <>
       {/* Code and name */}
       <div class="mt-4 sm:mt-4">
         <h1>
-          <span class="font-medium text-2xl">{name}</span>
+          <span class="font-medium text-2xl">{product.isVariantOf!.name}</span>
         </h1>
       </div>
       {/* Prices */}
