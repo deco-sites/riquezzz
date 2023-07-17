@@ -163,24 +163,29 @@ function ProductCard(
         </div>
       </figure>
       {/* Prices & Name */}
-      <div class="card-body">
-        <h2 class="card-title whitespace-nowrap overflow-hidden  text-base-300 text-base font-normal uppercase">
+      <div class="card-body sm:h-[90px]">
+        <h2 class="card-title whitespace-nowrap overflow-hidden  text-base-300 text-xs 2xl:text-base  font-normal uppercase">
           {isVariantOf!.name}
         </h2>
         <div class="flex items-end gap-1">
-          <span class="text-base font-bold">
-            {installmentText ? (installmentText + " /") : ("")}
+          <span class="text-xs 2xl:text-base font-bold">
+            {installmentText ? (installmentText?.length === 8 ?( installmentText+",00" + " /"):(installmentText + " /")) : ("")}
+       
           </span>
 
-          <span class="line-through text-base text-base-300 ">
+          <span class="line-through text-xs 2xl:text-base  text-base-300 ">
             {listPrice !== price
               ? (`${formatPrice(listPrice, offers!.priceCurrency!)}`)
               : ("")}
           </span>
-          <span class="text-base font-bold">
+          <span class="text-xs 2xl:text-base  font-bold">
             {listPrice !== price ? (`/`) : ("")}
           </span>
-          <span class={`${colorRed ? "text-red-700 " : ""}text-base font-bold`}>
+          <span
+            class={`${
+              colorRed ? "text-red-700 " : ""
+            }text-xs 2xl:text-base font-bold`}
+          >
             {formatPrice(price, offers!.priceCurrency!)}
           </span>
         </div>
