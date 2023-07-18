@@ -56,7 +56,9 @@ function BannerUI({ banner }: { banner: Banner }) {
             )
             : ("")}
 
-          <img class="w-full" src={image.desktop} alt={image.alt ?? title} />
+          {image?.desktop
+            ? <img class="w-full" src={image.desktop} alt={image.alt} />
+            : ("")}
         </Picture>
       </div>
       <div class="container flex flex-col items-center text-center justify-center sm:items-start col-start-1 col-span-1 row-start-1 row-span-1 w-full max-w-[660px] py-10 sm:gap-5 font-bold">
