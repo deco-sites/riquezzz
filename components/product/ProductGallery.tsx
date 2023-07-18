@@ -9,12 +9,13 @@ export interface Columns {
 
 export interface Props {
   products: Product[] | null;
+  value: number;
 }
 
-function ProductGallery({ products }: Props) {
+function ProductGallery({ products }: Props, value: number) {
   return (
     <div
-      class={`grid grid-cols-2 gap-12 items-center lg:grid-cols-4 `}
+      class={`grid grid-cols-2 gap-2 sm:gap-12 items-center lg:grid-cols-6 `}
     >
       {products?.map((product, index) => (
         <ProductCard product={product} preload={index === 0} />
