@@ -9,10 +9,10 @@ export interface Columns {
 
 export interface Props {
   products: Product[] | null;
-  value:number
+  value: number;
 }
 
-function ProductGallery({ products }: Props, value:number) {
+function ProductGallery({ products }: Props, value: number) {
   return (
     <div
       class={`grid grid-cols-2 gap-2 sm:gap-12 items-center lg:grid-cols-6 `}
