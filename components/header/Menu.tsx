@@ -8,13 +8,13 @@ export interface Props {
 function MenuItem({ item }: { item: INavItem }) {
   return (
     <div class="collapse  ">
-      <input type="checkbox" />
-      <div class="collapse-title uppercase">{item.label}</div>
+      <input type="checkbox" /> 
+      <div  class="collapse-title uppercase">{item.label}</div>
       <div class="collapse-content">
-        <ul class="text-[20px] border-none">
-          {item.children?.map((node) => (
-            <li>
-              <MenuItem item={node} />
+        <ul class="text-[20px] border-none gap-1">
+        {item.children?.map((node) => (
+            <li >
+              <a class="uppercase text-[20x] border-none" href={node.href}>{node.label}</a>
             </li>
           ))}
         </ul>

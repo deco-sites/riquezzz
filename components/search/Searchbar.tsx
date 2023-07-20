@@ -158,9 +158,9 @@ function Searchbar({
         <div class="fixed top-20 flex flex-col gap-6 divide-y divide-base-200 mt-6 empty:mt-0 md:flex-row md:divide-y-0">
           {notFound
             ? (
-              <div class="py-16 md:py-6! flex flex-col gap-4 w-full">
+              <div class="py-16 md:py-6! flex flex-col gap-4 w-full " >
                 <span
-                  class="font-medium text-xl text-center"
+                  class="font-medium  text-xl text-center"
                   role="heading"
                   aria-level={3}
                 >
@@ -234,7 +234,7 @@ function Searchbar({
         </div>
       </div>
 
-      <div class="flex md:hidden flex-col p-4 md:py-6 md:px-20 w-full">
+      <div class="hidden md:hidden flex-col p-4 md:py-6 md:px-20 w-full">
         <div class="flex items-center gap-4 w-full">
           <form
             id="searchbar"
@@ -281,7 +281,7 @@ function Searchbar({
           {variant === "desktop" && <CloseButton />}
         </div>
         {
-          <div class="top-20 flex flex-col gap-6 divide-y divide-base-200 mt-6 empty:mt-0 md:flex-row md:divide-y-0">
+          <div class="top-20 flex  flex-col gap-6 divide-y divide-base-200 mt-6 empty:mt-0 md:flex-row md:divide-y-0">
             {notFound
               ? (
                 <div class="py-16 md:py-6! flex flex-col gap-4 w-full">
@@ -290,7 +290,8 @@ function Searchbar({
                     role="heading"
                     aria-level={3}
                   >
-                    Nenhum resultado encontrado
+                    Nenhum resultado encontrado  
+                    {/* esse aqui */}
                   </span>
                   <span class="text-center text-base-300">
                     Vamos tentar de outro jeito? Verifique a ortografia ou use
