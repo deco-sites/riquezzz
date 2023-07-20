@@ -158,7 +158,7 @@ function Searchbar({
         <div class="fixed top-20 flex flex-col gap-6 divide-y divide-base-200 mt-6 empty:mt-0 md:flex-row md:divide-y-0">
           {notFound
             ? (
-              <div class="py-16 md:py-6! flex flex-col gap-4 w-full " >
+              <div class="py-16 md:py-6! flex flex-col gap-4 w-full ">
                 <span
                   class="font-medium  text-xl text-center"
                   role="heading"
@@ -290,7 +290,7 @@ function Searchbar({
                     role="heading"
                     aria-level={3}
                   >
-                    Nenhum resultado encontrado  
+                    Nenhum resultado encontrado
                     {/* esse aqui */}
                   </span>
                   <span class="text-center text-base-300">
