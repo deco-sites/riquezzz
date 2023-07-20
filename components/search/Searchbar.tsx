@@ -234,7 +234,7 @@ function Searchbar({
         </div>
       </div>
 
-      <div class="hidden md:hidden flex-col p-4 md:py-6 md:px-20 w-full">
+      <div class="flex md:hidden flex-col p-4 md:py-6 md:px-20 w-full">
         <div class="flex items-center gap-4 w-full">
           <form
             id="searchbar"

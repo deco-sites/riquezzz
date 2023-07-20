@@ -72,7 +72,7 @@ function CartButton() {
 
   return (
     <Button
-      class="bg-white hover:bg-white border-none p-0 m-0 w-[30px]"
+      class="bg-transparent hover:bg-transparent border-none p-0 m-0 w-[30px]"
       aria-label="open cart"
       data-deco={displayCart.value && "open-cart"}
       loading={loading.value}
