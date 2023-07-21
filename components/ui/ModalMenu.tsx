@@ -86,7 +86,7 @@ const ModalMenu = ({
           class={`bg-base-100 flex flex-col  ${containerStyles[mode]}`}
         >
           <header class="flex px-4 py-6 justify-between items-center bg-[#f4f4f4] ">
-            <Button class="btn btn-ghost" onClick={onClose}>
+            <Button class="bg-transparent hover:bg-transparent  border-none p-0 m-0 w-[30px] text-black" onClick={onClose}>
               <Icon id="XMark" width={32} height={32} strokeWidth={2} />
             </Button>
 
@@ -110,9 +110,9 @@ const ModalMenu = ({
           </header>
 
           <div class="bg-[#f4f4f4] flex flex-row w-full justify-between items-center px-4 pb-3  gap-4">
-            <div class="flex flex-row justify-center items-center">
+            <div class="flex flex-row justify-center items-center transform transition   duration-100 hover:scale-110">
               <a
-                class="btn btn-square btn-ghost"
+                class="bg-transparent hover:bg-transparent  border-none p-0 m-0 w-[30px]"
                 href="/login"
                 aria-label="Log in"
               >
@@ -120,9 +120,9 @@ const ModalMenu = ({
               </a>
               <span class="text-[12px] ">MINHA CONTA</span>
             </div>
-            <div class="flex flex-row justify-center items-center">
+            <div class="flex flex-row justify-center items-center transform transition   duration-100 hover:scale-110">
               <a
-                class="btn btn-square btn-ghost"
+                class="bg-transparent hover:bg-transparent  border-none p-0 m-0 w-[30px]"
                 href="/orders"
                 aria-label="Orders"
               >
@@ -134,9 +134,9 @@ const ModalMenu = ({
               </a>
               <span class="text-[12px] ">MEUS PEDIDOS</span>
             </div>
-            <div class="flex flex-row justify-center items-center">
+            <div class="flex flex-row justify-center items-center transform transition   duration-100 hover:scale-110">
               <a
-                class="btn btn-square btn-ghost"
+                class="bg-transparent hover:bg-transparent  border-none p-0 m-0 w-[30px]"
                 href="/wishlist"
                 aria-label="Wishlist"
               >
