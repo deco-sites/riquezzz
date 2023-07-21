@@ -122,7 +122,6 @@ function Searchbar({
           action={action}
           class="flex-grow flex px-5 py-2 border-b w-[90%] justify-center bg-white"
         >
-        
           <input
             ref={searchInputRef}
             id="search-input"
@@ -147,7 +146,7 @@ function Searchbar({
             aria-controls="search-suggestion"
             autocomplete="off"
           />
-            <Button
+          <Button
             class="bg-transparent hover:bg-transparent border-t-0 border-l-0 border-r-0 rounded-none border-b border-black"
             aria-label="Search"
             htmlFor="searchbar"
@@ -182,14 +181,12 @@ function Searchbar({
                   <>
                     <div class="bg-gray-100 flex flex-col md:w-[200px] md:max-w-[200px] pl-2">
                       <div class="flex gap-1  items-center ">
-                   
-
                         <span
                           class="font-medium text-sm text-center pb-[6px]"
                           role="heading"
                           aria-level={3}
                         >
-                          Pesquisas 
+                          Pesquisas
                         </span>
                         {loading.value && <Spinner />}
                       </div>
@@ -200,8 +197,7 @@ function Searchbar({
                               href={`/s?q=${term}`}
                               class="flex gap-1 items-center"
                             >
-                            
-                              <span class='uppercase text-sm'>{term}</span>
+                              <span class="uppercase text-sm">{term}</span>
                             </a>
                           </li>
                         ))}
