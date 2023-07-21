@@ -214,7 +214,7 @@ function Searchbar({
                         </span>
                         {loading.value && <Spinner />}
                       </div>
-                      <Slider class="flex flex-row flex-wrap  gap-1 justify-start ">
+                      <Slider class="flex flex-row flex-wrap  gap-1 justify-start  max-h-[280px]">
                         {suggestions.value!.products?.map((product, index) => (
                           <Slider.Item
                             index={index}

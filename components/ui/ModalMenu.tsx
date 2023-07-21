@@ -86,7 +86,10 @@ const ModalMenu = ({
           class={`bg-base-100 flex flex-col  ${containerStyles[mode]}`}
         >
           <header class="flex px-4 py-6 justify-between items-center bg-[#f4f4f4] ">
-            <Button class="bg-transparent hover:bg-transparent  border-none p-0 m-0 w-[30px] text-black" onClick={onClose}>
+            <Button
+              class="bg-transparent hover:bg-transparent  border-none p-0 m-0 w-[30px] text-black"
+              onClick={onClose}
+            >
               <Icon id="XMark" width={32} height={32} strokeWidth={2} />
             </Button>
 
