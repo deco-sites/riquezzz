@@ -115,30 +115,18 @@ function Searchbar({
     searchInputRef.current.focus();
   }, []);
   return (
-    <div ref={searchBoxRef} class="flex flex-col md:px-2 relative z-50">
-      <div class="flex items-center gap-4">
+    <div ref={searchBoxRef} class="flex flex-col md:px-2 relative z-50  ">
+      <div class="flex items-center gap-4 justify-center">
         <form
           id="searchbar"
           action={action}
-          class="flex-grow flex gap-3 px-3 py-2"
+          class="flex-grow flex px-5 py-2 border-b w-[90%] justify-center bg-white"
         >
-          <Button
-            class="bg-transparent hover:bg-transparent transform transition  duration-100 hover:scale-125 border-none"
-            aria-label="Search"
-            htmlFor="searchbar"
-            tabIndex={-1}
-          >
-            <Icon
-              class="text-base-300"
-              id="MagnifyingGlass"
-              size={20}
-              strokeWidth={0.01}
-            />
-          </Button>
+        
           <input
             ref={searchInputRef}
             id="search-input"
-            class="flex-grow outline-none placeholder-shown:sibling:hidden bg-transparent placeholder-black "
+            class="flex-grow outline-none placeholder-shown:sibling:hidden bg-transparent placeholder-black   border-b border-black"
             name={name}
             defaultValue={query}
             onInput={(e) => {
@@ -159,20 +147,33 @@ function Searchbar({
             aria-controls="search-suggestion"
             autocomplete="off"
           />
+            <Button
+            class="bg-transparent hover:bg-transparent border-t-0 border-l-0 border-r-0 rounded-none border-b border-black"
+            aria-label="Search"
+            htmlFor="searchbar"
+            tabIndex={-1}
+          >
+            <Icon
+              class="text-base-300"
+              id="MagnifyingGlass"
+              size={20}
+              strokeWidth={0.01}
+            />
+          </Button>
         </form>
         {variant === "desktop" && <CloseButton />}
       </div>
       {term.length > 0
         ? (
-          <div class="fixed flex top-0 right-0 w-full h-full p-6  flex-col gap-6 divide-y divide-base-200 empty:mt-0 md:flex-row md:divide-y-0  bg-[#0000003b]">
-            <div class="fixed top-[230px] right-[18px] max-w-[90vw] w-full pb-10 pl-2 flex flex-col gap-6 divide-y divide-base-200 empty:mt-0 md:flex-row md:divide-y-0 bg-gray-100">
+          <div class="fixed flex top-[230px] right-0 w-full h-full  bg-gradient-to-b from-[#00000000]    to-[#00000065]    flex-col gap-3 divide-y justify-center items-center  divide-base-200 empty:mt-0 md:flex-row md:divide-y-0 ">
+            <div class="fixed top-[235px]  max-w-[80vw] w-full pb-10 pl-2 flex flex-col gap-3 divide-y divide-base-200 empty:mt-0   bg-gray-100 ">
               {notFound
                 ? (
-                  <div class="  flex flex-col w-full  items-center ">
-                    <span class="text-[8rem] sm:text-[10.5rem] text-[#ccc] font-extrabold ">
+                  <div class="flex flex-col  w-[90%] items-center p-4 ">
+                    <span class="text-[7rem]  text-[#ccc]  w-full font-extrabold ">
                       Oops!
                     </span>
-                    <span class="sm:mt-[-60px] text-[20px] sm:text-[30px] text-black font-extrabold">
+                    <span class="sm:mt-[-90px] text-[16px] w-full  text-black font-extrabold">
                       Nenhum produto foi encontrado
                     </span>
                   </div>
@@ -180,44 +181,36 @@ function Searchbar({
                 : (
                   <>
                     <div class="bg-gray-100 flex flex-col md:w-[200px] md:max-w-[200px] pl-2">
-                      <div class="flex gap-2  items-center ">
-                        <div onClick={() => setTerm("")}>
-                          <CloseButton />
-                        </div>
+                      <div class="flex gap-1  items-center ">
+                   
 
                         <span
-                          class="font-medium text-xl text-center pb-[6px]"
+                          class="font-medium text-sm text-center pb-[6px]"
                           role="heading"
                           aria-level={3}
                         >
-                          Pesquisas
+                          Pesquisas 
                         </span>
                         {loading.value && <Spinner />}
                       </div>
-                      <ul id="search-suggestion" class="flex flex-col gap-6">
+                      <ul id="search-suggestion" class="flex flex-col gap-2">
                         {suggestions.value!.searches?.map(({ term }) => (
                           <li>
                             <a
                               href={`/s?q=${term}`}
-                              class="flex gap-4 items-center"
+                              class="flex gap-1 items-center"
                             >
-                              <span>
-                                <Icon
-                                  id="MagnifyingGlass"
-                                  size={20}
-                                  strokeWidth={0.01}
-                                />
-                              </span>
-                              <span>{term}</span>
+                            
+                              <span class='uppercase text-sm'>{term}</span>
                             </a>
                           </li>
                         ))}
                       </ul>
                     </div>
-                    <div class="flex flex-col pt-6 md:pt-0 gap-3 overflow-x-hidden w-full">
+                    <div class="flex flex-col pt-2  gap-3 overflow-x-hidden w-full">
                       <div class="flex gap-2 items-center">
                         <span
-                          class="font-medium text-xl"
+                          class="font-medium text-sm"
                           role="heading"
                           aria-level={3}
                         >
@@ -225,11 +218,11 @@ function Searchbar({
                         </span>
                         {loading.value && <Spinner />}
                       </div>
-                      <Slider class="flex flex-row flex-wrap  gap-1 justify-start w-[600px]">
+                      <Slider class="flex flex-row flex-wrap  gap-1 justify-start ">
                         {suggestions.value!.products?.map((product, index) => (
                           <Slider.Item
                             index={index}
-                            class="carousel-item   min-w-[170px] max-w-[170px]"
+                            class="carousel-item   min-w-[120px] max-w-[120px]"
                           >
                             <ProductCard product={product} />
                           </Slider.Item>

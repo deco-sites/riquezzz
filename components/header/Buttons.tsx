@@ -18,7 +18,7 @@ function SearchButton() {
 
   return (
     <Button
-      class="btn-square btn-ghost"
+      class="bg-transparent hover:bg-transparent  border-none p-0 m-0 w-[30px]"
       aria-label="search icon button"
       onClick={() => {
         displaySearchbar.value = !displaySearchbar.peek();
@@ -34,7 +34,7 @@ function MenuButton() {
 
   return (
     <Button
-      class="btn-square btn-ghost text-black"
+      class="bg-transparent hover:bg-transparent  border-none p-0 m-0 w-[30px] text-black"
       aria-label="open menu"
       onClick={() => {
         displayMenu.value = true;

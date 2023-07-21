@@ -151,7 +151,7 @@ const ModalMenu = ({
               <span class="text-[12px] ">MEUS LIKES</span>
             </div>
           </div>
-          <div class="w-full ">
+          <div class="w-full bg-[#f4f4f4]">
             <Searchbar />
           </div>
           <div class="overflow-y-auto flex-grow flex flex-col  text-[26px] border-none">
