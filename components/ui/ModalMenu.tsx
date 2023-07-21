@@ -150,13 +150,10 @@ const ModalMenu = ({
               </a>
               <span class="text-[12px] ">MEUS LIKES</span>
             </div>
-            <div class="w-full h-[70px]">
+          </div>
+          <div class="w-full ">
             <Searchbar />
           </div>
-          </div>
-
-         
-
           <div class="overflow-y-auto flex-grow flex flex-col  text-[26px] border-none">
             {loading === "lazy" ? lazy.value && children : children}
           </div>
