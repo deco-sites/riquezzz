@@ -38,7 +38,9 @@ function Avatar({ content, variant = "default" }: Props) {
   return (
     <div class="avatar placeholder flex justify-start items-start ">
       <div
-        class={`w-full flex justify-start items-start transform transition duration-300 hover:scale-150 p-1 "bg-[#161616] ring-[#161616] ${variants[variant]}`}
+        class={`w-full flex justify-start items-start transform transition duration-300 hover:scale-150 p-1 "bg-[#161616] ring-[#161616] ${
+          variants[variant]
+        }`}
       >
         <span class="text-caption font-caption uppercase font-bold   hover:font-extrabold ">
           {colors[content] ? "" : content.substring(0, 2)}

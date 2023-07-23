@@ -147,7 +147,7 @@ function ProductCard(
               </a>
             </ul>
           </figcaption>
-                    {/* SKU Selector */}
+          {/* SKU Selector */}
 
           {variants.length > 0
             ? (
@@ -165,7 +165,6 @@ function ProductCard(
               </figcaption>
             )
             : ("")}
-        
         </div>
       </figure>
       {/* Prices & Name */}
