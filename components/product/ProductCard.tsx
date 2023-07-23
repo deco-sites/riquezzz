@@ -147,19 +147,25 @@ function ProductCard(
               </a>
             </ul>
           </figcaption>
-          <figcaption class="card-body card-actions absolute bottom-2 left-0 w-full mb- transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white">
-            {/* SKU Selector */}
-            <ul class="flex justify-center items-center gap-2 w-full">
-              {variants.map(([value, [link]]) => (
-                <a href={link}>
-                  <Avatar
-                    variant={link === url ? "active" : "default"}
-                    content={value}
-                  />
-                </a>
-              ))}
-            </ul>
-          </figcaption>
+                    {/* SKU Selector */}
+
+          {variants.length > 0
+            ? (
+              <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
+                <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
+                  {variants.map(([value, [link]]) => (
+                    <a href={link}>
+                      <Avatar
+                        variant={link === url ? "active" : "default"}
+                        content={value}
+                      />
+                    </a>
+                  ))}
+                </ul>
+              </figcaption>
+            )
+            : ("")}
+        
         </div>
       </figure>
       {/* Prices & Name */}
