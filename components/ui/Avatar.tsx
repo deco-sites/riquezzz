@@ -36,9 +36,9 @@ const variants = {
 
 function Avatar({ content, variant = "default" }: Props) {
   return (
-    <div class="avatar placeholder flex justify-start items-start ">
+    <div class="avatar placeholder flex justify-start items-start max-h-[30px]">
       <div
-        class={`w-full flex justify-start items-start transform transition duration-300 hover:scale-150 p-1 "bg-[#161616] ring-[#161616] ${
+        class={`w-full flex justify-end items-end   max-h-[20px] transform transition duration-300 hover:scale-150 p-1 "bg-[#161616] ring-[#161616] ${
           variants[variant]
         }`}
       >

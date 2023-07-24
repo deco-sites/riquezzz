@@ -252,17 +252,12 @@ const useStableImages = (product: ProductDetailsPage["product"]) => {
 };
 
 function imgZoom() {
-  // let zomm1: Element | null;
-  // let img: Element | null;
-
   const img = document.getElementById("imgzom");
   const box = document.getElementById("box");
 
   box!.addEventListener("mousemove", (e) => {
     const x = e.offsetX;
     const y = e.offsetY;
-
-    console.log(x, y);
 
     img!.style.transformOrigin = `${x}px ${y}px`;
     img!.style.transform = "scale(2)";
@@ -284,13 +279,6 @@ function Details({
   const id = `product-image-gallery:${useId()}`;
   const images = useStableImages(product);
 
-  /**
-   * Product slider variant
-   *
-   * Creates a three columned grid on destkop, one for the dots preview, one for the image slider and the other for product info
-   * On mobile, there's one single column with 3 rows. Note that the orders are different from desktop to mobile, that's why
-   * we rearrange each cell with col-start- directives
-   */
   if (variant === "slider") {
     return (
       <>
