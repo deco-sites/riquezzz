@@ -88,7 +88,6 @@ function ProductCard(
       ],
     },
   };
-  //const newVariants = variant;
   const pppp = variants.find((sku) => sku[0] === "4P");
   const ppp = variants.find((sku) => sku[0] === "3P");
   const pp = variants.find((sku) => sku[0] === "PP");
@@ -108,7 +107,6 @@ function ProductCard(
     }
   });
   const varintasFinish: [string, [string]] = FNVariants;
-
 
   return (
     <div

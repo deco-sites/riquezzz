@@ -88,6 +88,28 @@ function ProductCard(
       ],
     },
   };
+
+  const pppp = variants.find((sku) => sku[0] === "4P");
+  const ppp = variants.find((sku) => sku[0] === "3P");
+  const pp = variants.find((sku) => sku[0] === "PP");
+  const p = variants.find((sku) => sku[0] === "P");
+  const m = variants.find((sku) => sku[0] === "M");
+  const g = variants.find((sku) => sku[0] === "G");
+  const gg = variants.find((sku) => sku[0] === "GG");
+  const ggg = variants.find((sku) => sku[0] === "3G");
+  const gggg = variants.find((sku) => sku[0] === "4G");
+
+  const newVariants = [pppp, ppp, pp, p, m, g, gg, ggg, gggg];
+
+  const FNVariants: any = [];
+  newVariants.map((a) => {
+    if (a !== undefined) {
+      FNVariants.push(a);
+    }
+  });
+  const varintasFinish: [string, [string]] = FNVariants;
+
+
   return (
     <div
       class="card card-compact card-bordered rounded-none border-transparent group w-full "
@@ -142,18 +164,35 @@ function ProductCard(
           {/* SKU Selector */}
           {variants.length > 0
             ? (
-              <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
-                <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
-                  {variants.map(([value, [link]]) => (
-                    <a href={link}>
-                      <Avatar
-                        variant={link === url ? "active" : "default"}
-                        content={value}
-                      />
-                    </a>
-                  ))}
-                </ul>
-              </figcaption>
+              varintasFinish.length > 0
+                ? (
+                  <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
+                    <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
+                      {varintasFinish.map(([value, [link]]) => (
+                        <a href={link}>
+                          <Avatar
+                            variant={link === url ? "active" : "default"}
+                            content={value}
+                          />
+                        </a>
+                      ))}
+                    </ul>
+                  </figcaption>
+                )
+                : (
+                  <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
+                    <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
+                      {variants.map(([value, [link]]) => (
+                        <a href={link}>
+                          <Avatar
+                            variant={link === url ? "active" : "default"}
+                            content={value}
+                          />
+                        </a>
+                      ))}
+                    </ul>
+                  </figcaption>
+                )
             )
             : ("")}
         </div>
