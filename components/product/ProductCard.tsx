@@ -213,11 +213,31 @@ function ProductCard(
             <span
               class={`${
                 colorRed ? "text-red-700 " : ""
-              }text-xs 2xl:text-sm font-bold`}
+              }text-xs 2xl:text-sm font-bold  pl-1`}
             >
               {price
                 ? (formatPrice(price, offers!.priceCurrency!))
                 : ("Produto esgotado")}
+            </span>
+          </div>
+          <div class="flex flew-row  items-start sm:items-end gap-1 sm:hidden">
+            <span class="line-through text-xs 2xl:text-sm  text-base-300 px-1 ">
+              {listPrice !== price
+                ? (formatPrice(listPrice, offers!.priceCurrency!))
+                : (" ")}
+            </span>
+
+            <span class="text-xs 2xl:text-sm  font-bold ">
+              {listPrice !== price ? ("/ ") : (" ")}
+            </span>
+            <span
+              class={`${
+                colorRed ? "text-red-700 " : ""
+              }text-xs 2xl:text-sm font-bold pl-1`}
+            >
+              {price
+                ? (formatPrice(price, offers!.priceCurrency!))
+                : (" Produto esgotado")}
             </span>
           </div>
         </div>
