@@ -39,7 +39,7 @@ function VariantSelector({ product, product: { url } }: Props) {
           <ul class="flex flex-row gap-3 justify-start max-h-[20px]">
             {varintasFinish.length > 0
               ? (varintasFinish.map(([value, [link]]) => (
-                <li class='card-body card-actions m-0 max-w-[20px] max-h-[20px] p-[1rem]'>
+                <li class="card-body card-actions m-0 max-w-[20px] max-h-[20px] p-[1rem]">
                   <a href={link}>
                     <Avatar
                       content={value}
