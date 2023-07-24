@@ -147,43 +147,68 @@ function ProductCard(
               </a>
             </ul>
           </figcaption>
-          <figcaption class="card-body card-actions absolute bottom-2 left-0 w-full mb- transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white">
-            {/* SKU Selector */}
-            <ul class="flex justify-center items-center gap-2 w-full">
-              {variants.map(([value, [link]]) => (
-                <a href={link}>
-                  <Avatar
-                    variant={link === url ? "active" : "default"}
-                    content={value}
-                  />
-                </a>
-              ))}
-            </ul>
-          </figcaption>
+          {/* SKU Selector */}
+
+          {variants.length > 0
+            ? (
+              <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
+                <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
+                  {variants.map(([value, [link]]) => (
+                    <a href={link}>
+                      <Avatar
+                        variant={link === url ? "active" : "default"}
+                        content={value}
+                      />
+                    </a>
+                  ))}
+                </ul>
+              </figcaption>
+            )
+            : ("")}
         </div>
       </figure>
       {/* Prices & Name */}
-      <div class=" flex flex-col p-0 m-0 h-[90px] max-h-[90px] justify-between items-start">
-        <h2 class="card-title w-full text-base-300 text-sm 2xl:text-base  font-normal uppercase">
+      <div class=" flex flex-col p-0 m-0 h-[90px] max-h-[90px] justify-start items-start">
+        <h2 class="card-title w-full sm:whitespace-nowrap sm:overflow-hidden  text-base-300 text-sm 2xl:text-base  font-normal uppercase">
           {isVariantOf!.name}
         </h2>
         <div class="flex flex-col  sm:flew-row items-start sm:items-end gap-1">
-          <div class="hidden flew-row   items-start sm:items-end sm:flex">
+          <div class="hidden flew-row  sm:overflow-hidden  items-start sm:items-end sm:flex">
             <span class="text-xs 2xl:text-sm font-bold sm:flex hidden">
               {installmentText
                 ? (installmentText?.length === 8
-                  ? (installmentText + ",00" + " / ")
-                  : (installmentText + " / "))
-                : (" ")}
+                  ? (installmentText + ",00" + " /")
+                  : (installmentText + " /"))
+                : ("")}
             </span>
 
-            <span class="line-through px-1 text-xs 2xl:text-sm  text-base-300 sm:flex hidden">
+            <span class="line-through text-xs 2xl:text-sm  text-base-300 sm:flex hidden">
               {listPrice !== price
-                ? (formatPrice(listPrice, offers!.priceCurrency!))
-                : (" ")}
+                ? (`${formatPrice(listPrice, offers!.priceCurrency!)} `)
+                : ("")}
             </span>
             <span class="text-xs 2xl:text-sm  font-bold text-black sm:flex hidden">
-              {listPrice !== price ? ("/") : (" ")}
+              {listPrice !== price ? (` /`) : ("")}
+            </span>
+            <span
+              class={`${
+                colorRed ? "text-red-700 " : ""
+              }text-xs 2xl:text-sm font-bold`}
+            >
+              {price
+                ? (formatPrice(price, offers!.priceCurrency!))
+                : ("Produto esgotado")}
+            </span>
+          </div>
+          <div class="flex flew-row  items-start sm:items-end gap-1 sm:hidden">
+            <span class="line-through text-xs 2xl:text-sm  text-base-300 ">
+              {listPrice !== price
+                ? (`${formatPrice(listPrice, offers!.priceCurrency!)}`)
+                : ("")}
+            </span>
+
+            <span class="text-xs 2xl:text-sm  font-bold">
+              {listPrice !== price ? (`/`) : ("")}
             </span>
             <span
               class={`${

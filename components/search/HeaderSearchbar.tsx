@@ -152,7 +152,7 @@ function Searchbar({
                 setTerm(value);
               }
 
-              setSearch(value);
+              setSearch(value, 6);
             }}
             placeholder={placeholder}
             role="combobox"
