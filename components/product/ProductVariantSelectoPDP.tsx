@@ -9,6 +9,7 @@ interface Props {
 function VariantSelector({ product, product: { url } }: Props) {
   const possibilities = useVariantPossibilities(product);
 
+  const NNv = [];
   const nv = Object.entries(Object.values(possibilities)[0] ?? {});
   const pppp = nv.find((sku) => sku[0] === "4P");
   const ppp = nv.find((sku) => sku[0] === "3P");
@@ -30,22 +31,34 @@ function VariantSelector({ product, product: { url } }: Props) {
   });
   const varintasFinish: [string, [string]] = FNVariants;
 
+  console.log(nv);
   return (
     <ul class="flex flex-col gap-4">
       {Object.keys(possibilities).map((name) => (
         <li class="flex flex-col gap-2">
           <span class="text-sm">{name}</span>
-          <ul class="flex flex-row gap-3 justify-start items-end max-h-[20px]">
-            {varintasFinish.map(([value, [link]]) => (
-              <li>
-                <a href={link}>
-                  <Avatar
-                    content={value}
-                    variant={link === url ? "active" : "default"}
-                  />
-                </a>
-              </li>
-            ))}
+          <ul class="flex flex-row gap-3 justify-start max-h-[20px]">
+            {varintasFinish.length > 0
+              ? (varintasFinish.map(([value, [link]]) => (
+                <li>
+                  <a href={link}>
+                    <Avatar
+                      content={value}
+                      variant={link === url ? "active" : "default"}
+                    />
+                  </a>
+                </li>
+              )))
+              : (Object.entries(possibilities[name]).map(([value, [link]]) => (
+                <li>
+                  <a href={link}>
+                    <Avatar
+                      content={value}
+                      variant={link === url ? "active" : "default"}
+                    />
+                  </a>
+                </li>
+              )))}
           </ul>
         </li>
       ))}
