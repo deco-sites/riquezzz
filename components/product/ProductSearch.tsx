@@ -109,7 +109,6 @@ function ProductCard(
   });
   const varintasFinish: [string, [string]] = FNVariants;
 
-
   return (
     <div
       class="card card-compact card-bordered rounded-none border-transparent group w-full "
