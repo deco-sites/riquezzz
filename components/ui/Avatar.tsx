@@ -28,7 +28,7 @@ interface Props {
 
 const variants = {
   active:
-    "ring ring-1 ring-offset-base-100 ring-offset-2 bg-black text-white border-none",
+    " bg-black text-white border-none",
   disabled:
     `relative after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-red-800 after:w-full after:block after:-rotate-45 after:content-[""]`,
   default: "",
@@ -36,9 +36,9 @@ const variants = {
 
 function Avatar({ content, variant = "default" }: Props) {
   return (
-    <div class="avatar placeholder flex justify-start items-start max-h-[30px]">
+    <div class="avatar placeholder flex justify-center items-center max-h-[30px]">
       <div
-        class={`w-full flex justify-end items-end   max-h-[20px] transform transition duration-300 hover:scale-150 p-1 "bg-[#161616] ring-[#161616] ${
+        class={`w-full flex justify-center items-center   max-h-[20px] transform transition duration-300 hover:scale-150 p-1 "bg-[#161616] ring-[#161616] ${
           variants[variant]
         }`}
       >

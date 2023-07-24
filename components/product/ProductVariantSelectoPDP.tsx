@@ -31,7 +31,6 @@ function VariantSelector({ product, product: { url } }: Props) {
   });
   const varintasFinish: [string, [string]] = FNVariants;
 
-  console.log(nv);
   return (
     <ul class="flex flex-col gap-4">
       {Object.keys(possibilities).map((name) => (
@@ -40,7 +39,7 @@ function VariantSelector({ product, product: { url } }: Props) {
           <ul class="flex flex-row gap-3 justify-start max-h-[20px]">
             {varintasFinish.length > 0
               ? (varintasFinish.map(([value, [link]]) => (
-                <li>
+                <li class='card-body card-actions m-0 max-w-[20px] max-h-[20px] p-[1rem]'>
                   <a href={link}>
                     <Avatar
                       content={value}
@@ -50,7 +49,7 @@ function VariantSelector({ product, product: { url } }: Props) {
                 </li>
               )))
               : (Object.entries(possibilities[name]).map(([value, [link]]) => (
-                <li>
+                <li class="card-body card-actions m-0 max-w-[20px] max-h-[20px] p-[1rem]">
                   <a href={link}>
                     <Avatar
                       content={value}
