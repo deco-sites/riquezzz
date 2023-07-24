@@ -355,12 +355,12 @@ function Details({
           <ul class="flex gap-2 sm:justify-start  sm:px-0 sm:flex-col sm:col-start-1 sm:col-span-1 sm:row-start-1">
             <Slider class="flex flex-col carousel overflow-y-scroll  max-h-[800px] gap-6 mt-[100px]">
               {images.map((img, index) => (
-                <li class="min-w-[180px] sm:min-w-[100px]  ">
+                <li class="min-w-[180px]  max-w-[180px]  ">
                   <Slider.Dot index={index}>
                     <Image
                       //  style={{ aspectRatio: ASPECT_RATIO }}
                       id="zom"
-                      class="group-disabled:border-base-300 group-disabled:border px-5 w-full h-[180px] "
+                      class="group-disabled:border-base-300 group-disabled:border  w-full h-[180px] "
                       width={160}
                       height={180}
                       src={img.url!}
