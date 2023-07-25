@@ -88,6 +88,18 @@ function ProductCard(
       ],
     },
   };
+
+  const keys = Object.keys(possibilities["Tamanho"]);
+  const nv = keys.map((key) => {
+    return { value: key, link: possibilities["Tamanho"][key][0] };
+  });
+
+  const sizes = ["4P", "3P", "PP", "P", "M", "G", "GG", "3G", "4G"];
+  const newVariants = sizes.map((size) => {
+    const sku = nv.find((sku) => sku.value === size);
+    return sku;
+  });
+
   return (
     <div
       class="card card-compact card-bordered rounded-none border-transparent group w-full "
@@ -138,19 +150,43 @@ function ProductCard(
               </a>
             </ul>
           </figcaption>
-          <figcaption class="card-body card-actions p-0 m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white">
-            {/* SKU Selector */}
-            <ul class="flex justify-center items-center gap-1 sm:gap-2 w-full">
-              {variants.map(([value, [link]]) => (
-                <a href={link}>
-                  <Avatar
-                    variant={link === url ? "active" : "default"}
-                    content={value}
-                  />
-                </a>
-              ))}
-            </ul>
-          </figcaption>
+
+          {/* SKU Selector */}
+          {variants.length > 0
+            ? (
+              newVariants.length > 0
+                ? (
+                  <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
+                    <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
+                      {newVariants.map((variant) => (
+                        <a href={variant?.link}>
+                          <Avatar
+                            variant={variant?.link === url
+                              ? "active"
+                              : "default"}
+                            content={variant?.value as string}
+                          />
+                        </a>
+                      ))}
+                    </ul>
+                  </figcaption>
+                )
+                : (
+                  <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
+                    <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
+                      {variants.map(([value, [link]]) => (
+                        <a href={link}>
+                          <Avatar
+                            variant={link === url ? "active" : "default"}
+                            content={value}
+                          />
+                        </a>
+                      ))}
+                    </ul>
+                  </figcaption>
+                )
+            )
+            : ("")}
         </div>
       </figure>
       {/* Prices & Name */}
