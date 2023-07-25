@@ -190,8 +190,8 @@ function ProductCard(
         </div>
       </figure>
       {/* Prices & Name */}
-      <div class=" flex flex-col p-0 m-0 h-[90px] max-h-[90px] justify-start items-start">
-        <h2 class="card-title w-full sm:whitespace-nowrap sm:overflow-hidden  text-base-300 text-sm 2xl:text-base  font-normal uppercase">
+      <div class=" gap-0 p-0">
+        <h2 class="card-title m-0  text-black text-[14px] font-normal uppercase">
           {isVariantOf!.name}
         </h2>
         <div class="flex flex-col  sm:flew-row items-start sm:items-end gap-1">
