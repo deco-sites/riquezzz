@@ -165,7 +165,6 @@ function ProductCard(
                           <Avatar
                             variant={item?.[1] === url ? "active" : "default"}
                             content={item?.[0]!}
-
                           />
                         </a>
                       ))}
