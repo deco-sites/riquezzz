@@ -100,10 +100,7 @@ function ProductCard(
 
   let newVariants = [pppp, ppp, pp, p, m, g, gg, ggg, gggg];
   newVariants = newVariants.filter((item) => item !== undefined);
-  console.log(newVariants)
- 
-
-
+  console.log(newVariants);
 
   return (
     <div
