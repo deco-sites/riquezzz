@@ -9,7 +9,6 @@ interface Props {
 function VariantSelector({ product, product: { url } }: Props) {
   const possibilities = useVariantPossibilities(product);
 
-  const NNv = [];
   const nv = Object.entries(Object.values(possibilities)[0] ?? {});
   const pppp = nv.find((sku) => sku[0] === "4P");
   const ppp = nv.find((sku) => sku[0] === "3P");
@@ -21,15 +20,8 @@ function VariantSelector({ product, product: { url } }: Props) {
   const ggg = nv.find((sku) => sku[0] === "3G");
   const gggg = nv.find((sku) => sku[0] === "4G");
 
-  const newVariants = [pppp, ppp, pp, p, m, g, gg, ggg, gggg];
-
-  const FNVariants: any = [];
-  newVariants.map((a) => {
-    if (a !== undefined) {
-      FNVariants.push(a);
-    }
-  });
-  const varintasFinish: [string, [string]] = FNVariants;
+  let newVariants = [pppp, ppp, pp, p, m, g, gg, ggg, gggg];
+  newVariants = newVariants.filter((item) => item !== undefined);
 
   return (
     <ul class="flex flex-col gap-4">
@@ -37,13 +29,13 @@ function VariantSelector({ product, product: { url } }: Props) {
         <li class="flex flex-col gap-2">
           <span class="text-sm">{name}</span>
           <ul class="flex flex-row gap-3 justify-start max-h-[20px]">
-            {varintasFinish.length > 0
-              ? (varintasFinish.map(([value, [link]]) => (
+            {newVariants.length > 0
+              ? (newVariants.map((item) => (
                 <li class="card-body card-actions m-0 max-w-[20px] max-h-[20px] p-[1rem]">
-                  <a href={link}>
+                  <a href={item?.[1][0]}>
                     <Avatar
-                      content={value}
-                      variant={link === url ? "active" : "default"}
+                      variant={item?.[1] === url ? "active" : "default"}
+                      content={item?.[0]!}
                     />
                   </a>
                 </li>

@@ -99,15 +99,10 @@ function ProductCard(
   const ggg = variants.find((sku) => sku[0] === "3G");
   const gggg = variants.find((sku) => sku[0] === "4G");
 
-  const newVariants = [pppp, ppp, pp, p, m, g, gg, ggg, gggg];
+  let newVariants = [pppp, ppp, pp, p, m, g, gg, ggg, gggg];
+  newVariants = newVariants.filter((item) => item !== undefined);
 
-  const FNVariants: any = [];
-  newVariants.map((a) => {
-    if (a !== undefined) {
-      FNVariants.push(a);
-    }
-  });
-  const varintasFinish: [string, [string]] = FNVariants;
+
 
   return (
     <div
@@ -163,15 +158,15 @@ function ProductCard(
           {/* SKU Selector */}
           {variants.length > 0
             ? (
-              varintasFinish.length > 0
+              newVariants.length > 0
                 ? (
                   <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
                     <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
-                      {varintasFinish.map(([value, [link]]) => (
-                        <a href={link}>
+                      {newVariants.map((item) => (
+                        <a href={item?.[1][0]}>
                           <Avatar
-                            variant={link === url ? "active" : "default"}
-                            content={value}
+                            variant={item?.[1] === url ? "active" : "default"}
+                            content={item?.[0]!}
                           />
                         </a>
                       ))}
