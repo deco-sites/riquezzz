@@ -9,16 +9,19 @@ interface Props {
 function VariantSelector({ product, product: { url } }: Props) {
   const possibilities = useVariantPossibilities(product);
 
-  const keys = Object.keys(possibilities["Tamanho"]);
-  const nv = keys.map((key) => {
-    return { value: key, link: possibilities["Tamanho"][key][0] };
-  });
+  const nv = Object.entries(Object.values(possibilities)[0] ?? {});
+  const pppp = nv.find((sku) => sku[0] === "4P");
+  const ppp = nv.find((sku) => sku[0] === "3P");
+  const pp = nv.find((sku) => sku[0] === "PP");
+  const p = nv.find((sku) => sku[0] === "P");
+  const m = nv.find((sku) => sku[0] === "M");
+  const g = nv.find((sku) => sku[0] === "G");
+  const gg = nv.find((sku) => sku[0] === "GG");
+  const ggg = nv.find((sku) => sku[0] === "3G");
+  const gggg = nv.find((sku) => sku[0] === "4G");
 
-  const sizes = ["4P", "3P", "PP", "P", "M", "G", "GG", "3G", "4G"];
-  const newVariants = sizes.map((size) => {
-    const sku = nv.find((sku) => sku.value === size);
-    return sku;
-  });
+  let newVariants = [pppp, ppp, pp, p, m, g, gg, ggg, gggg];
+  newVariants = newVariants.filter((item) => item !== undefined);
 
   return (
     <ul class="flex flex-col gap-4">
@@ -27,12 +30,12 @@ function VariantSelector({ product, product: { url } }: Props) {
           <span class="text-sm">{name}</span>
           <ul class="flex flex-row gap-3 justify-start max-h-[20px]">
             {newVariants.length > 0
-              ? (newVariants.map((variant) => (
+              ? (newVariants.map((item) => (
                 <li class="card-body card-actions m-0 max-w-[20px] max-h-[20px] p-[1rem]">
-                  <a href={variant?.link}>
+                  <a href={item?.[1][0]}>
                     <Avatar
-                      content={variant?.value as string}
-                      variant={variant?.link === url ? "active" : "default"}
+                      variant={item?.[1] === url ? "active" : "default"}
+                      content={item?.[0]!}
                     />
                   </a>
                 </li>
