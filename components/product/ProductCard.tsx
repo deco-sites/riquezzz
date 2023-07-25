@@ -175,7 +175,13 @@ function ProductCard(
         <div class="flex flex-col  sm:flew-row items-start">
           <div class="hidden flew-row  items-start sm:flex">
             <span class="text-xs 2xl:text-base font-bold sm:flex hidden  whitespace-nowrap overflow-hidden">
-              {installmentText ? (installmentText?.length === 8  ? (installmentText + ",00" + " / ") : (installmentText?.length === 10  ? (installmentText + "0" + " / ") : (installmentText + " / "))) : ("")}
+              {installmentText
+                ? (installmentText?.length === 8
+                  ? (installmentText + ",00" + " / ")
+                  : (installmentText?.length === 10
+                    ? (installmentText + "0" + " / ")
+                    : (installmentText + " / ")))
+                : ("")}
             </span>
 
             <span class="line-through px-1  text-xs 2xl:text-base text-base-300 sm:flex hidden">
@@ -186,13 +192,17 @@ function ProductCard(
             <span class="text-xs 2xl:text-base  pr-1  font-bold text-black sm:flex hidden">
               {listPrice !== price ? (` /`) : ("")}
             </span>
-            <span class={`${colorRed ? "text-red-700 " : ""}text-xs 2xl:text-base font-bold`}>
+            <span
+              class={`${
+                colorRed ? "text-red-700 " : ""
+              }text-xs 2xl:text-base font-bold`}
+            >
               {price
                 ? (formatPrice(price, offers!.priceCurrency!))
                 : ("Produto esgotado")}
             </span>
           </div>
-        
+
           <div class="flex flew-row  items-start sm:hidden">
             <span class="line-through text-xs 2xl:text-base  text-base-300 px-1 ">
               {listPrice !== price
