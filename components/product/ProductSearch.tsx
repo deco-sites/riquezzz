@@ -88,6 +88,18 @@ function ProductCard(
       ],
     },
   };
+
+  const keys = Object.keys(possibilities["Tamanho"]);
+  const nv = keys.map((key) => {
+    return { value: key, link: possibilities["Tamanho"][key][0] };
+  });
+
+  const sizes = ["4P", "3P", "PP", "P", "M", "G", "GG", "3G", "4G"];
+  const newVariants = sizes.map((size) => {
+    const sku = nv.find((sku) => sku.value === size);
+    return sku;
+  });
+
   return (
     <div
       class="card card-compact card-bordered rounded-none border-transparent group w-full "
@@ -133,7 +145,7 @@ function ProductCard(
           <figcaption class=" card-body card-actions absolute bottom-0 left-0 w-full  transition-opacity opacity-0 group-hover:opacity-100 bg-green-600">
             {/* COMPRA */}
             <ul class="flex justify-center items-center  w-full">
-              <a class="uppercase w-full text-white text-center font-bold text-xl">
+              <a class="uppercase w-full text-white text-center font-bold sm:text-xl text-sm">
                 Compra
               </a>
             </ul>
@@ -142,18 +154,37 @@ function ProductCard(
           {/* SKU Selector */}
           {variants.length > 0
             ? (
-              <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
-                <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
-                  {variants.map(([value, [link]]) => (
-                    <a href={link}>
-                      <Avatar
-                        variant={link === url ? "active" : "default"}
-                        content={value}
-                      />
-                    </a>
-                  ))}
-                </ul>
-              </figcaption>
+              newVariants.length > 0
+                ? (
+                  <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
+                    <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
+                      {newVariants.map((variant) => (
+                        <a href={variant?.link}>
+                          <Avatar
+                            variant={variant?.link === url
+                              ? "active"
+                              : "default"}
+                            content={variant?.value as string}
+                          />
+                        </a>
+                      ))}
+                    </ul>
+                  </figcaption>
+                )
+                : (
+                  <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
+                    <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
+                      {variants.map(([value, [link]]) => (
+                        <a href={link}>
+                          <Avatar
+                            variant={link === url ? "active" : "default"}
+                            content={value}
+                          />
+                        </a>
+                      ))}
+                    </ul>
+                  </figcaption>
+                )
             )
             : ("")}
         </div>
@@ -163,18 +194,54 @@ function ProductCard(
         <h2 class="card-title m-0  text-black text-[14px] font-normal uppercase">
           {isVariantOf!.name}
         </h2>
-        <div class="flex flex-col items-start ">
-          <span class="line-through text-[14px]  text-base-300 ">
-            {listPrice !== price
-              ? (`${formatPrice(listPrice, offers!.priceCurrency!)}`)
-              : ("")}
-          </span>
+        <div class="flex flex-col  sm:flew-row items-start sm:items-end gap-1">
+          <div class="hidden flew-row  sm:overflow-hidden  items-start sm:items-end sm:flex">
+            <span class="text-xs 2xl:text-sm font-bold sm:flex hidden">
+              {installmentText
+                ? (installmentText?.length === 8
+                  ? (installmentText + ",00" + " /")
+                  : (installmentText + " /"))
+                : ("")}
+            </span>
 
-          <span
-            class={`${colorRed ? "text-red-700 " : ""}text-[14px] font-bold`}
-          >
-            {formatPrice(price, offers!.priceCurrency!)}
-          </span>
+            <span class="line-through text-xs 2xl:text-sm  text-base-300 sm:flex hidden">
+              {listPrice !== price
+                ? (`${formatPrice(listPrice, offers!.priceCurrency!)} `)
+                : ("")}
+            </span>
+            <span class="text-xs 2xl:text-sm  font-bold text-black sm:flex hidden">
+              {listPrice !== price ? (` /`) : ("")}
+            </span>
+            <span
+              class={`${
+                colorRed ? "text-red-700 " : ""
+              }text-xs 2xl:text-sm font-bold`}
+            >
+              {price
+                ? (formatPrice(price, offers!.priceCurrency!))
+                : ("Produto esgotado")}
+            </span>
+          </div>
+          <div class="flex flew-row  items-start sm:items-end gap-1 sm:hidden">
+            <span class="line-through text-xs 2xl:text-sm  text-base-300 ">
+              {listPrice !== price
+                ? (`${formatPrice(listPrice, offers!.priceCurrency!)}`)
+                : ("")}
+            </span>
+
+            <span class="text-xs 2xl:text-sm  font-bold">
+              {listPrice !== price ? (`/`) : ("")}
+            </span>
+            <span
+              class={`${
+                colorRed ? "text-red-700 " : ""
+              }text-xs 2xl:text-sm font-bold`}
+            >
+              {price
+                ? (formatPrice(price, offers!.priceCurrency!))
+                : ("Produto esgotado")}
+            </span>
+          </div>
         </div>
       </div>
     </div>
