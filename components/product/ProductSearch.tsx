@@ -160,7 +160,7 @@ function ProductCard(
       </figure>
       {/* Prices & Name */}
       <div class=" gap-0 p-0">
-        <h2 class="card-title m-0 whitespace-nowrap overflow-hidden  text-black text-[14px] font-normal uppercase">
+        <h2 class="card-title m-0  text-black text-[14px] font-normal uppercase">
           {isVariantOf!.name}
         </h2>
         <div class="flex flex-col items-start ">

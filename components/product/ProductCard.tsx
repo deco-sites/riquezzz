@@ -169,71 +169,44 @@ function ProductCard(
       </figure>
       {/* Prices & Name */}
       <div class=" flex flex-col p-0 m-0 h-[90px] max-h-[90px] justify-start items-start">
-        <h2 class="card-title w-full sm:whitespace-nowrap sm:overflow-hidden  text-base-300 text-sm 2xl:text-base  font-normal uppercase">
+        <h2 class="card-title w-full   text-base-300 text-sm 2xl:text-lg  font-normal uppercase">
           {isVariantOf!.name}
         </h2>
-        <div class="flex flex-col  sm:flew-row items-start sm:items-end gap-1">
-          <div class="hidden flew-row  sm:overflow-hidden  items-start sm:items-end sm:flex">
-            <span class="text-xs 2xl:text-sm font-bold sm:flex hidden">
-              {installmentText
-                ? (installmentText?.length === 8
-                  ? (installmentText + ",00" + " /")
-                  : (installmentText + " /"))
-                : ("")}
+        <div class="flex flex-col  sm:flew-row items-start">
+          <div class="hidden flew-row  items-start sm:flex">
+            <span class="text-xs 2xl:text-base font-bold sm:flex hidden  whitespace-nowrap overflow-hidden">
+              {installmentText ? (installmentText?.length === 8  ? (installmentText + ",00" + " / ") : (installmentText?.length === 10  ? (installmentText + "0" + " / ") : (installmentText + " / "))) : ("")}
             </span>
 
-            <span class="line-through text-xs 2xl:text-sm  text-base-300 sm:flex hidden">
+            <span class="line-through px-1  text-xs 2xl:text-base text-base-300 sm:flex hidden">
               {listPrice !== price
                 ? (`${formatPrice(listPrice, offers!.priceCurrency!)} `)
                 : ("")}
             </span>
-            <span class="text-xs 2xl:text-sm  font-bold text-black sm:flex hidden">
+            <span class="text-xs 2xl:text-base  pr-1  font-bold text-black sm:flex hidden">
               {listPrice !== price ? (` /`) : ("")}
             </span>
-            <span
-              class={`${
-                colorRed ? "text-red-700 " : ""
-              }text-xs 2xl:text-sm font-bold`}
-            >
+            <span class={`${colorRed ? "text-red-700 " : ""}text-xs 2xl:text-base font-bold`}>
               {price
                 ? (formatPrice(price, offers!.priceCurrency!))
                 : ("Produto esgotado")}
             </span>
           </div>
-          <div class="flex flew-row  items-start sm:items-end gap-1 sm:hidden">
-            <span class="line-through text-xs 2xl:text-sm  text-base-300 ">
-              {listPrice !== price
-                ? (`${formatPrice(listPrice, offers!.priceCurrency!)}`)
-                : ("")}
-            </span>
-
-            <span class="text-xs 2xl:text-sm  font-bold">
-              {listPrice !== price ? (`/`) : ("")}
-            </span>
-            <span
-              class={`${
-                colorRed ? "text-red-700 " : ""
-              }text-xs 2xl:text-sm font-bold  pl-1`}
-            >
-              {price
-                ? (formatPrice(price, offers!.priceCurrency!))
-                : ("Produto esgotado")}
-            </span>
-          </div>
-          <div class="flex flew-row  items-start sm:items-end gap-1 sm:hidden">
-            <span class="line-through text-xs 2xl:text-sm  text-base-300 px-1 ">
+        
+          <div class="flex flew-row  items-start sm:hidden">
+            <span class="line-through text-xs 2xl:text-base  text-base-300 px-1 ">
               {listPrice !== price
                 ? (formatPrice(listPrice, offers!.priceCurrency!))
                 : (" ")}
             </span>
 
-            <span class="text-xs 2xl:text-sm  font-bold ">
+            <span class="text-xs 2xl:text-base  font-bold ">
               {listPrice !== price ? ("/ ") : (" ")}
             </span>
             <span
               class={`${
                 colorRed ? "text-red-700 " : ""
-              }text-xs 2xl:text-sm font-bold pl-1`}
+              }text-xs 2xl:text-base font-bold pl-1`}
             >
               {price
                 ? (formatPrice(price, offers!.priceCurrency!))
