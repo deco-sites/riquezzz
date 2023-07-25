@@ -88,25 +88,16 @@ function ProductCard(
       ],
     },
   };
-  const pppp = variants.find((sku) => sku[0] === "4P");
-  const ppp = variants.find((sku) => sku[0] === "3P");
-  const pp = variants.find((sku) => sku[0] === "PP");
-  const p = variants.find((sku) => sku[0] === "P");
-  const m = variants.find((sku) => sku[0] === "M");
-  const g = variants.find((sku) => sku[0] === "G");
-  const gg = variants.find((sku) => sku[0] === "GG");
-  const ggg = variants.find((sku) => sku[0] === "3G");
-  const gggg = variants.find((sku) => sku[0] === "4G");
-
-  const newVariants = [pppp, ppp, pp, p, m, g, gg, ggg, gggg];
-
-  const FNVariants: any = [];
-  newVariants.map((a) => {
-    if (a !== undefined) {
-      FNVariants.push(a);
-    }
+  const keys = Object.keys(possibilities["Tamanho"]);
+  const nv = keys.map((key) => {
+    return { value: key, link: possibilities["Tamanho"][key][0] };
   });
-  const varintasFinish: [string, [string]] = FNVariants;
+
+  const sizes = ["4P", "3P", "PP", "P", "M", "G", "GG", "3G", "4G"];
+  const newVariants = sizes.map((size) => {
+    const sku = nv.find((sku) => sku.value === size);
+    return sku;
+  });
 
   return (
     <div
@@ -171,15 +162,17 @@ function ProductCard(
 
           {variants.length > 0
             ? (
-              varintasFinish.length > 0
+              newVariants.length > 0
                 ? (
                   <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
                     <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
-                      {varintasFinish.map(([value, [link]]) => (
-                        <a href={link}>
+                      {newVariants.map((variant) => (
+                        <a href={variant?.link}>
                           <Avatar
-                            variant={link === url ? "active" : "default"}
-                            content={value}
+                            variant={variant?.link === url
+                              ? "active"
+                              : "default"}
+                            content={variant?.value as string}
                           />
                         </a>
                       ))}
@@ -250,11 +243,31 @@ function ProductCard(
             <span
               class={`${
                 colorRed ? "text-red-700 " : ""
-              }text-xs 2xl:text-sm font-bold`}
+              }text-xs 2xl:text-sm font-bold  pl-1`}
             >
               {price
                 ? (formatPrice(price, offers!.priceCurrency!))
                 : ("Produto esgotado")}
+            </span>
+          </div>
+          <div class="flex flew-row  items-start sm:items-end gap-1 sm:hidden">
+            <span class="line-through text-xs 2xl:text-sm  text-base-300 px-1 ">
+              {listPrice !== price
+                ? (formatPrice(listPrice, offers!.priceCurrency!))
+                : (" ")}
+            </span>
+
+            <span class="text-xs 2xl:text-sm  font-bold ">
+              {listPrice !== price ? ("/ ") : (" ")}
+            </span>
+            <span
+              class={`${
+                colorRed ? "text-red-700 " : ""
+              }text-xs 2xl:text-sm font-bold pl-1`}
+            >
+              {price
+                ? (formatPrice(price, offers!.priceCurrency!))
+                : (" Produto esgotado")}
             </span>
           </div>
         </div>

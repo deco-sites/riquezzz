@@ -42,7 +42,7 @@ function Avatar({ content, variant = "default" }: Props) {
         }`}
       >
         <span class="text-caption font-caption uppercase font-bold   hover:font-extrabold ">
-          {colors[content] ? "" : content.substring(0, 2)}
+          {colors[content] ? "" : content?.substring(0, 2)}
         </span>
       </div>
     </div>
