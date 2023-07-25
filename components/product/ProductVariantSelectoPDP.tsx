@@ -23,6 +23,7 @@ function VariantSelector({ product, product: { url } }: Props) {
   let newVariants = [pppp, ppp, pp, p, m, g, gg, ggg, gggg];
   newVariants = newVariants.filter((item) => item !== undefined);
 
+
   return (
     <ul class="flex flex-col gap-4">
       {Object.keys(possibilities).map((name) => (
@@ -30,12 +31,14 @@ function VariantSelector({ product, product: { url } }: Props) {
           <span class="text-sm">{name}</span>
           <ul class="flex flex-row gap-3 justify-start max-h-[20px]">
             {newVariants.length > 0
+
               ? (newVariants.map((item) => (
                 <li class="card-body card-actions m-0 max-w-[20px] max-h-[20px] p-[1rem]">
                   <a href={item?.[1][0]}>
                     <Avatar
                       variant={item?.[1] === url ? "active" : "default"}
                       content={item?.[0]!}
+
                     />
                   </a>
                 </li>

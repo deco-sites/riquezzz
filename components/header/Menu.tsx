@@ -11,10 +11,12 @@ function MenuItem({ item }: { item: INavItem }) {
       <input type="checkbox" />
       <div class="collapse-title uppercase">{item.label}</div>
       <div class="collapse-content">
-        <ul class="text-[20px] border-none">
+        <ul class="text-[20px] border-none ">
           {item.children?.map((node) => (
             <li>
-              <MenuItem item={node} />
+              <a class="uppercase text-[20x] border-none mb-3" href={node.href}>
+                {node.label}
+              </a>
             </li>
           ))}
         </ul>
