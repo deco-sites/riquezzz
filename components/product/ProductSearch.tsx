@@ -195,7 +195,7 @@ function ProductCard(
           {isVariantOf!.name}
         </h2>
         <div class="flex flex-col  sm:flew-row items-start sm:items-end gap-1">
-          <div class="hidden flew-row  sm:overflow-hidden  items-start sm:items-end sm:flex">
+          <div class="hidden w-full flew-row flex-grow flex-wrap  items-start  sm:flex">
             <span class="text-xs 2xl:text-sm font-bold sm:flex hidden">
               {installmentText
                 ? (installmentText?.length === 8
@@ -204,12 +204,12 @@ function ProductCard(
                 : ("")}
             </span>
 
-            <span class="line-through text-xs 2xl:text-sm  text-base-300 sm:flex hidden">
+            <span class="line-through text-xs 2xl:text-sm  text-base-300 pl-1 sm:flex hidden">
               {listPrice !== price
                 ? (`${formatPrice(listPrice, offers!.priceCurrency!)} `)
                 : ("")}
             </span>
-            <span class="text-xs 2xl:text-sm  font-bold text-black sm:flex hidden">
+            <span class="text-xs 2xl:text-sm  font-bold text-black sm:flex hidden px-1">
               {listPrice !== price ? (` /`) : ("")}
             </span>
             <span
