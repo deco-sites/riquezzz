@@ -292,7 +292,7 @@ function Details({
           {/* Image Slider */}
           <div class="relative sm:col-start-2 sm:col-span-1 sm:row-start-1">
             <Slider class="carousel gap-6">
-              {images.map((img, index) => (
+              {images.filter(img => img.alternateName !== 'color-thumbnail').map((img, index) => (
                 <Slider.Item
                   index={index}
                   class="carousel-item min-w-[100vw] sm:min-w-[40vw]  justify-center"
@@ -342,7 +342,7 @@ function Details({
           {/* Dots */}
           <ul class="flex gap-2 sm:justify-start  sm:px-0 sm:flex-col sm:col-start-1 sm:col-span-1 sm:row-start-1">
             <Slider class="flex flex-col carousel overflow-y-scroll  max-h-[800px] gap-6 mt-[100px]">
-              {images.map((img, index) => (
+              {images.filter(img => img.alternateName !== 'color-thumbnail').map((img, index) => (
                 <li class="min-w-[180px]  max-w-[180px]  ">
                   <Slider.Dot index={index}>
                     <Image
