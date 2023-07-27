@@ -64,8 +64,9 @@ function ProductCard(
     offers,
     isVariantOf,
   } = product;
+  const fImages = images?.filter((img) => img.alternateName !== "color-thumbnail")
   const productGroupID = isVariantOf?.productGroupID;
-  const [front, back] = images ?? [];
+  const [front, back] = fImages ?? [];
   const { listPrice, price, installments, availability, seller } = useOffer(
     offers,
   );
