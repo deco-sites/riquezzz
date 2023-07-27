@@ -164,8 +164,8 @@ function Searchbar({
       </div>
       {term.length > 0
         ? (
-          <div class="fixed flex top-[230px] right-0 w-full h-full  bg-gradient-to-b from-[#00000000]    to-[#00000065]    flex-col gap-3 divide-y justify-center items-center  divide-base-200 empty:mt-0 md:flex-row md:divide-y-0 ">
-            <div class="fixed top-[235px]  max-w-[80vw] w-full pb-10 pl-2 flex flex-col gap-3 divide-y divide-base-200 empty:mt-0   bg-gray-100 ">
+            <div class="fixed flex top-[230px] left-0 pl-[30px] w-full h-full  bg-gradient-to-b from-[#00000000]    to-[#00000065]    flex-col gap-3 divide-y justify-start items-start  divide-base-200 empty:mt-0 md:flex-row md:divide-y-0 ">
+            <div class="fixed top-[235px]  w-[80vw]  sm:max-w-[480px] pl-1 pb-10  flex flex-col gap-3 divide-y divide-base-200 empty:mt-0   bg-gray-100 ">
               {notFound
                 ? (
                   <div class="flex flex-col  w-[90%] items-center p-4 ">
