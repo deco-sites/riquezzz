@@ -26,6 +26,12 @@ export interface Card {
   alt: string;
   /** @description when user clicks on the image, go to this link */
   href: string;
+  sizeImgDescktop?: 1 | 2 | 3;
+  sizeImgMobile?: 1 | 2 | 3;
+  /** @default "start" */
+  horizontal?: "start" | "center" | "end";
+  /** @default "start" */
+  vertical?: "start" | "center" | "end";
 }
 
 export interface BannerCampaing {
@@ -75,8 +81,6 @@ export interface BannerCampaing {
     desktop?: BorderRadius;
   };
   cards: {
-    sizeImgDescktop?: 1 | 2 | 3;
-    sizeImgMobile?: 1 | 2 | 3;
     images?: Card[];
   };
 }
@@ -122,10 +126,22 @@ const RADIUS_DESKTOP = {
 };
 
 const SIZE_IMG = {
-  1: "h-[700px] w-[500px]",
+  1: "h-[900px] w-[800px]",
   2: "h-[450px] w-[300px]",
   3: "h-[255px] w-[370px]",
 };
+
+const horizontal = {
+  start: "h-[900px] w-[800px]",
+  center: "h-[450px] w-[300px]",
+  end: "h-[255px] w-[370px]",
+};
+const vertical = {
+  start: "h-[900px] w-[800px]",
+  center: "h-[450px] w-[300px]",
+  end: "h-[255px] w-[370px]",
+};
+
 const SIZE_IMG_H = {
   1: 700,
   2: 450,
@@ -375,7 +391,7 @@ function CardsCamps({ banner }: { banner: BannerCampaing }) {
           {cards.images?.map((image, index) => (
             <CardItem
               image={image}
-              sizeImgMobile={cards.sizeImgMobile!}
+              sizeImgMobile={image.sizeImgMobile!}
             />
           ))}
         </div>
@@ -388,7 +404,7 @@ function CardsCamps({ banner }: { banner: BannerCampaing }) {
         >
           {cards.images?.map((image, index) => (
             <div
-              class={` ${SIZE_IMG[cards.sizeImgDescktop!]}   ${
+              class={` ${SIZE_IMG[image.sizeImgDescktop!]}   ${
                 image.secondImg !== undefined
                   ? "order-transparent hover:border-base-200 group overflow-hidden hover:overflow-visible"
                   : ""
@@ -411,8 +427,8 @@ function CardsCamps({ banner }: { banner: BannerCampaing }) {
                     }`}
                     src={image.desktop}
                     alt={image.alt}
-                    width={SIZE_IMG_W[cards.sizeImgDescktop!]}
-                    height={SIZE_IMG_H[cards.sizeImgDescktop!]}
+                    width={SIZE_IMG_W[image.sizeImgDescktop!]}
+                    height={SIZE_IMG_H[image.sizeImgDescktop!]}
                     decoding="async"
                   />
                   {image.secondImg !== undefined
@@ -421,8 +437,8 @@ function CardsCamps({ banner }: { banner: BannerCampaing }) {
                         class="transition-opacity opacity-0 md:group-hover:opacity-100"
                         src={image.secondImg}
                         alt={image.alt}
-                        width={SIZE_IMG_W[cards.sizeImgDescktop!]}
-                        height={SIZE_IMG_H[cards.sizeImgDescktop!]}
+                        width={SIZE_IMG_W[image.sizeImgDescktop!]}
+                        height={SIZE_IMG_H[image.sizeImgDescktop!]}
                       />
                     )
                     : ""}
@@ -465,6 +481,7 @@ function BannerCompanie({ page, banners = [] }: Props) {
         : ("")}
 
       <BannerFull banner={matching} />
+
       <BannerUI banner={matching} />
     </>
   );
