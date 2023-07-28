@@ -214,11 +214,12 @@ function BannerCompanie({ page, banners = [] }: Props) {
   if (!matching) {
     return null;
   }
+ return (
+   <>
+    <BannnerGrid banner={matching} />
+    <BannerUI banner={matching} />
+  </>)
 
-
-   
-    return <BannerUI banner={matching} />
- 
 }
 
 export default BannerCompanie;
