@@ -10668,6 +10668,25 @@
       "required": [],
       "title": "deco-sites/riquezzz/components/ui/BannerPLP.tsx@Props"
     },
+    "ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Video": {
+      "type": "string",
+      "format": "video-uri",
+      "title": "Video"
+    },
+    "ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image|Image|null": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image"
+        },
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Image|Image|null"
+    },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lclBMUENhbXBhaWduLnRzeA==@BannerCampaing": {
       "type": "object",
       "properties": {
@@ -10676,53 +10695,53 @@
           "description": "RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category",
           "title": "Matcher"
         },
-        "title": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "description": "text to be rendered on top of the image",
-          "title": "Title"
-        },
-        "subtitle": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "description": "text to be rendered on top of the image",
-          "title": "Subtitle"
-        },
-        "image": {
-          "type": "object",
-          "properties": {
-            "desktop": {
-              "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image|null",
-              "title": "Desktop"
+        "layout": {
+          "anyOf": [
+            {
+              "type": "number",
+              "const": 1,
+              "default": 1
             },
-            "mobile": {
-              "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image|null",
-              "title": "Mobile"
+            {
+              "type": "number",
+              "const": 2,
+              "default": 2
             },
-            "alt": {
-              "type": [
-                "string",
-                "null"
-              ],
-              "title": "Alt"
+            {
+              "type": "number",
+              "const": 3,
+              "default": 3
             }
-          },
-          "required": [],
-          "title": "Image"
+          ],
+          "type": "number",
+          "description": "Layout option",
+          "title": "Layout"
         },
-        "movie": {
+        "bannerFirst": {
           "type": "object",
           "properties": {
+            "type": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "const": "movie",
+                  "default": "movie"
+                },
+                {
+                  "type": "string",
+                  "const": "image",
+                  "default": "image"
+                }
+              ],
+              "type": "string",
+              "title": "Type"
+            },
             "srcMovieMobile": {
-              "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+              "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Video",
               "title": "Src Movie Mobile"
             },
             "srcMovieDesktop": {
-              "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+              "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Video",
               "title": "Src Movie Desktop"
             },
             "altMovie": {
@@ -10741,7 +10760,43 @@
             }
           },
           "required": [],
-          "title": "Movie"
+          "title": "Banner First"
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "desktop": {
+              "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image|Image|null",
+              "title": "Desktop"
+            },
+            "mobile": {
+              "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image|Image|null",
+              "title": "Mobile"
+            },
+            "alt": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Alt"
+            },
+            "title": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Title"
+            },
+            "subtitle": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Subtitle"
+            }
+          },
+          "required": [],
+          "title": "Image"
         },
         "itemsPerLine": {
           "type": "object",
@@ -10899,8 +10954,7 @@
       },
       "required": [
         "matcher",
-        "image",
-        "movie",
+        "layout",
         "itemsPerLine",
         "borderRadius"
       ],

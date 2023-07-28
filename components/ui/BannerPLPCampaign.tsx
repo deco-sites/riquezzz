@@ -2,6 +2,7 @@ import { Picture, Source } from "deco-sites/std/components/Picture.tsx";
 import type { LoaderReturnType } from "$live/types.ts";
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
 import type { ProductListingPage } from "deco-sites/std/commerce/types.ts";
+import type { Video as LiveViedo } from "deco-sites/std/components/types.ts";
 
 export type BorderRadius =
   | "none"
@@ -16,21 +17,15 @@ export type BorderRadius =
 export interface BannerCampaing {
   /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
   matcher: string;
-  /** @description text to be rendered on top of the image */
-  title?: string;
-  /** @description text to be rendered on top of the image */
-  subtitle?: string;
-  image: {
-    /** @description Image for big screens */
-    desktop?: LiveImage | undefined;
-    /** @description Image for small screens */
-    mobile?: LiveImage | undefined;
-    /** @description image alt text */
-    alt?: string;
-  };
-  movie: {
-    srcMovieMobile?: LiveImage;
-    srcMovieDesktop?: LiveImage;
+  /** @description Layout option */
+  layout: 1 | 2 | 3;
+
+  bannerFirst?: {
+    /** @default movie */
+    type?: "movie" | "image";
+
+    srcMovieMobile?: LiveViedo;
+    srcMovieDesktop?: LiveViedo;
     /**
      * @description Movie alt text
      */
@@ -39,6 +34,18 @@ export interface BannerCampaing {
      * @description When you click you go to
      */
     hrefMovie?: string;
+  };
+  image?: {
+    /** @description Image for big screens */
+    desktop?: LiveImage | LiveImage | undefined;
+    /** @description Image for small screens */
+    mobile?: LiveImage | LiveImage | undefined;
+    /** @description image alt text */
+    alt?: string;
+    /** @description text to be rendered on top of the image */
+    title?: string;
+    /** @description text to be rendered on top of the image */
+    subtitle?: string;
   };
 
   itemsPerLine: {
@@ -95,7 +102,7 @@ const RADIUS_DESKTOP = {
 };
 
 function BannerUI({ banner }: { banner: BannerCampaing }) {
-  const { title, subtitle, image } = banner;
+  const { image } = banner;
 
   return (
     <>
@@ -133,12 +140,12 @@ function BannerUI({ banner }: { banner: BannerCampaing }) {
       <div class="container flex flex-col items-center text-center justify-center sm:items-start col-start-1 col-span-1 row-start-1 row-span-1 w-full max-w-[660px] py-10 sm:gap-5 font-bold">
         <h1 class="w-full ">
           <span class="text-3xl sm:text-5xl uppercase font-medium text-black ">
-            {title}
+            {image?.title}
           </span>
         </h1>
 
         <span class="text-xs px-5 text-justify sm:text-center sm:text-sm font-medium text-[#5e5e5e] w-full ">
-          {subtitle}
+          {image?.subtitle}
         </span>
       </div>
     </>
@@ -146,50 +153,94 @@ function BannerUI({ banner }: { banner: BannerCampaing }) {
 }
 
 function BannnerGrid({ banner }: { banner: BannerCampaing }) {
-  const { movie, borderRadius } = banner;
+  const { bannerFirst, borderRadius } = banner;
 
   return (
-    <section class="w-full px-auto sm:max-w-none sm:m-0 sm:overflow-hidden">
-      <div>
-        <a
-          href={movie.hrefMovie}
-          class={`overflow-hidden ${
-            RADIUS_MOBILE[borderRadius.mobile ?? "none"]
-          } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
-        >
-          <div class="w-full h-full m-0 p-o b">
-            <video
-              src={movie.srcMovieDesktop}
-              alt={movie.altMovie}
-              autoPlay
-              muted
-              loop
-              preload="auto"
-              webkit-playsinline
-              x5-playsinline
-              playsInline
-              class="hidden w-full h-full sm:inline-block"
+    <>
+      {bannerFirst?.type === "movie"
+        ? (
+          <section class="w-full px-auto sm:max-w-none sm:m-0 sm:overflow-hidden pr-[40px]">
+            <div>
+              <a
+                href={bannerFirst?.hrefMovie}
+                class={`overflow-hidden ${
+                  RADIUS_MOBILE[borderRadius.mobile ?? "none"]
+                } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
+              >
+                <div class="w-full h-full m-0 p-o b">
+                  <video
+                    src={bannerFirst?.srcMovieDesktop}
+                    alt={bannerFirst?.altMovie}
+                    autoPlay
+                    muted
+                    loop
+                    preload="auto"
+                    webkit-playsinline
+                    x5-playsinline
+                    playsInline
+                    class="hidden w-full h-full sm:inline-block"
+                  >
+                    Video não suportado!
+                  </video>
+                  <video
+                    src={bannerFirst?.srcMovieMobile}
+                    alt={bannerFirst?.altMovie}
+                    autoPlay
+                    muted
+                    loop
+                    preload="auto"
+                    webkit-playsinline
+                    x5-playsinline
+                    playsInline
+                    class="sm:hidden w-full h-full inline-block"
+                  >
+                    Video não suportado!
+                  </video>
+                </div>
+              </a>
+            </div>
+          </section>
+        )
+        : (
+          <div class="grid grid-cols-1 grid-rows-1">
+            <Picture
+              preload
+              class="col-start-1 col-span-1 row-start-1 row-span-1"
             >
-              Video não suportado!
-            </video>
-            <video
-              src={movie.srcMovieMobile}
-              alt={movie.altMovie}
-              autoPlay
-              muted
-              loop
-              preload="auto"
-              webkit-playsinline
-              x5-playsinline
-              playsInline
-              class="sm:hidden w-full h-full inline-block"
-            >
-              Video não suportado!
-            </video>
+              {bannerFirst?.srcMovieMobile
+                ? (
+                  <Source
+                    src={bannerFirst?.srcMovieMobile}
+                    width={360}
+                    height={120}
+                    media="(max-width: 767px)"
+                  />
+                )
+                : ("")}
+              {bannerFirst?.srcMovieDesktop
+                ? (
+                  <Source
+                    src={bannerFirst.srcMovieDesktop}
+                    width={1440}
+                    height={200}
+                    media="(min-width: 767px)"
+                  />
+                )
+                : ("")}
+
+              {bannerFirst?.srcMovieDesktop
+                ? (
+                  <img
+                    class="w-full"
+                    src={bannerFirst.srcMovieDesktop}
+                    alt={bannerFirst.altMovie}
+                  />
+                )
+                : ("")}
+            </Picture>
           </div>
-        </a>
-      </div>
-    </section>
+        )}
+    </>
   );
 }
 
@@ -216,7 +267,10 @@ function BannerCompanie({ page, banners = [] }: Props) {
   }
   return (
     <>
-      {matching.movie !== undefined ? <BannnerGrid banner={matching} /> : ("")}
+      {matching.layout === 1 ? ("") : ("")}
+      {matching.bannerFirst !== undefined
+        ? <BannnerGrid banner={matching} />
+        : ("")}
 
       <BannerUI banner={matching} />
     </>
