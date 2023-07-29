@@ -132,12 +132,12 @@ const SIZE_IMG = {
   3: "h-[255px] w-[370px]",
 };
 
-const horizontal = {
+const HORIZONTAL = {
   start: "justify-start",
   center: "justify-center",
   end: "justify-end",
 };
-const vertical = {
+const VERTICAL = {
   start: "align-start",
   center: "align-center",
   end: "align-end",
@@ -350,8 +350,8 @@ function CardItem(
 
   return (
     <div class={`relative ${SIZE_IMG[sizeImgMobile]} overflow-y-hidden `}>
-      <a href={href}>
-        <div class="w-full">
+      <a href={href}> 
+        <div class={`w-full h-full ${VERTICAL[image.vertical!]}`} >
           <Image
             class={` flex ${image.secondImg ? "hover:hidden" : ""}`}
             loading={lcp ? "eager" : "lazy"}
@@ -378,13 +378,13 @@ function CardItem(
 }
 
 function CardsCamps({ banner }: { banner: BannerCampaing }) {
-  const { cards } = banner;
+  const { cards, cardsHorizontal } = banner;
 
   const id = useId();
 
   return (
     <>
-      <div class="w-full lg:bg-[#cacbcc] flex justify-center lg:hidden">
+      <div class={`w-full lg:bg-[#cacbcc] flex  ${HORIZONTAL[cardsHorizontal!]} lg:hidden `}>
         <div
           id={id}
           class=" relative grid px-4 lg:px-6 grid-cols-[48px_1fr_48px] lg:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_48px_22px] lg:grid-rows-[1fr_48px_1fr_48px] max-w-[1280px] xl:px-0"
@@ -397,7 +397,8 @@ function CardsCamps({ banner }: { banner: BannerCampaing }) {
           ))}
         </div>
       </div>
-
+          
+          {/* versão celular */}
       <div class="hidden lg:flex container mt-[60px] w-full  md:px-0 ">
         <div
           id={id}
