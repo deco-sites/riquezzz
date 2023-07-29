@@ -22,10 +22,12 @@ export interface BannerCampaing {
 
   bannerM?: {
     /** @default movie */
+    /** @description Options  movie | image */
+
     type?: "movie" | "image";
 
-    srcMovieMobile?: LiveViedo;
-    srcMovieDesktop?: LiveViedo;
+    srcMovieMobile?: LiveViedo | LiveImage;
+    srcMovieDesktop?: LiveViedo | LiveImage;
     /**
      * @description Movie alt text
      */
