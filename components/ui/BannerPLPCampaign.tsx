@@ -28,8 +28,7 @@ export interface Card {
   href: string;
   sizeImgDescktop?: 1 | 2 | 3;
   sizeImgMobile?: 1 | 2 | 3;
-  /** @default "start" */
-  horizontal?: "start" | "center" | "end";
+
   /** @default "start" */
   vertical?: "start" | "center" | "end";
 }
@@ -80,6 +79,8 @@ export interface BannerCampaing {
     /** @default none */
     desktop?: BorderRadius;
   };
+  /** @default "start" */
+  cardsHorizontal?: "start" | "center" | "end";
   cards: {
     images?: Card[];
   };
@@ -132,14 +133,14 @@ const SIZE_IMG = {
 };
 
 const horizontal = {
-  start: "h-[900px] w-[800px]",
-  center: "h-[450px] w-[300px]",
-  end: "h-[255px] w-[370px]",
+  start: "justify-start",
+  center: "justify-center",
+  end: "justify-end",
 };
 const vertical = {
-  start: "h-[900px] w-[800px]",
-  center: "h-[450px] w-[300px]",
-  end: "h-[255px] w-[370px]",
+  start: "align-start",
+  center: "align-center",
+  end: "align-end",
 };
 
 const SIZE_IMG_H = {
@@ -348,7 +349,7 @@ function CardItem(
   } = image;
 
   return (
-    <div class={`relative ${SIZE_IMG[sizeImgMobile]} overflow-y-hidden`}>
+    <div class={`relative ${SIZE_IMG[sizeImgMobile]} overflow-y-hidden `}>
       <a href={href}>
         <div class="w-full">
           <Image
