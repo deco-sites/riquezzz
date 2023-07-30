@@ -37,7 +37,6 @@ function BannerFull({ banner }: { banner: BannerCampaing }) {
         preload
         class="col-start-1 col-span-1 row-start-1 row-span-1"
       >
-
         {image?.mobile
           ? (
             <Source
@@ -45,7 +44,6 @@ function BannerFull({ banner }: { banner: BannerCampaing }) {
               width={375}
               height={230}
               class=""
-
             />
           )
           : ("")}
@@ -56,7 +54,7 @@ function BannerFull({ banner }: { banner: BannerCampaing }) {
               width={960}
               height={600}
               class=""
-                          />
+            />
           )
           : ("")}
 

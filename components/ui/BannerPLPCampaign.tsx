@@ -437,7 +437,6 @@ function BannerCompanie({ page, banners = [] }: Props) {
         : ("")}
 
       <BannerFull banner={matching} />
-
     </>
   );
 }
