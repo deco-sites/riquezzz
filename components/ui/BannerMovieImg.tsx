@@ -87,7 +87,7 @@ function BannerMovieImg({ banner }: { banner: BannerCampaing }) {
                   RADIUS_MOBILE[borderRadius.mobile ?? "none"]
                 } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
               >
-                <div class="w-full h-full m-0 p-o b">
+                <div class="w-full h-full m-0 p-0 b">
                   <video
                     src={bannerM?.srcMovieDesktop}
                     alt={bannerM?.altMovie}
