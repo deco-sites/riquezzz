@@ -103,7 +103,9 @@
               "$live/sections/PageInclude.tsx",
               "$live/sections/Slot.tsx",
               "$live/sections/UseSlot.tsx",
+              "deco-sites/riquezzz/sections/BannerFull.tsx",
               "deco-sites/riquezzz/sections/BannerGrid.tsx",
+              "deco-sites/riquezzz/sections/BannerMovieImg.tsx",
               "deco-sites/riquezzz/sections/BannerPLP.tsx",
               "deco-sites/riquezzz/sections/BannerPLPCampaign.tsx",
               "deco-sites/riquezzz/sections/BawBanner.tsx",
@@ -10369,6 +10371,89 @@
       "format": "image-uri",
       "title": "Image"
     },
+    "ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image|null": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Image|null"
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckZ1bGwudHN4@BannerCampaing": {
+      "type": "object",
+      "properties": {
+        "matcher": {
+          "type": "string",
+          "description": "RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category",
+          "title": "Matcher"
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "desktop": {
+              "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image|null",
+              "title": "Desktop"
+            },
+            "mobile": {
+              "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image|null",
+              "title": "Mobile"
+            },
+            "alt": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Alt"
+            },
+            "title": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Title"
+            },
+            "subtitle": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Subtitle"
+            }
+          },
+          "required": [],
+          "title": "Image"
+        }
+      },
+      "required": [
+        "matcher"
+      ],
+      "title": "BannerCampaing"
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckZ1bGwudHN4@BannerCampaing[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckZ1bGwudHN4@BannerCampaing"
+      },
+      "title": "BannerCampaing[]"
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckZ1bGwudHN4@Props": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@ProductListingPage|null",
+          "title": "Page"
+        },
+        "banners": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckZ1bGwudHN4@BannerCampaing[]",
+          "title": "Banners"
+        }
+      },
+      "required": [],
+      "title": "deco-sites/riquezzz/components/ui/BannerFull.tsx@Props"
+    },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckdyaWQudHN4@Banner": {
       "type": "object",
       "properties": {
@@ -10582,16 +10667,202 @@
       ],
       "title": "deco-sites/riquezzz/components/ui/BannerGrid.tsx@Props"
     },
-    "ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image|null": {
+    "ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Video": {
+      "type": "string",
+      "format": "video-uri",
+      "title": "Video"
+    },
+    "ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image|Video": {
       "anyOf": [
         {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image"
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Video"
         },
         {
-          "type": "null"
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image"
         }
       ],
-      "title": "Image|null"
+      "title": "Image|Video"
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lck1vdmllSW1nLnRzeA==@BannerCampaing": {
+      "type": "object",
+      "properties": {
+        "matcher": {
+          "type": "string",
+          "description": "RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category",
+          "title": "Matcher"
+        },
+        "bannerM": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "const": "movie",
+                  "default": "movie"
+                },
+                {
+                  "type": "string",
+                  "const": "image",
+                  "default": "image"
+                }
+              ],
+              "type": "string",
+              "title": "Type"
+            },
+            "srcMovieMobile": {
+              "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image|Video",
+              "title": "Src Movie Mobile"
+            },
+            "srcMovieDesktop": {
+              "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image|Video",
+              "title": "Src Movie Desktop"
+            },
+            "altMovie": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Alt Movie"
+            },
+            "hrefMovie": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Href Movie"
+            }
+          },
+          "required": [],
+          "title": "Banner M"
+        },
+        "borderRadius": {
+          "type": "object",
+          "properties": {
+            "mobile": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "const": "none",
+                  "default": "none"
+                },
+                {
+                  "type": "string",
+                  "const": "sm",
+                  "default": "sm"
+                },
+                {
+                  "type": "string",
+                  "const": "md",
+                  "default": "md"
+                },
+                {
+                  "type": "string",
+                  "const": "lg",
+                  "default": "lg"
+                },
+                {
+                  "type": "string",
+                  "const": "xl",
+                  "default": "xl"
+                },
+                {
+                  "type": "string",
+                  "const": "2xl",
+                  "default": "2xl"
+                },
+                {
+                  "type": "string",
+                  "const": "3xl",
+                  "default": "3xl"
+                },
+                {
+                  "type": "string",
+                  "const": "full",
+                  "default": "full"
+                }
+              ],
+              "type": "string",
+              "title": "Mobile"
+            },
+            "desktop": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "const": "none",
+                  "default": "none"
+                },
+                {
+                  "type": "string",
+                  "const": "sm",
+                  "default": "sm"
+                },
+                {
+                  "type": "string",
+                  "const": "md",
+                  "default": "md"
+                },
+                {
+                  "type": "string",
+                  "const": "lg",
+                  "default": "lg"
+                },
+                {
+                  "type": "string",
+                  "const": "xl",
+                  "default": "xl"
+                },
+                {
+                  "type": "string",
+                  "const": "2xl",
+                  "default": "2xl"
+                },
+                {
+                  "type": "string",
+                  "const": "3xl",
+                  "default": "3xl"
+                },
+                {
+                  "type": "string",
+                  "const": "full",
+                  "default": "full"
+                }
+              ],
+              "type": "string",
+              "title": "Desktop"
+            }
+          },
+          "required": [],
+          "title": "Border Radius"
+        }
+      },
+      "required": [
+        "matcher",
+        "borderRadius"
+      ],
+      "title": "BannerCampaing"
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lck1vdmllSW1nLnRzeA==@BannerCampaing[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lck1vdmllSW1nLnRzeA==@BannerCampaing"
+      },
+      "title": "BannerCampaing[]"
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lck1vdmllSW1nLnRzeA==@Props": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@ProductListingPage|null",
+          "title": "Page"
+        },
+        "banners": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lck1vdmllSW1nLnRzeA==@BannerCampaing[]",
+          "title": "Banners"
+        }
+      },
+      "required": [],
+      "title": "deco-sites/riquezzz/components/ui/BannerMovieImg.tsx@Props"
     },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lclBMUC50c3g=@Banner": {
       "type": "object",
@@ -10667,11 +10938,6 @@
       },
       "required": [],
       "title": "deco-sites/riquezzz/components/ui/BannerPLP.tsx@Props"
-    },
-    "ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Video": {
-      "type": "string",
-      "format": "video-uri",
-      "title": "Video"
     },
     "ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image|Image|null": {
       "anyOf": [
@@ -10755,6 +11021,28 @@
           ],
           "type": "number",
           "title": "Size Img Mobile"
+        },
+        "vertical": {
+          "anyOf": [
+            {
+              "type": "string",
+              "const": "start",
+              "default": "start"
+            },
+            {
+              "type": "string",
+              "const": "center",
+              "default": "center"
+            },
+            {
+              "type": "string",
+              "const": "end",
+              "default": "end"
+            }
+          ],
+          "type": "string",
+          "default": "\"start\"",
+          "title": "Vertical"
         }
       },
       "required": [
@@ -11035,6 +11323,28 @@
           },
           "required": [],
           "title": "Border Radius"
+        },
+        "cardsHorizontal": {
+          "anyOf": [
+            {
+              "type": "string",
+              "const": "start",
+              "default": "start"
+            },
+            {
+              "type": "string",
+              "const": "center",
+              "default": "center"
+            },
+            {
+              "type": "string",
+              "const": "end",
+              "default": "end"
+            }
+          ],
+          "type": "string",
+          "default": "\"start\"",
+          "title": "Cards Horizontal"
         },
         "cards": {
           "type": "object",
@@ -16088,6 +16398,27 @@
         }
       }
     },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9CYW5uZXJGdWxsLnRzeA==": {
+      "title": "deco-sites/riquezzz/sections/BannerFull.tsx",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckZ1bGwudHN4@Props"
+        }
+      ],
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "deco-sites/riquezzz/sections/BannerFull.tsx"
+          ],
+          "default": "deco-sites/riquezzz/sections/BannerFull.tsx"
+        }
+      }
+    },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9CYW5uZXJHcmlkLnRzeA==": {
       "title": "deco-sites/riquezzz/sections/BannerGrid.tsx",
       "type": "object",
@@ -16106,6 +16437,27 @@
             "deco-sites/riquezzz/sections/BannerGrid.tsx"
           ],
           "default": "deco-sites/riquezzz/sections/BannerGrid.tsx"
+        }
+      }
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9CYW5uZXJNb3ZpZUltZy50c3g=": {
+      "title": "deco-sites/riquezzz/sections/BannerMovieImg.tsx",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lck1vdmllSW1nLnRzeA==@Props"
+        }
+      ],
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "deco-sites/riquezzz/sections/BannerMovieImg.tsx"
+          ],
+          "default": "deco-sites/riquezzz/sections/BannerMovieImg.tsx"
         }
       }
     },
@@ -17949,7 +18301,13 @@
           "$ref": "#/definitions/JGxpdmUvc2VjdGlvbnMvVXNlU2xvdC50c3g="
         },
         {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9CYW5uZXJGdWxsLnRzeA=="
+        },
+        {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9CYW5uZXJHcmlkLnRzeA=="
+        },
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9CYW5uZXJNb3ZpZUltZy50c3g="
         },
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9CYW5uZXJQTFAudHN4"

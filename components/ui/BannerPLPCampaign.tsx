@@ -154,56 +154,6 @@ const SIZE_IMG_W = {
   3: 370,
 };
 
-function BannerUI({ banner }: { banner: BannerCampaing }) {
-  const { image } = banner;
-
-  return (
-    <>
-      <div class="grid grid-cols-1 grid-rows-1">
-        <Picture
-          preload
-          class="col-start-1 col-span-1 row-start-1 row-span-1"
-        >
-          {image?.mobile
-            ? (
-              <Source
-                src={image?.mobile}
-                width={360}
-                height={120}
-                media="(max-width: 767px)"
-              />
-            )
-            : ("")}
-          {image?.desktop
-            ? (
-              <Source
-                src={image.desktop}
-                width={1440}
-                height={200}
-                media="(min-width: 767px)"
-              />
-            )
-            : ("")}
-
-          {image?.desktop
-            ? <img class="w-full" src={image.desktop} alt={image.alt} />
-            : ("")}
-        </Picture>
-      </div>
-      <div class="container flex flex-col items-center text-center justify-center sm:items-start col-start-1 col-span-1 row-start-1 row-span-1 w-full max-w-[660px] py-10 sm:gap-5 font-bold">
-        <h1 class="w-full ">
-          <span class="text-3xl sm:text-5xl uppercase font-medium text-black ">
-            {image?.title}
-          </span>
-        </h1>
-
-        <span class="text-xs px-5 text-justify sm:text-center sm:text-sm font-medium text-[#5e5e5e] w-full ">
-          {image?.subtitle}
-        </span>
-      </div>
-    </>
-  );
-}
 function BannerFull({ banner }: { banner: BannerCampaing }) {
   const { image } = banner;
 
@@ -488,7 +438,6 @@ function BannerCompanie({ page, banners = [] }: Props) {
 
       <BannerFull banner={matching} />
 
-      <BannerUI banner={matching} />
     </>
   );
 }

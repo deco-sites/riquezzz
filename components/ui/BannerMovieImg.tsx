@@ -122,7 +122,7 @@ function BannerMovieImg({ banner }: { banner: BannerCampaing }) {
           </section>
         )
         : (
-          <div class="grid grid-cols-1 grid-rows-1">
+          <div class="w-full px-auto sm:max-w-none sm:m-0 sm:overflow-hidden pr-[40px]">
             <Picture
               preload
               class="col-start-1 col-span-1 row-start-1 row-span-1"
@@ -131,8 +131,8 @@ function BannerMovieImg({ banner }: { banner: BannerCampaing }) {
                 ? (
                   <Source
                     src={bannerM?.srcMovieMobile}
-                    width={360}
-                    height={120}
+                    width={375}
+                    height={230}
                     media="(max-width: 767px)"
                   />
                 )
@@ -141,8 +141,8 @@ function BannerMovieImg({ banner }: { banner: BannerCampaing }) {
                 ? (
                   <Source
                     src={bannerM.srcMovieDesktop}
-                    width={1440}
-                    height={200}
+                    width={960}
+                    height={600}
                     media="(min-width: 767px)"
                   />
                 )
