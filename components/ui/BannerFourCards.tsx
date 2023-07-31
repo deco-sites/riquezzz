@@ -33,57 +33,40 @@ export interface Card {
   vertical?: "start" | "center" | "end";
 }
 
+export interface BannerItem {
+  /** @default movie */
+  type: "movie" | "image";
+
+  srcMobile: LiveViedo | LiveImage;
+  srcDesktop: LiveViedo | LiveImage;
+  /**
+   * @description Image alt text
+   */
+  alt?: string;
+  /**
+   * @description When you click you go to
+   */
+  href?: string;
+  /** @default "Left"  */
+  Position: "Left" | "Rigth";
+}
+
 export interface BannerCampaing {
   /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
   matcher: string;
   /** @description Layout option */
-  layout: 1 | 2 | 3;
 
-  bannerFirst?: {
-    /** @default movie */
-    type?: "movie" | "image";
-
-    srcMovieMobile?: LiveViedo;
-    srcMovieDesktop?: LiveViedo;
-    /**
-     * @description Movie alt text
-     */
-    altMovie?: string;
-    /**
-     * @description When you click you go to
-     */
-    hrefMovie?: string;
-  };
-  image?: {
-    /** @description Image for big screens */
-    desktop?: LiveImage | LiveImage | undefined;
-    /** @description Image for small screens */
-    mobile?: LiveImage | LiveImage | undefined;
-    /** @description image alt text */
-    alt?: string;
-    /** @description text to be rendered on top of the image */
-    title?: string;
-    /** @description text to be rendered on top of the image */
-    subtitle?: string;
-  };
-
-  itemsPerLine: {
-    /** @default 2 */
-    mobile?: 1 | 2;
-    /** @default 4 */
-    desktop?: 1 | 2 | 4 | 6 | 8;
-  };
   borderRadius: {
     /** @default none */
     mobile?: BorderRadius;
     /** @default none */
     desktop?: BorderRadius;
   };
-  /** @default "start" */
-  cardsHorizontal?: "start" | "center" | "end";
+
   cards: {
     images?: Card[];
   };
+  bannerFirst?: BannerItem;
 }
 
 export interface Props {
@@ -130,35 +113,24 @@ const VERTICAL = {
   end: "align-end",
 };
 
-const SIZE_IMG_H = {
-  1: 700,
-  2: 450,
-  3: 255,
-};
-const SIZE_IMG_W = {
-  1: 500,
-  2: 300,
-  3: 370,
-};
-
 function CardMovie({ banner }: { banner: BannerCampaing }) {
   const { bannerFirst, borderRadius } = banner;
   return (
     <>
       {bannerFirst?.type === "movie"
         ? (
-          <section class="w-full px-auto sm:max-w-none sm:m-0 sm:overflow-hidden pr-[40px]">
+          <section class="w-full px-auto sm:max-w-none sm:m-0 sm:overflow-hidden pr-[40px] ">
             <div>
               <a
-                href={bannerFirst?.hrefMovie}
+                href={bannerFirst?.href}
                 class={`overflow-hidden ${
                   RADIUS_MOBILE[borderRadius.mobile ?? "none"]
                 } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
               >
                 <div class="w-full h-full m-0 p-o b">
                   <video
-                    src={bannerFirst?.srcMovieDesktop}
-                    alt={bannerFirst?.altMovie}
+                    src={bannerFirst?.srcDesktop}
+                    alt={bannerFirst?.alt}
                     autoPlay
                     muted
                     loop
@@ -171,8 +143,8 @@ function CardMovie({ banner }: { banner: BannerCampaing }) {
                     Video não suportado!
                   </video>
                   <video
-                    src={bannerFirst?.srcMovieMobile}
-                    alt={bannerFirst?.altMovie}
+                    src={bannerFirst?.srcMobile}
+                    alt={bannerFirst?.alt}
                     autoPlay
                     muted
                     loop
@@ -195,33 +167,35 @@ function CardMovie({ banner }: { banner: BannerCampaing }) {
               preload
               class="col-start-1 col-span-1 row-start-1 row-span-1"
             >
-              {bannerFirst?.srcMovieMobile
+              {bannerFirst?.srcMobile
                 ? (
                   <Source
-                    src={bannerFirst?.srcMovieMobile}
-                    width={360}
-                    height={120}
+                    src={bannerFirst?.srcMobile}
+                    class="w-full h-full"
+                    width={335}
+                    height={500}
                     media="(max-width: 767px)"
                   />
                 )
                 : ("")}
-              {bannerFirst?.srcMovieDesktop
+              {bannerFirst?.srcDesktop
                 ? (
                   <Source
-                    src={bannerFirst.srcMovieDesktop}
-                    width={1440}
-                    height={200}
+                    src={bannerFirst.srcDesktop}
+                    class="w-full h-full"
+                    width={960}
+                    height={1440}
                     media="(min-width: 767px)"
                   />
                 )
                 : ("")}
 
-              {bannerFirst?.srcMovieDesktop
+              {bannerFirst?.srcDesktop
                 ? (
                   <img
-                    class="w-full"
-                    src={bannerFirst.srcMovieDesktop}
-                    alt={bannerFirst.altMovie}
+                    class="w-full h-full"
+                    src={bannerFirst.srcDesktop}
+                    alt={bannerFirst.alt}
                   />
                 )
                 : ("")}
@@ -255,8 +229,8 @@ function CardItem(
             loading={lcp ? "eager" : "lazy"}
             src={desktop}
             alt={alt}
-            width={SIZE_IMG_W[sizeImgMobile]}
-            height={SIZE_IMG_H[sizeImgMobile]}
+            width={350}
+            height={540}
           />
           {image.secondImg &&
             (
@@ -265,8 +239,8 @@ function CardItem(
                 loading={lcp ? "eager" : "lazy"}
                 src={image.secondImg}
                 alt={alt}
-                width={SIZE_IMG_W[sizeImgMobile]}
-                height={SIZE_IMG_H[sizeImgMobile]}
+                width={350}
+                height={540}
               />
             )}
         </div>
@@ -276,20 +250,22 @@ function CardItem(
 }
 
 function CardsCamps({ banner }: { banner: BannerCampaing }) {
-  const { cards, cardsHorizontal } = banner;
+  const { cards } = banner;
 
   const id = useId();
 
   return (
     <>
-      <div
-        class={`w-full lg:bg-[#cacbcc] flex  ${
-          HORIZONTAL[cardsHorizontal!]
-        } lg:hidden `}
-      >
+      <div class=" w-full flex flex-row gap-5  h-[1400px] px-[50px] pt-[40px]  ">
+        <div
+          class={` min-w-[50%] flex `}
+        >
+          <CardMovie banner={banner} />
+        </div>
+
         <div
           id={id}
-          class=" relative grid px-4 lg:px-6 grid-cols-[48px_1fr_48px] lg:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_48px_22px] lg:grid-rows-[1fr_48px_1fr_48px] max-w-[1280px] xl:px-0"
+          class="flex  w-full flex-row flex-wrap  gap-1 justify-start   "
         >
           {cards.images?.map((image, index) => (
             <CardItem
@@ -301,7 +277,8 @@ function CardsCamps({ banner }: { banner: BannerCampaing }) {
       </div>
 
       {/* versão celular */}
-      <div class="hidden lg:flex container mt-[60px] w-full  md:px-0 ">
+      {
+        /* <div class="flex lg:hidden container mt-[60px] w-full  md:px-0 ">
         <div
           id={id}
           class="flex w-full items-center gap-3 flex-row justify-center "
@@ -351,7 +328,8 @@ function CardsCamps({ banner }: { banner: BannerCampaing }) {
             </div>
           ))}
         </div>
-      </div>
+      </div> */
+      }
     </>
   );
 }
