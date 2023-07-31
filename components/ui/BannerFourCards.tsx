@@ -199,12 +199,12 @@ function CardItem(
   } = image;
 
   return (
-    <div class={`relative overflow-y-hidden `}>
-      <div
-        class="card card-compact card-bordered rounded-none border-transparent group w-full h-full"
-        data-deco="view-product"
-      >
-        <figure class="relative">
+    <div
+      class="card card-compact card-bordered rounded-none border-transparent group "
+      data-deco="view-product"
+    >
+      <div class={`relative w-[300px] overflow-y-hidden `}>
+        <figure class="relative" style={{ aspectRatio: `300/540` }}>
           {
             /* <a href={href}>
         <Image
@@ -254,7 +254,7 @@ function CardItem(
               alt={alt}
               width={300}
               height={540}
-              class="absolute  top-0 left-0  transition-opacity w-full opacity-100 group-hover:opacity-0 "
+              class="absolute top-0 left-0  transition-opacity w-full opacity-100 group-hover:opacity-0 "
               loading={lcp ? "eager" : "lazy"}
               sizes="(max-width: 640px) 50vw, 20vw"
               decoding="async"
@@ -264,7 +264,7 @@ function CardItem(
               alt={alt}
               width={300}
               height={540}
-              class="absolute top-0 left-0  transition-opacity w-full opacity-0 group-hover:opacity-100"
+              class=" absolute top-0 left-0  transition-opacity w-full opacity-0 group-hover:opacity-100"
               loading={lcp ? "eager" : "lazy"}
               sizes="(max-width: 640px) 50vw, 20vw"
               decoding="async"
