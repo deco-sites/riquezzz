@@ -5,6 +5,7 @@ import type { LoaderReturnType } from "$live/types.ts";
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
 import type { ProductListingPage } from "deco-sites/std/commerce/types.ts";
 import type { Video as LiveViedo } from "deco-sites/std/components/types.ts";
+import WishlistIcon from "$store/islands/WishlistButton.tsx";
 
 export type BorderRadius =
   | "none"
@@ -26,11 +27,6 @@ export interface Card {
   alt: string;
   /** @description when user clicks on the image, go to this link */
   href: string;
-  sizeImgDescktop?: 1 | 2 | 3;
-  sizeImgMobile?: 1 | 2 | 3;
-
-  /** @default "start" */
-  vertical?: "start" | "center" | "end";
 }
 
 export interface BannerItem {
@@ -94,23 +90,6 @@ const RADIUS_DESKTOP = {
   "2xl": "sm:rounded-2xl",
   "3xl": "sm:rounded-3xl",
   "full": "sm:rounded-full",
-};
-
-const SIZE_IMG = {
-  1: "h-[900px] w-[800px]",
-  2: "h-[450px] w-[300px]",
-  3: "h-[255px] w-[370px]",
-};
-
-const HORIZONTAL = {
-  start: "justify-start",
-  center: "justify-center",
-  end: "justify-end",
-};
-const VERTICAL = {
-  start: "align-start",
-  center: "align-center",
-  end: "align-end",
 };
 
 function CardMovie({ banner }: { banner: BannerCampaing }) {
@@ -207,10 +186,9 @@ function CardMovie({ banner }: { banner: BannerCampaing }) {
 }
 
 function CardItem(
-  { image, lcp, sizeImgMobile = 1 }: {
+  { image, lcp }: {
     image: Card;
     lcp?: boolean;
-    sizeImgMobile: 1 | 2 | 3;
   },
 ) {
   const {
@@ -221,30 +199,79 @@ function CardItem(
   } = image;
 
   return (
-    <div class={`relative ${SIZE_IMG[sizeImgMobile]} overflow-y-hidden `}>
-      <a href={href}>
-        <div class={`w-full h-full ${VERTICAL[image.vertical!]}`}>
-          <Image
-            class={` flex ${image.secondImg ? "hover:hidden" : ""}`}
-            loading={lcp ? "eager" : "lazy"}
-            src={desktop}
-            alt={alt}
-            width={350}
-            height={540}
-          />
-          {image.secondImg &&
-            (
-              <Image
-                class={` hidden ${image.secondImg ? "hover:flex" : ""} `}
-                loading={lcp ? "eager" : "lazy"}
-                src={image.secondImg}
-                alt={alt}
-                width={350}
-                height={540}
-              />
-            )}
-        </div>
-      </a>
+    <div class={`relative overflow-y-hidden `}>
+      <div
+        class="card card-compact card-bordered rounded-none border-transparent group w-full h-full"
+        data-deco="view-product"
+      >
+        <figure class="relative">
+          {
+            /* <a href={href}>
+        <Image
+          class={` flex w-full ${image.secondImg ? "hover:hidden" : ""}`}
+          loading={lcp ? "eager" : "lazy"}
+          src={desktop}
+          alt={alt}
+          width={300}
+          height={540}
+        />
+        {image.secondImg &&
+          (
+            <Image
+              class={` hidden  w-full ${image.secondImg ? "hover:flex" : ""} `}
+              loading={lcp ? "eager" : "lazy"}
+              src={image.secondImg}
+              alt={alt}
+              width={300}
+              height={540}
+            />
+          )}
+      </a> */
+          }
+
+          {
+            /* Wishlist button */
+          }
+          {
+            /*
+      {listPrice !== price
+            ? (
+              <div class="absolute flex justify-center top-0 left-0 z-10 mt-3 ml-2">
+                <span class="rounded-[100px] font-bold bg-black text-white p-1 px-2  text-xs">
+                  {Math.floor(price! / listPrice! * 100)}% OFF
+                </span>
+              </div>
+            )
+            : ("")} */
+          }
+          <a
+            href={href}
+            aria-label="view product"
+            class="contents"
+          >
+            <Image
+              src={desktop}
+              alt={alt}
+              width={300}
+              height={540}
+              class="absolute  top-0 left-0  transition-opacity w-full opacity-100 group-hover:opacity-0 "
+              loading={lcp ? "eager" : "lazy"}
+              sizes="(max-width: 640px) 50vw, 20vw"
+              decoding="async"
+            />
+            <Image
+              src={image.secondImg ?? desktop!}
+              alt={alt}
+              width={300}
+              height={540}
+              class="absolute top-0 left-0  transition-opacity w-full opacity-0 group-hover:opacity-100"
+              loading={lcp ? "eager" : "lazy"}
+              sizes="(max-width: 640px) 50vw, 20vw"
+              decoding="async"
+            />
+          </a>
+        </figure>
+      </div>
     </div>
   );
 }
@@ -265,12 +292,11 @@ function CardsCamps({ banner }: { banner: BannerCampaing }) {
 
         <div
           id={id}
-          class="flex  w-full flex-row flex-wrap  gap-1 justify-start   "
+          class="flex  w-full flex-row flex-wrap  gap-5 justify-start"
         >
           {cards.images?.map((image, index) => (
             <CardItem
               image={image}
-              sizeImgMobile={image.sizeImgMobile!}
             />
           ))}
         </div>
