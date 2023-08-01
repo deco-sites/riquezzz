@@ -5,7 +5,7 @@ import type { LoaderReturnType } from "$live/types.ts";
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
 import type { ProductListingPage } from "deco-sites/std/commerce/types.ts";
 import type { Video as LiveViedo } from "deco-sites/std/components/types.ts";
-import WishlistIcon from "$store/islands/WishlistButton.tsx";
+import { useOffer } from "$store/sdk/useOffer.ts";
 
 export type BorderRadius =
   | "none"
@@ -23,6 +23,9 @@ export interface Card {
   /** @description mobile otimized image */
   mobile: LiveImage;
   secondImg?: LiveImage;
+
+  price: string;
+  name: string;
   /** @description Image's alt text */
   alt: string;
   /** @description when user clicks on the image, go to this link */
@@ -66,7 +69,8 @@ export interface BannerCampaing {
 }
 
 export interface Props {
-  page?: LoaderReturnType<ProductListingPage | null>;
+  page: LoaderReturnType<ProductListingPage | null>;
+
   banners?: BannerCampaing[];
 }
 
@@ -203,47 +207,8 @@ function CardItem(
       class="card card-compact card-bordered rounded-none border-transparent group "
       data-deco="view-product"
     >
-      <div class={`relative w-[300px] overflow-y-hidden `}>
-        <figure class="relative" style={{ aspectRatio: `300/540` }}>
-          {
-            /* <a href={href}>
-        <Image
-          class={` flex w-full ${image.secondImg ? "hover:hidden" : ""}`}
-          loading={lcp ? "eager" : "lazy"}
-          src={desktop}
-          alt={alt}
-          width={300}
-          height={540}
-        />
-        {image.secondImg &&
-          (
-            <Image
-              class={` hidden  w-full ${image.secondImg ? "hover:flex" : ""} `}
-              loading={lcp ? "eager" : "lazy"}
-              src={image.secondImg}
-              alt={alt}
-              width={300}
-              height={540}
-            />
-          )}
-      </a> */
-          }
-
-          {
-            /* Wishlist button */
-          }
-          {
-            /*
-      {listPrice !== price
-            ? (
-              <div class="absolute flex justify-center top-0 left-0 z-10 mt-3 ml-2">
-                <span class="rounded-[100px] font-bold bg-black text-white p-1 px-2  text-xs">
-                  {Math.floor(price! / listPrice! * 100)}% OFF
-                </span>
-              </div>
-            )
-            : ("")} */
-          }
+      <div class={`relative w-[350px] overflow-y-hidden`}>
+        <figure class="relative" style={{ aspectRatio: `350/540` }}>
           <a
             href={href}
             aria-label="view product"
@@ -270,7 +235,41 @@ function CardItem(
               decoding="async"
             />
           </a>
+          <div class="group/edit">
+            <figcaption class=" card-body card-actions absolute bottom-0 left-0 w-full  transition-opacity opacity-0 group-hover:opacity-100 bg-green-600">
+              {/* COMPRA */}
+              <ul class="flex justify-center items-center  w-full">
+                <a class="uppercase w-full text-white text-center font-bold text-xl">
+                  Compra
+                </a>
+              </ul>
+            </figcaption>
+          </div>
         </figure>
+        <div class=" flex flex-col p-0 m-0 h-[90px] max-h-[90px] justify-start items-start">
+          <h2 class="card-title w-full   text-base-300 text-sm 2xl:text-lg  font-normal uppercase">
+            {image.name}
+          </h2>
+          <div class="flex flex-col  sm:flew-row items-start ">
+            <div class="hidden flew-row  items-start sm:flex flex-wrap">
+              <span class="text-xs 2xl:text-base font-bold sm:flex hidden  ">
+                {image.price
+                  ? (image.price?.length === 8
+                    ? (image.price + ",00" + " / ")
+                    : (image.price?.length === 10
+                      ? (image.price + "0" + " / ")
+                      : (image.price + " / ")))
+                  : ("")}
+              </span>
+
+              <span
+                class={`text-xs 2xl:text-base font-bold pl-1`}
+              >
+                {image.price}
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -278,21 +277,19 @@ function CardItem(
 
 function CardsCamps({ banner }: { banner: BannerCampaing }) {
   const { cards } = banner;
-
   const id = useId();
-
   return (
     <>
-      <div class=" w-full flex flex-row gap-5  h-[1400px] px-[50px] pt-[40px]  ">
+      <div class=" w-full flex flex-row gap-10 h-[1400px] px-[50px] pt-[40px]  ">
         <div
-          class={` min-w-[50%] flex `}
+          class={`w-full flex `}
         >
           <CardMovie banner={banner} />
         </div>
 
         <div
           id={id}
-          class="flex  w-full flex-row flex-wrap  gap-5 justify-start"
+          class="flex flex-row flex-wrap  gap-10 justify-start"
         >
           {cards.images?.map((image, index) => (
             <CardItem
@@ -301,61 +298,6 @@ function CardsCamps({ banner }: { banner: BannerCampaing }) {
           ))}
         </div>
       </div>
-
-      {/* versão celular */}
-      {
-        /* <div class="flex lg:hidden container mt-[60px] w-full  md:px-0 ">
-        <div
-          id={id}
-          class="flex w-full items-center gap-3 flex-row justify-center "
-        >
-          {cards.images?.map((image, index) => (
-            <div
-              class={` ${SIZE_IMG[image.sizeImgDescktop!]}   ${
-                image.secondImg !== undefined
-                  ? "order-transparent hover:border-base-200 group overflow-hidden hover:overflow-visible"
-                  : ""
-              }`}
-            >
-              <figure
-                class={`w-full h-full ${
-                  image.secondImg !== undefined ? "relative" : ""
-                }`}
-              >
-                <a
-                  href={image.href}
-                  class={`${image.secondImg !== undefined ? "contents" : ""}`}
-                >
-                  <Image
-                    class={`w-full ${
-                      image.secondImg !== undefined
-                        ? "flex transition-opacity opacity-100 md:group-hover:hidden md:group-hover:opacity-0"
-                        : ""
-                    }`}
-                    src={image.desktop}
-                    alt={image.alt}
-                    width={SIZE_IMG_W[image.sizeImgDescktop!]}
-                    height={SIZE_IMG_H[image.sizeImgDescktop!]}
-                    decoding="async"
-                  />
-                  {image.secondImg !== undefined
-                    ? (
-                      <Image
-                        class="transition-opacity opacity-0 md:group-hover:opacity-100"
-                        src={image.secondImg}
-                        alt={image.alt}
-                        width={SIZE_IMG_W[image.sizeImgDescktop!]}
-                        height={SIZE_IMG_H[image.sizeImgDescktop!]}
-                      />
-                    )
-                    : ""}
-                </a>
-              </figure>
-            </div>
-          ))}
-        </div>
-      </div> */
-      }
     </>
   );
 }

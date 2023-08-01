@@ -10389,6 +10389,14 @@
           "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
           "title": "Second Img"
         },
+        "price": {
+          "type": "string",
+          "title": "Price"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name"
+        },
         "alt": {
           "type": "string",
           "description": "Image's alt text",
@@ -10403,6 +10411,8 @@
       "required": [
         "desktop",
         "mobile",
+        "price",
+        "name",
         "alt",
         "href"
       ],
@@ -10651,7 +10661,9 @@
           "title": "Banners"
         }
       },
-      "required": [],
+      "required": [
+        "page"
+      ],
       "title": "deco-sites/riquezzz/components/ui/BannerFourCards.tsx@Props"
     },
     "ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image|null": {
