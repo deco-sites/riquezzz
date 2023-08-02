@@ -17,15 +17,19 @@ export type BorderRadius =
   | "3xl"
   | "full";
 
-export interface Card {
+export interface Product {
+  /** @default 1 */
+  position?: 1 | 2 | 3;
   /** @description desktop otimized image */
   desktop: LiveImage;
   /** @description mobile otimized image */
   mobile: LiveImage;
   secondImg?: LiveImage;
 
-  price: number;
+  price?: number;
+
   qtdportion?: number;
+
   oldPrice?: number;
   /** @default true */
 
@@ -35,14 +39,32 @@ export interface Card {
   alt: string;
   /** @description when user clicks on the image, go to this link */
   href: string;
+  /** @default 1 */
+  size: 1 | 2 | 3;
+  horizontal?: "start" | "center" | "end";
+  vertical?: "start" | "center" | "end";
+}
+export interface Text {
+  /** @default 2 */
+
+  position?: 1 | 2 | 3;
+  /** @description Text camp */
+  text: string;
+
+  /** @description when user clicks on the image, go to this link */
+  href?: string;
+
+  horizontal?: "start" | "center" | "end";
+  vertical?: "start" | "center" | "end";
 }
 
-export interface BannerItem {
-  /** @default movie */
-  type: "movie" | "image";
+export interface BannerMovieIMG {
+  /** @default 3 */
+  position?: 1 | 2 | 3;
+  type?: "movie" | "image";
 
-  srcMobile: LiveViedo | LiveImage;
-  srcDesktop: LiveViedo | LiveImage;
+  srcMobile?: LiveViedo | LiveImage;
+  srcDesktop?: LiveViedo | LiveImage;
   /**
    * @description Image alt text
    */
@@ -51,11 +73,13 @@ export interface BannerItem {
    * @description When you click you go to
    */
   href?: string;
-  /** @default "Left"  */
-  Position: "Left" | "Rigth";
+  /** @default 1 */
+  size: 1 | 2 | 3;
+  horizontal?: "start" | "center" | "end";
+  vertical?: "start" | "center" | "end";
 }
 
-export interface BannerCampaing {
+export interface Itens {
   /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
   matcher: string;
   /** @description Layout option */
@@ -66,17 +90,19 @@ export interface BannerCampaing {
     /** @default none */
     desktop?: BorderRadius;
   };
-
+  horizontal?: "start" | "center" | "end";
+  vertical?: "start" | "center" | "end";
   cards: {
-    images?: Card[];
+    productCard?: Product[];
+    banner?: BannerMovieIMG;
+    text?: Text;
   };
-  bannerFirst?: BannerItem;
 }
 
 export interface Props {
   page: LoaderReturnType<ProductListingPage | null>;
 
-  banners?: BannerCampaing[];
+  banners?: Itens[];
 }
 
 const RADIUS_MOBILE = {
@@ -101,24 +127,52 @@ const RADIUS_DESKTOP = {
   "full": "sm:rounded-full",
 };
 
-function CardMovie({ banner }: { banner: BannerCampaing }) {
-  const { bannerFirst, borderRadius } = banner;
+const SIZE_IMG = {
+  1: "h-[900px] w-[800px]",
+  2: "h-[450px] w-[300px]",
+  3: "h-[255px] w-[370px]",
+};
+
+const HORIZONTAL = {
+  start: "justify-start",
+  center: "justify-center",
+  end: "justify-end",
+};
+const VERTICAL = {
+  start: "align-start",
+  center: "align-center",
+  end: "align-end",
+};
+
+const SIZE_IMG_H = {
+  1: 700,
+  2: 450,
+  3: 255,
+};
+const SIZE_IMG_W = {
+  1: 500,
+  2: 300,
+  3: 370,
+};
+
+function CardMovie({ banner }: { banner: Itens }) {
+  const { cards, borderRadius } = banner;
   return (
     <>
-      {bannerFirst?.type === "movie"
+      {cards.banner?.type === "movie"
         ? (
           <section class="w-full px-auto sm:max-w-none sm:m-0 sm:overflow-hidden pr-[40px] ">
             <div>
               <a
-                href={bannerFirst?.href}
+                href={cards.banner?.href}
                 class={`overflow-hidden ${
                   RADIUS_MOBILE[borderRadius.mobile ?? "none"]
                 } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
               >
                 <div class="w-full h-full m-0 p-o b">
                   <video
-                    src={bannerFirst?.srcDesktop}
-                    alt={bannerFirst?.alt}
+                    src={cards.banner?.srcDesktop}
+                    alt={cards.banner?.alt}
                     autoPlay
                     muted
                     loop
@@ -131,8 +185,8 @@ function CardMovie({ banner }: { banner: BannerCampaing }) {
                     Video não suportado!
                   </video>
                   <video
-                    src={bannerFirst?.srcMobile}
-                    alt={bannerFirst?.alt}
+                    src={cards.banner?.srcMobile}
+                    alt={cards.banner?.alt}
                     autoPlay
                     muted
                     loop
@@ -155,10 +209,10 @@ function CardMovie({ banner }: { banner: BannerCampaing }) {
               preload
               class="col-start-1 col-span-1 row-start-1 row-span-1"
             >
-              {bannerFirst?.srcMobile
+              {cards.banner?.srcMobile
                 ? (
                   <Source
-                    src={bannerFirst?.srcMobile}
+                    src={cards.banner?.srcMobile}
                     class="w-full h-full"
                     width={335}
                     height={500}
@@ -166,10 +220,10 @@ function CardMovie({ banner }: { banner: BannerCampaing }) {
                   />
                 )
                 : ("")}
-              {bannerFirst?.srcDesktop
+              {cards.banner?.srcDesktop
                 ? (
                   <Source
-                    src={bannerFirst.srcDesktop}
+                    src={cards.banner.srcDesktop}
                     class="w-full h-full"
                     width={960}
                     height={1440}
@@ -178,12 +232,12 @@ function CardMovie({ banner }: { banner: BannerCampaing }) {
                 )
                 : ("")}
 
-              {bannerFirst?.srcDesktop
+              {cards.banner?.srcDesktop
                 ? (
                   <img
                     class="w-full h-full"
-                    src={bannerFirst.srcDesktop}
-                    alt={bannerFirst.alt}
+                    src={cards.banner.srcDesktop}
+                    alt={cards.banner.alt}
                   />
                 )
                 : ("")}
@@ -196,7 +250,7 @@ function CardMovie({ banner }: { banner: BannerCampaing }) {
 
 function CardItem(
   { image, lcp }: {
-    image: Card;
+    image: Product;
     lcp?: boolean;
   },
 ) {
@@ -207,6 +261,7 @@ function CardItem(
     href,
   } = image;
   const priceStr = image.price + "";
+
   return (
     <div
       class="card card-compact card-bordered rounded-none border-transparent group "
@@ -254,57 +309,61 @@ function CardItem(
         <div class=" flex flex-col p-0 m-0 h-[90px] max-h-[90px] justify-start items-start">
           <h2 class="card-title w-full   text-base-300 text-sm 2xl:text-lg  font-normal uppercase">
             {image.name}
-          </h2>
-          <div class="flex flex-col  sm:flew-row items-start ">
-            <div class=" flew-row  items-start flex flex-wrap">
-              {image.qtdportion !== undefined
-                ? (
-                  <span
-                    class={`text-xs 2xl:text-base font-bold pl-1`}
-                  >
-                    {image.qtdportion + "x R$" +
-                      image.price / image.qtdportion! +
-                      " / "}
-                  </span>
-                )
-                : ("")}
-              {image.oldPrice !== image.price
-                ? (
-                  <span class="line-through text-xs 2xl:text-base  text-base-300 px-1 ">
-                    R$ {image.oldPrice !== image.price
-                      ? (priceStr.length === 3
-                        ? (image.oldPrice + ",00 ")
-                        : (priceStr?.length === 5
-                          ? (image.oldPrice + "0 ")
-                          : (image.oldPrice)))
-                      : (" ")}
-                  </span>
-                )
-                : ("")}
+          </h2>{" "}
+          {image.price !== undefined
+            ? (
+              <div class="flex flex-col  sm:flew-row items-start ">
+                <div class=" flew-row  items-start flex flex-wrap">
+                  {image.qtdportion !== undefined
+                    ? (
+                      <span
+                        class={`text-xs 2xl:text-base font-bold pl-1`}
+                      >
+                        {image.qtdportion + "x R$" +
+                          image.price / image.qtdportion! +
+                          " / "}
+                      </span>
+                    )
+                    : ("")}
+                  {image.oldPrice !== image.price
+                    ? (
+                      <span class="line-through text-xs 2xl:text-base  text-base-300 px-1 ">
+                        R$ {image.oldPrice !== image.price
+                          ? (priceStr.length === 3
+                            ? (image.oldPrice + ",00 ")
+                            : (priceStr?.length === 5
+                              ? (image.oldPrice + "0 ")
+                              : (image.oldPrice)))
+                          : (" ")}
+                      </span>
+                    )
+                    : ("")}
 
-              <span class="text-xs 2xl:text-base font-bold px-1">
-                {image.oldPrice !== image.price ? (" / ") : (" ")}
-              </span>
-              <span
-                class={`${
-                  image.colorRed! ? "text-red-700 " : ""
-                }text-xs 2xl:text-base font-bold pl-1`}
-              >
-                R$ {priceStr.length === 3
-                  ? (image.price + ",00")
-                  : (priceStr?.length === 5
-                    ? (image.price + "0")
-                    : (image.price))}
-              </span>
-            </div>
-          </div>
+                  <span class="text-xs 2xl:text-base font-bold px-1">
+                    {image.oldPrice !== image.price ? (" / ") : (" ")}
+                  </span>
+                  <span
+                    class={`${
+                      image.colorRed! ? "text-red-700 " : ""
+                    }text-xs 2xl:text-base font-bold pl-1`}
+                  >
+                    R$ {priceStr.length === 3
+                      ? (image.price + ",00")
+                      : (priceStr?.length === 5
+                        ? (image.price + "0")
+                        : (image.price))}
+                  </span>
+                </div>
+              </div>
+            )
+            : ("")}
         </div>
       </div>
     </div>
   );
 }
 
-function CardsCamps({ banner }: { banner: BannerCampaing }) {
+function CardsCamps({ banner }: { banner: Itens }) {
   const { cards } = banner;
   const id = useId();
   return (
@@ -320,11 +379,6 @@ function CardsCamps({ banner }: { banner: BannerCampaing }) {
           id={id}
           class="flex flex-row flex-wrap gap-5  px-[15px] lg:gap-10 justify-start"
         >
-          {cards.images?.map((image, index) => (
-            <CardItem
-              image={image}
-            />
-          ))}
         </div>
       </div>
     </>

@@ -103,6 +103,7 @@
               "$live/sections/PageInclude.tsx",
               "$live/sections/Slot.tsx",
               "$live/sections/UseSlot.tsx",
+              "deco-sites/riquezzz/sections/BannerCardPosition.tsx",
               "deco-sites/riquezzz/sections/BannerFourCards.tsx",
               "deco-sites/riquezzz/sections/BannerFull.tsx",
               "deco-sites/riquezzz/sections/BannerGrid.tsx",
@@ -10372,6 +10373,566 @@
       "format": "image-uri",
       "title": "Image"
     },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckNhcmRQb3NpdGlvbi50c3g=@Product": {
+      "type": "object",
+      "properties": {
+        "position": {
+          "anyOf": [
+            {
+              "type": "number",
+              "const": 1,
+              "default": 1
+            },
+            {
+              "type": "number",
+              "const": 2,
+              "default": 2
+            },
+            {
+              "type": "number",
+              "const": 3,
+              "default": 3
+            }
+          ],
+          "type": "number",
+          "default": "1",
+          "title": "Position"
+        },
+        "desktop": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+          "description": "desktop otimized image",
+          "title": "Desktop"
+        },
+        "mobile": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+          "description": "mobile otimized image",
+          "title": "Mobile"
+        },
+        "secondImg": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+          "title": "Second Img"
+        },
+        "price": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "title": "Price"
+        },
+        "qtdportion": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "title": "Qtdportion"
+        },
+        "oldPrice": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "title": "Old Price"
+        },
+        "colorRed": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "default": "true",
+          "title": "Color Red"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name"
+        },
+        "alt": {
+          "type": "string",
+          "description": "Image's alt text",
+          "title": "Alt"
+        },
+        "href": {
+          "type": "string",
+          "description": "when user clicks on the image, go to this link",
+          "title": "Href"
+        },
+        "size": {
+          "anyOf": [
+            {
+              "type": "number",
+              "const": 1,
+              "default": 1
+            },
+            {
+              "type": "number",
+              "const": 2,
+              "default": 2
+            },
+            {
+              "type": "number",
+              "const": 3,
+              "default": 3
+            }
+          ],
+          "type": "number",
+          "default": "1",
+          "title": "Size"
+        },
+        "horizontal": {
+          "anyOf": [
+            {
+              "type": "string",
+              "const": "start",
+              "default": "start"
+            },
+            {
+              "type": "string",
+              "const": "center",
+              "default": "center"
+            },
+            {
+              "type": "string",
+              "const": "end",
+              "default": "end"
+            }
+          ],
+          "type": "string",
+          "title": "Horizontal"
+        },
+        "vertical": {
+          "anyOf": [
+            {
+              "type": "string",
+              "const": "start",
+              "default": "start"
+            },
+            {
+              "type": "string",
+              "const": "center",
+              "default": "center"
+            },
+            {
+              "type": "string",
+              "const": "end",
+              "default": "end"
+            }
+          ],
+          "type": "string",
+          "title": "Vertical"
+        }
+      },
+      "required": [
+        "desktop",
+        "mobile",
+        "name",
+        "alt",
+        "href",
+        "size"
+      ],
+      "title": "Product"
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckNhcmRQb3NpdGlvbi50c3g=@Product[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckNhcmRQb3NpdGlvbi50c3g=@Product"
+      },
+      "title": "Product[]"
+    },
+    "ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Video": {
+      "type": "string",
+      "format": "video-uri",
+      "title": "Video"
+    },
+    "ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image|Video": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Video"
+        },
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image"
+        }
+      ],
+      "title": "Image|Video"
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckNhcmRQb3NpdGlvbi50c3g=@BannerMovieIMG": {
+      "type": "object",
+      "properties": {
+        "position": {
+          "anyOf": [
+            {
+              "type": "number",
+              "const": 1,
+              "default": 1
+            },
+            {
+              "type": "number",
+              "const": 2,
+              "default": 2
+            },
+            {
+              "type": "number",
+              "const": 3,
+              "default": 3
+            }
+          ],
+          "type": "number",
+          "default": "3",
+          "title": "Position"
+        },
+        "type": {
+          "anyOf": [
+            {
+              "type": "string",
+              "const": "movie",
+              "default": "movie"
+            },
+            {
+              "type": "string",
+              "const": "image",
+              "default": "image"
+            }
+          ],
+          "type": "string",
+          "title": "Type"
+        },
+        "srcMobile": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image|Video",
+          "title": "Src Mobile"
+        },
+        "srcDesktop": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image|Video",
+          "title": "Src Desktop"
+        },
+        "alt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Image alt text",
+          "title": "Alt"
+        },
+        "href": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "When you click you go to",
+          "title": "Href"
+        },
+        "size": {
+          "anyOf": [
+            {
+              "type": "number",
+              "const": 1,
+              "default": 1
+            },
+            {
+              "type": "number",
+              "const": 2,
+              "default": 2
+            },
+            {
+              "type": "number",
+              "const": 3,
+              "default": 3
+            }
+          ],
+          "type": "number",
+          "default": "1",
+          "title": "Size"
+        },
+        "horizontal": {
+          "anyOf": [
+            {
+              "type": "string",
+              "const": "start",
+              "default": "start"
+            },
+            {
+              "type": "string",
+              "const": "center",
+              "default": "center"
+            },
+            {
+              "type": "string",
+              "const": "end",
+              "default": "end"
+            }
+          ],
+          "type": "string",
+          "title": "Horizontal"
+        },
+        "vertical": {
+          "anyOf": [
+            {
+              "type": "string",
+              "const": "start",
+              "default": "start"
+            },
+            {
+              "type": "string",
+              "const": "center",
+              "default": "center"
+            },
+            {
+              "type": "string",
+              "const": "end",
+              "default": "end"
+            }
+          ],
+          "type": "string",
+          "title": "Vertical"
+        }
+      },
+      "required": [
+        "size"
+      ],
+      "title": "BannerMovieIMG"
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckNhcmRQb3NpdGlvbi50c3g=@Text": {
+      "type": "object",
+      "properties": {
+        "position": {
+          "anyOf": [
+            {
+              "type": "number",
+              "const": 1,
+              "default": 1
+            },
+            {
+              "type": "number",
+              "const": 2,
+              "default": 2
+            },
+            {
+              "type": "number",
+              "const": 3,
+              "default": 3
+            }
+          ],
+          "type": "number",
+          "default": "2",
+          "title": "Position"
+        },
+        "text": {
+          "type": "string",
+          "description": "Text camp",
+          "title": "Text"
+        },
+        "href": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "when user clicks on the image, go to this link",
+          "title": "Href"
+        },
+        "horizontal": {
+          "anyOf": [
+            {
+              "type": "string",
+              "const": "start",
+              "default": "start"
+            },
+            {
+              "type": "string",
+              "const": "center",
+              "default": "center"
+            },
+            {
+              "type": "string",
+              "const": "end",
+              "default": "end"
+            }
+          ],
+          "type": "string",
+          "title": "Horizontal"
+        },
+        "vertical": {
+          "anyOf": [
+            {
+              "type": "string",
+              "const": "start",
+              "default": "start"
+            },
+            {
+              "type": "string",
+              "const": "center",
+              "default": "center"
+            },
+            {
+              "type": "string",
+              "const": "end",
+              "default": "end"
+            }
+          ],
+          "type": "string",
+          "title": "Vertical"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "title": "Text"
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckNhcmRQb3NpdGlvbi50c3g=@Itens": {
+      "type": "object",
+      "properties": {
+        "matcher": {
+          "type": "string",
+          "description": "RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category",
+          "title": "Matcher"
+        },
+        "borderRadius": {
+          "type": "object",
+          "properties": {
+            "mobile": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "const": "none",
+                  "default": "none"
+                },
+                {
+                  "type": "string",
+                  "const": "sm",
+                  "default": "sm"
+                },
+                {
+                  "type": "string",
+                  "const": "md",
+                  "default": "md"
+                },
+                {
+                  "type": "string",
+                  "const": "lg",
+                  "default": "lg"
+                },
+                {
+                  "type": "string",
+                  "const": "xl",
+                  "default": "xl"
+                },
+                {
+                  "type": "string",
+                  "const": "2xl",
+                  "default": "2xl"
+                },
+                {
+                  "type": "string",
+                  "const": "3xl",
+                  "default": "3xl"
+                },
+                {
+                  "type": "string",
+                  "const": "full",
+                  "default": "full"
+                }
+              ],
+              "type": "string",
+              "title": "Mobile"
+            },
+            "desktop": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "const": "none",
+                  "default": "none"
+                },
+                {
+                  "type": "string",
+                  "const": "sm",
+                  "default": "sm"
+                },
+                {
+                  "type": "string",
+                  "const": "md",
+                  "default": "md"
+                },
+                {
+                  "type": "string",
+                  "const": "lg",
+                  "default": "lg"
+                },
+                {
+                  "type": "string",
+                  "const": "xl",
+                  "default": "xl"
+                },
+                {
+                  "type": "string",
+                  "const": "2xl",
+                  "default": "2xl"
+                },
+                {
+                  "type": "string",
+                  "const": "3xl",
+                  "default": "3xl"
+                },
+                {
+                  "type": "string",
+                  "const": "full",
+                  "default": "full"
+                }
+              ],
+              "type": "string",
+              "title": "Desktop"
+            }
+          },
+          "required": [],
+          "title": "Border Radius",
+          "description": "Layout option"
+        },
+        "cards": {
+          "type": "object",
+          "properties": {
+            "productCard": {
+              "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckNhcmRQb3NpdGlvbi50c3g=@Product[]",
+              "title": "Product Card"
+            },
+            "banner": {
+              "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckNhcmRQb3NpdGlvbi50c3g=@BannerMovieIMG",
+              "title": "Banner"
+            },
+            "text": {
+              "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckNhcmRQb3NpdGlvbi50c3g=@Text",
+              "title": "Text"
+            }
+          },
+          "required": [],
+          "title": "Cards"
+        }
+      },
+      "required": [
+        "matcher",
+        "borderRadius",
+        "cards"
+      ],
+      "title": "Itens"
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckNhcmRQb3NpdGlvbi50c3g=@Itens[]": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckNhcmRQb3NpdGlvbi50c3g=@Itens"
+      },
+      "title": "Itens[]"
+    },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckNhcmRQb3NpdGlvbi50c3g=@Props": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tbWVyY2UvdHlwZXMudHM=@ProductListingPage|null",
+          "title": "Page"
+        },
+        "banners": {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckNhcmRQb3NpdGlvbi50c3g=@Itens[]",
+          "title": "Banners"
+        }
+      },
+      "required": [
+        "page"
+      ],
+      "title": "deco-sites/riquezzz/components/ui/BannerCardPosition.tsx@Props"
+    },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckZvdXJDYXJkcy50c3g=@Card": {
       "type": "object",
       "properties": {
@@ -10446,22 +11007,6 @@
         "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckZvdXJDYXJkcy50c3g=@Card"
       },
       "title": "Card[]"
-    },
-    "ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Video": {
-      "type": "string",
-      "format": "video-uri",
-      "title": "Video"
-    },
-    "ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image|Video": {
-      "anyOf": [
-        {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Video"
-        },
-        {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image"
-        }
-      ],
-      "title": "Image|Video"
     },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckZvdXJDYXJkcy50c3g=@BannerItem": {
       "type": "object",
@@ -16699,6 +17244,27 @@
         }
       }
     },
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9CYW5uZXJDYXJkUG9zaXRpb24udHN4": {
+      "title": "deco-sites/riquezzz/sections/BannerCardPosition.tsx",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckNhcmRQb3NpdGlvbi50c3g=@Props"
+        }
+      ],
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "deco-sites/riquezzz/sections/BannerCardPosition.tsx"
+          ],
+          "default": "deco-sites/riquezzz/sections/BannerCardPosition.tsx"
+        }
+      }
+    },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9CYW5uZXJGb3VyQ2FyZHMudHN4": {
       "title": "deco-sites/riquezzz/sections/BannerFourCards.tsx",
       "type": "object",
@@ -18621,6 +19187,9 @@
         },
         {
           "$ref": "#/definitions/JGxpdmUvc2VjdGlvbnMvVXNlU2xvdC50c3g="
+        },
+        {
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9CYW5uZXJDYXJkUG9zaXRpb24udHN4"
         },
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9zZWN0aW9ucy9CYW5uZXJGb3VyQ2FyZHMudHN4"
