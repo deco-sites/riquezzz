@@ -268,14 +268,22 @@ function CardItem(
                   </span>
                 )
                 : ("")}
-              <span class="line-through text-xs 2xl:text-base  text-base-300 px-1 ">
-                {image.oldPrice !== image.price
-                  ? (priceStr.length === 3
-                    ? (image.oldPrice + ",00")
-                    : (priceStr?.length === 5
-                      ? (image.oldPrice + "0")
-                      : (image.oldPrice)))
-                  : (" ")}
+              {image.oldPrice !== image.price
+                ? (
+                  <span class="line-through text-xs 2xl:text-base  text-base-300 px-1 ">
+                    R$ {image.oldPrice !== image.price
+                      ? (priceStr.length === 3
+                        ? (image.oldPrice + ",00 ")
+                        : (priceStr?.length === 5
+                          ? (image.oldPrice + "0 ")
+                          : (image.oldPrice)))
+                      : (" ")}
+                  </span>
+                )
+                : ("")}
+          
+              <span class="text-xs 2xl:text-base font-bold px-1">
+                {image.oldPrice !== image.price ? (" / ") : (" ")}
               </span>
               <span
                 class={`${
