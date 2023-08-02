@@ -46,7 +46,7 @@ export interface Props {
     /** @default 2 */
     mobile?: 1 | 2;
     /** @default 5 */
-    desktop?: 1 | 2 | 5 | 4 | 6 | 8;
+    desktop?: 1 | 2 | 5 | 4 | 6 | 8 | 10;
   };
   /**
    * @description Item's border radius in px
@@ -127,7 +127,7 @@ export default function BawBannner({
   return (
     <section class="w-full  md:pl-2 mx-auto md:pr-[42px]">
       <div
-        class={` sm:pl-2 grid  grid-flow-row-dense grid-rows-2 gap-4 md:gap-4  ${
+        class={` sm:pl-2 grid  grid-flow-row-dense  gap-4 md:gap-4  ${
           MOBILE_COLUMNS[itemsPerLine.mobile ?? 2]
         } ${DESKTOP_COLUMNS[itemsPerLine.desktop ?? 4]}`}
       >
