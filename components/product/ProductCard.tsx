@@ -64,8 +64,11 @@ function ProductCard(
     offers,
     isVariantOf,
   } = product;
+  const fImages = images?.filter((img) =>
+    img.alternateName !== "color-thumbnail"
+  );
   const productGroupID = isVariantOf?.productGroupID;
-  const [front, back] = images ?? [];
+  const [front, back] = fImages ?? [];
   const { listPrice, price, installments, availability, seller } = useOffer(
     offers,
   );
@@ -88,6 +91,8 @@ function ProductCard(
       ],
     },
   };
+
+  const outOfStock = (availability)?.includes('OutOfStock');
 
   const pppp = variants.find((sku) => sku[0] === "4P");
   const ppp = variants.find((sku) => sku[0] === "3P");
@@ -228,7 +233,7 @@ function ProductCard(
                 colorRed ? "text-red-700 " : ""
               }text-xs 2xl:text-base font-bold`}
             >
-              {price
+              {price && !outOfStock
                 ? (formatPrice(price, offers!.priceCurrency!))
                 : ("Produto esgotado")}
             </span>
@@ -249,7 +254,7 @@ function ProductCard(
                 colorRed ? "text-red-700 " : ""
               }text-xs 2xl:text-base font-bold pl-1`}
             >
-              {price
+              {price && !outOfStock
                 ? (formatPrice(price, offers!.priceCurrency!))
                 : (" Produto esgotado")}
             </span>
