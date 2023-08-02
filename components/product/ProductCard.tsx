@@ -92,6 +92,8 @@ function ProductCard(
     },
   };
 
+  const outOfStock = (availability)?.includes('OutOfStock');
+
   const pppp = variants.find((sku) => sku[0] === "4P");
   const ppp = variants.find((sku) => sku[0] === "3P");
   const pp = variants.find((sku) => sku[0] === "PP");
@@ -231,7 +233,7 @@ function ProductCard(
                 colorRed ? "text-red-700 " : ""
               }text-xs 2xl:text-base font-bold`}
             >
-              {price
+              {price && !outOfStock
                 ? (formatPrice(price, offers!.priceCurrency!))
                 : ("Produto esgotado")}
             </span>
@@ -252,7 +254,7 @@ function ProductCard(
                 colorRed ? "text-red-700 " : ""
               }text-xs 2xl:text-base font-bold pl-1`}
             >
-              {price
+              {price && !outOfStock
                 ? (formatPrice(price, offers!.priceCurrency!))
                 : (" Produto esgotado")}
             </span>
