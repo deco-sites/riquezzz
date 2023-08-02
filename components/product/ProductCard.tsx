@@ -92,7 +92,7 @@ function ProductCard(
     },
   };
 
-  const outOfStock = (availability)?.includes('OutOfStock');
+  const outOfStock = (availability)?.includes("OutOfStock");
 
   const pppp = variants.find((sku) => sku[0] === "4P");
   const ppp = variants.find((sku) => sku[0] === "3P");

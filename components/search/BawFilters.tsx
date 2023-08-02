@@ -100,9 +100,11 @@ function BawFilter(filter: FilterToggle) {
     setIsOpen(!isOpen);
   }
 
-  const unused_categories = ["category-1", "category-2", "brand"]
-  if(unused_categories.includes(key) || (key == "category-3" && quantity == 1)) {
-    return null
+  const unused_categories = ["category-1", "category-2", "brand"];
+  if (
+    unused_categories.includes(key) || (key == "category-3" && quantity == 1)
+  ) {
+    return null;
   }
 
   return (
