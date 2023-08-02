@@ -94,10 +94,15 @@ function FilterIcon({ key }: FilterToggle) {
 
 function BawFilter(filter: FilterToggle) {
   const [isOpen, setIsOpen] = useState(false);
-  const { key } = filter;
+  const { key, quantity } = filter;
 
   function toggle() {
     setIsOpen(!isOpen);
+  }
+
+  const unused_categories = ["category-1", "category-2", "brand"]
+  if(unused_categories.includes(key) || (key == "category-3" && quantity == 1)) {
+    return null
   }
 
   return (
