@@ -12212,6 +12212,11 @@
                   "type": "number",
                   "const": 8,
                   "default": 8
+                },
+                {
+                  "type": "number",
+                  "const": 10,
+                  "default": 10
                 }
               ],
               "type": "number",
