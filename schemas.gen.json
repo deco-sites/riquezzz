@@ -10390,8 +10390,30 @@
           "title": "Second Img"
         },
         "price": {
-          "type": "string",
+          "type": "number",
           "title": "Price"
+        },
+        "qtdportion": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "title": "Qtdportion"
+        },
+        "oldPrice": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "title": "Old Price"
+        },
+        "colorRed": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "default": "true",
+          "title": "Color Red"
         },
         "name": {
           "type": "string",

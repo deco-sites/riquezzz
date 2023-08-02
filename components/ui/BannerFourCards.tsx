@@ -24,7 +24,12 @@ export interface Card {
   mobile: LiveImage;
   secondImg?: LiveImage;
 
-  price: string;
+  price: number;
+  qtdportion?: number;
+  oldPrice?: number;
+  /** @default true */
+
+  colorRed?: boolean;
   name: string;
   /** @description Image's alt text */
   alt: string;
@@ -201,13 +206,13 @@ function CardItem(
     desktop,
     href,
   } = image;
-
+  const priceStr = image.price + "";
   return (
     <div
       class="card card-compact card-bordered rounded-none border-transparent group "
       data-deco="view-product"
     >
-      <div class={`relative w-[350px] overflow-y-hidden`}>
+      <div class={`relative  w-[150px] lg:w-[350px] overflow-y-hidden`}>
         <figure class="relative" style={{ aspectRatio: `350/540` }}>
           <a
             href={href}
@@ -251,21 +256,37 @@ function CardItem(
             {image.name}
           </h2>
           <div class="flex flex-col  sm:flew-row items-start ">
-            <div class="hidden flew-row  items-start sm:flex flex-wrap">
-              <span class="text-xs 2xl:text-base font-bold sm:flex hidden  ">
-                {image.price
-                  ? (image.price?.length === 8
-                    ? (image.price + ",00" + " / ")
-                    : (image.price?.length === 10
-                      ? (image.price + "0" + " / ")
-                      : (image.price + " / ")))
-                  : ("")}
+            <div class=" flew-row  items-start flex flex-wrap">
+              {image.qtdportion !== undefined
+                ? (
+                  <span
+                    class={`text-xs 2xl:text-base font-bold pl-1`}
+                  >
+                    {image.qtdportion + "x R$" +
+                      image.price / image.qtdportion! +
+                      " / "}
+                  </span>
+                )
+                : ("")}
+              <span class="line-through text-xs 2xl:text-base  text-base-300 px-1 ">
+                {image.oldPrice !== image.price
+                  ? (priceStr.length === 3
+                    ? (image.oldPrice + ",00")
+                    : (priceStr?.length === 5
+                      ? (image.oldPrice + "0")
+                      : (image.oldPrice)))
+                  : (" ")}
               </span>
-
               <span
-                class={`text-xs 2xl:text-base font-bold pl-1`}
+                class={`${
+                  image.colorRed! ? "text-red-700 " : ""
+                }text-xs 2xl:text-base font-bold pl-1`}
               >
-                {image.price}
+                R$ {priceStr.length === 3
+                  ? (image.price + ",00")
+                  : (priceStr?.length === 5
+                    ? (image.price + "0")
+                    : (image.price))}
               </span>
             </div>
           </div>
@@ -280,7 +301,7 @@ function CardsCamps({ banner }: { banner: BannerCampaing }) {
   const id = useId();
   return (
     <>
-      <div class=" w-full flex flex-row gap-10 h-[1400px] px-[50px] pt-[40px]  ">
+      <div class=" w-full flex flex-col lg:flex-row gap-5 lg:gap-10 px-[15px] pt-[10px] h-[1400px] lg:px-[50px] lg:pt-[40px] justify-center">
         <div
           class={`w-full flex `}
         >
@@ -289,7 +310,7 @@ function CardsCamps({ banner }: { banner: BannerCampaing }) {
 
         <div
           id={id}
-          class="flex flex-row flex-wrap  gap-10 justify-start"
+          class="flex flex-row flex-wrap gap-5  px-[15px] lg:gap-10 justify-start"
         >
           {cards.images?.map((image, index) => (
             <CardItem
