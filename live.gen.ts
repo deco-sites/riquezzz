@@ -5,45 +5,46 @@
 import { DecoManifest } from "$live/types.ts";
 import * as $$$$0 from "./routes/styles.css.ts";
 import * as $$$$1 from "./routes/_app.tsx";
-import * as $$$$$0 from "./islands/AddToCartButton.tsx";
+import * as $$$$$0 from "./islands/Newsletter.tsx";
 import * as $$$$$1 from "./islands/BawFilters.tsx";
-import * as $$$$$2 from "./islands/BreadcrumbControls.tsx";
-import * as $$$$$3 from "./islands/HeaderButton.tsx";
-import * as $$$$$4 from "./islands/HeaderModals.tsx";
-import * as $$$$$5 from "./islands/HeaderSearchbar.tsx";
+import * as $$$$$2 from "./islands/WishlistButton.tsx";
+import * as $$$$$3 from "./islands/ShippingSimulation.tsx";
+import * as $$$$$4 from "./islands/HeaderSearchbar.tsx";
+import * as $$$$$5 from "./islands/HeaderButton.tsx";
 import * as $$$$$6 from "./islands/ModalCart.tsx";
-import * as $$$$$7 from "./islands/Newsletter.tsx";
-import * as $$$$$8 from "./islands/OutOfStock.tsx";
-import * as $$$$$9 from "./islands/ProductImageZoom.tsx";
-import * as $$$$$10 from "./islands/SearchControls.tsx";
-import * as $$$$$11 from "./islands/ShippingSimulation.tsx";
-import * as $$$$$12 from "./islands/SliderJS.tsx";
-import * as $$$$$13 from "./islands/WishlistButton.tsx";
-import * as $$$$$$$$0 from "./sections/BannerFourCards.tsx";
-import * as $$$$$$$$1 from "./sections/BannerFull.tsx";
-import * as $$$$$$$$2 from "./sections/BannerGrid.tsx";
-import * as $$$$$$$$3 from "./sections/BannerMovieImg.tsx";
+import * as $$$$$7 from "./islands/BreadcrumbControls.tsx";
+import * as $$$$$8 from "./islands/AddToCartButton.tsx";
+import * as $$$$$9 from "./islands/HeaderModals.tsx";
+import * as $$$$$10 from "./islands/SliderJS.tsx";
+import * as $$$$$11 from "./islands/ProductImageZoom.tsx";
+import * as $$$$$12 from "./islands/OutOfStock.tsx";
+import * as $$$$$13 from "./islands/SearchControls.tsx";
+import * as $$$$$$$$0 from "./sections/WishlistGallery.tsx";
+import * as $$$$$$$$1 from "./sections/LinkTree.tsx";
+import * as $$$$$$$$2 from "./sections/BannerPLPCampaign.tsx";
+import * as $$$$$$$$3 from "./sections/Features.tsx";
 import * as $$$$$$$$4 from "./sections/BannerPLP.tsx";
-import * as $$$$$$$$5 from "./sections/BannerPLPCampaign.tsx";
-import * as $$$$$$$$6 from "./sections/BawBanner.tsx";
-import * as $$$$$$$$7 from "./sections/BawFeatures.tsx";
-import * as $$$$$$$$8 from "./sections/BawHighlights.tsx";
-import * as $$$$$$$$9 from "./sections/BawProductShelf.tsx";
-import * as $$$$$$$$10 from "./sections/Carousel.tsx";
-import * as $$$$$$$$11 from "./sections/CookieConsent.tsx";
-import * as $$$$$$$$12 from "./sections/DesignSystem.tsx";
-import * as $$$$$$$$13 from "./sections/Features.tsx";
-import * as $$$$$$$$14 from "./sections/Footer.tsx";
-import * as $$$$$$$$15 from "./sections/HeadBanner.tsx";
-import * as $$$$$$$$16 from "./sections/Header.tsx";
-import * as $$$$$$$$17 from "./sections/Highlights.tsx";
-import * as $$$$$$$$18 from "./sections/LinkTree.tsx";
+import * as $$$$$$$$5 from "./sections/BannerGrid.tsx";
+import * as $$$$$$$$6 from "./sections/BawHighlights.tsx";
+import * as $$$$$$$$7 from "./sections/SearchResult.tsx";
+import * as $$$$$$$$8 from "./sections/BannerMovieImg.tsx";
+import * as $$$$$$$$9 from "./sections/BannerFourCards.tsx";
+import * as $$$$$$$$10 from "./sections/ProductShelf.tsx";
+import * as $$$$$$$$11 from "./sections/BawBanner.tsx";
+import * as $$$$$$$$12 from "./sections/Footer.tsx";
+import * as $$$$$$$$13 from "./sections/SearchBreadControls.tsx";
+import * as $$$$$$$$14 from "./sections/CookieConsent.tsx";
+import * as $$$$$$$$15 from "./sections/DesignSystem.tsx";
+import * as $$$$$$$$16 from "./sections/BannerCardPosition.tsx";
+import * as $$$$$$$$17 from "./sections/Header.tsx";
+import * as $$$$$$$$18 from "./sections/BawFeatures.tsx";
 import * as $$$$$$$$19 from "./sections/ProductDetails.tsx";
-import * as $$$$$$$$20 from "./sections/ProductShelf.tsx";
-import * as $$$$$$$$21 from "./sections/SearchBreadControls.tsx";
-import * as $$$$$$$$22 from "./sections/SearchResult.tsx";
+import * as $$$$$$$$20 from "./sections/BannerFull.tsx";
+import * as $$$$$$$$21 from "./sections/HeadBanner.tsx";
+import * as $$$$$$$$22 from "./sections/Highlights.tsx";
 import * as $$$$$$$$23 from "./sections/WhatsApp.tsx";
-import * as $$$$$$$$24 from "./sections/WishlistGallery.tsx";
+import * as $$$$$$$$24 from "./sections/BawProductShelf.tsx";
+import * as $$$$$$$$25 from "./sections/Carousel.tsx";
 import * as $live_workflows from "$live/routes/live/workflows/run.ts";
 import * as $live_middleware from "$live/routes/_middleware.ts";
 import * as $live_workbench from "$live/routes/live/workbench.ts";
@@ -134,21 +135,24 @@ import * as i2$$$8 from "deco-sites/std/loaders/nuvemShop/nuvemShopProductDetail
 import * as i2$$$9 from "deco-sites/std/loaders/nuvemShop/nuvemShopProductList.ts";
 import * as i2$$$10 from "deco-sites/std/loaders/nuvemShop/nuvemShopProductListingPage.ts";
 import * as i2$$$11 from "deco-sites/std/loaders/vnda/cart.ts";
-import * as i2$$$12 from "deco-sites/std/loaders/vnda/proxy.ts";
-import * as i2$$$13 from "deco-sites/std/loaders/vtex/cart.ts";
-import * as i2$$$14 from "deco-sites/std/loaders/vtex/intelligentSearch/productDetailsPage.ts";
-import * as i2$$$15 from "deco-sites/std/loaders/vtex/intelligentSearch/productList.ts";
-import * as i2$$$16 from "deco-sites/std/loaders/vtex/intelligentSearch/productListingPage.ts";
-import * as i2$$$17 from "deco-sites/std/loaders/vtex/intelligentSearch/suggestions.ts";
-import * as i2$$$18 from "deco-sites/std/loaders/vtex/legacy/productDetailsPage.ts";
-import * as i2$$$19 from "deco-sites/std/loaders/vtex/legacy/productList.ts";
-import * as i2$$$20 from "deco-sites/std/loaders/vtex/legacy/productListingPage.ts";
-import * as i2$$$21 from "deco-sites/std/loaders/vtex/legacy/relatedProductsLoader.ts";
-import * as i2$$$22 from "deco-sites/std/loaders/vtex/navbar.ts";
-import * as i2$$$23 from "deco-sites/std/loaders/vtex/proxy.ts";
-import * as i2$$$24 from "deco-sites/std/loaders/vtex/user.ts";
-import * as i2$$$25 from "deco-sites/std/loaders/vtex/wishlist.ts";
-import * as i2$$$26 from "deco-sites/std/loaders/x/redirectsFromCsv.ts";
+import * as i2$$$12 from "deco-sites/std/loaders/vnda/productDetailsPage.ts";
+import * as i2$$$13 from "deco-sites/std/loaders/vnda/productList.ts";
+import * as i2$$$14 from "deco-sites/std/loaders/vnda/productListingPage.ts";
+import * as i2$$$15 from "deco-sites/std/loaders/vnda/proxy.ts";
+import * as i2$$$16 from "deco-sites/std/loaders/vtex/cart.ts";
+import * as i2$$$17 from "deco-sites/std/loaders/vtex/intelligentSearch/productDetailsPage.ts";
+import * as i2$$$18 from "deco-sites/std/loaders/vtex/intelligentSearch/productList.ts";
+import * as i2$$$19 from "deco-sites/std/loaders/vtex/intelligentSearch/productListingPage.ts";
+import * as i2$$$20 from "deco-sites/std/loaders/vtex/intelligentSearch/suggestions.ts";
+import * as i2$$$21 from "deco-sites/std/loaders/vtex/legacy/productDetailsPage.ts";
+import * as i2$$$22 from "deco-sites/std/loaders/vtex/legacy/productList.ts";
+import * as i2$$$23 from "deco-sites/std/loaders/vtex/legacy/productListingPage.ts";
+import * as i2$$$24 from "deco-sites/std/loaders/vtex/legacy/relatedProductsLoader.ts";
+import * as i2$$$25 from "deco-sites/std/loaders/vtex/navbar.ts";
+import * as i2$$$26 from "deco-sites/std/loaders/vtex/proxy.ts";
+import * as i2$$$27 from "deco-sites/std/loaders/vtex/user.ts";
+import * as i2$$$28 from "deco-sites/std/loaders/vtex/wishlist.ts";
+import * as i2$$$29 from "deco-sites/std/loaders/x/redirectsFromCsv.ts";
 import * as i2$$$$7 from "deco-sites/std/handlers/sitemap.ts";
 import * as i2$$$$8 from "deco-sites/std/handlers/vtex/sitemap.ts";
 import * as i2$$$$$5 from "deco-sites/std/sections/Analytics.tsx";
@@ -204,20 +208,20 @@ const manifest = {
     "./routes/styles.css.ts": $$$$0,
   },
   "islands": {
-    "./islands/AddToCartButton.tsx": $$$$$0,
+    "./islands/AddToCartButton.tsx": $$$$$8,
     "./islands/BawFilters.tsx": $$$$$1,
-    "./islands/BreadcrumbControls.tsx": $$$$$2,
-    "./islands/HeaderButton.tsx": $$$$$3,
-    "./islands/HeaderModals.tsx": $$$$$4,
-    "./islands/HeaderSearchbar.tsx": $$$$$5,
+    "./islands/BreadcrumbControls.tsx": $$$$$7,
+    "./islands/HeaderButton.tsx": $$$$$5,
+    "./islands/HeaderModals.tsx": $$$$$9,
+    "./islands/HeaderSearchbar.tsx": $$$$$4,
     "./islands/ModalCart.tsx": $$$$$6,
-    "./islands/Newsletter.tsx": $$$$$7,
-    "./islands/OutOfStock.tsx": $$$$$8,
-    "./islands/ProductImageZoom.tsx": $$$$$9,
-    "./islands/SearchControls.tsx": $$$$$10,
-    "./islands/ShippingSimulation.tsx": $$$$$11,
-    "./islands/SliderJS.tsx": $$$$$12,
-    "./islands/WishlistButton.tsx": $$$$$13,
+    "./islands/Newsletter.tsx": $$$$$0,
+    "./islands/OutOfStock.tsx": $$$$$12,
+    "./islands/ProductImageZoom.tsx": $$$$$11,
+    "./islands/SearchControls.tsx": $$$$$13,
+    "./islands/ShippingSimulation.tsx": $$$$$3,
+    "./islands/SliderJS.tsx": $$$$$10,
+    "./islands/WishlistButton.tsx": $$$$$2,
   },
   "sections": {
     "$live/sections/Conditional_Beta.tsx": i2$$$$$0,
@@ -225,31 +229,32 @@ const manifest = {
     "$live/sections/PageInclude.tsx": i2$$$$$2,
     "$live/sections/Slot.tsx": i2$$$$$3,
     "$live/sections/UseSlot.tsx": i2$$$$$4,
-    "deco-sites/riquezzz/sections/BannerFourCards.tsx": $$$$$$$$0,
-    "deco-sites/riquezzz/sections/BannerFull.tsx": $$$$$$$$1,
-    "deco-sites/riquezzz/sections/BannerGrid.tsx": $$$$$$$$2,
-    "deco-sites/riquezzz/sections/BannerMovieImg.tsx": $$$$$$$$3,
+    "deco-sites/riquezzz/sections/BannerCardPosition.tsx": $$$$$$$$16,
+    "deco-sites/riquezzz/sections/BannerFourCards.tsx": $$$$$$$$9,
+    "deco-sites/riquezzz/sections/BannerFull.tsx": $$$$$$$$20,
+    "deco-sites/riquezzz/sections/BannerGrid.tsx": $$$$$$$$5,
+    "deco-sites/riquezzz/sections/BannerMovieImg.tsx": $$$$$$$$8,
     "deco-sites/riquezzz/sections/BannerPLP.tsx": $$$$$$$$4,
-    "deco-sites/riquezzz/sections/BannerPLPCampaign.tsx": $$$$$$$$5,
-    "deco-sites/riquezzz/sections/BawBanner.tsx": $$$$$$$$6,
-    "deco-sites/riquezzz/sections/BawFeatures.tsx": $$$$$$$$7,
-    "deco-sites/riquezzz/sections/BawHighlights.tsx": $$$$$$$$8,
-    "deco-sites/riquezzz/sections/BawProductShelf.tsx": $$$$$$$$9,
-    "deco-sites/riquezzz/sections/Carousel.tsx": $$$$$$$$10,
-    "deco-sites/riquezzz/sections/CookieConsent.tsx": $$$$$$$$11,
-    "deco-sites/riquezzz/sections/DesignSystem.tsx": $$$$$$$$12,
-    "deco-sites/riquezzz/sections/Features.tsx": $$$$$$$$13,
-    "deco-sites/riquezzz/sections/Footer.tsx": $$$$$$$$14,
-    "deco-sites/riquezzz/sections/HeadBanner.tsx": $$$$$$$$15,
-    "deco-sites/riquezzz/sections/Header.tsx": $$$$$$$$16,
-    "deco-sites/riquezzz/sections/Highlights.tsx": $$$$$$$$17,
-    "deco-sites/riquezzz/sections/LinkTree.tsx": $$$$$$$$18,
+    "deco-sites/riquezzz/sections/BannerPLPCampaign.tsx": $$$$$$$$2,
+    "deco-sites/riquezzz/sections/BawBanner.tsx": $$$$$$$$11,
+    "deco-sites/riquezzz/sections/BawFeatures.tsx": $$$$$$$$18,
+    "deco-sites/riquezzz/sections/BawHighlights.tsx": $$$$$$$$6,
+    "deco-sites/riquezzz/sections/BawProductShelf.tsx": $$$$$$$$24,
+    "deco-sites/riquezzz/sections/Carousel.tsx": $$$$$$$$25,
+    "deco-sites/riquezzz/sections/CookieConsent.tsx": $$$$$$$$14,
+    "deco-sites/riquezzz/sections/DesignSystem.tsx": $$$$$$$$15,
+    "deco-sites/riquezzz/sections/Features.tsx": $$$$$$$$3,
+    "deco-sites/riquezzz/sections/Footer.tsx": $$$$$$$$12,
+    "deco-sites/riquezzz/sections/HeadBanner.tsx": $$$$$$$$21,
+    "deco-sites/riquezzz/sections/Header.tsx": $$$$$$$$17,
+    "deco-sites/riquezzz/sections/Highlights.tsx": $$$$$$$$22,
+    "deco-sites/riquezzz/sections/LinkTree.tsx": $$$$$$$$1,
     "deco-sites/riquezzz/sections/ProductDetails.tsx": $$$$$$$$19,
-    "deco-sites/riquezzz/sections/ProductShelf.tsx": $$$$$$$$20,
-    "deco-sites/riquezzz/sections/SearchBreadControls.tsx": $$$$$$$$21,
-    "deco-sites/riquezzz/sections/SearchResult.tsx": $$$$$$$$22,
+    "deco-sites/riquezzz/sections/ProductShelf.tsx": $$$$$$$$10,
+    "deco-sites/riquezzz/sections/SearchBreadControls.tsx": $$$$$$$$13,
+    "deco-sites/riquezzz/sections/SearchResult.tsx": $$$$$$$$7,
     "deco-sites/riquezzz/sections/WhatsApp.tsx": $$$$$$$$23,
-    "deco-sites/riquezzz/sections/WishlistGallery.tsx": $$$$$$$$24,
+    "deco-sites/riquezzz/sections/WishlistGallery.tsx": $$$$$$$$0,
     "deco-sites/std/sections/Analytics.tsx": i2$$$$$5,
     "deco-sites/std/sections/configButterCMS.global.tsx": i2$$$$$6,
     "deco-sites/std/sections/configLinxImpulse.global.tsx": i2$$$$$7,
@@ -276,23 +281,26 @@ const manifest = {
     "deco-sites/std/loaders/nuvemShop/nuvemShopProductList.ts": i2$$$9,
     "deco-sites/std/loaders/nuvemShop/nuvemShopProductListingPage.ts": i2$$$10,
     "deco-sites/std/loaders/vnda/cart.ts": i2$$$11,
-    "deco-sites/std/loaders/vnda/proxy.ts": i2$$$12,
-    "deco-sites/std/loaders/vtex/cart.ts": i2$$$13,
+    "deco-sites/std/loaders/vnda/productDetailsPage.ts": i2$$$12,
+    "deco-sites/std/loaders/vnda/productList.ts": i2$$$13,
+    "deco-sites/std/loaders/vnda/productListingPage.ts": i2$$$14,
+    "deco-sites/std/loaders/vnda/proxy.ts": i2$$$15,
+    "deco-sites/std/loaders/vtex/cart.ts": i2$$$16,
     "deco-sites/std/loaders/vtex/intelligentSearch/productDetailsPage.ts":
-      i2$$$14,
-    "deco-sites/std/loaders/vtex/intelligentSearch/productList.ts": i2$$$15,
+      i2$$$17,
+    "deco-sites/std/loaders/vtex/intelligentSearch/productList.ts": i2$$$18,
     "deco-sites/std/loaders/vtex/intelligentSearch/productListingPage.ts":
-      i2$$$16,
-    "deco-sites/std/loaders/vtex/intelligentSearch/suggestions.ts": i2$$$17,
-    "deco-sites/std/loaders/vtex/legacy/productDetailsPage.ts": i2$$$18,
-    "deco-sites/std/loaders/vtex/legacy/productList.ts": i2$$$19,
-    "deco-sites/std/loaders/vtex/legacy/productListingPage.ts": i2$$$20,
-    "deco-sites/std/loaders/vtex/legacy/relatedProductsLoader.ts": i2$$$21,
-    "deco-sites/std/loaders/vtex/navbar.ts": i2$$$22,
-    "deco-sites/std/loaders/vtex/proxy.ts": i2$$$23,
-    "deco-sites/std/loaders/vtex/user.ts": i2$$$24,
-    "deco-sites/std/loaders/vtex/wishlist.ts": i2$$$25,
-    "deco-sites/std/loaders/x/redirectsFromCsv.ts": i2$$$26,
+      i2$$$19,
+    "deco-sites/std/loaders/vtex/intelligentSearch/suggestions.ts": i2$$$20,
+    "deco-sites/std/loaders/vtex/legacy/productDetailsPage.ts": i2$$$21,
+    "deco-sites/std/loaders/vtex/legacy/productList.ts": i2$$$22,
+    "deco-sites/std/loaders/vtex/legacy/productListingPage.ts": i2$$$23,
+    "deco-sites/std/loaders/vtex/legacy/relatedProductsLoader.ts": i2$$$24,
+    "deco-sites/std/loaders/vtex/navbar.ts": i2$$$25,
+    "deco-sites/std/loaders/vtex/proxy.ts": i2$$$26,
+    "deco-sites/std/loaders/vtex/user.ts": i2$$$27,
+    "deco-sites/std/loaders/vtex/wishlist.ts": i2$$$28,
+    "deco-sites/std/loaders/x/redirectsFromCsv.ts": i2$$$29,
   },
   "handlers": {
     "$live/handlers/devPage.ts": i2$$$$0,

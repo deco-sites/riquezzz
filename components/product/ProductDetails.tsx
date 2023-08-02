@@ -292,36 +292,37 @@ function Details({
           {/* Image Slider */}
           <div class="relative sm:col-start-2 sm:col-span-1 sm:row-start-1">
             <Slider class="carousel gap-6">
-              {images.map((img, index) => (
-                <Slider.Item
-                  index={index}
-                  class="carousel-item min-w-[100vw] sm:min-w-[40vw]  justify-center"
-                >
-                  <div
-                    id="box"
-                    class="flex items-center justify-center m-0 min-h-[930px] overflow-hidden"
+              {images.filter((img) => img.alternateName !== "color-thumbnail")
+                .map((img, index) => (
+                  <Slider.Item
+                    index={index}
+                    class="carousel-item min-w-[100vw] sm:min-w-[40vw]  justify-center"
                   >
-                    <Image
-                      class="w-[620px] h-[930px] object-cover  origin-center "
-                      // sizes="(max-width: 640px) 100vw, 40vw"
-                      style={{ aspectRatio: ASPECT_RATIO }}
-                      src={img.url!}
-                      alt={img.alternateName}
-                      width={WIDTH}
-                      height={HEIGHT}
-                      // Preload LCP image for better web vitals
-                      preload={index === 0}
-                      loading={index === 0 ? "eager" : "lazy"}
-                      id="imgzom"
-                    />
-                    <script
-                      dangerouslySetInnerHTML={{
-                        __html: `(${imgZoom.toString()})()`,
-                      }}
-                    />
-                  </div>
-                </Slider.Item>
-              ))}
+                    <div
+                      id="box"
+                      class="flex items-center justify-center m-0 min-h-[930px] overflow-hidden"
+                    >
+                      <Image
+                        class="w-[620px] h-[930px] object-cover  origin-center "
+                        // sizes="(max-width: 640px) 100vw, 40vw"
+                        style={{ aspectRatio: ASPECT_RATIO }}
+                        src={img.url!}
+                        alt={img.alternateName}
+                        width={WIDTH}
+                        height={HEIGHT}
+                        // Preload LCP image for better web vitals
+                        preload={index === 0}
+                        loading={index === 0 ? "eager" : "lazy"}
+                        id="imgzom"
+                      />
+                      <script
+                        dangerouslySetInnerHTML={{
+                          __html: `(${imgZoom.toString()})()`,
+                        }}
+                      />
+                    </div>
+                  </Slider.Item>
+                ))}
             </Slider>
 
             <Slider.PrevButton
@@ -342,24 +343,25 @@ function Details({
           {/* Dots */}
           <ul class="flex gap-2 sm:justify-start  sm:px-0 sm:flex-col sm:col-start-1 sm:col-span-1 sm:row-start-1">
             <Slider class="flex flex-col carousel overflow-y-scroll  max-h-[800px] gap-6 mt-[100px]">
-              {images.map((img, index) => (
-                <li class="min-w-[180px]  max-w-[180px]  ">
-                  <Slider.Dot index={index}>
-                    <Image
-                      //  style={{ aspectRatio: ASPECT_RATIO }}
-                      id="zom"
-                      class="group-disabled:border-base-300 group-disabled:border  w-full h-[180px] "
-                      width={160}
-                      height={180}
-                      src={img.url!}
-                      alt={img.alternateName}
-                    />
-                  </Slider.Dot>
-                </li>
-              ))}
+              {images.filter((img) => img.alternateName !== "color-thumbnail")
+                .map((img, index) => (
+                  <li class="min-w-[180px]  max-w-[180px]  ">
+                    <Slider.Dot index={index}>
+                      <Image
+                        //  style={{ aspectRatio: ASPECT_RATIO }}
+                        id="zom"
+                        class="group-disabled:border-base-300 group-disabled:border  w-full h-[180px] "
+                        width={160}
+                        height={180}
+                        src={img.url!}
+                        alt={img.alternateName}
+                      />
+                    </Slider.Dot>
+                  </li>
+                ))}
             </Slider>
           </ul>
-
+          
           {/* Product Info */}
           <div class="px-4 sm:pr-0 sm:pl-6 sm:col-start-3 sm:col-span-1 sm:row-start-1">
             <ProductInfo page={page} />
