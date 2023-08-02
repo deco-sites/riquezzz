@@ -335,7 +335,7 @@ function CardsCamps({ banner }: { banner: BannerCampaing }) {
  * TODO: run the matcher agains the true URL instead on the breadcrumb.
  * This way we can remove the need for a loader. This can be done on live@1.x
  */
-function BannerFourCards({ page, banners = [] }: Props) {
+function BannerCardPosition({ page, banners = [] }: Props) {
   if (!page || page.breadcrumb.itemListElement.length === 0) {
     return null;
   }
@@ -359,4 +359,4 @@ function BannerFourCards({ page, banners = [] }: Props) {
   );
 }
 
-export default BannerFourCards;
+export default BannerCardPosition;
