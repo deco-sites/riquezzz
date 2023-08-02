@@ -72,7 +72,7 @@ const DESKTOP_COLUMNS = {
   5: "sm:grid-cols-5",
   6: "sm:grid-cols-6",
   8: "sm:grid-cols-8",
-  10: "sm:grid-cols-10"
+  10: "sm:grid-cols-10",
 };
 
 interface Size {
