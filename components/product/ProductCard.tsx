@@ -76,8 +76,19 @@ function ProductCard(
     ".",
     ",",
   ).replace(" de", "");
+  
   const possibilities = useVariantPossibilities(product);
-  const variants = Object.entries(Object.values(possibilities)[0] ?? {});
+
+  const allProperties = (isVariantOf?.hasVariant ?? [])
+    .flatMap(({ offers = {}, url }) =>
+      offers.offers?.map((property) => ({ property, url }))
+    ).map(p => ({ lvl: p?.property.inventoryLevel.value, url: p?.url }))
+
+  const variants = Object.entries(Object.values(possibilities)[0] ?? {}).map(v => {
+    const [value, [link]] = v
+    const lvl = allProperties.find(p => p.url === link)?.lvl
+    return {value, link, lvl: lvl as number}
+  });
   const clickEvent = {
     name: "select_item" as const,
     params: {
@@ -91,18 +102,18 @@ function ProductCard(
       ],
     },
   };
+  
+  const outOfStock = variants.filter((item) => item.lvl > 0).length === 0;
 
-  const outOfStock = (availability)?.includes("OutOfStock");
-
-  const pppp = variants.find((sku) => sku[0] === "4P");
-  const ppp = variants.find((sku) => sku[0] === "3P");
-  const pp = variants.find((sku) => sku[0] === "PP");
-  const p = variants.find((sku) => sku[0] === "P");
-  const m = variants.find((sku) => sku[0] === "M");
-  const g = variants.find((sku) => sku[0] === "G");
-  const gg = variants.find((sku) => sku[0] === "GG");
-  const ggg = variants.find((sku) => sku[0] === "3G");
-  const gggg = variants.find((sku) => sku[0] === "4G");
+  const pppp = variants.find((sku) => sku.value === "4P");
+  const ppp = variants.find((sku) => sku.value === "3P");
+  const pp = variants.find((sku) => sku.value === "PP");
+  const p = variants.find((sku) => sku.value === "P");
+  const m = variants.find((sku) => sku.value === "M");
+  const g = variants.find((sku) => sku.value === "G");
+  const gg = variants.find((sku) => sku.value === "GG");
+  const ggg = variants.find((sku) => sku.value === "3G");
+  const gggg = variants.find((sku) => sku.value === "4G");
 
   let newVariants = [pppp, ppp, pp, p, m, g, gg, ggg, gggg];
   newVariants = newVariants.filter((item) => item !== undefined);
@@ -175,10 +186,10 @@ function ProductCard(
                   <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
                     <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
                       {newVariants.map((item) => (
-                        <a href={item?.[1][0]}>
+                        <a href={item?.link}>
                           <Avatar
-                            variant={item?.[1] === url ? "active" : "default"}
-                            content={item?.[0]!}
+                            variant={item?.lvl !== 0 ? "default" : "disabled"}
+                            content={item?.value!}
                           />
                         </a>
                       ))}
@@ -188,10 +199,10 @@ function ProductCard(
                 : (
                   <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
                     <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
-                      {variants.map(([value, [link]]) => (
+                      {variants.map(({value, link, lvl}) => (
                         <a href={link}>
                           <Avatar
-                            variant={link === url ? "active" : "default"}
+                            variant={lvl !== 0 ? "default" : "disabled"}
                             content={value}
                           />
                         </a>
