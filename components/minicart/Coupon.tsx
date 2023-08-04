@@ -14,6 +14,18 @@ function Coupon() {
     displayInput.value = !displayInput.value;
   };
 
+  const removeCouponFromCart = (e: MouseEvent) => {
+    e.preventDefault();
+
+    const text = "";
+
+    if (typeof text === "string") {
+      addCouponsToCart({ text });
+
+      toggleInput();
+    }
+  };
+
   const applyCouponToCart = (e: MouseEvent) => {
     e.preventDefault();
 
@@ -30,29 +42,48 @@ function Coupon() {
       <span class="text-sm uppercase font-bold text-[#a2a2a2]">
         Cupom de desconto
       </span>
-      <form class="flex gap-2 bg-white rounded-none w-full border-b  border-black">
+      <form
+        class={`flex gap-2  ${
+          coupon ? "bg-[#f4f4f4]" : "bg-white"
+        } rounded-none w-full border-b  border-black`}
+      >
         <input
+          style={coupon
+            ? { "background-color": "#f4f4f4" }
+            : { "background-color": "white" }}
           class="flex-grow input w-[85%] input-primary h-[40px] focus:outline-none border-none"
-          id="coupon"
           name="coupon"
           ref={ref}
           type="text"
           value={coupon ?? ""}
+          disabled={coupon !== null}
           placeholder={"Insira o código"}
         />
-        <button
-          class="bg-transparent  border-none w-[15%]  text-center px-5 pt-4 "
-          disabled={loading}
-          onClick={applyCouponToCart}
-        >
-          <Icon
-            class="text-black"
-            width={20}
-            height={20}
-            id=">"
-            strokeWidth={1}
-          />
-        </button>
+        {!coupon && (
+          <button
+            class="bg-transparent  border-none w-[15%]  text-center px-5"
+            disabled={loading}
+            onClick={applyCouponToCart}
+          >
+            <Icon
+              class="text-black"
+              width={20}
+              height={20}
+              id=">"
+              strokeWidth={1}
+            />
+          </button>
+        )}
+
+        {coupon && (
+          <button
+            class="bg-transparent  border-none w-[15%]  text-center pr-6"
+            disabled={loading}
+            onClick={removeCouponFromCart}
+          >
+            <span>remover</span>
+          </button>
+        )}
       </form>
     </div>
   );

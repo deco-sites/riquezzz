@@ -111,7 +111,7 @@ function Cart() {
         )}
         {/* Descontos */}
         {discounts?.value && (
-          <div class="pt-4 flex flex-col justify-end items-end gap-2 mx-4">
+          <div class="pt-1 flex flex-col justify-end items-end gap-2 mx-4">
             <div class="flex justify-between items-center w-full">
               <span class="text-sm uppercase">Descontos</span>
               <span class="font-medium text-sm uppercase ">
@@ -122,7 +122,7 @@ function Cart() {
         )}
         {/* Total */}
         {total?.value && (
-          <div class="pt-4 flex flex-col justify-end items-end gap-2 mx-4">
+          <div class="pt-1 flex flex-col justify-end items-end gap-2 mx-4">
             <div class="flex justify-between items-center w-full">
               <span class="text-sm uppercase">Total</span>
               <span class="font-medium text-sm uppercase ">
