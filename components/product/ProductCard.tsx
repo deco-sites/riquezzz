@@ -79,11 +79,15 @@ function ProductCard(
   ).replace(" de", "");
 
   const possibilities = useVariantPossibilities(product);
-  
+
   const allProperties = (isVariantOf?.hasVariant ?? [])
     .flatMap(({ offers = {}, url, productID }) =>
       offers.offers?.map((property) => ({ property, url, productID }))
-    ).map((p) => ({ lvl: p?.property.inventoryLevel.value, url: p?.url, productID: p?.productID}));
+    ).map((p) => ({
+      lvl: p?.property.inventoryLevel.value,
+      url: p?.url,
+      productID: p?.productID,
+    }));
 
   const variants = Object.entries(Object.values(possibilities)[0] ?? {}).map(
     (v) => {
