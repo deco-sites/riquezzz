@@ -53,8 +53,9 @@ export interface Text {
 
   /** @description when user clicks on the image, go to this link */
   href?: string;
+  /** @default 1 */
+  size: 1 | 2 | 3;
 
-  horizontal?: "start" | "center" | "end";
   vertical?: "start" | "center" | "end";
 }
 
@@ -128,9 +129,9 @@ const RADIUS_DESKTOP = {
 };
 
 const SIZE_IMG = {
-  1: "h-[900px] w-[800px]",
-  2: "h-[450px] w-[300px]",
-  3: "h-[255px] w-[370px]",
+  1: "h-[1100px] w-[620px]",
+  2: "h-[800px] w-[510px]",
+  3: "w-[400px]",
 };
 
 const HORIZONTAL = {
@@ -145,14 +146,19 @@ const VERTICAL = {
 };
 
 const SIZE_IMG_H = {
-  1: 700,
-  2: 450,
-  3: 255,
+  1: 1100,
+  2: 800,
 };
 const SIZE_IMG_W = {
-  1: 500,
-  2: 300,
-  3: 370,
+  1: 620,
+  2: 510,
+  3: 400,
+};
+
+const SIZE_FONT = {
+  1: "sm:text-[110px]",
+  2: "sm:text-[110px]",
+  3: "sm:text-[110px]",
 };
 
 function CardMovie({ banner }: { banner: Itens }) {
@@ -169,7 +175,9 @@ function CardMovie({ banner }: { banner: Itens }) {
                   RADIUS_MOBILE[borderRadius.mobile ?? "none"]
                 } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
               >
-                <div class="w-full h-full m-0 p-o b">
+                <div
+                  class={` m-0 p-0 b ${SIZE_IMG[cards.banner!.size!]}`}
+                >
                   <video
                     src={cards.banner?.srcDesktop}
                     alt={cards.banner?.alt}
@@ -213,7 +221,7 @@ function CardMovie({ banner }: { banner: Itens }) {
                 ? (
                   <Source
                     src={cards.banner?.srcMobile}
-                    class="w-full h-full"
+                    class={` m-0 p-0 b ${SIZE_IMG[cards.banner!.size!]}`}
                     width={335}
                     height={500}
                     media="(max-width: 767px)"
@@ -224,7 +232,7 @@ function CardMovie({ banner }: { banner: Itens }) {
                 ? (
                   <Source
                     src={cards.banner.srcDesktop}
-                    class="w-full h-full"
+                    class={` m-0 p-0 b ${SIZE_IMG[cards.banner!.size!]}`}
                     width={960}
                     height={1440}
                     media="(min-width: 767px)"
@@ -235,7 +243,7 @@ function CardMovie({ banner }: { banner: Itens }) {
               {cards.banner?.srcDesktop
                 ? (
                   <img
-                    class="w-full h-full"
+                    class={` m-0 p-0 b ${SIZE_IMG[cards.banner!.size!]}`}
                     src={cards.banner.srcDesktop}
                     alt={cards.banner.alt}
                   />
@@ -247,13 +255,20 @@ function CardMovie({ banner }: { banner: Itens }) {
     </>
   );
 }
-
-function CardItem(
-  { image, lcp }: {
-    image: Product;
-    lcp?: boolean;
-  },
-) {
+function TextCamp({ text }: { text: Text }) {
+  return (
+    <div
+      class={`flex flex-col ${
+        HORIZONTAL[text.vertical!]
+      } w-full max-h-[800px] font-bold`}
+    >
+      <h1 class="w-full -rotate-90  sm:text-[110px] uppercase font-extrabold text-gray-700">
+        {text.text}
+      </h1>
+    </div>
+  );
+}
+function CardItem({ image, lcp }: { image: Product; lcp?: boolean }) {
   const {
     alt,
     mobile,
@@ -365,21 +380,48 @@ function CardItem(
 
 function CardsCamps({ banner }: { banner: Itens }) {
   const { cards } = banner;
+  const { productCard, text } = cards;
   const id = useId();
   return (
     <>
-      <div class=" w-full flex flex-col lg:flex-row gap-5 lg:gap-10 px-[15px] pt-[10px] h-[1400px] lg:px-[50px] lg:pt-[40px] justify-center">
-        <div
-          class={`w-full flex `}
-        >
-          <CardMovie banner={banner} />
-        </div>
+      <div class=" w-full flex flex-col lg:flex-row gap-5 lg:gap-10 px-[15px] pt-[10px] max-h-[1100] lg:px-[50px] lg:pt-[40px] justify-center">
+        {cards.banner !== undefined
+          ? (
+            <div
+              class={`w-full flex `}
+            >
+              <CardMovie banner={banner} />
+            </div>
+          )
+          : ("")}
 
-        <div
-          id={id}
-          class="flex flex-row flex-wrap gap-5  px-[15px] lg:gap-10 justify-start"
-        >
-        </div>
+        {productCard !== undefined
+          ? (
+            <div
+              id={id}
+              class="flex flex-row flex-wrap gap-5  px-[15px] lg:gap-10 justify-start"
+            >
+              {productCard?.map((image, index) => (
+                <CardItem
+                  image={image}
+                />
+              ))}
+            </div>
+          )
+          : ("")}
+
+        {text !== undefined
+          ? (
+            <div
+              id={id}
+              class={`w-full flex `}
+            >
+              <TextCamp
+                text={text}
+              />
+            </div>
+          )
+          : ("")}
       </div>
     </>
   );

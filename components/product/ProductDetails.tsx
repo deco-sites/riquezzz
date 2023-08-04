@@ -361,7 +361,7 @@ function Details({
                 ))}
             </Slider>
           </ul>
-          
+
           {/* Product Info */}
           <div class="px-4 sm:pr-0 sm:pl-6 sm:col-start-3 sm:col-span-1 sm:row-start-1">
             <ProductInfo page={page} />
