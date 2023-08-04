@@ -1,5 +1,6 @@
 import Image from "deco-sites/std/components/Image.tsx";
 import Avatar from "$store/components/ui/Avatar.tsx";
+import AddToCartAvatar from "$store/islands/AddToCartAvatar.tsx";
 import WishlistIcon from "$store/islands/WishlistButton.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { formatPrice } from "$store/sdk/format.ts";
@@ -76,19 +77,21 @@ function ProductCard(
     ".",
     ",",
   ).replace(" de", "");
-  
+
   const possibilities = useVariantPossibilities(product);
 
   const allProperties = (isVariantOf?.hasVariant ?? [])
     .flatMap(({ offers = {}, url }) =>
       offers.offers?.map((property) => ({ property, url }))
-    ).map(p => ({ lvl: p?.property.inventoryLevel.value, url: p?.url }))
+    ).map((p) => ({ lvl: p?.property.inventoryLevel.value, url: p?.url }));
 
-  const variants = Object.entries(Object.values(possibilities)[0] ?? {}).map(v => {
-    const [value, [link]] = v
-    const lvl = allProperties.find(p => p.url === link)?.lvl
-    return {value, link, lvl: lvl as number}
-  });
+  const variants = Object.entries(Object.values(possibilities)[0] ?? {}).map(
+    (v) => {
+      const [value, [link]] = v;
+      const lvl = allProperties.find((p) => p.url === link)?.lvl;
+      return { value, link, lvl: lvl as number };
+    },
+  );
   const clickEvent = {
     name: "select_item" as const,
     params: {
@@ -102,7 +105,7 @@ function ProductCard(
       ],
     },
   };
-  
+
   const outOfStock = variants.filter((item) => item.lvl > 0).length === 0;
 
   const pppp = variants.find((sku) => sku.value === "4P");
@@ -186,12 +189,19 @@ function ProductCard(
                   <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
                     <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
                       {newVariants.map((item) => (
-                        <a href={item?.link}>
-                          <Avatar
-                            variant={item?.lvl !== 0 ? "default" : "disabled"}
-                            content={item?.value!}
-                          />
-                        </a>
+                        // <a href={item?.link}>
+                        <AddToCartAvatar
+                          skuId={productID}
+                          sellerId={seller || ""}
+                          price={price ?? 0}
+                          discount={price && listPrice ? listPrice - price : 0}
+                          name={product.name ?? ""}
+                          productGroupId={product.isVariantOf?.productGroupID ??
+                            ""}
+                          variant={item?.lvl !== 0 ? "default" : "disabled"}
+                          content={item?.value!}
+                        />
+                        // </a>
                       ))}
                     </ul>
                   </figcaption>
@@ -199,13 +209,20 @@ function ProductCard(
                 : (
                   <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
                     <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
-                      {variants.map(({value, link, lvl}) => (
-                        <a href={link}>
-                          <Avatar
-                            variant={lvl !== 0 ? "default" : "disabled"}
-                            content={value}
-                          />
-                        </a>
+                      {variants.map(({ value, link, lvl }) => (
+                        // <a href={link}>
+                        <AddToCartAvatar
+                          skuId={productID}
+                          sellerId={seller || ""}
+                          price={price ?? 0}
+                          discount={price && listPrice ? listPrice - price : 0}
+                          name={product.name ?? ""}
+                          productGroupId={product.isVariantOf?.productGroupID ??
+                            ""}
+                          variant={lvl !== 0 ? "default" : "disabled"}
+                          content={value!}
+                        />
+                        // </a>
                       ))}
                     </ul>
                   </figcaption>

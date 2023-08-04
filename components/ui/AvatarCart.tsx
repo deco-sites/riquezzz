@@ -24,6 +24,7 @@ const colors: Record<string, string> = {
 interface Props {
   variant?: "active" | "disabled" | "default";
   content: string;
+  onClick: (e: MouseEvent) => Promise<void>;
 }
 
 const variants = {
@@ -33,9 +34,10 @@ const variants = {
   default: "",
 };
 
-function Avatar({ content, variant = "default" }: Props) {
+function Avatar({ content, variant = "default", onClick }: Props) {
   return (
     <div
+      onClick={onClick}
       class="cursor-pointer avatar placeholder flex justify-center items-center max-h-[30px]"
     >
       <div

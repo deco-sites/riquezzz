@@ -77,6 +77,7 @@
               "deco-sites/std/loaders/vtex/user.ts",
               "deco-sites/std/loaders/vtex/wishlist.ts",
               "deco-sites/std/loaders/x/redirectsFromCsv.ts",
+              "./islands/AddToCartAvatar.tsx",
               "./islands/AddToCartButton.tsx",
               "./islands/BawFilters.tsx",
               "./islands/BreadcrumbControls.tsx",
@@ -16638,6 +16639,22 @@
         }
       }
     },
+    "Li9pc2xhbmRzL0FkZFRvQ2FydEF2YXRhci50c3g=": {
+      "title": "./islands/AddToCartAvatar.tsx",
+      "type": "object",
+      "required": [
+        "__resolveType"
+      ],
+      "properties": {
+        "__resolveType": {
+          "type": "string",
+          "enum": [
+            "./islands/AddToCartAvatar.tsx"
+          ],
+          "default": "./islands/AddToCartAvatar.tsx"
+        }
+      }
+    },
     "Li9pc2xhbmRzL0FkZFRvQ2FydEJ1dHRvbi50c3g=": {
       "title": "./islands/AddToCartButton.tsx",
       "type": "object",
@@ -19032,6 +19049,9 @@
       "anyOf": [
         {
           "$ref": "#/definitions/Resolvable"
+        },
+        {
+          "$ref": "#/definitions/Li9pc2xhbmRzL0FkZFRvQ2FydEF2YXRhci50c3g="
         },
         {
           "$ref": "#/definitions/Li9pc2xhbmRzL0FkZFRvQ2FydEJ1dHRvbi50c3g="
