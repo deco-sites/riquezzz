@@ -112,7 +112,6 @@ function ProductCard(
   };
 
   const outOfStock = variants.filter((item) => item.lvl > 0).length === 0;
-
   const pppp = variants.find((sku) => sku.value === "4P");
   const ppp = variants.find((sku) => sku.value === "3P");
   const pp = variants.find((sku) => sku.value === "PP");
@@ -194,7 +193,6 @@ function ProductCard(
                   <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
                     <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
                       {newVariants.map((item) => (
-                        // <a href={item?.link}>
                         <AddToCartAvatar
                           skuId={item?.productID || productID}
                           sellerId={seller || ""}
@@ -206,7 +204,6 @@ function ProductCard(
                           variant={item?.lvl !== 0 ? "default" : "disabled"}
                           content={item?.value!}
                         />
-                        // </a>
                       ))}
                     </ul>
                   </figcaption>
@@ -215,7 +212,6 @@ function ProductCard(
                   <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
                     <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
                       {variants.map((item) => (
-                        // <a href={link}>
                         <AddToCartAvatar
                           skuId={item?.productID || productID}
                           sellerId={seller || ""}
@@ -227,7 +223,6 @@ function ProductCard(
                           variant={item?.lvl !== 0 ? "default" : "disabled"}
                           content={item?.value!}
                         />
-                        // </a>
                       ))}
                     </ul>
                   </figcaption>
