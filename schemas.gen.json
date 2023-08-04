@@ -13937,7 +13937,7 @@
       "required": [],
       "title": "omitcGFnZQ==Props"
     },
-    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hCcmVhZENvbnRyb2xzLnRzeA==@5e3d1fd9662a59c03fab64da040d4f9c&omitcGFnZQ==Props": {
+    "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hCcmVhZENvbnRyb2xzLnRzeA==@a3b967c97d0c9793441303d2c286f9f2&omitcGFnZQ==Props": {
       "allOf": [
         {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hCcmVhZENvbnRyb2xzLnRzeA==@omitcGFnZQ==Props"
@@ -13955,7 +13955,7 @@
           ]
         }
       ],
-      "title": "deco-sites/riquezzz/components/search/SearchBreadControls.tsx@5e3d1fd9662a59c03fab64da040d4f9c&omitcGFnZQ==Props"
+      "title": "deco-sites/riquezzz/components/search/SearchBreadControls.tsx@a3b967c97d0c9793441303d2c286f9f2&omitcGFnZQ==Props"
     },
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3Byb2R1Y3QvUHJvZHVjdEdhbGxlcnkudHN4@Columns": {
       "type": "object",
@@ -17653,7 +17653,7 @@
       "type": "object",
       "allOf": [
         {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hCcmVhZENvbnRyb2xzLnRzeA==@5e3d1fd9662a59c03fab64da040d4f9c&omitcGFnZQ==Props"
+          "$ref": "#/definitions/ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3NlYXJjaC9TZWFyY2hCcmVhZENvbnRyb2xzLnRzeA==@a3b967c97d0c9793441303d2c286f9f2&omitcGFnZQ==Props"
         }
       ],
       "required": [
