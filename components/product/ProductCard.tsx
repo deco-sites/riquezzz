@@ -79,17 +79,18 @@ function ProductCard(
   ).replace(" de", "");
 
   const possibilities = useVariantPossibilities(product);
-
+  
   const allProperties = (isVariantOf?.hasVariant ?? [])
-    .flatMap(({ offers = {}, url }) =>
-      offers.offers?.map((property) => ({ property, url }))
-    ).map((p) => ({ lvl: p?.property.inventoryLevel.value, url: p?.url }));
+    .flatMap(({ offers = {}, url, productID }) =>
+      offers.offers?.map((property) => ({ property, url, productID }))
+    ).map((p) => ({ lvl: p?.property.inventoryLevel.value, url: p?.url, productID: p?.productID}));
 
   const variants = Object.entries(Object.values(possibilities)[0] ?? {}).map(
     (v) => {
       const [value, [link]] = v;
       const lvl = allProperties.find((p) => p.url === link)?.lvl;
-      return { value, link, lvl: lvl as number };
+      const skuID = allProperties.find((p) => p.url === link)?.productID;
+      return { value, link, lvl: lvl as number, productID: skuID };
     },
   );
   const clickEvent = {
@@ -191,7 +192,7 @@ function ProductCard(
                       {newVariants.map((item) => (
                         // <a href={item?.link}>
                         <AddToCartAvatar
-                          skuId={productID}
+                          skuId={item?.productID || productID}
                           sellerId={seller || ""}
                           price={price ?? 0}
                           discount={price && listPrice ? listPrice - price : 0}
@@ -209,18 +210,18 @@ function ProductCard(
                 : (
                   <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
                     <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
-                      {variants.map(({ value, link, lvl }) => (
+                      {variants.map((item) => (
                         // <a href={link}>
                         <AddToCartAvatar
-                          skuId={productID}
+                          skuId={item?.productID || productID}
                           sellerId={seller || ""}
                           price={price ?? 0}
                           discount={price && listPrice ? listPrice - price : 0}
                           name={product.name ?? ""}
                           productGroupId={product.isVariantOf?.productGroupID ??
                             ""}
-                          variant={lvl !== 0 ? "default" : "disabled"}
-                          content={value!}
+                          variant={item?.lvl !== 0 ? "default" : "disabled"}
+                          content={item?.value!}
                         />
                         // </a>
                       ))}
