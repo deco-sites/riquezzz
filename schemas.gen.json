@@ -10685,6 +10685,38 @@
           "default": "3",
           "title": "Position"
         },
+        "mobile": {
+          "anyOf": [
+            {
+              "type": "string",
+              "const": "true",
+              "default": "true"
+            },
+            {
+              "type": "string",
+              "const": "false",
+              "default": "false"
+            }
+          ],
+          "type": "string",
+          "title": "Mobile"
+        },
+        "desktop": {
+          "anyOf": [
+            {
+              "type": "string",
+              "const": "true",
+              "default": "true"
+            },
+            {
+              "type": "string",
+              "const": "false",
+              "default": "false"
+            }
+          ],
+          "type": "string",
+          "title": "Desktop"
+        },
         "type": {
           "anyOf": [
             {
@@ -10791,6 +10823,8 @@
         }
       },
       "required": [
+        "mobile",
+        "desktop",
         "size"
       ],
       "title": "BannerMovieIMG"
@@ -10820,18 +10854,42 @@
           "default": "2",
           "title": "Position"
         },
+        "mobile": {
+          "anyOf": [
+            {
+              "type": "string",
+              "const": "true",
+              "default": "true"
+            },
+            {
+              "type": "string",
+              "const": "false",
+              "default": "false"
+            }
+          ],
+          "type": "string",
+          "title": "Mobile"
+        },
+        "desktop": {
+          "anyOf": [
+            {
+              "type": "string",
+              "const": "true",
+              "default": "true"
+            },
+            {
+              "type": "string",
+              "const": "false",
+              "default": "false"
+            }
+          ],
+          "type": "string",
+          "title": "Desktop"
+        },
         "text": {
           "type": "string",
           "description": "Text camp",
           "title": "Text"
-        },
-        "href": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "description": "when user clicks on the image, go to this link",
-          "title": "Href"
         },
         "size": {
           "anyOf": [
@@ -10854,30 +10912,11 @@
           "type": "number",
           "default": "1",
           "title": "Size"
-        },
-        "vertical": {
-          "anyOf": [
-            {
-              "type": "string",
-              "const": "start",
-              "default": "start"
-            },
-            {
-              "type": "string",
-              "const": "center",
-              "default": "center"
-            },
-            {
-              "type": "string",
-              "const": "end",
-              "default": "end"
-            }
-          ],
-          "type": "string",
-          "title": "Vertical"
         }
       },
       "required": [
+        "mobile",
+        "desktop",
         "text",
         "size"
       ],
@@ -10890,6 +10929,39 @@
           "type": "string",
           "description": "RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category",
           "title": "Matcher"
+        },
+        "mobile": {
+          "anyOf": [
+            {
+              "type": "string",
+              "const": "true",
+              "default": "true"
+            },
+            {
+              "type": "string",
+              "const": "false",
+              "default": "false"
+            }
+          ],
+          "type": "string",
+          "description": "Layout option",
+          "title": "Mobile"
+        },
+        "desktop": {
+          "anyOf": [
+            {
+              "type": "string",
+              "const": "true",
+              "default": "true"
+            },
+            {
+              "type": "string",
+              "const": "false",
+              "default": "false"
+            }
+          ],
+          "type": "string",
+          "title": "Desktop"
         },
         "borderRadius": {
           "type": "object",
@@ -10988,8 +11060,7 @@
             }
           },
           "required": [],
-          "title": "Border Radius",
-          "description": "Layout option"
+          "title": "Border Radius"
         },
         "horizontal": {
           "anyOf": [
@@ -11055,6 +11126,8 @@
       },
       "required": [
         "matcher",
+        "mobile",
+        "desktop",
         "borderRadius",
         "cards"
       ],

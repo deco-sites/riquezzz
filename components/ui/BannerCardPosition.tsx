@@ -20,10 +20,13 @@ export type BorderRadius =
 export interface Product {
   /** @default 1 */
   position?: 1 | 2 | 3;
+
+  mobile: "true" | "false";
+  desktop: "true" | "false";
   /** @description desktop otimized image */
-  desktop: LiveImage;
+  srcdesktop: LiveImage;
   /** @description mobile otimized image */
-  mobile: LiveImage;
+  srcmobile: LiveImage;
   secondImg?: LiveImage;
 
   price?: number;
@@ -48,20 +51,24 @@ export interface Text {
   /** @default 2 */
 
   position?: 1 | 2 | 3;
+
+  mobile: "true" | "false";
+
+  desktop: "true" | "false";
   /** @description Text camp */
   text: string;
 
-  /** @description when user clicks on the image, go to this link */
-  href?: string;
   /** @default 1 */
   size: 1 | 2 | 3;
-
-  vertical?: "start" | "center" | "end";
 }
 
 export interface BannerMovieIMG {
   /** @default 3 */
   position?: 1 | 2 | 3;
+
+  mobile: "true" | "false";
+  desktop: "true" | "false";
+
   type?: "movie" | "image";
 
   srcMobile?: LiveViedo | LiveImage;
@@ -84,6 +91,10 @@ export interface Itens {
   /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
   matcher: string;
   /** @description Layout option */
+
+  mobile: "true" | "false";
+
+  desktop: "true" | "false";
 
   borderRadius: {
     /** @default none */
@@ -154,11 +165,19 @@ const SIZE_IMG_W = {
   2: 510,
   3: 400,
 };
+const DESKTOP = {
+  true: "sm:flex",
+  false: "sm:hidden",
+};
+const MOBILE = {
+  true: "flex",
+  false: "hidden",
+};
 
 const SIZE_FONT = {
-  1: "sm:text-[110px]",
-  2: "sm:text-[110px]",
-  3: "sm:text-[110px]",
+  1: "text-[40px] sm:text-[110px]",
+  2: "text-[30px] sm:text-[80px]",
+  3: "text-[20px] sm:text-[50px]",
 };
 
 function CardMovie({ banner }: { banner: Itens }) {
@@ -167,7 +186,11 @@ function CardMovie({ banner }: { banner: Itens }) {
     <>
       {cards.banner?.type === "movie"
         ? (
-          <section class="w-full px-auto sm:max-w-none sm:m-0 sm:overflow-hidden pr-[40px] ">
+          <section
+            class={`w-full px-auto sm:max-w-none sm:m-0 sm:overflow-hidden pr-[40px] ${
+              DESKTOP[cards.banner!.desktop!]
+            }  ${MOBILE[cards.banner!.mobile!]}`}
+          >
             <div>
               <a
                 href={cards.banner?.href}
@@ -212,7 +235,11 @@ function CardMovie({ banner }: { banner: Itens }) {
           </section>
         )
         : (
-          <div class="grid grid-cols-1 grid-rows-1">
+          <div
+            class={`grid grid-cols-1 grid-rows-1 ${
+              DESKTOP[cards.banner!.desktop!]
+            }  ${MOBILE[cards.banner!.mobile!]}`}
+          >
             <Picture
               preload
               class="col-start-1 col-span-1 row-start-1 row-span-1"
@@ -258,11 +285,15 @@ function CardMovie({ banner }: { banner: Itens }) {
 function TextCamp({ text }: { text: Text }) {
   return (
     <div
-      class={`flex flex-col ${
-        HORIZONTAL[text.vertical!]
-      } w-full max-h-[800px] font-bold`}
+      class={`flex flex-col sm:justify-center font-bold  ${
+        DESKTOP[text.desktop!]
+      }  ${MOBILE[text.mobile!]} `}
     >
-      <h1 class="w-full -rotate-90  sm:text-[110px] uppercase font-extrabold text-gray-700">
+      <h1
+        class={`sm:-rotate-90 ${
+          SIZE_FONT[text.size!]
+        } uppercase font-extrabold text-gray-700`}
+      >
         {text.text}
       </h1>
     </div>
@@ -271,15 +302,19 @@ function TextCamp({ text }: { text: Text }) {
 function CardItem({ image, lcp }: { image: Product; lcp?: boolean }) {
   const {
     alt,
-    mobile,
+    srcmobile,
+    srcdesktop,
     desktop,
+    mobile,
     href,
   } = image;
   const priceStr = image.price + "";
 
   return (
     <div
-      class="card card-compact card-bordered rounded-none border-transparent group "
+      class={`${DESKTOP[desktop!]}  ${
+        MOBILE[mobile!]
+      }card card-compact card-bordered rounded-none border-transparent group `}
       data-deco="view-product"
     >
       <div class={`relative  w-[150px] lg:w-[350px] overflow-y-hidden`}>
@@ -290,7 +325,7 @@ function CardItem({ image, lcp }: { image: Product; lcp?: boolean }) {
             class="contents"
           >
             <Image
-              src={desktop}
+              src={srcdesktop}
               alt={alt}
               width={300}
               height={540}
@@ -300,7 +335,7 @@ function CardItem({ image, lcp }: { image: Product; lcp?: boolean }) {
               decoding="async"
             />
             <Image
-              src={image.secondImg ?? desktop!}
+              src={image.secondImg ?? srcdesktop!}
               alt={alt}
               width={300}
               height={540}
@@ -414,7 +449,7 @@ function CardsCamps({ banner }: { banner: Itens }) {
           ? (
             <div
               id={id}
-              class={`w-full flex `}
+              class={`w-full flex`}
             >
               <TextCamp
                 text={text}
