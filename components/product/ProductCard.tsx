@@ -48,7 +48,7 @@ export interface Layout {
 }
 const relative = (url: string) => {
   const link = new URL(url);
-  return `${link.pathname}${link.search}`;
+  return `${link.pathname}`;
 };
 
 const WIDTH = 280;
