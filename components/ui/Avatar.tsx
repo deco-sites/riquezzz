@@ -24,6 +24,7 @@ const colors: Record<string, string> = {
 interface Props {
   variant?: "active" | "disabled" | "default";
   content: string;
+  textSize?: "lg";
 }
 
 const variants = {
@@ -33,15 +34,19 @@ const variants = {
   default: "",
 };
 
-function Avatar({ content, variant = "default" }: Props) {
+function Avatar({ content, variant = "default", textSize }: Props) {
   return (
     <div class="cursor-pointer avatar placeholder flex justify-center items-center max-h-[30px]">
       <div
         class={`w-full flex justify-center items-center   max-h-[20px] transform transition duration-300 hover:scale-150 p-1 "bg-[#161616] ring-[#161616] ${
           variants[variant]
-        }`}
+        } ${textSize && "p-[20px]"}`}
       >
-        <span class="text-caption font-caption uppercase font-bold   hover:font-extrabold ">
+        <span
+          class={`text-caption font-caption uppercase font-medium hover:font-extrabold ${
+            textSize && "text-xl"
+          } `}
+        >
           {colors[content] ? "" : content?.substring(0, 2)}
         </span>
       </div>
