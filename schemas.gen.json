@@ -10483,40 +10483,47 @@
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckNhcmRQb3NpdGlvbi50c3g=@Product": {
       "type": "object",
       "properties": {
-        "position": {
+        "mobile": {
           "anyOf": [
             {
-              "type": "number",
-              "const": 1,
-              "default": 1
+              "type": "string",
+              "const": "true",
+              "default": "true"
             },
             {
-              "type": "number",
-              "const": 2,
-              "default": 2
-            },
-            {
-              "type": "number",
-              "const": 3,
-              "default": 3
+              "type": "string",
+              "const": "false",
+              "default": "false"
             }
           ],
-          "type": "number",
+          "type": "string",
           "default": "1",
-          "title": "Position"
+          "title": "Mobile"
         },
         "desktop": {
-          "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
-          "description": "desktop otimized image",
+          "anyOf": [
+            {
+              "type": "string",
+              "const": "true",
+              "default": "true"
+            },
+            {
+              "type": "string",
+              "const": "false",
+              "default": "false"
+            }
+          ],
+          "type": "string",
           "title": "Desktop"
         },
-        "mobile": {
+        "srcdesktop": {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
-          "description": "mobile otimized image",
-          "title": "Mobile"
+          "description": "desktop otimized image",
+          "title": "Srcdesktop"
         },
         "secondImg": {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
+          "description": "mobile otimized image",
           "title": "Second Img"
         },
         "price": {
@@ -10584,27 +10591,6 @@
           "default": "1",
           "title": "Size"
         },
-        "horizontal": {
-          "anyOf": [
-            {
-              "type": "string",
-              "const": "start",
-              "default": "start"
-            },
-            {
-              "type": "string",
-              "const": "center",
-              "default": "center"
-            },
-            {
-              "type": "string",
-              "const": "end",
-              "default": "end"
-            }
-          ],
-          "type": "string",
-          "title": "Horizontal"
-        },
         "vertical": {
           "anyOf": [
             {
@@ -10628,8 +10614,9 @@
         }
       },
       "required": [
-        "desktop",
         "mobile",
+        "desktop",
+        "srcdesktop",
         "name",
         "alt",
         "href",
@@ -10663,28 +10650,6 @@
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckNhcmRQb3NpdGlvbi50c3g=@BannerMovieIMG": {
       "type": "object",
       "properties": {
-        "position": {
-          "anyOf": [
-            {
-              "type": "number",
-              "const": 1,
-              "default": 1
-            },
-            {
-              "type": "number",
-              "const": 2,
-              "default": 2
-            },
-            {
-              "type": "number",
-              "const": 3,
-              "default": 3
-            }
-          ],
-          "type": "number",
-          "default": "3",
-          "title": "Position"
-        },
         "mobile": {
           "anyOf": [
             {
@@ -10699,6 +10664,7 @@
             }
           ],
           "type": "string",
+          "default": "3",
           "title": "Mobile"
         },
         "desktop": {
@@ -10779,27 +10745,6 @@
           "default": "1",
           "title": "Size"
         },
-        "horizontal": {
-          "anyOf": [
-            {
-              "type": "string",
-              "const": "start",
-              "default": "start"
-            },
-            {
-              "type": "string",
-              "const": "center",
-              "default": "center"
-            },
-            {
-              "type": "string",
-              "const": "end",
-              "default": "end"
-            }
-          ],
-          "type": "string",
-          "title": "Horizontal"
-        },
         "vertical": {
           "anyOf": [
             {
@@ -10832,28 +10777,6 @@
     "ZGVjby1zaXRlcy9yaXF1ZXp6ei9jb21wb25lbnRzL3VpL0Jhbm5lckNhcmRQb3NpdGlvbi50c3g=@Text": {
       "type": "object",
       "properties": {
-        "position": {
-          "anyOf": [
-            {
-              "type": "number",
-              "const": 1,
-              "default": 1
-            },
-            {
-              "type": "number",
-              "const": 2,
-              "default": 2
-            },
-            {
-              "type": "number",
-              "const": 3,
-              "default": 3
-            }
-          ],
-          "type": "number",
-          "default": "2",
-          "title": "Position"
-        },
         "mobile": {
           "anyOf": [
             {
@@ -10868,6 +10791,7 @@
             }
           ],
           "type": "string",
+          "default": "2",
           "title": "Mobile"
         },
         "desktop": {
@@ -10962,6 +10886,22 @@
           ],
           "type": "string",
           "title": "Desktop"
+        },
+        "ordem": {
+          "anyOf": [
+            {
+              "type": "string",
+              "const": "Card/Movie/Text",
+              "default": "Card/Movie/Text"
+            },
+            {
+              "type": "string",
+              "const": "Text/Movie/card",
+              "default": "Text/Movie/card"
+            }
+          ],
+          "type": "string",
+          "title": "Ordem"
         },
         "borderRadius": {
           "type": "object",
@@ -11083,27 +11023,6 @@
           "type": "string",
           "title": "Horizontal"
         },
-        "vertical": {
-          "anyOf": [
-            {
-              "type": "string",
-              "const": "start",
-              "default": "start"
-            },
-            {
-              "type": "string",
-              "const": "center",
-              "default": "center"
-            },
-            {
-              "type": "string",
-              "const": "end",
-              "default": "end"
-            }
-          ],
-          "type": "string",
-          "title": "Vertical"
-        },
         "cards": {
           "type": "object",
           "properties": {
@@ -11128,7 +11047,9 @@
         "matcher",
         "mobile",
         "desktop",
+        "ordem",
         "borderRadius",
+        "horizontal",
         "cards"
       ],
       "title": "Itens"

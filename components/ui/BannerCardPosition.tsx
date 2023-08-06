@@ -19,14 +19,12 @@ export type BorderRadius =
 
 export interface Product {
   /** @default 1 */
-  position?: 1 | 2 | 3;
 
   mobile: "true" | "false";
   desktop: "true" | "false";
   /** @description desktop otimized image */
   srcdesktop: LiveImage;
   /** @description mobile otimized image */
-  srcmobile: LiveImage;
   secondImg?: LiveImage;
 
   price?: number;
@@ -44,13 +42,11 @@ export interface Product {
   href: string;
   /** @default 1 */
   size: 1 | 2 | 3;
-  horizontal?: "start" | "center" | "end";
+
   vertical?: "start" | "center" | "end";
 }
 export interface Text {
   /** @default 2 */
-
-  position?: 1 | 2 | 3;
 
   mobile: "true" | "false";
 
@@ -64,7 +60,6 @@ export interface Text {
 
 export interface BannerMovieIMG {
   /** @default 3 */
-  position?: 1 | 2 | 3;
 
   mobile: "true" | "false";
   desktop: "true" | "false";
@@ -83,7 +78,6 @@ export interface BannerMovieIMG {
   href?: string;
   /** @default 1 */
   size: 1 | 2 | 3;
-  horizontal?: "start" | "center" | "end";
   vertical?: "start" | "center" | "end";
 }
 
@@ -96,14 +90,16 @@ export interface Itens {
 
   desktop: "true" | "false";
 
+  ordem: "Card/Movie/Text" | "Text/Movie/card";
+
   borderRadius: {
     /** @default none */
     mobile?: BorderRadius;
     /** @default none */
     desktop?: BorderRadius;
   };
-  horizontal?: "start" | "center" | "end";
-  vertical?: "start" | "center" | "end";
+  horizontal: "start" | "center" | "end";
+
   cards: {
     productCard?: Product[];
     banner?: BannerMovieIMG;
@@ -140,9 +136,9 @@ const RADIUS_DESKTOP = {
 };
 
 const SIZE_IMG = {
-  1: "h-[1100px] w-[620px]",
-  2: "h-[800px] w-[510px]",
-  3: "w-[400px]",
+  1: "h-[330px] w-[150px] sm:h-[1100px] sm:w-[620px]",
+  2: "h-[330px] w-[150px] sm:h-[760px] sm:w-[510px]",
+  3: "h-[330px] w-[150px] sm:w-[400px]",
 };
 
 const HORIZONTAL = {
@@ -150,15 +146,11 @@ const HORIZONTAL = {
   center: "justify-center",
   end: "justify-end",
 };
-const VERTICAL = {
-  start: "align-start",
-  center: "align-center",
-  end: "align-end",
-};
 
 const SIZE_IMG_H = {
   1: 1100,
-  2: 800,
+  2: 760,
+  3: 600,
 };
 const SIZE_IMG_W = {
   1: 620,
@@ -187,7 +179,7 @@ function CardMovie({ banner }: { banner: Itens }) {
       {cards.banner?.type === "movie"
         ? (
           <section
-            class={`w-full px-auto sm:max-w-none sm:m-0 sm:overflow-hidden pr-[40px] ${
+            class={`  sm:max-w-none sm:m-0 sm:overflow-hidden  ${
               DESKTOP[cards.banner!.desktop!]
             }  ${MOBILE[cards.banner!.mobile!]}`}
           >
@@ -285,14 +277,14 @@ function CardMovie({ banner }: { banner: Itens }) {
 function TextCamp({ text }: { text: Text }) {
   return (
     <div
-      class={`flex flex-col sm:justify-center font-bold  ${
+      class={`flex flex-col justify-center font-bold w-full  ${
         DESKTOP[text.desktop!]
       }  ${MOBILE[text.mobile!]} `}
     >
       <h1
         class={`sm:-rotate-90 ${
           SIZE_FONT[text.size!]
-        } uppercase font-extrabold text-gray-700`}
+        } w-full text-center uppercase font-extrabold text-gray-700`}
       >
         {text.text}
       </h1>
@@ -302,23 +294,27 @@ function TextCamp({ text }: { text: Text }) {
 function CardItem({ image, lcp }: { image: Product; lcp?: boolean }) {
   const {
     alt,
-    srcmobile,
     srcdesktop,
     desktop,
     mobile,
     href,
+    size,
+    vertical,
   } = image;
   const priceStr = image.price + "";
 
   return (
     <div
-      class={`${DESKTOP[desktop!]}  ${
-        MOBILE[mobile!]
-      }card card-compact card-bordered rounded-none border-transparent group `}
+      class={`  card card-compact card-bordered rounded-none border-transparent group ${
+        DESKTOP[desktop!]
+      }  ${MOBILE[mobile!]} ${HORIZONTAL[vertical!]}  `}
       data-deco="view-product"
     >
-      <div class={`relative  w-[150px] lg:w-[350px] overflow-y-hidden`}>
-        <figure class="relative" style={{ aspectRatio: `350/540` }}>
+      <div class={`relative ${SIZE_IMG[size!]} overflow-y-hidden`}>
+        <figure
+          class="relative"
+          style={{ aspectRatio: `${SIZE_IMG_W[size!]} / ${SIZE_IMG_H[size!]}` }}
+        >
           <a
             href={href}
             aria-label="view product"
@@ -327,21 +323,21 @@ function CardItem({ image, lcp }: { image: Product; lcp?: boolean }) {
             <Image
               src={srcdesktop}
               alt={alt}
-              width={300}
-              height={540}
-              class="absolute top-0 left-0  transition-opacity w-full opacity-100 group-hover:opacity-0 "
+              width={510}
+              height={760}
+              class="absolute top-0 left-0  transition-opacity w-full max-h-[760px]  object-cover opacity-100 group-hover:opacity-0 "
               loading={lcp ? "eager" : "lazy"}
-              sizes="(max-width: 640px) 50vw, 20vw"
+              sizes="(max-width: 640px) "
               decoding="async"
             />
             <Image
               src={image.secondImg ?? srcdesktop!}
               alt={alt}
-              width={300}
-              height={540}
-              class=" absolute top-0 left-0  transition-opacity w-full opacity-0 group-hover:opacity-100"
+              width={510}
+              height={760}
+              class=" absolute top-0 left-0  transition-opacity w-full max-h-[760px] object-cover opacity-0 group-hover:opacity-100"
               loading={lcp ? "eager" : "lazy"}
-              sizes="(max-width: 640px) 50vw, 20vw"
+              sizes="(max-width: 640px) "
               decoding="async"
             />
           </a>
@@ -414,50 +410,88 @@ function CardItem({ image, lcp }: { image: Product; lcp?: boolean }) {
 }
 
 function CardsCamps({ banner }: { banner: Itens }) {
-  const { cards } = banner;
+  const { cards, ordem } = banner;
   const { productCard, text } = cards;
   const id = useId();
   return (
     <>
-      <div class=" w-full flex flex-col lg:flex-row gap-5 lg:gap-10 px-[15px] pt-[10px] max-h-[1100] lg:px-[50px] lg:pt-[40px] justify-center">
-        {cards.banner !== undefined
-          ? (
-            <div
-              class={`w-full flex `}
-            >
-              <CardMovie banner={banner} />
-            </div>
-          )
-          : ("")}
+      {ordem === "Card/Movie/Text"
+        ? (
+          <div
+            class={`flex flex-col lg:flex-row gap-5 lg:gap-10 px-[25px] sm:px-[25px] pt-[10px] max-h-[1100] lg:px-[50px] lg:pt-[40px] ${
+              HORIZONTAL[banner.horizontal!]
+            } `}
+          >
+            {productCard !== undefined
+              ? (
+                <div
+                  id={id}
+                  class="flex flex-row flex-wrap gap-5   lg:gap-10 justify-start"
+                >
+                  {productCard?.map((image, index) => (
+                    <CardItem
+                      image={image}
+                    />
+                  ))}
+                  {cards.banner !== undefined
+                    ? <CardMovie banner={banner} />
+                    : ("")}
+                </div>
+              )
+              : ("")}
 
-        {productCard !== undefined
-          ? (
-            <div
-              id={id}
-              class="flex flex-row flex-wrap gap-5  px-[15px] lg:gap-10 justify-start"
-            >
-              {productCard?.map((image, index) => (
-                <CardItem
-                  image={image}
-                />
-              ))}
-            </div>
-          )
-          : ("")}
+            {text !== undefined
+              ? (
+                <div
+                  id={id}
+                  class={` flex`}
+                >
+                  <TextCamp
+                    text={text}
+                  />
+                </div>
+              )
+              : ("")}
+          </div>
+        )
+        : (
+          <div
+            class={`w-full flex flex-col lg:flex-row gap-5 lg:gap-10 px-[15px] sm:px-[15px] pt-[10px] max-h-[1100] lg:px-[50px] lg:pt-[40px] ${
+              HORIZONTAL[banner.horizontal!]
+            } `}
+          >
+            {text !== undefined
+              ? (
+                <div
+                  id={id}
+                  class={` flex`}
+                >
+                  <TextCamp
+                    text={text}
+                  />
+                </div>
+              )
+              : ("")}
 
-        {text !== undefined
-          ? (
-            <div
-              id={id}
-              class={`w-full flex`}
-            >
-              <TextCamp
-                text={text}
-              />
-            </div>
-          )
-          : ("")}
-      </div>
+            {productCard !== undefined
+              ? (
+                <div
+                  id={id}
+                  class="flex flex-row flex-wrap gap-5  lg:gap-10 justify-start"
+                >
+                  {cards.banner !== undefined
+                    ? <CardMovie banner={banner} />
+                    : ("")}
+                  {productCard?.map((image, index) => (
+                    <CardItem
+                      image={image}
+                    />
+                  ))}
+                </div>
+              )
+              : ("")}
+          </div>
+        )}
     </>
   );
 }
