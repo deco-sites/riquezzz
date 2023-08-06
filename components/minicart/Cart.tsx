@@ -22,6 +22,7 @@ function Cart() {
   const { cart, loading, mapItemsToAnalyticsItems } = useCart();
   const isCartEmpty = cart.value?.items.length === 0;
   const total = cart.value?.totalizers.find((item) => item.id === "Items");
+  const totalWithDiscounts = cart.value?.value || 0;
   const totalizers = cart.value?.totalizers;
   const total2 = totalizers?.find((item) => item.id === "Items")?.value || 0;
 
@@ -94,25 +95,38 @@ function Cart() {
 
       {/* Cart Footer */}
       <footer>
-        {/* Subtotal */}
         <div class="border-t border-base-200 py-4 flex flex-col gap-4">
-          {discounts?.value && (
-            <div class="flex justify-between items-center px-4">
-              <span class="text-sm uppercase">Descontos</span>
-              <span class="text-sm">
-                {formatPrice(discounts.value / 100, currencyCode!, locale)}
-              </span>
-            </div>
-          )}
           <Coupon />
         </div>
-        {/* Total */}
+        {/* Subtotal */}
         {total?.value && (
           <div class="pt-4 flex flex-col justify-end items-end gap-2 mx-4">
             <div class="flex justify-between items-center w-full">
-              <span class="text-sm uppercase">Total</span>
+              <span class="text-sm uppercase">Subtotal</span>
               <span class="font-medium text-sm uppercase ">
                 {formatPrice(total.value / 100, currencyCode!, locale)}
+              </span>
+            </div>
+          </div>
+        )}
+        {/* Descontos */}
+        {discounts?.value && (
+          <div class="pt-1 flex flex-col justify-end items-end gap-2 mx-4">
+            <div class="flex justify-between items-center w-full">
+              <span class="text-sm uppercase">Descontos</span>
+              <span class="font-medium text-sm uppercase ">
+                {formatPrice(discounts.value / 100, currencyCode!, locale)}
+              </span>
+            </div>
+          </div>
+        )}
+        {/* Total */}
+        {total?.value && (
+          <div class="pt-1 flex flex-col justify-end items-end gap-2 mx-4">
+            <div class="flex justify-between items-center w-full">
+              <span class="text-sm uppercase">Total</span>
+              <span class="font-medium text-sm uppercase ">
+                {formatPrice(totalWithDiscounts / 100, currencyCode!, locale)}
               </span>
             </div>
           </div>
