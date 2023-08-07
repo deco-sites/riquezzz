@@ -4,7 +4,7 @@ import { IS_BROWSER } from "$fresh/runtime.ts";
 import { useSignal } from "@preact/signals";
 import type { JSX } from "preact";
 import { navbarHeight } from "../header/constants.ts";
-import Buttons from "$store/islands/HeaderButton.tsx";
+import Buttons from "$store/components/header/Buttons.tsx";
 import Searchbar from "../search/Searchbar.tsx";
 import Icon from "./Icon.tsx";
 import type { Props as SearchbarProps } from "$store/components/search/HeaderSearchbar.tsx";

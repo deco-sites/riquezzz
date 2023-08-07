@@ -1,10 +1,7 @@
-import Slider from "$store/components/ui/Slider.tsx";
-import SliderJS from "$store/islands/SliderJS.tsx";
-import { useId } from "preact/hooks";
-import Searchbar from "$store/islands/HeaderSearchbar.tsx";
-import Buttons from "$store/islands/HeaderButton.tsx";
-import Icon from "$store/components/ui/Icon.tsx";
 import type { Props as SearchbarProps } from "$store/components/search/Searchbar.tsx";
+import Icon from "$store/components/ui/Icon.tsx";
+import Buttons from "$store/islands/HeaderButton.tsx";
+import { useId } from "preact/hooks";
 import type { INavItem } from "./NavItem.tsx";
 
 export interface Props {
