@@ -17,15 +17,20 @@ export type BorderRadius =
   | "3xl"
   | "full";
 
-export interface Card {
+export interface Product {
+  /** @default 1 */
+
+  mobile: "true" | "false";
+  desktop: "true" | "false";
   /** @description desktop otimized image */
-  desktop: LiveImage;
+  srcdesktop: LiveImage;
   /** @description mobile otimized image */
-  mobile: LiveImage;
   secondImg?: LiveImage;
 
-  price: number;
+  price?: number;
+
   qtdportion?: number;
+
   oldPrice?: number;
   /** @default true */
 
@@ -35,14 +40,34 @@ export interface Card {
   alt: string;
   /** @description when user clicks on the image, go to this link */
   href: string;
+  /** @default 1 */
+  size: 1 | 2 | 3;
+
+  vertical?: "start" | "center" | "end";
+}
+export interface Text {
+  /** @default 2 */
+
+  mobile: "true" | "false";
+
+  desktop: "true" | "false";
+  /** @description Text camp */
+  text: string;
+
+  /** @default 1 */
+  size: 1 | 2 | 3;
 }
 
-export interface BannerItem {
-  /** @default movie */
-  type: "movie" | "image";
+export interface BannerMovieIMG {
+  /** @default 3 */
 
-  srcMobile: LiveViedo | LiveImage;
-  srcDesktop: LiveViedo | LiveImage;
+  mobile: "true" | "false";
+  desktop: "true" | "false";
+
+  type?: "movie" | "image";
+
+  srcMobile?: LiveViedo | LiveImage;
+  srcDesktop?: LiveViedo | LiveImage;
   /**
    * @description Image alt text
    */
@@ -51,14 +76,21 @@ export interface BannerItem {
    * @description When you click you go to
    */
   href?: string;
-  /** @default "Left"  */
-  Position: "Left" | "Rigth";
+  /** @default 1 */
+  size: 1 | 2 | 3;
+  vertical?: "start" | "center" | "end";
 }
 
-export interface BannerCampaing {
+export interface Itens {
   /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
   matcher: string;
   /** @description Layout option */
+
+  mobile: "true" | "false";
+
+  desktop: "true" | "false";
+
+  ordem: "Card/Movie/Text" | "Text/Movie/card";
 
   borderRadius: {
     /** @default none */
@@ -66,17 +98,19 @@ export interface BannerCampaing {
     /** @default none */
     desktop?: BorderRadius;
   };
+  horizontal: "start" | "center" | "end";
 
   cards: {
-    images?: Card[];
+    productCard?: Product[];
+    banner?: BannerMovieIMG;
+    text?: Text;
   };
-  bannerFirst?: BannerItem;
 }
 
 export interface Props {
   page: LoaderReturnType<ProductListingPage | null>;
 
-  banners?: BannerCampaing[];
+  banners?: Itens[];
 }
 
 const RADIUS_MOBILE = {
@@ -101,24 +135,67 @@ const RADIUS_DESKTOP = {
   "full": "sm:rounded-full",
 };
 
-function CardMovie({ banner }: { banner: BannerCampaing }) {
-  const { bannerFirst, borderRadius } = banner;
+const SIZE_IMG = {
+  1: "h-[330px] w-[150px] sm:h-[1100px] sm:w-[620px]",
+  2: "h-[330px] w-[150px] sm:h-[760px] sm:w-[510px]",
+  3: "h-[330px] w-[150px] sm:w-[400px]",
+};
+
+const HORIZONTAL = {
+  start: "justify-start",
+  center: "justify-center",
+  end: "justify-end",
+};
+
+const SIZE_IMG_H = {
+  1: 1100,
+  2: 760,
+  3: 600,
+};
+const SIZE_IMG_W = {
+  1: 620,
+  2: 510,
+  3: 400,
+};
+const DESKTOP = {
+  true: "sm:flex",
+  false: "sm:hidden",
+};
+const MOBILE = {
+  true: "flex",
+  false: "hidden",
+};
+
+const SIZE_FONT = {
+  1: "text-[40px] sm:text-[110px]",
+  2: "text-[30px] sm:text-[80px]",
+  3: "text-[20px] sm:text-[50px]",
+};
+
+function CardMovie({ banner }: { banner: Itens }) {
+  const { cards, borderRadius } = banner;
   return (
     <>
-      {bannerFirst?.type === "movie"
+      {cards.banner?.type === "movie"
         ? (
-          <section class="w-full px-auto sm:max-w-none sm:m-0 sm:overflow-hidden pr-[40px] ">
+          <section
+            class={`  sm:max-w-none sm:m-0 sm:overflow-hidden  ${
+              DESKTOP[cards.banner!.desktop!]
+            }  ${MOBILE[cards.banner!.mobile!]}`}
+          >
             <div>
               <a
-                href={bannerFirst?.href}
+                href={cards.banner?.href}
                 class={`overflow-hidden ${
                   RADIUS_MOBILE[borderRadius.mobile ?? "none"]
                 } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
               >
-                <div class="w-full h-full m-0 p-o b">
+                <div
+                  class={` m-0 p-0 b ${SIZE_IMG[cards.banner!.size!]}`}
+                >
                   <video
-                    src={bannerFirst?.srcDesktop}
-                    alt={bannerFirst?.alt}
+                    src={cards.banner?.srcDesktop}
+                    alt={cards.banner?.alt}
                     autoPlay
                     muted
                     loop
@@ -131,8 +208,8 @@ function CardMovie({ banner }: { banner: BannerCampaing }) {
                     Video não suportado!
                   </video>
                   <video
-                    src={bannerFirst?.srcMobile}
-                    alt={bannerFirst?.alt}
+                    src={cards.banner?.srcMobile}
+                    alt={cards.banner?.alt}
                     autoPlay
                     muted
                     loop
@@ -150,27 +227,31 @@ function CardMovie({ banner }: { banner: BannerCampaing }) {
           </section>
         )
         : (
-          <div class="grid grid-cols-1 grid-rows-1">
+          <div
+            class={`grid grid-cols-1 grid-rows-1 ${
+              DESKTOP[cards.banner!.desktop!]
+            }  ${MOBILE[cards.banner!.mobile!]}`}
+          >
             <Picture
               preload
               class="col-start-1 col-span-1 row-start-1 row-span-1"
             >
-              {bannerFirst?.srcMobile
+              {cards.banner?.srcMobile
                 ? (
                   <Source
-                    src={bannerFirst?.srcMobile}
-                    class="w-full h-full"
+                    src={cards.banner?.srcMobile}
+                    class={` m-0 p-0 b ${SIZE_IMG[cards.banner!.size!]}`}
                     width={335}
                     height={500}
                     media="(max-width: 767px)"
                   />
                 )
                 : ("")}
-              {bannerFirst?.srcDesktop
+              {cards.banner?.srcDesktop
                 ? (
                   <Source
-                    src={bannerFirst.srcDesktop}
-                    class="w-full h-full"
+                    src={cards.banner.srcDesktop}
+                    class={` m-0 p-0 b ${SIZE_IMG[cards.banner!.size!]}`}
                     width={960}
                     height={1440}
                     media="(min-width: 767px)"
@@ -178,12 +259,12 @@ function CardMovie({ banner }: { banner: BannerCampaing }) {
                 )
                 : ("")}
 
-              {bannerFirst?.srcDesktop
+              {cards.banner?.srcDesktop
                 ? (
                   <img
-                    class="w-full h-full"
-                    src={bannerFirst.srcDesktop}
-                    alt={bannerFirst.alt}
+                    class={` m-0 p-0 b ${SIZE_IMG[cards.banner!.size!]}`}
+                    src={cards.banner.srcDesktop}
+                    alt={cards.banner.alt}
                   />
                 )
                 : ("")}
@@ -193,50 +274,70 @@ function CardMovie({ banner }: { banner: BannerCampaing }) {
     </>
   );
 }
-
-function CardItem(
-  { image, lcp }: {
-    image: Card;
-    lcp?: boolean;
-  },
-) {
-  const {
-    alt,
-    mobile,
-    desktop,
-    href,
-  } = image;
-  const priceStr = image.price + "";
+function TextCamp({ text }: { text: Text }) {
   return (
     <div
-      class="card card-compact card-bordered rounded-none border-transparent group "
+      class={`flex flex-col justify-center font-bold w-full  ${
+        DESKTOP[text.desktop!]
+      }  ${MOBILE[text.mobile!]} `}
+    >
+      <h1
+        class={`sm:-rotate-90 ${
+          SIZE_FONT[text.size!]
+        } w-full text-center uppercase font-extrabold text-gray-700`}
+      >
+        {text.text}
+      </h1>
+    </div>
+  );
+}
+function CardItem({ image, lcp }: { image: Product; lcp?: boolean }) {
+  const {
+    alt,
+    srcdesktop,
+    desktop,
+    mobile,
+    href,
+    size,
+    vertical,
+  } = image;
+  const priceStr = image.price + "";
+
+  return (
+    <div
+      class={`  card card-compact card-bordered rounded-none border-transparent group ${
+        DESKTOP[desktop!]
+      }  ${MOBILE[mobile!]} ${HORIZONTAL[vertical!]}  `}
       data-deco="view-product"
     >
-      <div class={`relative  w-[150px] lg:w-[350px] overflow-y-hidden`}>
-        <figure class="relative" style={{ aspectRatio: `350/540` }}>
+      <div class={`relative ${SIZE_IMG[size!]} overflow-y-hidden`}>
+        <figure
+          class="relative"
+          style={{ aspectRatio: `${SIZE_IMG_W[size!]} / ${SIZE_IMG_H[size!]}` }}
+        >
           <a
             href={href}
             aria-label="view product"
             class="contents"
           >
             <Image
-              src={desktop}
+              src={srcdesktop}
               alt={alt}
-              width={300}
-              height={540}
-              class="absolute top-0 left-0  transition-opacity w-full opacity-100 group-hover:opacity-0 "
+              width={510}
+              height={760}
+              class="absolute top-0 left-0  transition-opacity w-full max-h-[760px]  object-cover opacity-100 group-hover:opacity-0 "
               loading={lcp ? "eager" : "lazy"}
-              sizes="(max-width: 640px) 50vw, 20vw"
+              sizes="(max-width: 640px) "
               decoding="async"
             />
             <Image
-              src={image.secondImg ?? desktop!}
+              src={image.secondImg ?? srcdesktop!}
               alt={alt}
-              width={300}
-              height={540}
-              class=" absolute top-0 left-0  transition-opacity w-full opacity-0 group-hover:opacity-100"
+              width={510}
+              height={760}
+              class=" absolute top-0 left-0  transition-opacity w-full max-h-[760px] object-cover opacity-0 group-hover:opacity-100"
               loading={lcp ? "eager" : "lazy"}
-              sizes="(max-width: 640px) 50vw, 20vw"
+              sizes="(max-width: 640px) "
               decoding="async"
             />
           </a>
@@ -254,79 +355,143 @@ function CardItem(
         <div class=" flex flex-col p-0 m-0 h-[90px] max-h-[90px] justify-start items-start">
           <h2 class="card-title w-full   text-base-300 text-sm 2xl:text-lg  font-normal uppercase">
             {image.name}
-          </h2>
-          <div class="flex flex-col  sm:flew-row items-start ">
-            <div class=" flew-row  items-start flex flex-wrap">
-              {image.qtdportion !== undefined
-                ? (
-                  <span
-                    class={`text-xs 2xl:text-base font-bold pl-1`}
-                  >
-                    {image.qtdportion + "x R$" +
-                      image.price / image.qtdportion! +
-                      " / "}
-                  </span>
-                )
-                : ("")}
-              {image.oldPrice !== image.price
-                ? (
-                  <span class="line-through text-xs 2xl:text-base  text-base-300 px-1 ">
-                    R$ {image.oldPrice !== image.price
-                      ? (priceStr.length === 3
-                        ? (image.oldPrice + ",00 ")
-                        : (priceStr?.length === 5
-                          ? (image.oldPrice + "0 ")
-                          : (image.oldPrice)))
-                      : (" ")}
-                  </span>
-                )
-                : ("")}
+          </h2>{" "}
+          {image.price !== undefined
+            ? (
+              <div class="flex flex-col  sm:flew-row items-start ">
+                <div class=" flew-row  items-start flex flex-wrap">
+                  {image.qtdportion !== undefined
+                    ? (
+                      <span
+                        class={`text-xs 2xl:text-base font-bold pl-1`}
+                      >
+                        {image.qtdportion + "x R$" +
+                          image.price / image.qtdportion! +
+                          " / "}
+                      </span>
+                    )
+                    : ("")}
+                  {image.oldPrice !== image.price
+                    ? (
+                      <span class="line-through text-xs 2xl:text-base  text-base-300 px-1 ">
+                        R$ {image.oldPrice !== image.price
+                          ? (priceStr.length === 3
+                            ? (image.oldPrice + ",00 ")
+                            : (priceStr?.length === 5
+                              ? (image.oldPrice + "0 ")
+                              : (image.oldPrice)))
+                          : (" ")}
+                      </span>
+                    )
+                    : ("")}
 
-              <span class="text-xs 2xl:text-base font-bold px-1">
-                {image.oldPrice !== image.price ? (" / ") : (" ")}
-              </span>
-              <span
-                class={`${
-                  image.colorRed! ? "text-red-700 " : ""
-                }text-xs 2xl:text-base font-bold pl-1`}
-              >
-                R$ {priceStr.length === 3
-                  ? (image.price + ",00")
-                  : (priceStr?.length === 5
-                    ? (image.price + "0")
-                    : (image.price))}
-              </span>
-            </div>
-          </div>
+                  <span class="text-xs 2xl:text-base font-bold px-1">
+                    {image.oldPrice !== image.price ? (" / ") : (" ")}
+                  </span>
+                  <span
+                    class={`${
+                      image.colorRed! ? "text-red-700 " : ""
+                    }text-xs 2xl:text-base font-bold pl-1`}
+                  >
+                    R$ {priceStr.length === 3
+                      ? (image.price + ",00")
+                      : (priceStr?.length === 5
+                        ? (image.price + "0")
+                        : (image.price))}
+                  </span>
+                </div>
+              </div>
+            )
+            : ("")}
         </div>
       </div>
     </div>
   );
 }
 
-function CardsCamps({ banner }: { banner: BannerCampaing }) {
-  const { cards } = banner;
+function CardsCamps({ banner }: { banner: Itens }) {
+  const { cards, ordem } = banner;
+  const { productCard, text } = cards;
   const id = useId();
   return (
     <>
-      <div class=" w-full flex flex-col lg:flex-row gap-5 lg:gap-10 px-[15px] pt-[10px] h-[1400px] lg:px-[50px] lg:pt-[40px] justify-center">
-        <div
-          class={`w-full flex `}
-        >
-          <CardMovie banner={banner} />
-        </div>
+      {ordem === "Card/Movie/Text"
+        ? (
+          <div
+            class={`flex flex-col lg:flex-row gap-5 lg:gap-10 px-[25px] sm:px-[25px] pt-[10px] max-h-[1100] lg:px-[50px] lg:pt-[40px] ${
+              HORIZONTAL[banner.horizontal!]
+            } `}
+          >
+            {productCard !== undefined
+              ? (
+                <div
+                  id={id}
+                  class="flex flex-row flex-wrap gap-5   lg:gap-10 justify-start"
+                >
+                  {productCard?.map((image, index) => (
+                    <CardItem
+                      image={image}
+                    />
+                  ))}
+                  {cards.banner !== undefined
+                    ? <CardMovie banner={banner} />
+                    : ("")}
+                </div>
+              )
+              : ("")}
 
-        <div
-          id={id}
-          class="flex flex-row flex-wrap gap-5  px-[15px] lg:gap-10 justify-start"
-        >
-          {cards.images?.map((image, index) => (
-            <CardItem
-              image={image}
-            />
-          ))}
-        </div>
-      </div>
+            {text !== undefined
+              ? (
+                <div
+                  id={id}
+                  class={` flex`}
+                >
+                  <TextCamp
+                    text={text}
+                  />
+                </div>
+              )
+              : ("")}
+          </div>
+        )
+        : (
+          <div
+            class={`w-full flex flex-col lg:flex-row gap-5 lg:gap-10 px-[15px] sm:px-[15px] pt-[10px] max-h-[1100] lg:px-[50px] lg:pt-[40px] ${
+              HORIZONTAL[banner.horizontal!]
+            } `}
+          >
+            {text !== undefined
+              ? (
+                <div
+                  id={id}
+                  class={` flex`}
+                >
+                  <TextCamp
+                    text={text}
+                  />
+                </div>
+              )
+              : ("")}
+
+            {productCard !== undefined
+              ? (
+                <div
+                  id={id}
+                  class="flex flex-row flex-wrap gap-5  lg:gap-10 justify-start"
+                >
+                  {cards.banner !== undefined
+                    ? <CardMovie banner={banner} />
+                    : ("")}
+                  {productCard?.map((image, index) => (
+                    <CardItem
+                      image={image}
+                    />
+                  ))}
+                </div>
+              )
+              : ("")}
+          </div>
+        )}
     </>
   );
 }
