@@ -11,6 +11,8 @@ export type StringItem = {
 export type StringNewsletter = {
   Title: string;
   desc?: string;
+  successText: string;
+  errorText: string;
 };
 
 export type Item = StringItem | IconItem;
@@ -65,6 +67,8 @@ export interface Props {
   sections?: Section[];
   titleNewsletter: string;
   descNewsletter: string;
+  successTextNewsletter: string;
+  errorTextNewsletter: string;
   imgFooter: LiveImage;
 }
 
@@ -78,6 +82,8 @@ function Footer(
     Href_Twitter,
     titleNewsletter,
     descNewsletter,
+    successTextNewsletter,
+    errorTextNewsletter,
     imgFooter,
   }: Props,
 ) {
@@ -180,12 +186,12 @@ function Footer(
                     </ul>
                   </div>
                 </li>
-                <Newsletter Title={titleNewsletter} desc={descNewsletter} />
+                <Newsletter Title={titleNewsletter} desc={descNewsletter} successText={successTextNewsletter} errorText={errorTextNewsletter} />
               </ul>
 
               {/* Mobile view */}
               <ul class="flex flex-col sm:hidden sm:flex-row gap-4">
-                <Newsletter Title={titleNewsletter} desc={descNewsletter} />
+                <Newsletter Title={titleNewsletter} desc={descNewsletter} successText={successTextNewsletter} errorText={errorTextNewsletter} />
               </ul>
             </FooterContainer>
           </div>
