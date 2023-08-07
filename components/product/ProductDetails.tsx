@@ -41,7 +41,9 @@ function NotFound() {
   return (
     <div class="w-full flex justify-center items-center py-28">
       <div class="flex flex-col items-center justify-center gap-6">
-        <span class="font-medium text-2xl">Página não encontrada</span>
+        <span class="font-medium text-2xl text-black  ">
+          Página não encontrada
+        </span>
         <a href="/">
           <Button>Voltar à página inicial</Button>
         </a>
@@ -69,14 +71,16 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
   return (
     <>
       {/* Code and name */}
-      <div class="mt-4 sm:mt-4">
+      <div class="mt-1 lg:mt-4">
         <h1>
-          <span class="font-medium text-2xl">{product.isVariantOf!.name}</span>
+          <span class="font-bold lg:font-medium text-2xl text-black">
+            {product.isVariantOf!.name}
+          </span>
         </h1>
       </div>
       {/* Prices */}
-      <div class="mt-4">
-        <div class="flex flex-col gap-2">
+      <div class="mt-1 lg:mt-4">
+        <div class="flex flex-col gap-0 lg:gap-2">
           <span class="line-through text-black text-lg">
             {formatPrice(listPrice, offers!.priceCurrency!)}
           </span>
@@ -84,8 +88,8 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
             {formatPrice(price, offers!.priceCurrency!)}
             {listPrice !== price
               ? (
-                <div class="absolute flex justify-center top-0 left-0 z-10 mt-3 ml-2">
-                  <span class="rounded-[100px] font-bold bg-black text-white p-1 px-2  text-xs">
+                <div class="absolute flex justify-center top-0 left-0 z-10 lg:mt-3 lg:ml-2">
+                  <span class="rounded-[100px] font-bold bg-black text-white p-1 lg:px-2  text-xs">
                     {Math.floor(price! / listPrice! * 100)}% OFF
                   </span>
                 </div>
@@ -95,11 +99,11 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
         </div>
       </div>
       {/* Sku Selector */}
-      <div class="mt-4 sm:mt-6">
+      <div class="mt-2 mb-2 lg:mb-0 lg:mt-6">
         <ProductSelector product={product} />
       </div>
       {/* Add to Cart and Favorites button */}
-      <div class="mt-4 sm:mt-10 flex flex-col gap-2">
+      <div class="mt-10 flex flex-col gap-2">
         {availability === "https://schema.org/InStock"
           ? (
             <>
@@ -122,7 +126,7 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
       <div class="mt-4 sm:mt-6">
         <span class="text-lg">
           {description && (
-            <details open class="border-t  border-b border-black">
+            <details open class="  border-b border-black">
               <summary class="cursor-pointer transform transition  duration-700 hover:font-extrabold uppercase">
                 Descrição da peça
               </summary>
@@ -287,23 +291,23 @@ function Details({
         />
         <div
           id={id}
-          class="grid grid-cols-1 pt-4 gap-4 sm:grid-cols-[max-content_40vw_40vw] sm:grid-rows-1 sm:justify-center"
+          class="grid grid-cols-1 pt-2 lg:pt-4 gap-2 lg:gap-4 sm:grid-cols-[max-content_40vw_40vw] grid-rows-1 justify-center"
         >
           {/* Image Slider */}
           <div class="relative sm:col-start-2 sm:col-span-1 sm:row-start-1">
-            <Slider class="carousel gap-6">
+            <Slider class="carousel gap-2 lg:gap-6">
               {images.filter((img) => img.alternateName !== "color-thumbnail")
                 .map((img, index) => (
                   <Slider.Item
                     index={index}
-                    class="carousel-item min-w-[100vw] sm:min-w-[40vw]  justify-center"
+                    class="carousel-item min-w-[40vw]  lg:min-w-[40vw]  justify-center"
                   >
                     <div
                       id="box"
-                      class="flex items-center justify-center m-0 min-h-[930px] overflow-hidden"
+                      class="flex items-center justify-center m-0 lg:min-h-[930px] overflow-hidden"
                     >
                       <Image
-                        class="w-[620px] h-[930px] object-cover  origin-center "
+                        class="w-[335px] h-[480px] lg:w-[620px] lg:h-[930px] object-cover  origin-center "
                         // sizes="(max-width: 640px) 100vw, 40vw"
                         style={{ aspectRatio: ASPECT_RATIO }}
                         src={img.url!}
@@ -326,14 +330,14 @@ function Details({
             </Slider>
 
             <Slider.PrevButton
-              class="no-animation absolute left-2 top-1/2 btn btn-circle btn-outline"
+              class=" hidden lg:flex no-animation absolute left-2 top-1/2 btn btn-circle btn-outline"
               disabled
             >
               <Icon size={20} id="ChevronLeft" strokeWidth={3} />
             </Slider.PrevButton>
 
             <Slider.NextButton
-              class="no-animation absolute right-2 top-1/2 btn btn-circle btn-outline"
+              class=" hidden lg:flex no-animation absolute right-2 top-1/2 btn btn-circle btn-outline"
               disabled={images.length < 2}
             >
               <Icon size={20} id="ChevronRight" strokeWidth={3} />
@@ -341,8 +345,8 @@ function Details({
           </div>
 
           {/* Dots */}
-          <ul class="flex gap-2 sm:justify-start  sm:px-0 sm:flex-col sm:col-start-1 sm:col-span-1 sm:row-start-1">
-            <Slider class="flex flex-col carousel overflow-y-scroll  max-h-[800px] gap-6 mt-[100px]">
+          <ul class="hidden lg:flex gap-2 justify-start px-0 flex-col col-start-1 col-span-1 row-start-1">
+            <Slider class="flex flex-col carousel overflow-y-scroll  max-h-[800px] gap-6 lg:mt-[100px]">
               {images.filter((img) => img.alternateName !== "color-thumbnail")
                 .map((img, index) => (
                   <li class="min-w-[180px]  max-w-[180px]  ">
@@ -421,7 +425,7 @@ function ProductDetails({ page, variant: maybeVar = "auto" }: Props) {
     : maybeVar;
 
   return (
-    <div class=" px-10 sm:pb-10">
+    <div class="px-5  lg:px-10 lg:pb-10">
       {page ? <Details page={page} variant={variant} /> : <NotFound />}
     </div>
   );
