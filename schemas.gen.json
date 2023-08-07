@@ -13923,6 +13923,13 @@
                 "type": "string",
                 "title": "Href"
               },
+              "tagAsNew": {
+                "type": [
+                  "boolean",
+                  "null"
+                ],
+                "title": "Tag As New"
+              },
               "children": {
                 "type": "array",
                 "items": {
