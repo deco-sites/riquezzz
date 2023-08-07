@@ -5,6 +5,7 @@ export interface INavItem {
   label: string;
   href: string;
   colorRed: boolean;
+  tagAsNew: boolean;
   children?: INavItem[];
 }
 
@@ -43,6 +44,11 @@ function NavItem({ item }: { item: INavItem }) {
                     href={node.href}
                   >
                     <span>{node.label}</span>
+                    {node.tagAsNew && (
+                      <span class="bg-red-500 py-[1px] px-0.5 rounded-md text-white text-xs ml-1 align-middle">
+                        NEW
+                      </span>
+                    )}
                   </a>
                 </li>
               ))}
