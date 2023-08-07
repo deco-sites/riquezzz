@@ -14,9 +14,8 @@ export type StringNewsletter = {
   errorText: string;
 };
 
-function ValidateEmail(mail: string) 
-{
- return(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
+function ValidateEmail(mail: string) {
+  return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail));
 }
 
 function Newsletter({ Title, desc, successText, errorText }: StringNewsletter) {
@@ -77,7 +76,13 @@ function Newsletter({ Title, desc, successText, errorText }: StringNewsletter) {
           </button>
         </div>
         <div class="mt-2 h-4">
-          { loading.value ? 'Carregando...' : invalid.value ? errorText : sent.value ? successText : null } 
+          {loading.value
+            ? "Carregando..."
+            : invalid.value
+            ? errorText
+            : sent.value
+            ? successText
+            : null}
         </div>
       </form>
     </div>

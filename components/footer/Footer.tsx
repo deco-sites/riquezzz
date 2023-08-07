@@ -186,12 +186,22 @@ function Footer(
                     </ul>
                   </div>
                 </li>
-                <Newsletter Title={titleNewsletter} desc={descNewsletter} successText={successTextNewsletter} errorText={errorTextNewsletter} />
+                <Newsletter
+                  Title={titleNewsletter}
+                  desc={descNewsletter}
+                  successText={successTextNewsletter}
+                  errorText={errorTextNewsletter}
+                />
               </ul>
 
               {/* Mobile view */}
               <ul class="flex flex-col sm:hidden sm:flex-row gap-4">
-                <Newsletter Title={titleNewsletter} desc={descNewsletter} successText={successTextNewsletter} errorText={errorTextNewsletter} />
+                <Newsletter
+                  Title={titleNewsletter}
+                  desc={descNewsletter}
+                  successText={successTextNewsletter}
+                  errorText={errorTextNewsletter}
+                />
               </ul>
             </FooterContainer>
           </div>
