@@ -90,7 +90,11 @@ function CartButton() {
   );
 }
 
-function Buttons({ variant }: { variant: "cart" | "search" | "menu" }) {
+export interface Props {
+  variant: "cart" | "search" | "menu";
+}
+
+function Buttons({ variant }: Props) {
   if (variant === "cart") {
     return <CartButton />;
   }
