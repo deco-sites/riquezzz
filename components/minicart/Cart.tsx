@@ -39,7 +39,7 @@ function Cart() {
   if (isCartEmpty) {
     return (
       <>
-        <header class="flex  py-2 justify-between items-center text-white bg-black text-xs">
+        <header class="flex  py-2 justify-between items-center text-white bg-black text-sm">
           <div class="w-full flex flex-col justify-between items-center">
             <div class="flex flex-row w-full items-center content-start">
               <div class="px-2 py-4 w-full">
@@ -54,10 +54,10 @@ function Cart() {
           </div>
         </header>
         <div class="flex flex-col justify-center items-center  h-[200px] gap-6">
-          <span class="font-medium text-[14px] uppercase text-[#a2a2a2]">
+          <span class="font-medium text-base uppercase text-[#a2a2a2]">
             {"Seu carrinho está vazio :("}
           </span>
-          <span class="font-medium text-[14px] uppercase">
+          <span class="font-medium text-base uppercase">
             continue comprando
           </span>
         </div>
@@ -67,7 +67,7 @@ function Cart() {
 
   return (
     <>
-      <header class="flex  py-2 justify-between items-center text-white bg-black text-xs">
+      <header class="flex  py-2 justify-between items-center text-white bg-black text-sm">
         <div class="w-full flex flex-col justify-between items-center">
           <div class="flex flex-row w-full items-center content-start">
             <div class="px-2 py-4 w-full">
@@ -102,8 +102,8 @@ function Cart() {
         {total?.value && (
           <div class="pt-4 flex flex-col justify-end items-end gap-2 mx-4">
             <div class="flex justify-between items-center w-full">
-              <span class="text-sm uppercase">Subtotal</span>
-              <span class="font-medium text-sm uppercase ">
+              <span class="text-base uppercase">Subtotal</span>
+              <span class="font-medium text-base uppercase ">
                 {formatPrice(total.value / 100, currencyCode!, locale)}
               </span>
             </div>
@@ -113,8 +113,8 @@ function Cart() {
         {discounts?.value && (
           <div class="pt-1 flex flex-col justify-end items-end gap-2 mx-4">
             <div class="flex justify-between items-center w-full">
-              <span class="text-sm uppercase">Descontos</span>
-              <span class="font-medium text-sm uppercase ">
+              <span class="text-base uppercase">Descontos</span>
+              <span class="font-medium text-base uppercase ">
                 {formatPrice(discounts.value / 100, currencyCode!, locale)}
               </span>
             </div>
@@ -124,8 +124,8 @@ function Cart() {
         {total?.value && (
           <div class="pt-1 flex flex-col justify-end items-end gap-2 mx-4">
             <div class="flex justify-between items-center w-full">
-              <span class="text-sm uppercase">Total</span>
-              <span class="font-medium text-sm uppercase ">
+              <span class="text-base uppercase">Total</span>
+              <span class="font-medium text-base uppercase ">
                 {formatPrice(totalWithDiscounts / 100, currencyCode!, locale)}
               </span>
             </div>
