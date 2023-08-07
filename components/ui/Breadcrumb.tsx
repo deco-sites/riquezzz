@@ -9,8 +9,10 @@ function Breadcrumb({ itemListElement = [] }: Props) {
   const items = [{ name: "Home", item: "/" }, ...itemListElement];
 
   return (
-    <div class="container text-caption breadcrumbs text-base">
-      <ul>
+    <div class="container text-caption breadcrumbs text-sm lg:text-base  ">
+      <ul
+        class={` max-w-[350px] flex flex-row flex-wrap`}
+      >
         {items
           .filter(({ name, item }) => name && item)
           .map(({ name, item }) => (

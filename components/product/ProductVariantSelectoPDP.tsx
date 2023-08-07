@@ -43,7 +43,6 @@ function VariantSelector(
   let newVariants = [pppp, ppp, pp, p, m, g, gg, ggg, gggg];
   newVariants = newVariants.filter((item) => item !== undefined);
 
-  console.log({ newVariants });
   return (
     <ul class="flex flex-col gap-4">
       {Object.keys(possibilities).map((name) => (
