@@ -10000,10 +10000,20 @@
             "null"
           ],
           "title": "Desc"
+        },
+        "successText": {
+          "type": "string",
+          "title": "Success Text"
+        },
+        "errorText": {
+          "type": "string",
+          "title": "Error Text"
         }
       },
       "required": [
-        "Title"
+        "Title",
+        "successText",
+        "errorText"
       ],
       "title": "deco-sites/riquezzz/components/footer/Newsletter.tsx@StringNewsletter"
     },
@@ -13809,6 +13819,14 @@
           "type": "string",
           "title": "Desc Newsletter"
         },
+        "successTextNewsletter": {
+          "type": "string",
+          "title": "Success Text Newsletter"
+        },
+        "errorTextNewsletter": {
+          "type": "string",
+          "title": "Error Text Newsletter"
+        },
         "imgFooter": {
           "$ref": "#/definitions/ZGVjby1zaXRlcy9zdGQvY29tcG9uZW50cy90eXBlcy50cw==@Image",
           "title": "Img Footer"
@@ -13822,6 +13840,8 @@
         "Href_Twitter",
         "titleNewsletter",
         "descNewsletter",
+        "successTextNewsletter",
+        "errorTextNewsletter",
         "imgFooter"
       ],
       "title": "deco-sites/riquezzz/components/footer/Footer.tsx@Props"
