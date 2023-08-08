@@ -14,7 +14,6 @@ function Notify({ productID }: Props) {
 
   const handleSubmit: JSX.GenericEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-
     try {
       loading.value = true;
 
@@ -31,13 +30,30 @@ function Notify({ productID }: Props) {
 
   return (
     <form class="form-control justify-start gap-2" onSubmit={handleSubmit}>
-      <span class="text-base">Este produto está indisponivel no momento</span>
-      <span class="text-sm">Avise-me quando estiver disponivel</span>
+      <span class="text-xl font-semibold">
+        Este produto não está disponível no momento
+      </span>
+      <span class="text-base font-medium">
+        Quero que me avisem quando estiver disponível
+      </span>
 
-      <input placeholder="Nome" class="input input-bordered" name="name" />
-      <input placeholder="Email" class="input input-bordered" name="email" />
+      <input
+        placeholder="Nome"
+        class="input input-bordered  rounded-none border-2 max-w-[500px] px-2 h-[40px]   focus:outline-none"
+        name="name"
+      />
+      <input
+        placeholder="Email"
+        class="input input-bordered  rounded-none border-2 max-w-[500px] px-2 h-[40px]   focus:outline-none"
+        name="email"
+      />
 
-      <button class="btn disabled:loading" disabled={loading}>Enviar</button>
+      <button
+        class="btn max-w-[100px] max-h-[20px] p-1 rounded-none font-normal uppercase text-white bg-black disabled:loading"
+        disabled={loading}
+      >
+        Enviar
+      </button>
     </form>
   );
 }
