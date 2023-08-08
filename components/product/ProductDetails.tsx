@@ -291,11 +291,11 @@ function Details({
         />
         <div
           id={id}
-          class="grid grid-cols-1 pt-2 lg:pt-4 gap-2 lg:gap-4 sm:grid-cols-[max-content_40vw_40vw] grid-rows-1 justify-center"
+          class="grid grid-cols-1 pt-2 lg:pt-4 gap-2 lg:gap-4 lg:grid-cols-[max-content_40vw_40vw] grid-rows-1 justify-center"
         >
           {/* Image Slider */}
-          <div class="relative sm:col-start-2 sm:col-span-1 sm:row-start-1">
-            <Slider class="carousel gap-2 lg:gap-6">
+          <div class="relative lg:col-start-2 lg:col-span-1 lg:row-start-1 lg:max-h-[930px]">
+            <Slider class="carousel gap-2 lg:gap-6 min-w-[40vw] sm:max-w-[40vw]">
               {images.filter((img) => img.alternateName !== "color-thumbnail")
                 .map((img, index) => (
                   <Slider.Item
@@ -367,7 +367,7 @@ function Details({
           </ul>
 
           {/* Product Info */}
-          <div class="px-4 sm:pr-0 sm:pl-6 sm:col-start-3 sm:col-span-1 sm:row-start-1">
+          <div class="px-4 sm:pr-0 sm:pl-6 lg:col-start-3 lg:col-span-1 lg:row-start-1">
             <ProductInfo page={page} />
           </div>
         </div>
