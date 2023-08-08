@@ -12,7 +12,6 @@ function Breadcrumb({ itemListElement = [] }: Props) {
     <div class="container text-caption breadcrumbs text-sm lg:text-base  ">
       <ul
         class={` max-w-[350px] lg:max-w-[90vw] flex flex-row flex-wrap`}
-
       >
         {items
           .filter(({ name, item }) => name && item)
