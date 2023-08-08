@@ -3,6 +3,8 @@ import { useCallback } from "preact/hooks";
 import Button from "$store/components/ui/Button.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useCart } from "deco-sites/std/packs/vtex/hooks/useCart.ts";
+import Icon from "$store/components/ui/Icon.tsx";
+
 import type {
   SimulationOrderForm,
   SKU,
@@ -96,26 +98,23 @@ function ShippingSimulation({ items }: Props) {
   }, []);
 
   return (
-    <div class="flex flex-col gap-2">
-      <div class="flex flex-col">
-        <span>Calcular frete</span>
-        <span>
-          Informe seu CEP para consultar os prazos de entrega
-        </span>
-      </div>
+    <div class="flex flex-col py-2">
+      <span class="font-bold text-base uppercase">
+        Frete e prazo
+      </span>
       <div>
         <form
-          class="form-control input-group"
+          class="font-body text-body w-full rounded-none  sm:w-[325px] form-control"
           onSubmit={(e) => {
             e.preventDefault();
             handleSimulation();
           }}
         >
-          <div class="input-group">
+          <div class="bg-white rounded-none w-full border-b  border-black">
             <input
               as="input"
               type="text"
-              class="input input-bordered"
+              class="flex-grow input w-[85%] input-primary h-[40px] focus:outline-none border-none"
               placeholder="Seu cep aqui"
               value={postalCode.value}
               maxLength={8}
@@ -123,9 +122,18 @@ function ShippingSimulation({ items }: Props) {
                 postalCode.value = e.currentTarget.value;
               }}
             />
-            <Button type="submit" loading={loading.value}>
-              Calcular
-            </Button>
+            <button
+              class="bg-transparent  border-none w-[15%]  text-center px-5 pt-4 "
+              disabled={loading}
+            >
+              <Icon
+                class="text-black"
+                width={20}
+                height={20}
+                id=">"
+                strokeWidth={1}
+              />
+            </button>
           </div>
         </form>
       </div>

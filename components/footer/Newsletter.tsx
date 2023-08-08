@@ -10,23 +10,35 @@ const subscribe = Runtime.create(
 export type StringNewsletter = {
   Title: string;
   desc?: string;
+  successText: string;
+  errorText: string;
 };
 
-function Newsletter({ Title, desc }: StringNewsletter) {
-  const loading = useSignal(false);
+function ValidateEmail(mail: string) {
+  return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail));
+}
 
+function Newsletter({ Title, desc, successText, errorText }: StringNewsletter) {
+  const loading = useSignal(false);
+  const sent = useSignal(false);
+  const invalid = useSignal(false);
   const handleSubmit: JSX.GenericEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
     try {
       loading.value = true;
-
       const email =
         (e.currentTarget.elements.namedItem("email") as RadioNodeList)?.value;
-
+      if (!ValidateEmail(email)) {
+        invalid.value = true;
+        loading.value = false;
+        return;
+      }
+      invalid.value = false;
       await subscribe({ email });
     } finally {
       loading.value = false;
+      sent.value = true;
     }
   };
 
@@ -52,7 +64,7 @@ function Newsletter({ Title, desc }: StringNewsletter) {
           />
           <button
             class="bg-transparent  border-none w-[15%]  text-center px-5 pt-4 "
-            disabled={loading}
+            disabled={loading.value}
           >
             <Icon
               class="text-black"
@@ -62,6 +74,15 @@ function Newsletter({ Title, desc }: StringNewsletter) {
               strokeWidth={1}
             />
           </button>
+        </div>
+        <div class="mt-2 h-4">
+          {loading.value
+            ? "Carregando..."
+            : invalid.value
+            ? errorText
+            : sent.value
+            ? successText
+            : null}
         </div>
       </form>
     </div>
