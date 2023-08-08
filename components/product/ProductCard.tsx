@@ -125,8 +125,7 @@ function ProductCard(
   let newVariants = [pppp, ppp, pp, p, m, g, gg, ggg, gggg];
   newVariants = newVariants.filter((item) => item !== undefined);
 
-
-    console.log(isSimilarTo);
+  console.log(isSimilarTo);
 
   return (
     <div
@@ -237,48 +236,48 @@ function ProductCard(
       {/* Prices & Name */}
       {/* */}
       {variants.length > 0
+        ? (
+          newVariants.length > 0
             ? (
-              newVariants.length > 0
-                ? (
-                  <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
-                    <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
-                      {newVariants.map((item) => (
-                        <AddToCartAvatar
-                          skuId={item?.productID || productID}
-                          sellerId={seller || ""}
-                          price={price ?? 0}
-                          discount={price && listPrice ? listPrice - price : 0}
-                          name={product.name ?? ""}
-                          productGroupId={product.isVariantOf?.productGroupID ??
-                            ""}
-                          variant={item?.lvl !== 0 ? "default" : "disabled"}
-                          content={item?.value!}
-                        />
-                      ))}
-                    </ul>
-                  </figcaption>
-                )
-                : (
-                  <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
-                    <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
-                      {variants.map((item) => (
-                        <AddToCartAvatar
-                          skuId={item?.productID || productID}
-                          sellerId={seller || ""}
-                          price={price ?? 0}
-                          discount={price && listPrice ? listPrice - price : 0}
-                          name={product.name ?? ""}
-                          productGroupId={product.isVariantOf?.productGroupID ??
-                            ""}
-                          variant={item?.lvl !== 0 ? "default" : "disabled"}
-                          content={item?.value!}
-                        />
-                      ))}
-                    </ul>
-                  </figcaption>
-                )
+              <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
+                <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
+                  {newVariants.map((item) => (
+                    <AddToCartAvatar
+                      skuId={item?.productID || productID}
+                      sellerId={seller || ""}
+                      price={price ?? 0}
+                      discount={price && listPrice ? listPrice - price : 0}
+                      name={product.name ?? ""}
+                      productGroupId={product.isVariantOf?.productGroupID ??
+                        ""}
+                      variant={item?.lvl !== 0 ? "default" : "disabled"}
+                      content={item?.value!}
+                    />
+                  ))}
+                </ul>
+              </figcaption>
             )
-            : ("")}
+            : (
+              <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
+                <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
+                  {variants.map((item) => (
+                    <AddToCartAvatar
+                      skuId={item?.productID || productID}
+                      sellerId={seller || ""}
+                      price={price ?? 0}
+                      discount={price && listPrice ? listPrice - price : 0}
+                      name={product.name ?? ""}
+                      productGroupId={product.isVariantOf?.productGroupID ??
+                        ""}
+                      variant={item?.lvl !== 0 ? "default" : "disabled"}
+                      content={item?.value!}
+                    />
+                  ))}
+                </ul>
+              </figcaption>
+            )
+        )
+        : ("")}
       <div class=" flex flex-col p-0 m-0 h-[90px] max-h-[90px] justify-start items-start">
         <h2 class="card-title w-full   text-base-300 text-sm 2xl:text-lg  font-normal uppercase">
           {isVariantOf!.name}
