@@ -1,0 +1,998 @@
+
+[
+    {
+      "@type": "Product",
+      category: "BAW>Vestuário>Partes de Cima>Moletons",
+      productID: "2147376331",
+      url: "http://localhost:8000/moletom-hoodie-bawab-corrosive-off-white-0085208037/p?skuId=2147376331",
+      name: "Moletom Hoodie Bawab Corrosive OFF WHITE 3G",
+      description: "MOLETOM HOODIE BAWAB CORROSIVE OFF WHITE\n\nMoletom manga longa com bolso canguru. Capuz com cordão pa...",
+      brand: "BAW",
+      sku: "2147376331",
+      gtin: "7900095645625",
+      releaseDate: "2023-08-20T03:00:00Z",
+      additionalProperty: [
+        {
+          "@type": "PropertyValue",
+          name: "Tamanho",
+          value: "3G",
+          valueReference: "SPECIFICATION"
+        },
+        { "@type": "PropertyValue", name: "category", propertyID: "99", value: "BAW" },
+        {
+          "@type": "PropertyValue",
+          name: "category",
+          propertyID: "100",
+          value: "Vestuário"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "category",
+          propertyID: "101",
+          value: "Partes de Cima"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "category",
+          propertyID: "105",
+          value: "Moletons"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "TodosBAW",
+          propertyID: "147",
+          description: "highlight"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Teste Todos",
+          propertyID: "510",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Loading Winter - Geral",
+          propertyID: "521",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "LIVELO x BAW",
+          propertyID: "526",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "FLASH SALE - JAQUETAS E MOLETONS",
+          propertyID: "539",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "CRAZY WINTER",
+          propertyID: "540",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Crazy Winter - Oferta do Fds",
+          propertyID: "541",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "MOLETOM CRAZY WINTER",
+          propertyID: "544",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Moletom 249,00",
+          propertyID: "548",
+          description: undefined
+        }
+      ],
+      isVariantOf: {
+        "@type": "ProductGroup",
+        productGroupID: "2147127227",
+        hasVariant: [ [Object] ],
+        url: "http://localhost:8000/moletom-hoodie-bawab-corrosive-off-white-0085208037/p",
+        name: "Moletom Hoodie Bawab Corrosive",
+        additionalProperty: [ [Object], [Object] ],
+        model: "0085208037"
+      },
+      image: [
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273134/0085208037_01.jpg?v=638266737675570000"
+        },
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273135/0085208037_02.jpg?v=638266737679470000"
+        },
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273136/0085208037_03.jpg?v=638266737683200000"
+        },
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273137/0085208037_04.jpg?v=638266737686670000"
+        }
+      ],
+      offers: {
+        "@type": "AggregateOffer",
+        priceCurrency: "BRL",
+        highPrice: 199,
+        lowPrice: 199,
+        offerCount: 2,
+        offers: [ [Object], [Object] ]
+      }
+    },
+    {
+      "@type": "Product",
+      category: "BAW>Vestuário>Partes de Cima>Moletons",
+      productID: "2147376338",
+      url: "http://localhost:8000/moletom-hoodie-bawab-corrosive-preto-0085208040/p?skuId=2147376338",
+      name: "MOLETOM HOODIE BAWAB CORROSIVE PRETO 3G",
+      description: "MOLETOM HOODIE BAWAB CORROSIVE BLACK\n\nMoletom manga longa com bolso canguru. Capuz com cordão para a...",
+      brand: "BAW",
+      sku: "2147376338",
+      gtin: "7900095645762",
+      releaseDate: "2023-08-20T03:00:00Z",
+      additionalProperty: [
+        {
+          "@type": "PropertyValue",
+          name: "Tamanho",
+          value: "3G",
+          valueReference: "SPECIFICATION"
+        },
+        { "@type": "PropertyValue", name: "category", propertyID: "99", value: "BAW" },
+        {
+          "@type": "PropertyValue",
+          name: "category",
+          propertyID: "100",
+          value: "Vestuário"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "category",
+          propertyID: "101",
+          value: "Partes de Cima"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "category",
+          propertyID: "105",
+          value: "Moletons"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "TodosBAW",
+          propertyID: "147",
+          description: "highlight"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Teste Todos",
+          propertyID: "510",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Loading Winter - Geral",
+          propertyID: "521",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "LIVELO x BAW",
+          propertyID: "526",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "FLASH SALE - JAQUETAS E MOLETONS",
+          propertyID: "539",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "CRAZY WINTER",
+          propertyID: "540",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Crazy Winter - Oferta do Fds",
+          propertyID: "541",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "MOLETOM CRAZY WINTER",
+          propertyID: "544",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Moletom 249,00",
+          propertyID: "548",
+          description: undefined
+        }
+      ],
+      isVariantOf: {
+        "@type": "ProductGroup",
+        productGroupID: "2147127228",
+        hasVariant: [ [Object] ],
+        url: "http://localhost:8000/moletom-hoodie-bawab-corrosive-preto-0085208040/p",
+        name: "Moletom Hoodie Bawab Corrosive",
+        additionalProperty: [ [Object], [Object] ],
+        model: "0085208040"
+      },
+      image: [
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273149/0085208040_01.jpg?v=638266746293470000"
+        },
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273150/0085208040_02.jpg?v=638266746297500000"
+        },
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273151/0085208040_03.jpg?v=638266746300970000"
+        },
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273152/0085208040_04.jpg?v=638266746303730000"
+        }
+      ],
+      offers: {
+        "@type": "AggregateOffer",
+        priceCurrency: "BRL",
+        highPrice: 199,
+        lowPrice: 199,
+        offerCount: 2,
+        offers: [ [Object], [Object] ]
+      }
+    }
+  ]
+  [
+    {
+      "@type": "Product",
+      category: "BAW>Vestuário>Partes de Cima>Moletons",
+      productID: "2147376394",
+      url: "http://localhost:8000/moletom-hoodie-baw-r-corrosive-preto-0085211040/p?skuId=2147376394",
+      name: "Moletom Hoodie Baw R Corrosive PRETO 3G",
+      description: "MOLETOM HOODIE BAW R CORROSIVE BLACK\n\nMoletom manga longa com bolso canguru. Capuz com cordão para a...",
+      brand: "BAW",
+      sku: "2147376394",
+      gtin: "7900095646042",
+      releaseDate: "2023-08-20T03:00:00Z",
+      additionalProperty: [
+        {
+          "@type": "PropertyValue",
+          name: "Tamanho",
+          value: "3G",
+          valueReference: "SPECIFICATION"
+        },
+        { "@type": "PropertyValue", name: "category", propertyID: "99", value: "BAW" },
+        {
+          "@type": "PropertyValue",
+          name: "category",
+          propertyID: "100",
+          value: "Vestuário"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "category",
+          propertyID: "101",
+          value: "Partes de Cima"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "category",
+          propertyID: "105",
+          value: "Moletons"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "TodosBAW",
+          propertyID: "147",
+          description: "highlight"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Teste Todos",
+          propertyID: "510",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Loading Winter - Geral",
+          propertyID: "521",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "LIVELO x BAW",
+          propertyID: "526",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "FLASH SALE - JAQUETAS E MOLETONS",
+          propertyID: "539",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "CRAZY WINTER",
+          propertyID: "540",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Crazy Winter - Oferta do Fds",
+          propertyID: "541",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "MOLETOM CRAZY WINTER",
+          propertyID: "544",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Moletom 249,00",
+          propertyID: "548",
+          description: undefined
+        }
+      ],
+      isVariantOf: {
+        "@type": "ProductGroup",
+        productGroupID: "2147127236",
+        hasVariant: [ [Object] ],
+        url: "http://localhost:8000/moletom-hoodie-baw-r-corrosive-preto-0085211040/p",
+        name: "Moletom Hoodie Baw R Corrosive",
+        additionalProperty: [ [Object], [Object] ],
+        model: "0085211040"
+      },
+      image: [
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273157/0085211040_01.jpg?v=638266950003200000"
+        },
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273158/0085211040_02.jpg?v=638266950013600000"
+        },
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273159/0085211040_03.jpg?v=638266950018270000"
+        },
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273160/0085211040_04.jpg?v=638266950023070000"
+        },
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273161/0085211040_05.jpg?v=638266950030030000"
+        }
+      ],
+      offers: {
+        "@type": "AggregateOffer",
+        priceCurrency: "BRL",
+        highPrice: 199,
+        lowPrice: 199,
+        offerCount: 2,
+        offers: [ [Object], [Object] ]
+      }
+    }
+  ]
+  [
+    {
+      "@type": "Product",
+      category: "BAW>Vestuário>Partes de Cima>Moletons",
+      productID: "2147376373",
+      url: "http://localhost:8000/moletom-hoodie-college-baw-corrosive-preto-0085210040/p?skuId=2147376373",
+      name: "Moletom Hoodie College Baw Corrosive PRETO 3G",
+      description: "MOLETOM HOODIE COLLEGE BAW CORROSIVE BLACK\n\nMoletom manga longa com bolso canguru. Capuz com cordão ...",
+      brand: "BAW",
+      sku: "2147376373",
+      gtin: "7900095645908",
+      releaseDate: "2023-08-20T03:00:00Z",
+      additionalProperty: [
+        {
+          "@type": "PropertyValue",
+          name: "Tamanho",
+          value: "3G",
+          valueReference: "SPECIFICATION"
+        },
+        { "@type": "PropertyValue", name: "category", propertyID: "99", value: "BAW" },
+        {
+          "@type": "PropertyValue",
+          name: "category",
+          propertyID: "100",
+          value: "Vestuário"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "category",
+          propertyID: "101",
+          value: "Partes de Cima"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "category",
+          propertyID: "105",
+          value: "Moletons"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "TodosBAW",
+          propertyID: "147",
+          description: "highlight"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Teste Todos",
+          propertyID: "510",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Loading Winter - Geral",
+          propertyID: "521",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "LIVELO x BAW",
+          propertyID: "526",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "FLASH SALE - JAQUETAS E MOLETONS",
+          propertyID: "539",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "CRAZY WINTER",
+          propertyID: "540",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Crazy Winter - Oferta do Fds",
+          propertyID: "541",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "MOLETOM CRAZY WINTER",
+          propertyID: "544",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Moletom 249,00",
+          propertyID: "548",
+          description: undefined
+        }
+      ],
+      isVariantOf: {
+        "@type": "ProductGroup",
+        productGroupID: "2147127233",
+        hasVariant: [ [Object] ],
+        url: "http://localhost:8000/moletom-hoodie-college-baw-corrosive-preto-0085210040/p",
+        name: "Moletom Hoodie College Baw Corrosive",
+        additionalProperty: [ [Object], [Object] ],
+        model: "0085210040"
+      },
+      image: [
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273153/0085210040_01.jpg?v=638266747418170000"
+        },
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273154/0085210040_02.jpg?v=638266747420970000"
+        },
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273155/0085210040_03.jpg?v=638266747424230000"
+        },
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273156/0085210040_04.jpg?v=638266747427700000"
+        }
+      ],
+      offers: {
+        "@type": "AggregateOffer",
+        priceCurrency: "BRL",
+        highPrice: 199,
+        lowPrice: 199,
+        offerCount: 2,
+        offers: [ [Object], [Object] ]
+      }
+    }
+  ]
+  [
+    {
+      "@type": "Product",
+      category: "BAW>Vestuário>Partes de Cima>Moletons",
+      productID: "2147376366",
+      url: "http://localhost:8000/moletom-hoodie-college-baw-corrosive-off-white-0085210037/p?skuId=2147376366",
+      name: "Moletom Hoodie College Baw Corrosive OFF WHITE 3G",
+      description: "MOLETOM HOODIE COLLEGE BAW CORROSIVE OFF WHITE\n\nMoletom manga longa com bolso canguru. Capuz com cor...",
+      brand: "BAW",
+      sku: "2147376366",
+      gtin: "7900095645694",
+      releaseDate: "2023-08-20T03:00:00Z",
+      additionalProperty: [
+        {
+          "@type": "PropertyValue",
+          name: "Tamanho",
+          value: "3G",
+          valueReference: "SPECIFICATION"
+        },
+        { "@type": "PropertyValue", name: "category", propertyID: "99", value: "BAW" },
+        {
+          "@type": "PropertyValue",
+          name: "category",
+          propertyID: "100",
+          value: "Vestuário"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "category",
+          propertyID: "101",
+          value: "Partes de Cima"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "category",
+          propertyID: "105",
+          value: "Moletons"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "TodosBAW",
+          propertyID: "147",
+          description: "highlight"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Teste Todos",
+          propertyID: "510",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Loading Winter - Geral",
+          propertyID: "521",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "LIVELO x BAW",
+          propertyID: "526",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "FLASH SALE - JAQUETAS E MOLETONS",
+          propertyID: "539",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "CRAZY WINTER",
+          propertyID: "540",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Crazy Winter - Oferta do Fds",
+          propertyID: "541",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "MOLETOM CRAZY WINTER",
+          propertyID: "544",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Moletom 249,00",
+          propertyID: "548",
+          description: undefined
+        }
+      ],
+      isVariantOf: {
+        "@type": "ProductGroup",
+        productGroupID: "2147127232",
+        hasVariant: [ [Object] ],
+        url: "http://localhost:8000/moletom-hoodie-college-baw-corrosive-off-white-0085210037/p",
+        name: "Moletom Hoodie College Baw Corrosive",
+        additionalProperty: [ [Object], [Object] ],
+        model: "0085210037"
+      },
+      image: [
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273146/0085210037_01.jpg?v=638266744805670000"
+        },
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273147/0085210037_02.jpg?v=638266744811300000"
+        },
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273148/0085210037_03.jpg?v=638266744814270000"
+        }
+      ],
+      offers: {
+        "@type": "AggregateOffer",
+        priceCurrency: "BRL",
+        highPrice: 199,
+        lowPrice: 199,
+        offerCount: 2,
+        offers: [ [Object], [Object] ]
+      }
+    }
+  ]
+  [
+    {
+      "@type": "Product",
+      category: "BAW>Vestuário>Partes de Cima>Moletons",
+      productID: "2147376324",
+      url: "http://localhost:8000/moletom-hoodie-bawab-corrosive-branco-0085208014/p?skuId=2147376324",
+      name: "Moletom Hoodie Bawab Corrosive BRANCO 3G",
+      description: "MOLETOM HOODIE BAWAB  CORROSIVE OFF WHITE\n\nMoletom manga longa com bolso canguru. Capuz com cordão p...",
+      brand: "BAW",
+      sku: "2147376324",
+      gtin: "7900095645489",
+      releaseDate: "2023-08-20T03:00:00Z",
+      additionalProperty: [
+        {
+          "@type": "PropertyValue",
+          name: "Tamanho",
+          value: "3G",
+          valueReference: "SPECIFICATION"
+        },
+        { "@type": "PropertyValue", name: "category", propertyID: "99", value: "BAW" },
+        {
+          "@type": "PropertyValue",
+          name: "category",
+          propertyID: "100",
+          value: "Vestuário"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "category",
+          propertyID: "101",
+          value: "Partes de Cima"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "category",
+          propertyID: "105",
+          value: "Moletons"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "TodosBAW",
+          propertyID: "147",
+          description: "highlight"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Teste Todos",
+          propertyID: "510",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Loading Winter - Geral",
+          propertyID: "521",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "LIVELO x BAW",
+          propertyID: "526",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "FLASH SALE - JAQUETAS E MOLETONS",
+          propertyID: "539",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "CRAZY WINTER",
+          propertyID: "540",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Crazy Winter - Oferta do Fds",
+          propertyID: "541",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "MOLETOM CRAZY WINTER",
+          propertyID: "544",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Moletom 249,00",
+          propertyID: "548",
+          description: undefined
+        }
+      ],
+      isVariantOf: {
+        "@type": "ProductGroup",
+        productGroupID: "2147127226",
+        hasVariant: [ [Object] ],
+        url: "http://localhost:8000/moletom-hoodie-bawab-corrosive-branco-0085208014/p",
+        name: "Moletom Hoodie Bawab Corrosive",
+        additionalProperty: [ [Object], [Object] ],
+        model: "0085208014"
+      },
+      image: [
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273130/0085208014_01.jpg?v=638266735417570000"
+        },
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273131/0085208014_02.jpg?v=638266735424430000"
+        },
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273132/0085208014_03.jpg?v=638266735428170000"
+        },
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273133/0085208014_04.jpg?v=638266735430900000"
+        }
+      ],
+      offers: {
+        "@type": "AggregateOffer",
+        priceCurrency: "BRL",
+        highPrice: 199,
+        lowPrice: 199,
+        offerCount: 2,
+        offers: [ [Object], [Object] ]
+      }
+    },
+    {
+      "@type": "Product",
+      category: "BAW>Vestuário>Partes de Cima>Moletons",
+      productID: "2147376331",
+      url: "http://localhost:8000/moletom-hoodie-bawab-corrosive-off-white-0085208037/p?skuId=2147376331",
+      name: "Moletom Hoodie Bawab Corrosive OFF WHITE 3G",
+      description: "MOLETOM HOODIE BAWAB CORROSIVE OFF WHITE\n\nMoletom manga longa com bolso canguru. Capuz com cordão pa...",
+      brand: "BAW",
+      sku: "2147376331",
+      gtin: "7900095645625",
+      releaseDate: "2023-08-20T03:00:00Z",
+      additionalProperty: [
+        {
+          "@type": "PropertyValue",
+          name: "Tamanho",
+          value: "3G",
+          valueReference: "SPECIFICATION"
+        },
+        { "@type": "PropertyValue", name: "category", propertyID: "99", value: "BAW" },
+        {
+          "@type": "PropertyValue",
+          name: "category",
+          propertyID: "100",
+          value: "Vestuário"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "category",
+          propertyID: "101",
+          value: "Partes de Cima"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "category",
+          propertyID: "105",
+          value: "Moletons"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "TodosBAW",
+          propertyID: "147",
+          description: "highlight"
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Teste Todos",
+          propertyID: "510",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Loading Winter - Geral",
+          propertyID: "521",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "LIVELO x BAW",
+          propertyID: "526",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "FLASH SALE - JAQUETAS E MOLETONS",
+          propertyID: "539",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "CRAZY WINTER",
+          propertyID: "540",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Crazy Winter - Oferta do Fds",
+          propertyID: "541",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "MOLETOM CRAZY WINTER",
+          propertyID: "544",
+          description: undefined
+        },
+        {
+          "@type": "PropertyValue",
+          name: "cluster",
+          value: "Moletom 249,00",
+          propertyID: "548",
+          description: undefined
+        }
+      ],
+      isVariantOf: {
+        "@type": "ProductGroup",
+        productGroupID: "2147127227",
+        hasVariant: [ [Object] ],
+        url: "http://localhost:8000/moletom-hoodie-bawab-corrosive-off-white-0085208037/p",
+        name: "Moletom Hoodie Bawab Corrosive",
+        additionalProperty: [ [Object], [Object] ],
+        model: "0085208037"
+      },
+      image: [
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273134/0085208037_01.jpg?v=638266737675570000"
+        },
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273135/0085208037_02.jpg?v=638266737679470000"
+        },
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273136/0085208037_03.jpg?v=638266737683200000"
+        },
+        {
+          "@type": "ImageObject",
+          alternateName: "",
+          url: "https://bawclothing.vteximg.com.br/arquivos/ids/273137/0085208037_04.jpg?v=638266737686670000"
+        }
+      ],
+      offers: {
+        "@type": "AggregateOffer",
+        priceCurrency: "BRL",
+        highPrice: 199,
+        lowPrice: 199,
+        offerCount: 2,
+        offers: [ [Object], [Object] ]
+      }
+    }
+  ]
