@@ -16,6 +16,7 @@ export interface NavItem {
   children?: Array<{
     label: string;
     href: string;
+    tagAsNew?: boolean;
     children?: Array<{
       label: string;
       href: string;

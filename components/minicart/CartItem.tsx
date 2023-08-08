@@ -46,18 +46,18 @@ function CartItem({ index }: Props) {
         class="object-cover object-center"
       />
 
-      <div class="flex-grow w-full">
-        <span class="text-xs text-black font-normal uppercase leading-[0px] max-w-[150px] ">
+      <div class="flex-grow w-full leading-4">
+        <span class="text-base text-black font-normal uppercase max-w-[150px] ">
           {newName}
         </span>
-        <div class="flex items-start text-xs flex-col ">
+        <div class="flex items-start text-sm flex-col ">
           <span class="text-black text-base">
             Tamanho: {tamanho}
           </span>
-          <span class="line-through text-base-300 text-xs ">
+          <span class="line-through text-base-300 text-sm ">
             {formatPrice(listPrice / 100, currencyCode!, locale)}
           </span>
-          <span class="text-xs text-secondary">
+          <span class="text-sm text-secondary">
             {isGift
               ? "Grátis"
               : formatPrice(sellingPrice / 100, currencyCode!, locale)}
