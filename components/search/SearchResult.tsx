@@ -122,7 +122,7 @@ function Result({
             <div class="flex flex-row w-full sm:justify-between pb-10">
               <div class="flex flex-row w-full justify-between items-center sm:mr-10 sm:gap-5">
                 <span class="sm:pl-5 min-w-[80px] font-bold text-base flex flex-row">
-                  {products.length} produtos
+                  {pageInfo.records} produtos
                 </span>
 
                 <div class="sm:flex hidden">
@@ -170,7 +170,7 @@ function Result({
               <Icon id="ChevronLeft" width={20} height={20} strokeWidth={2} />
             </a>
             <span class="btn btn-ghost">
-              Page {pageInfo.currentPage + 1}
+              Page {pageInfo.currentPage}
             </span>
             <a
               aria-label="next page link"
