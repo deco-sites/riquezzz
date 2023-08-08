@@ -43,17 +43,17 @@ function Newsletter({ Title, desc, successText, errorText }: StringNewsletter) {
   };
 
   return (
-    <div class="flex flex-col bg-[#f4f4f4] gap-4  items-center px-[30px] py-[30px] sm:p-10 justify-center sm:max-h-[250px]  sm:max-w-[450px] sm:ml-[auto] sm:mt-[auto]">
+    <div class="flex flex-col bg-[#f4f4f4] gap-4  items-center px-[30px] py-[30px] lg:p-10 justify-center lg:max-h-[250px]  lg:max-w-[450px] lg:ml-[auto] lg:mt-[auto]">
       <div class="flex flex-col gap-3">
         <span class="font-bold text-[18px]">
           {Title}
         </span>
-        <span class="text-[16px] text-black sm:max-w-[325px]">
+        <span class="text-[16px] text-black lg:max-w-[325px]">
           {desc}
         </span>
       </div>
       <form
-        class="font-body text-body w-full rounded-none  sm:w-[325px] form-control "
+        class="font-body text-body w-full rounded-none  lg:w-[325px] form-control "
         onSubmit={handleSubmit}
       >
         <div class=" bg-white rounded-none w-full border-b  border-black">
