@@ -1,4 +1,3 @@
-
 import { useId } from "preact/hooks";
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
 
