@@ -1,5 +1,5 @@
 import Image from "deco-sites/std/components/Image.tsx";
-import Avatar from "$store/components/ui/Avatar.tsx";
+import AvatarColor from "$store/components/ui/AvatarColor.tsx";
 import AddToCartAvatar from "$store/islands/AddToCartAvatar.tsx";
 import WishlistIcon from "$store/islands/WishlistButton.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
@@ -64,6 +64,7 @@ function ProductCard(
     image: images,
     offers,
     isVariantOf,
+    isSimilarTo,
   } = product;
   const fImages = images?.filter((img) =>
     img.alternateName !== "color-thumbnail"
@@ -78,25 +79,64 @@ function ProductCard(
     ",",
   ).replace(" de", "");
 
-  const possibilities = useVariantPossibilities(product);
+  const getVariants = (product: Product) => {
+    const possibilities = useVariantPossibilities(product);
 
-  const allProperties = (isVariantOf?.hasVariant ?? [])
-    .flatMap(({ offers = {}, url, productID }) =>
-      offers.offers?.map((property) => ({ property, url, productID }))
-    ).map((p) => ({
-      lvl: p?.property.inventoryLevel.value,
-      url: p?.url,
-      productID: p?.productID,
-    }));
+    const allProperties = (product.isVariantOf?.hasVariant ?? [])
+      .flatMap(({ offers = {}, url, productID }) => {
+        return (offers.offers?.map((property) => ({
+          property,
+          url,
+          productID,
+        })));
+      }).map((p) => {
+        return ({
+          lvl: p?.property.inventoryLevel.value,
+          url: p?.url,
+          productID: p?.productID,
+        });
+      });
 
-  const variants = Object.entries(Object.values(possibilities)[0] ?? {}).map(
-    (v) => {
-      const [value, [link]] = v;
-      const lvl = allProperties.find((p) => p.url === link)?.lvl;
-      const skuID = allProperties.find((p) => p.url === link)?.productID;
-      return { value, link, lvl: lvl as number, productID: skuID };
-    },
-  );
+    const variants = Object.entries(Object.values(possibilities)[0] ?? {}).map(
+      (v) => {
+        const [value, [link]] = v;
+        const lvl = allProperties.find((p) => p.url === link)?.lvl;
+        const skuID = allProperties.find((p) => p.url === link)?.productID;
+        return { value, link, lvl: lvl as number, productID: skuID };
+      },
+    );
+
+    const outOfStock = variants.filter((item) => item.lvl > 0).length === 0;
+    const pppp = variants.find((sku) => sku.value === "4P");
+    const ppp = variants.find((sku) => sku.value === "3P");
+    const pp = variants.find((sku) => sku.value === "PP");
+    const p = variants.find((sku) => sku.value === "P");
+    const m = variants.find((sku) => sku.value === "M");
+    const g = variants.find((sku) => sku.value === "G");
+    const gg = variants.find((sku) => sku.value === "GG");
+    const ggg = variants.find((sku) => sku.value === "3G");
+    const gggg = variants.find((sku) => sku.value === "4G");
+
+    let newVariants = [pppp, ppp, pp, p, m, g, gg, ggg, gggg];
+    newVariants = newVariants.filter((item) => item !== undefined);
+    return { newVariants, outOfStock };
+  };
+
+  const similars = isSimilarTo?.map((similar: Product) => {
+    const images = similar.image?.slice(-3).map((image) => image.url);
+    const variants = getVariants(similar).newVariants;
+
+    return (
+      {
+        name: similar.name,
+        variants,
+        images,
+        productID: similar.productID,
+        url: similar.url,
+      }
+    );
+  }) || [];
+
   const clickEvent = {
     name: "select_item" as const,
     params: {
@@ -111,19 +151,7 @@ function ProductCard(
     },
   };
 
-  const outOfStock = variants.filter((item) => item.lvl > 0).length === 0;
-  const pppp = variants.find((sku) => sku.value === "4P");
-  const ppp = variants.find((sku) => sku.value === "3P");
-  const pp = variants.find((sku) => sku.value === "PP");
-  const p = variants.find((sku) => sku.value === "P");
-  const m = variants.find((sku) => sku.value === "M");
-  const g = variants.find((sku) => sku.value === "G");
-  const gg = variants.find((sku) => sku.value === "GG");
-  const ggg = variants.find((sku) => sku.value === "3G");
-  const gggg = variants.find((sku) => sku.value === "4G");
-
-  let newVariants = [pppp, ppp, pp, p, m, g, gg, ggg, gggg];
-  newVariants = newVariants.filter((item) => item !== undefined);
+  const { newVariants, outOfStock } = getVariants(product);
 
   return (
     <div
@@ -186,7 +214,7 @@ function ProductCard(
           </figcaption>
           {/* SKU Selector */}
 
-          {variants.length > 0
+          {newVariants.length > 0
             ? (
               newVariants.length > 0
                 ? (
@@ -211,7 +239,7 @@ function ProductCard(
                 : (
                   <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
                     <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
-                      {variants.map((item) => (
+                      {newVariants.map((item) => (
                         <AddToCartAvatar
                           skuId={item?.productID || productID}
                           sellerId={seller || ""}
@@ -288,6 +316,16 @@ function ProductCard(
             </span>
           </div>
         </div>
+      </div>
+      <div class="flex">
+        {similars.map((similar) => (
+          <AvatarColor
+            variant="default"
+            image={similar.images
+              ? similar.images[similar.images.length - 1]!
+              : ""}
+          />
+        ))}
       </div>
     </div>
   );
