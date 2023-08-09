@@ -170,21 +170,23 @@ function Result({
               <Icon id="ChevronLeft" width={20} height={20} strokeWidth={2} />
             </a>
             <span class="btn btn-ghost">
-              Page {pageInfo.currentPage}
+              Página {pageInfo.currentPage}
             </span>
-            <a
-              aria-label="next page link"
-              rel="next"
-              href={pageInfo.nextPage ?? "#"}
-              class="btn btn-ghost"
-            >
-              <Icon
-                id="ChevronRight"
-                width={20}
-                height={20}
-                strokeWidth={2}
-              />
-            </a>
+            {pageInfo.nextPage && (
+              <a
+                aria-label="next page link"
+                rel="next"
+                href={pageInfo.nextPage ?? "#"}
+                class="btn btn-ghost"
+              >
+                <Icon
+                  id="ChevronRight"
+                  width={20}
+                  height={20}
+                  strokeWidth={2}
+                />
+              </a>
+            )}
           </div>
         </div>
       </div>
