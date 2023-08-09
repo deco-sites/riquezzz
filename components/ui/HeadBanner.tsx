@@ -34,7 +34,7 @@ function BannerUI({ srcDesktop, srcMobile, alt, title, subtitle }: Props) {
                 </h1>
               )
               : ("")}
-            {subtitle! !== undefined
+            {subtitle !== undefined
               ? (
                 <span class="text-xs px-5 text-justify sm:text-center sm:text-sm font-medium text-[#5e5e5e] w-full ">
                   {subtitle}
