@@ -105,9 +105,9 @@ const RADIUS_DESKTOP = {
 };
 
 const SIZE_IMG = {
-  1: "h-[330px] w-[150px] sm:h-[1100px] sm:w-[620px]",
-  2: "h-[330px] w-[150px] sm:h-[760px] sm:w-[510px]",
-  3: "h-[330px] w-[150px] sm:w-[400px]",
+  1: "h-[330px] w-[150px] lg:h-[1200px] lg:w-[620px]",
+  2: "h-[330px] w-[150px] lg:h-[860px] lg:w-[510px]",
+  3: "h-[330px] w-[150px] lg:w-[400px]",
 };
 
 const HORIZONTAL = {
@@ -343,7 +343,7 @@ function CardItem({ image, lcp }: { image: Product; lcp?: boolean }) {
             </figcaption>
           </div>
         </figure>
-        <div class="flex flex-col p-0 m-0 h-[90px] max-h-[90px] justify-start items-start">
+        <div class="flex flex-col p-0 m-0 h-[90px] justify-start items-start">
           <h2 class="card-title w-full   text-base-300 text-sm 2xl:text-lg  font-normal uppercase">
             {name}
           </h2>
@@ -407,7 +407,7 @@ function CardsCamps(
       {ordem === "Card/Movie/Text"
         ? (
           <div
-            class={`flex flex-col lg:flex-row gap-5 lg:gap-0 px-[25px] sm:px-[25px] pt-[10px] max-h-[1100] lg:px-[50px] lg:pt-[40px] ${
+            class={`flex flex-col lg:flex-row gap-5 lg:gap-0 px-[25px] sm:px-[25px] pt-[10px]   lg:px-[50px] lg:pt-[40px] ${
               HORIZONTAL[horizontal!]
             } `}
           >
@@ -415,7 +415,7 @@ function CardsCamps(
               ? (
                 <div
                   id={id}
-                  class="flex flex-row flex-wrap gap-5   lg:gap-20 justify-start"
+                  class="flex flex-row flex-wrap gap-5  h-full lg:gap-20 justify-start"
                 >
                   {cards?.productCard?.map((image, index) => (
                     <CardItem
@@ -450,7 +450,7 @@ function CardsCamps(
         )
         : (
           <div
-            class={`w-full flex flex-col lg:flex-row gap-5 lg:gap-10 px-[15px] sm:px-[15px] pt-[10px] max-h-[1100] lg:px-[50px] lg:pt-[40px] ${
+            class={`w-full flex flex-col lg:flex-row gap-5 lg:gap-10 px-[15px] sm:px-[15px] pt-[10px] h-full  max-h-[1100px] lg:px-[50px] lg:pt-[40px] ${
               HORIZONTAL[horizontal!]
             } `}
           >
@@ -471,7 +471,7 @@ function CardsCamps(
               ? (
                 <div
                   id={id}
-                  class="flex flex-row flex-wrap gap-5  lg:gap-20 justify-start"
+                  class="flex flex-row flex-wrap gap-5 h-full  lg:gap-20 justify-start"
                 >
                   {cards?.banner !== undefined
                     ? (
