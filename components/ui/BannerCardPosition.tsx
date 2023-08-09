@@ -5,7 +5,6 @@ import type { LoaderReturnType } from "$live/types.ts";
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
 import type { ProductListingPage } from "deco-sites/std/commerce/types.ts";
 import type { Video as LiveViedo } from "deco-sites/std/components/types.ts";
-import { useOffer } from "$store/sdk/useOffer.ts";
 
 export type BorderRadius =
   | "none"
@@ -82,8 +81,6 @@ export interface BannerMovieIMG {
 }
 
 export interface Itens {
-  /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
-  matcher: string;
   /** @description Layout option */
 
   mobile: "true" | "false";
@@ -496,32 +493,4 @@ function CardsCamps({ banner }: { banner: Itens }) {
   );
 }
 
-/**
- * TODO: run the matcher agains the true URL instead on the breadcrumb.
- * This way we can remove the need for a loader. This can be done on live@1.x
- */
-function BannerCardPosition({ page, banners = [] }: Props) {
-  if (!page || page.breadcrumb.itemListElement.length === 0) {
-    return null;
-  }
-
-  const { item: canonical } = page
-    .breadcrumb
-    .itemListElement
-    .reduce((curr, acc) => curr.position > acc.position ? curr : acc);
-
-  const matching = banners.find(({ matcher }) =>
-    new RegExp(matcher).test(canonical)
-  );
-
-  if (!matching) {
-    return null;
-  }
-  return (
-    <>
-      <CardsCamps banner={matching} />
-    </>
-  );
-}
-
-export default BannerCardPosition;
+export default CardsCamps;
