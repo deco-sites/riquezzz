@@ -37,7 +37,7 @@ function CartItem({ index }: Props) {
   const newName = name!.split(" ").slice(0, -2).join(" ");
   const tamanho = name!.split(" ").slice(-1);
   return (
-    <div class="flex flex-row justify-between items-start gap-4 min-h-[40px] max-h-[130px]">
+    <div class="flex flex-row justify-between items-start gap-4 min-h-[40px]">
       <Image
         src={imageUrl}
         alt={skuName}
