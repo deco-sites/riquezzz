@@ -18,9 +18,8 @@ export type BorderRadius =
   | "full";
 
 export interface Card {
-  /** @description desktop otimized image */
   desktop: LiveImage;
-  /** @description mobile otimized image */
+
   mobile: LiveImage;
   secondImg?: LiveImage;
 
@@ -31,9 +30,9 @@ export interface Card {
 
   colorRed?: boolean;
   name: string;
-  /** @description Image's alt text */
+
   alt: string;
-  /** @description when user clicks on the image, go to this link */
+
   href: string;
 }
 
@@ -43,40 +42,25 @@ export interface BannerItem {
 
   srcMobile: LiveViedo | LiveImage;
   srcDesktop: LiveViedo | LiveImage;
-  /**
-   * @description Image alt text
-   */
+  /** */
   alt?: string;
-  /**
-   * @description When you click you go to
-   */
+  /** */
   href?: string;
   /** @default "Left"  */
   Position: "Left" | "Rigth";
 }
 
-export interface BannerCampaing {
-  /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
-  matcher: string;
-  /** @description Layout option */
-
+export interface Props {
+  ordem: "Banner/Cards" | "Cards/Banner";
   borderRadius: {
-    /** @default none */
     mobile?: BorderRadius;
-    /** @default none */
     desktop?: BorderRadius;
   };
 
   cards: {
-    images?: Card[];
+    images: Card[];
   };
-  bannerFirst?: BannerItem;
-}
-
-export interface Props {
-  page: LoaderReturnType<ProductListingPage | null>;
-
-  banners?: BannerCampaing[];
+  bannerFirst: BannerItem;
 }
 
 const RADIUS_MOBILE = {
@@ -101,24 +85,31 @@ const RADIUS_DESKTOP = {
   "full": "sm:rounded-full",
 };
 
-function CardMovie({ banner }: { banner: BannerCampaing }) {
-  const { bannerFirst, borderRadius } = banner;
+function CardMovie(
+  { banner, borderRadius }: {
+    banner: BannerItem;
+    borderRadius: {
+      mobile?: BorderRadius;
+      desktop?: BorderRadius;
+    };
+  },
+) {
   return (
     <>
-      {bannerFirst?.type === "movie"
+      {banner?.type === "movie"
         ? (
           <section class="w-full px-auto sm:max-w-none sm:m-0 sm:overflow-hidden pr-[40px] ">
             <div>
               <a
-                href={bannerFirst?.href}
+                href={banner?.href}
                 class={`overflow-hidden ${
                   RADIUS_MOBILE[borderRadius.mobile ?? "none"]
                 } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
               >
                 <div class="w-full h-full m-0 p-o b">
                   <video
-                    src={bannerFirst?.srcDesktop}
-                    alt={bannerFirst?.alt}
+                    src={banner?.srcDesktop}
+                    alt={banner?.alt}
                     autoPlay
                     muted
                     loop
@@ -131,8 +122,8 @@ function CardMovie({ banner }: { banner: BannerCampaing }) {
                     Video não suportado!
                   </video>
                   <video
-                    src={bannerFirst?.srcMobile}
-                    alt={bannerFirst?.alt}
+                    src={banner?.srcMobile}
+                    alt={banner?.alt}
                     autoPlay
                     muted
                     loop
@@ -155,10 +146,10 @@ function CardMovie({ banner }: { banner: BannerCampaing }) {
               preload
               class="col-start-1 col-span-1 row-start-1 row-span-1"
             >
-              {bannerFirst?.srcMobile
+              {banner?.srcMobile
                 ? (
                   <Source
-                    src={bannerFirst?.srcMobile}
+                    src={banner?.srcMobile}
                     class="w-full h-full"
                     width={335}
                     height={500}
@@ -166,10 +157,10 @@ function CardMovie({ banner }: { banner: BannerCampaing }) {
                   />
                 )
                 : ("")}
-              {bannerFirst?.srcDesktop
+              {banner?.srcDesktop
                 ? (
                   <Source
-                    src={bannerFirst.srcDesktop}
+                    src={banner.srcDesktop}
                     class="w-full h-full"
                     width={960}
                     height={1440}
@@ -178,12 +169,12 @@ function CardMovie({ banner }: { banner: BannerCampaing }) {
                 )
                 : ("")}
 
-              {bannerFirst?.srcDesktop
+              {banner?.srcDesktop
                 ? (
                   <img
                     class="w-full h-full"
-                    src={bannerFirst.srcDesktop}
-                    alt={bannerFirst.alt}
+                    src={banner.srcDesktop}
+                    alt={banner.alt}
                   />
                 )
                 : ("")}
@@ -263,7 +254,7 @@ function CardItem(
                     class={`text-xs 2xl:text-base font-bold pl-1`}
                   >
                     {image.qtdportion + "x R$" +
-                      image.price / image.qtdportion! +
+                      (image.price / image.qtdportion!).toFixed(2) +
                       " / "}
                   </span>
                 )
@@ -272,9 +263,9 @@ function CardItem(
                 ? (
                   <span class="line-through text-xs 2xl:text-base  text-base-300 px-1 ">
                     R$ {image.oldPrice !== image.price
-                      ? (priceStr.length === 3
+                      ? (priceStr.length <= 3
                         ? (image.oldPrice + ",00 ")
-                        : (priceStr?.length === 5
+                        : (priceStr?.length <= 5
                           ? (image.oldPrice + "0 ")
                           : (image.oldPrice)))
                       : (" ")}
@@ -290,9 +281,9 @@ function CardItem(
                   image.colorRed! ? "text-red-700 " : ""
                 }text-xs 2xl:text-base font-bold pl-1`}
               >
-                R$ {priceStr.length === 3
+                R$ {priceStr.length <= 3
                   ? (image.price + ",00")
-                  : (priceStr?.length === 5
+                  : (priceStr?.length <= 5
                     ? (image.price + "0")
                     : (image.price))}
               </span>
@@ -304,59 +295,53 @@ function CardItem(
   );
 }
 
-function CardsCamps({ banner }: { banner: BannerCampaing }) {
-  const { cards } = banner;
+function CardsCamps({ cards, bannerFirst, borderRadius, ordem }: Props) {
   const id = useId();
   return (
     <>
-      <div class=" w-full flex flex-col lg:flex-row gap-5 lg:gap-10 px-[15px] pt-[10px] h-[1400px] lg:px-[50px] lg:pt-[40px] justify-center">
-        <div
-          class={`w-full flex `}
-        >
-          <CardMovie banner={banner} />
-        </div>
+      {ordem === "Banner/Cards"
+        ? (
+          <div class=" w-full flex flex-col lg:flex-row gap-5 lg:gap-10 px-[15px] pt-[10px] h-[1400px] lg:px-[50px] lg:pt-[40px] justify-center">
+            <div
+              class={`w-full flex `}
+            >
+              <CardMovie banner={bannerFirst} borderRadius={borderRadius} />
+            </div>
 
-        <div
-          id={id}
-          class="flex flex-row flex-wrap gap-5  px-[15px] lg:gap-10 justify-start"
-        >
-          {cards.images?.map((image, index) => (
-            <CardItem
-              image={image}
-            />
-          ))}
-        </div>
-      </div>
+            <div
+              id={id}
+              class="flex flex-row flex-wrap gap-5  px-[15px] lg:gap-10 justify-start"
+            >
+              {cards?.images?.map((image, index) => (
+                <CardItem
+                  image={image}
+                />
+              ))}
+            </div>
+          </div>
+        )
+        : (
+          <div class=" w-full flex flex-col lg:flex-row gap-5 lg:gap-10 px-[15px] pt-[10px] h-[1400px] lg:px-[50px] lg:pt-[40px] justify-center">
+            <div
+              id={id}
+              class="flex flex-row flex-wrap gap-5  px-[15px] lg:gap-10 justify-start"
+            >
+              {cards?.images?.map((image, index) => (
+                <CardItem
+                  image={image}
+                />
+              ))}
+            </div>
+
+            <div
+              class={`w-full flex `}
+            >
+              <CardMovie banner={bannerFirst} borderRadius={borderRadius} />
+            </div>
+          </div>
+        )}
     </>
   );
 }
 
-/**
- * TODO: run the matcher agains the true URL instead on the breadcrumb.
- * This way we can remove the need for a loader. This can be done on live@1.x
- */
-function BannerFourCards({ page, banners = [] }: Props) {
-  if (!page || page.breadcrumb.itemListElement.length === 0) {
-    return null;
-  }
-
-  const { item: canonical } = page
-    .breadcrumb
-    .itemListElement
-    .reduce((curr, acc) => curr.position > acc.position ? curr : acc);
-
-  const matching = banners.find(({ matcher }) =>
-    new RegExp(matcher).test(canonical)
-  );
-
-  if (!matching) {
-    return null;
-  }
-  return (
-    <>
-      <CardsCamps banner={matching} />
-    </>
-  );
-}
-
-export default BannerFourCards;
+export default CardsCamps;
