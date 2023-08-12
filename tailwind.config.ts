@@ -10,6 +10,10 @@ export default {
       center: true,
     },
     extend: {
+      transitionProperty: {
+        "height": "height",
+        "spacing": "margin, padding",
+      },
       colors: {
         "white": "#fff",
         "primary-dark": "#000",
