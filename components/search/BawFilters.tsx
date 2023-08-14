@@ -1,9 +1,11 @@
 import Avatar from "$store/components/ui/Avatar.tsx";
 import { parseRange } from "deco-sites/std/utils/filters.ts";
 import { formatPrice } from "$store/sdk/format.ts";
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
+import { route } from "preact-router";
 import { AvailableIcons } from "$store/components/ui/Icon.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
+import MultiRangeSlider from "$store/components/ui/PriceSlider.jsx";
 
 import type {
   Filter,
@@ -34,8 +36,65 @@ function ValueItem(
   );
 }
 
-function FilterValues({ key, values }: FilterToggle) {
+function FilterValues(props: { filter: FilterToggle; isOpen: boolean }) {
+  const { key, values } = props.filter;
   const flexDirection = key === "avatar" ? "flex-row" : "flex-col";
+
+  if (key === "price") {
+    //parsing range values for price filter
+    const valuesArray = Object.entries(values);
+    const url = valuesArray[1][1].url;
+    const urlPrice = url.split("&").slice(0, -1).filter((r) =>
+      r.includes("filter.price")
+    )[0]?.split("=")[1]?.split("%3A");
+    const urlBrowser = url.split("&").slice(0, -1).filter((r) =>
+      !r.includes("filter.price")
+    ).join("&");
+    const rangeArray: number[] = [];
+
+    valuesArray.map((value) => {
+      const aux = value[1].value.split(":");
+      const auxArr = aux.map((r) => parseInt(r));
+      rangeArray.push(...auxArr);
+    });
+    rangeArray.sort((a, b) => a - b);
+    const minRange = rangeArray[0];
+    const maxRange = rangeArray[rangeArray.length - 1];
+
+    const [currentMaxMin, setCurrentMaxMin] = useState({
+      max: urlPrice ? urlPrice[1] : maxRange,
+      min: urlPrice ? urlPrice[0] : minRange,
+    });
+
+    let timeOutId = 0;
+    let firstTime = 0;
+
+    return (
+      <div class={`${!props.isOpen && "hidden"} h-16 mt-4`}>
+        <MultiRangeSlider
+          min={minRange}
+          max={maxRange}
+          currentMin={currentMaxMin.min}
+          currentMax={currentMaxMin.max}
+          onChange={(query: { min: number; max: number }) => {
+            if (
+              currentMaxMin.max != query.max || currentMaxMin.min != query.min
+            ) {
+              if (firstTime > 0) {
+                clearTimeout(timeOutId);
+                timeOutId = setTimeout(() => {
+                  setCurrentMaxMin({ max: query.max, min: query.min });
+                  window.location.href = urlBrowser + "&filter.price=" +
+                    query.min + "%3A" + query.max;
+                }, 500);
+              }
+              firstTime++;
+            }
+          }}
+        />
+      </div>
+    );
+  }
 
   return (
     <ul class={`flex flex-wrap gap-2 ${flexDirection}`}>
@@ -57,10 +116,12 @@ function FilterValues({ key, values }: FilterToggle) {
           const range = parseRange(item.value);
 
           return range && (
-            <ValueItem
-              {...item}
-              label={`${formatPrice(range.from)} - ${formatPrice(range.to)}`}
-            />
+            <div>
+              <ValueItem
+                {...item}
+                label={`${formatPrice(range.from)} - ${formatPrice(range.to)}`}
+              />
+            </div>
           );
         }
 
@@ -96,6 +157,10 @@ function BawFilter(filter: FilterToggle) {
   const [isOpen, setIsOpen] = useState(false);
   const { key, quantity } = filter;
 
+  if (key === "price") {
+    setIsOpen(true);
+  }
+
   function toggle() {
     setIsOpen(!isOpen);
   }
@@ -115,14 +180,16 @@ function BawFilter(filter: FilterToggle) {
       >
         <span class="flex font-semibold text-xl justify-center items-center">
           <FilterIcon {...filter} />
-          {filter.label}
+          {key === "price" ? "Faixa de Preço" : filter.label}
         </span>
-        <Icon
-          class="flex items-center"
-          size={15}
-          id={isOpen ? "ChevronUp" : "ChevronDown"}
-          strokeWidth={3}
-        />
+        {key !== "price" && (
+          <Icon
+            class="flex items-center"
+            size={15}
+            id={isOpen ? "ChevronUp" : "ChevronDown"}
+            strokeWidth={3}
+          />
+        )}
       </div>
       <div
         class={`grid border-solid border-b border-gray-200 ${
@@ -130,7 +197,7 @@ function BawFilter(filter: FilterToggle) {
         } transition-[grid-template-rows] duration-600 ease-in-out`}
       >
         <div class={`overflow-y-auto overflow-x-hidden max-h-[400px]`}>
-          <FilterValues {...filter} />
+          <FilterValues filter={{ ...filter }} isOpen={isOpen} />
         </div>
       </div>
     </li>
@@ -139,11 +206,13 @@ function BawFilter(filter: FilterToggle) {
 
 function BawFilters({ filters }: Props) {
   return (
-    <ul class="flex-col gap-2 p-4 flex">
-      {filters
-        .filter(isToggle)
-        .map((filter) => <BawFilter {...filter} />)}
-    </ul>
+    <div>
+      <ul class="flex-col gap-2 p-4 flex">
+        {filters
+          .filter(isToggle)
+          .map((filter) => <BawFilter {...filter} />)}
+      </ul>
+    </div>
   );
 }
 
