@@ -4,7 +4,7 @@ import { formatPrice } from "$store/sdk/format.ts";
 import { useEffect, useState } from "preact/hooks";
 import { AvailableIcons } from "$store/components/ui/Icon.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
-import MultiRangeSlider from "$store/components/ui/PriceSlider.jsx";
+import MultiRangeSlider from "$store/components/ui/PriceSlider.tsx";
 
 import type {
   Filter,
@@ -61,8 +61,8 @@ function FilterValues(props: { filter: FilterToggle; isOpen: boolean }) {
     const maxRange = rangeArray[rangeArray.length - 1];
 
     const [currentMaxMin, setCurrentMaxMin] = useState({
-      max: urlPrice ? urlPrice[1] : maxRange,
-      min: urlPrice ? urlPrice[0] : minRange,
+      max: urlPrice ? parseInt(urlPrice[1]) : maxRange,
+      min: urlPrice ? parseInt(urlPrice[0]) : minRange,
     });
 
     let timeOutId = 0;

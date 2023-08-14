@@ -1,18 +1,23 @@
 import { useCallback, useEffect, useRef, useState } from "preact/hooks";
-import PropTypes from "prop-types";
 
 const MultiRangeSlider = (
-  { min, max, onChange, currentMin = min, currentMax = max },
+  { min, max, onChange, currentMin = min, currentMax = max }: {
+    min: number;
+    max: number;
+    onChange: (props: { min: number; max: number }) => void;
+    currentMin: number;
+    currentMax: number;
+  },
 ) => {
   const [minVal, setMinVal] = useState(currentMin);
   const [maxVal, setMaxVal] = useState(currentMax);
-  const minValRef = useRef(null);
-  const maxValRef = useRef(null);
-  const range = useRef(null);
+  const minValRef = useRef<HTMLInputElement>(null);
+  const maxValRef = useRef<HTMLInputElement>(null);
+  const range = useRef<HTMLDivElement>(null);
 
   // Convert to percentage
   const getPercent = useCallback(
-    (value) => Math.round(((value - min) / (max - min)) * 100),
+    (value: number) => Math.round(((value - min) / (max - min)) * 100),
     [min, max],
   );
 
@@ -55,9 +60,9 @@ const MultiRangeSlider = (
         value={minVal}
         ref={minValRef}
         onChange={(event) => {
-          const value = Math.min(+event.target.value, maxVal - 1);
+          const value = Math.min(+event.currentTarget.value, maxVal - 1);
           setMinVal(value);
-          event.target.value = value.toString();
+          event.currentTarget.value = value.toString();
         }}
         class={`thumb_ thumb--zindex-3 ${
           (minVal > max - 100) && "thumb--zindex-5"
@@ -70,9 +75,9 @@ const MultiRangeSlider = (
         value={maxVal}
         ref={maxValRef}
         onChange={(event) => {
-          const value = Math.max(+event.target.value, minVal + 1);
+          const value = Math.max(+event.currentTarget.value, minVal + 1);
           setMaxVal(value);
-          event.target.value = value.toString();
+          event.currentTarget.value = value.toString();
         }}
         class="thumb_ thumb--zindex-4"
       />
@@ -85,12 +90,6 @@ const MultiRangeSlider = (
       </div>
     </div>
   );
-};
-
-MultiRangeSlider.propTypes = {
-  min: PropTypes.number.isRequired,
-  max: PropTypes.number.isRequired,
-  onChange: PropTypes.func.isRequired,
 };
 
 export default MultiRangeSlider;
