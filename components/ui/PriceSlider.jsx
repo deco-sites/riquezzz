@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from "preact/hooks";
 import PropTypes from "prop-types";
 
-const MultiRangeSlider = ({ min, max, onChange, currentMin=min, currentMax=max }) => {
+const MultiRangeSlider = (
+  { min, max, onChange, currentMin = min, currentMax = max },
+) => {
   const [minVal, setMinVal] = useState(currentMin);
   const [maxVal, setMaxVal] = useState(currentMax);
   const minValRef = useRef(null);
   const maxValRef = useRef(null);
   const range = useRef(null);
-
 
   // Convert to percentage
   const getPercent = useCallback(
@@ -58,9 +59,9 @@ const MultiRangeSlider = ({ min, max, onChange, currentMin=min, currentMax=max }
           setMinVal(value);
           event.target.value = value.toString();
         }}
-        class={(`thumb_ thumb--zindex-3 ${
-          (minVal > max - 100)&&"thumb--zindex-5"
-        }`)}
+        class={`thumb_ thumb--zindex-3 ${
+          (minVal > max - 100) && "thumb--zindex-5"
+        }`}
       />
       <input
         type="range"
@@ -79,8 +80,8 @@ const MultiRangeSlider = ({ min, max, onChange, currentMin=min, currentMax=max }
       <div class="slider_">
         <div class="slider__track" />
         <div ref={range} class="slider__range" />
-        <div class="slider__left-value">{"R$ "+minVal+",00"}</div>
-        <div class="slider__right-value">{"R$ "+maxVal+",00"}</div>
+        <div class="slider__left-value">{"R$ " + minVal + ",00"}</div>
+        <div class="slider__right-value">{"R$ " + maxVal + ",00"}</div>
       </div>
     </div>
   );
