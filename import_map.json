@@ -14,7 +14,6 @@
     "std/": "https://deno.land/std@0.190.0/",
     "partytown/": "https://denopkg.com/deco-cx/partytown@0.4.2/",
     "daisyui": "npm:daisyui@3.5.0",
-    "prop-types": "npm:prop-types@15.7.2",
-    "preact-router": "npm:preact-router@4.1.2"
+    "prop-types": "npm:prop-types@15.7.2"
   }
 }
