@@ -2,7 +2,6 @@ import Avatar from "$store/components/ui/Avatar.tsx";
 import { parseRange } from "deco-sites/std/utils/filters.ts";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useEffect, useState } from "preact/hooks";
-import { route } from "preact-router";
 import { AvailableIcons } from "$store/components/ui/Icon.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import MultiRangeSlider from "$store/components/ui/PriceSlider.jsx";
