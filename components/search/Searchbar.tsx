@@ -107,13 +107,6 @@ function Searchbar({
     setTerm("");
   });
 
-  useEffect(() => {
-    if (!searchInputRef.current) {
-      return;
-    }
-
-    searchInputRef.current.focus();
-  }, []);
   return (
     <div ref={searchBoxRef} class="flex flex-col md:px-2 relative z-50  ">
       <div class="flex items-center gap-4 justify-center">

@@ -89,13 +89,22 @@ function Footer(
 ) {
   return (
     <>
-      <footer class="sm:bg-[url('https://bawclothing.vtexassets.com/assets/vtex/assets-builder/bawclothing.theme/4.5.13/img/bg-img-footer___f97b5671fcf089ebf7415649360e7e9a.png')] 
-      sm:bg-cover sm:bg-no-repeat w-full sm:bg-primary-dark flex flex-col divide-y divide-primary-content sm:pb-[80px] sm:px-8 bg-[#f4f4f4]">
+      <footer class="before:content-[''] before:absolute before:top-0 before:left-0 before:bottom-0 before:right-0 before:z-[9] before:opacity-20 before:bg-cover
+      before:bg-[url('https://bawclothing.vtexassets.com/assets/vtex/assets-builder/bawclothing.theme/4.5.13/img/bg-img-footer___f97b5671fcf089ebf7415649360e7e9a.png')] 
+      relative w-full sm:bg-primary-dark flex flex-col divide-y divide-primary-content sm:pb-[80px] sm:px-8 bg-[#000]">
         <div>
           <div class=" w-full flex flex-col divide-y divide-primary-content border-b border-[#9a9a9a79]">
             <FooterContainer>
+              <div class="flex sm:hidden mb-4">
+                <Newsletter
+                  Title={titleNewsletter}
+                  desc={descNewsletter}
+                  successText={successTextNewsletter}
+                  errorText={errorTextNewsletter}
+                />
+              </div>
               {/* Desktop view */}
-              <ul class="hidden lg:flex flex-row justify-start gap-28">
+              <ul class="flex flex-col lg:flex-row justify-start gap-8 lg:justify-between">
                 {sections.map((section) => (
                   <li>
                     <div>
@@ -186,22 +195,14 @@ function Footer(
                     </ul>
                   </div>
                 </li>
-                <Newsletter
-                  Title={titleNewsletter}
-                  desc={descNewsletter}
-                  successText={successTextNewsletter}
-                  errorText={errorTextNewsletter}
-                />
-              </ul>
-
-              {/* Mobile view */}
-              <ul class="flex flex-col lg:hidden sm:flex-row gap-4">
-                <Newsletter
-                  Title={titleNewsletter}
-                  desc={descNewsletter}
-                  successText={successTextNewsletter}
-                  errorText={errorTextNewsletter}
-                />
+                <div class="hidden sm:flex">
+                  <Newsletter
+                    Title={titleNewsletter}
+                    desc={descNewsletter}
+                    successText={successTextNewsletter}
+                    errorText={errorTextNewsletter}
+                  />
+                </div>
               </ul>
             </FooterContainer>
           </div>

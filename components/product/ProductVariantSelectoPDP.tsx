@@ -30,11 +30,16 @@ function VariantSelector(
   );
 
   const outOfStock = variants.filter((item) => item.lvl > 0).length === 0;
-  const pppp = variants.find((sku) => sku.value === "4P");
-  const ppp = variants.find((sku) => sku.value === "3P");
-  const pp = variants.find((sku) => sku.value === "PP");
-  const p = variants.find((sku) => sku.value === "P");
-  const m = variants.find((sku) => sku.value === "M");
+  const pppp = variants.find((sku) => sku.value === "4P") ||
+    variants.find((sku) => sku.value === "04");
+  const ppp = variants.find((sku) => sku.value === "3P") ||
+    variants.find((sku) => sku.value === "06");
+  const pp = variants.find((sku) => sku.value === "PP") ||
+    variants.find((sku) => sku.value === "08");
+  const p = variants.find((sku) => sku.value === "P") ||
+    variants.find((sku) => sku.value === "10");
+  const m = variants.find((sku) => sku.value === "M") ||
+    variants.find((sku) => sku.value === "12");
   const g = variants.find((sku) => sku.value === "G");
   const gg = variants.find((sku) => sku.value === "GG");
   const ggg = variants.find((sku) => sku.value === "3G");
@@ -64,11 +69,12 @@ function VariantSelector(
                 </li>
               )))
               : (Object.entries(possibilities[name]).map(([value, [link]]) => (
-                <li class="card-body card-actions m-0 max-w-[20px] max-h-[20px] p-[1rem]">
+                <li class="card-body card-actions m-0 max-w-[50px] max-h-[20px] items-center p-[0px]">
                   <a href={link}>
                     <Avatar
                       content={value}
                       variant={link === url ? "active" : "default"}
+                      textSize="lg"
                     />
                   </a>
                 </li>

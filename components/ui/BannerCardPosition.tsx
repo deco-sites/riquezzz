@@ -1,11 +1,8 @@
 import { useId } from "preact/hooks";
 import Image from "deco-sites/std/components/Image.tsx";
 import { Picture, Source } from "deco-sites/std/components/Picture.tsx";
-import type { LoaderReturnType } from "$live/types.ts";
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
-import type { ProductListingPage } from "deco-sites/std/commerce/types.ts";
 import type { Video as LiveViedo } from "deco-sites/std/components/types.ts";
-import { useOffer } from "$store/sdk/useOffer.ts";
 
 export type BorderRadius =
   | "none"
@@ -17,14 +14,14 @@ export type BorderRadius =
   | "3xl"
   | "full";
 
-export interface Product {
-  /** @default 1 */
+export type MD =
+  | "sim"
+  | "nao";
 
-  mobile: "true" | "false";
-  desktop: "true" | "false";
-  /** @description desktop otimized image */
+export interface Product {
+  mobile: MD;
+  desktop: MD;
   srcdesktop: LiveImage;
-  /** @description mobile otimized image */
   secondImg?: LiveImage;
 
   price?: number;
@@ -32,85 +29,57 @@ export interface Product {
   qtdportion?: number;
 
   oldPrice?: number;
-  /** @default true */
 
   colorRed?: boolean;
   name: string;
-  /** @description Image's alt text */
   alt: string;
-  /** @description when user clicks on the image, go to this link */
   href: string;
-  /** @default 1 */
   size: 1 | 2 | 3;
 
   vertical?: "start" | "center" | "end";
 }
 export interface Text {
-  /** @default 2 */
+  mobile: MD;
 
-  mobile: "true" | "false";
+  desktop: MD;
 
-  desktop: "true" | "false";
-  /** @description Text camp */
-  text: string;
+  text?: string;
 
-  /** @default 1 */
   size: 1 | 2 | 3;
 }
 
 export interface BannerMovieIMG {
-  /** @default 3 */
-
-  mobile: "true" | "false";
-  desktop: "true" | "false";
+  mobile: MD;
+  desktop: MD;
 
   type?: "movie" | "image";
 
-  srcMobile?: LiveViedo | LiveImage;
-  srcDesktop?: LiveViedo | LiveImage;
-  /**
-   * @description Image alt text
-   */
+  srcMobile?: LiveViedo;
+  srcDesktop?: LiveViedo;
+  srcMobileIMG?: LiveImage;
+  srcDesktopIMG?: LiveImage;
+
   alt?: string;
-  /**
-   * @description When you click you go to
-   */
+
   href?: string;
-  /** @default 1 */
   size: 1 | 2 | 3;
   vertical?: "start" | "center" | "end";
 }
 
-export interface Itens {
-  /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
-  matcher: string;
-  /** @description Layout option */
-
-  mobile: "true" | "false";
-
-  desktop: "true" | "false";
-
+export interface Props {
   ordem: "Card/Movie/Text" | "Text/Movie/card";
 
   borderRadius: {
-    /** @default none */
     mobile?: BorderRadius;
-    /** @default none */
     desktop?: BorderRadius;
   };
   horizontal: "start" | "center" | "end";
 
-  cards: {
+  cards?: {
     productCard?: Product[];
     banner?: BannerMovieIMG;
     text?: Text;
   };
-}
-
-export interface Props {
-  page: LoaderReturnType<ProductListingPage | null>;
-
-  banners?: Itens[];
 }
 
 const RADIUS_MOBILE = {
@@ -136,9 +105,9 @@ const RADIUS_DESKTOP = {
 };
 
 const SIZE_IMG = {
-  1: "h-[330px] w-[150px] sm:h-[1100px] sm:w-[620px]",
-  2: "h-[330px] w-[150px] sm:h-[760px] sm:w-[510px]",
-  3: "h-[330px] w-[150px] sm:w-[400px]",
+  1: "h-[330px] w-[150px] lg:h-[1200px] lg:w-[620px]",
+  2: "h-[330px] w-[150px] lg:h-[860px] lg:w-[510px]",
+  3: "h-[330px] w-[150px] lg:w-[400px]",
 };
 
 const HORIZONTAL = {
@@ -158,12 +127,12 @@ const SIZE_IMG_W = {
   3: 400,
 };
 const DESKTOP = {
-  true: "sm:flex",
-  false: "sm:hidden",
+  sim: "sm:flex",
+  nao: "sm:hidden",
 };
 const MOBILE = {
-  true: "flex",
-  false: "hidden",
+  sim: "flex",
+  nao: "hidden",
 };
 
 const SIZE_FONT = {
@@ -172,30 +141,40 @@ const SIZE_FONT = {
   3: "text-[20px] sm:text-[50px]",
 };
 
-function CardMovie({ banner }: { banner: Itens }) {
-  const { cards, borderRadius } = banner;
+function CardMovie(
+  { banner, borderRadius }: {
+    banner: BannerMovieIMG;
+    borderRadius: {
+      mobile?: BorderRadius;
+      desktop?: BorderRadius;
+    };
+  },
+) {
+  const id = useId();
+
   return (
     <>
-      {cards.banner?.type === "movie"
+      {banner?.type === "movie"
         ? (
           <section
+            id={id}
             class={`  sm:max-w-none sm:m-0 sm:overflow-hidden  ${
-              DESKTOP[cards.banner!.desktop!]
-            }  ${MOBILE[cards.banner!.mobile!]}`}
+              DESKTOP[banner!.desktop!]
+            }  ${MOBILE[banner!.mobile!]}`}
           >
             <div>
               <a
-                href={cards.banner?.href}
+                href={banner?.href}
                 class={`overflow-hidden ${
                   RADIUS_MOBILE[borderRadius.mobile ?? "none"]
                 } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
               >
                 <div
-                  class={` m-0 p-0 b ${SIZE_IMG[cards.banner!.size!]}`}
+                  class={` m-0 p-0  ${SIZE_IMG[banner!.size!]}`}
                 >
                   <video
-                    src={cards.banner?.srcDesktop}
-                    alt={cards.banner?.alt}
+                    src={banner?.srcDesktop}
+                    alt={banner?.alt}
                     autoPlay
                     muted
                     loop
@@ -208,8 +187,8 @@ function CardMovie({ banner }: { banner: Itens }) {
                     Video não suportado!
                   </video>
                   <video
-                    src={cards.banner?.srcMobile}
-                    alt={cards.banner?.alt}
+                    src={banner?.srcMobile}
+                    alt={banner?.alt}
                     autoPlay
                     muted
                     loop
@@ -228,30 +207,31 @@ function CardMovie({ banner }: { banner: Itens }) {
         )
         : (
           <div
+            id={id}
             class={`grid grid-cols-1 grid-rows-1 ${
-              DESKTOP[cards.banner!.desktop!]
-            }  ${MOBILE[cards.banner!.mobile!]}`}
+              DESKTOP[banner!.desktop!]
+            }  ${MOBILE[banner!.mobile!]}`}
           >
             <Picture
               preload
               class="col-start-1 col-span-1 row-start-1 row-span-1"
             >
-              {cards.banner?.srcMobile
+              {banner?.srcMobileIMG
                 ? (
                   <Source
-                    src={cards.banner?.srcMobile}
-                    class={` m-0 p-0 b ${SIZE_IMG[cards.banner!.size!]}`}
+                    src={banner?.srcMobileIMG}
+                    class={` m-0 p-0  ${SIZE_IMG[banner!.size!]}`}
                     width={335}
                     height={500}
                     media="(max-width: 767px)"
                   />
                 )
                 : ("")}
-              {cards.banner?.srcDesktop
+              {banner?.srcDesktopIMG
                 ? (
                   <Source
-                    src={cards.banner.srcDesktop}
-                    class={` m-0 p-0 b ${SIZE_IMG[cards.banner!.size!]}`}
+                    src={banner.srcDesktopIMG}
+                    class={` m-0 p-0  ${SIZE_IMG[banner!.size!]}`}
                     width={960}
                     height={1440}
                     media="(min-width: 767px)"
@@ -259,12 +239,12 @@ function CardMovie({ banner }: { banner: Itens }) {
                 )
                 : ("")}
 
-              {cards.banner?.srcDesktop
+              {banner?.srcDesktop
                 ? (
                   <img
-                    class={` m-0 p-0 b ${SIZE_IMG[cards.banner!.size!]}`}
-                    src={cards.banner.srcDesktop}
-                    alt={cards.banner.alt}
+                    class={` m-0 p-0  ${SIZE_IMG[banner!.size!]}`}
+                    src={banner.srcDesktopIMG}
+                    alt={banner.alt}
                   />
                 )
                 : ("")}
@@ -275,8 +255,11 @@ function CardMovie({ banner }: { banner: Itens }) {
   );
 }
 function TextCamp({ text }: { text: Text }) {
+  const id = useId();
+
   return (
     <div
+      id={id}
       class={`flex flex-col justify-center font-bold w-full  ${
         DESKTOP[text.desktop!]
       }  ${MOBILE[text.mobile!]} `}
@@ -286,7 +269,7 @@ function TextCamp({ text }: { text: Text }) {
           SIZE_FONT[text.size!]
         } w-full text-center uppercase font-extrabold text-gray-700`}
       >
-        {text.text}
+        {text.text !== undefined ? (text.text) : ("")}
       </h1>
     </div>
   );
@@ -300,17 +283,25 @@ function CardItem({ image, lcp }: { image: Product; lcp?: boolean }) {
     href,
     size,
     vertical,
+    price,
+    oldPrice,
+    colorRed,
+    name,
+    qtdportion,
+    secondImg,
   } = image;
   const priceStr = image.price + "";
+  const id = useId();
 
   return (
     <div
-      class={`  card card-compact card-bordered rounded-none border-transparent group ${
-        DESKTOP[desktop!]
-      }  ${MOBILE[mobile!]} ${HORIZONTAL[vertical!]}  `}
+      id={id}
+      class={`  card card-compact card-bordered rounded-none border-transparent group    ${
+        HORIZONTAL[vertical!]
+      }  `}
       data-deco="view-product"
     >
-      <div class={`relative ${SIZE_IMG[size!]} overflow-y-hidden`}>
+      <div class={`relative ${SIZE_IMG[size!]} `}>
         <figure
           class="relative"
           style={{ aspectRatio: `${SIZE_IMG_W[size!]} / ${SIZE_IMG_H[size!]}` }}
@@ -352,52 +343,50 @@ function CardItem({ image, lcp }: { image: Product; lcp?: boolean }) {
             </figcaption>
           </div>
         </figure>
-        <div class=" flex flex-col p-0 m-0 h-[90px] max-h-[90px] justify-start items-start">
+        <div class="flex flex-col p-0 m-0 h-[90px] justify-start items-start">
           <h2 class="card-title w-full   text-base-300 text-sm 2xl:text-lg  font-normal uppercase">
-            {image.name}
-          </h2>{" "}
-          {image.price !== undefined
+            {name}
+          </h2>
+          {price !== undefined
             ? (
               <div class="flex flex-col  sm:flew-row items-start ">
                 <div class=" flew-row  items-start flex flex-wrap">
-                  {image.qtdportion !== undefined
+                  {qtdportion !== undefined
                     ? (
                       <span
                         class={`text-xs 2xl:text-base font-bold pl-1`}
                       >
-                        {image.qtdportion + "x R$" +
-                          image.price / image.qtdportion! +
+                        {qtdportion + "x R$" +
+                          (price / qtdportion!).toFixed(2) +
                           " / "}
                       </span>
                     )
                     : ("")}
-                  {image.oldPrice !== image.price
+                  {oldPrice !== price
                     ? (
                       <span class="line-through text-xs 2xl:text-base  text-base-300 px-1 ">
-                        R$ {image.oldPrice !== image.price
-                          ? (priceStr.length === 3
-                            ? (image.oldPrice + ",00 ")
-                            : (priceStr?.length === 5
-                              ? (image.oldPrice + "0 ")
-                              : (image.oldPrice)))
+                        R$ {oldPrice !== price
+                          ? (priceStr.length <= 3
+                            ? (oldPrice + ",00 ")
+                            : (priceStr?.length <= 5
+                              ? (oldPrice + "0 ")
+                              : (oldPrice)))
                           : (" ")}
                       </span>
                     )
                     : ("")}
 
                   <span class="text-xs 2xl:text-base font-bold px-1">
-                    {image.oldPrice !== image.price ? (" / ") : (" ")}
+                    {oldPrice !== price ? (" / ") : (" ")}
                   </span>
                   <span
                     class={`${
-                      image.colorRed! ? "text-red-700 " : ""
+                      colorRed! ? "text-red-700 " : ""
                     }text-xs 2xl:text-base font-bold pl-1`}
                   >
-                    R$ {priceStr.length === 3
-                      ? (image.price + ",00")
-                      : (priceStr?.length === 5
-                        ? (image.price + "0")
-                        : (image.price))}
+                    R$ {priceStr.length <= 3
+                      ? (price + ",00")
+                      : (priceStr?.length <= 5 ? (price + "0") : (price))}
                   </span>
                 </div>
               </div>
@@ -409,45 +398,50 @@ function CardItem({ image, lcp }: { image: Product; lcp?: boolean }) {
   );
 }
 
-function CardsCamps({ banner }: { banner: Itens }) {
-  const { cards, ordem } = banner;
-  const { productCard, text } = cards;
+function CardsCamps(
+  { cards, ordem, horizontal, borderRadius }: Props,
+) {
   const id = useId();
   return (
     <>
       {ordem === "Card/Movie/Text"
         ? (
           <div
-            class={`flex flex-col lg:flex-row gap-5 lg:gap-10 px-[25px] sm:px-[25px] pt-[10px] max-h-[1100] lg:px-[50px] lg:pt-[40px] ${
-              HORIZONTAL[banner.horizontal!]
+            class={`flex flex-col lg:flex-row gap-5 lg:gap-0 px-[25px] sm:px-[25px] pt-[10px]   lg:px-[50px] lg:pt-[40px] ${
+              HORIZONTAL[horizontal!]
             } `}
           >
-            {productCard !== undefined
+            {cards?.productCard! !== undefined
               ? (
                 <div
                   id={id}
-                  class="flex flex-row flex-wrap gap-5   lg:gap-10 justify-start"
+                  class="flex flex-row flex-wrap gap-5  h-full lg:gap-20 justify-start"
                 >
-                  {productCard?.map((image, index) => (
+                  {cards?.productCard?.map((image, index) => (
                     <CardItem
                       image={image}
                     />
                   ))}
-                  {cards.banner !== undefined
-                    ? <CardMovie banner={banner} />
+                  {cards?.banner !== undefined
+                    ? (
+                      <CardMovie
+                        banner={cards?.banner!}
+                        borderRadius={borderRadius}
+                      />
+                    )
                     : ("")}
                 </div>
               )
               : ("")}
 
-            {text !== undefined
+            {cards?.text !== undefined
               ? (
                 <div
                   id={id}
                   class={` flex`}
                 >
                   <TextCamp
-                    text={text}
+                    text={cards?.text!}
                   />
                 </div>
               )
@@ -456,33 +450,38 @@ function CardsCamps({ banner }: { banner: Itens }) {
         )
         : (
           <div
-            class={`w-full flex flex-col lg:flex-row gap-5 lg:gap-10 px-[15px] sm:px-[15px] pt-[10px] max-h-[1100] lg:px-[50px] lg:pt-[40px] ${
-              HORIZONTAL[banner.horizontal!]
+            class={`w-full flex flex-col lg:flex-row gap-5 lg:gap-10 px-[15px] sm:px-[15px] pt-[10px] h-full  max-h-[1100px] lg:px-[50px] lg:pt-[40px] ${
+              HORIZONTAL[horizontal!]
             } `}
           >
-            {text !== undefined
+            {cards?.text !== undefined
               ? (
                 <div
                   id={id}
                   class={` flex`}
                 >
                   <TextCamp
-                    text={text}
+                    text={cards?.text!}
                   />
                 </div>
               )
               : ("")}
 
-            {productCard !== undefined
+            {cards?.productCard !== undefined
               ? (
                 <div
                   id={id}
-                  class="flex flex-row flex-wrap gap-5  lg:gap-10 justify-start"
+                  class="flex flex-row flex-wrap gap-5 h-full  lg:gap-20 justify-start"
                 >
-                  {cards.banner !== undefined
-                    ? <CardMovie banner={banner} />
+                  {cards?.banner !== undefined
+                    ? (
+                      <CardMovie
+                        banner={cards?.banner!}
+                        borderRadius={borderRadius}
+                      />
+                    )
                     : ("")}
-                  {productCard?.map((image, index) => (
+                  {cards?.productCard?.map((image, index) => (
                     <CardItem
                       image={image}
                     />
@@ -496,32 +495,4 @@ function CardsCamps({ banner }: { banner: Itens }) {
   );
 }
 
-/**
- * TODO: run the matcher agains the true URL instead on the breadcrumb.
- * This way we can remove the need for a loader. This can be done on live@1.x
- */
-function BannerCardPosition({ page, banners = [] }: Props) {
-  if (!page || page.breadcrumb.itemListElement.length === 0) {
-    return null;
-  }
-
-  const { item: canonical } = page
-    .breadcrumb
-    .itemListElement
-    .reduce((curr, acc) => curr.position > acc.position ? curr : acc);
-
-  const matching = banners.find(({ matcher }) =>
-    new RegExp(matcher).test(canonical)
-  );
-
-  if (!matching) {
-    return null;
-  }
-  return (
-    <>
-      <CardsCamps banner={matching} />
-    </>
-  );
-}
-
-export default BannerCardPosition;
+export default CardsCamps;
