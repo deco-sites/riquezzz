@@ -8,6 +8,7 @@ import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/productToAnalyticsItem.ts";
 import { sendEventOnClick } from "$store/sdk/analytics.tsx";
 import type { Product } from "deco-sites/std/commerce/types.ts";
+import { useState } from "preact/hooks";
 
 interface Props {
   product: Product;
@@ -17,6 +18,13 @@ interface Props {
   /** @description used for analytics event */
   itemListName?: string;
   colorRed?: boolean;
+}
+
+interface VariantsInterface {
+  value: string;
+  lvl: number;
+  link: string;
+  productID?: string;
 }
 
 export interface Layout {
@@ -57,27 +65,12 @@ const HEIGHT = 420;
 function ProductCard(
   { product, preload, itemListName, colorRed = false }: Props,
 ) {
-  const {
-    url,
-    productID,
-    name,
-    image: images,
-    offers,
-    isVariantOf,
-    isSimilarTo,
-  } = product;
-  const fImages = images?.filter((img) =>
-    img.alternateName !== "color-thumbnail"
+  const [visibleProduct, setVisibleProduct] = useState(product);
+  const [similarProducts, setSimilarProducts] = useState(
+    product.isSimilarTo?.map((similar: Product) => similar).concat([
+      visibleProduct,
+    ]) || [],
   );
-  const productGroupID = isVariantOf?.productGroupID;
-  const [front, back] = fImages ?? [];
-  const { listPrice, price, installments, availability, seller } = useOffer(
-    offers,
-  );
-  const installmentText = installments?.replace(" sem juros", "").replace(
-    ".",
-    ",",
-  ).replace(" de", "");
 
   const getVariants = (product: Product) => {
     const possibilities = useVariantPossibilities(product);
@@ -119,23 +112,42 @@ function ProductCard(
 
     let newVariants = [pppp, ppp, pp, p, m, g, gg, ggg, gggg];
     newVariants = newVariants.filter((item) => item !== undefined);
-    return { newVariants, outOfStock };
+    return { newVariants: newVariants as VariantsInterface[], outOfStock };
   };
 
-  const similars = isSimilarTo?.map((similar: Product) => {
-    const images = similar.image?.slice(-3).map((image) => image.url);
-    const variants = getVariants(similar).newVariants;
+  const [productVariants, setProductVariants] = useState(
+    getVariants(visibleProduct).newVariants,
+  );
+  const [outOfStock, setOutOfStock] = useState(false);
+  const [offer, setOffer] = useState(useOffer(visibleProduct.offers));
+  const [installmentsText, setInstallmentsText] = useState("");
 
-    return (
-      {
-        name: similar.name,
-        variants,
-        images,
-        productID: similar.productID,
-        url: similar.url,
-      }
-    );
-  }) || [];
+  const updateProduct = (product: Product) => {
+    setVisibleProduct(product);
+    setOutOfStock(getVariants(product).outOfStock);
+    setProductVariants(getVariants(product).newVariants);
+    console.log({ productVariants });
+  };
+
+  const {
+    url,
+    productID,
+    name,
+    image: images,
+    offers,
+    isVariantOf,
+    isSimilarTo,
+  } = visibleProduct;
+  const fImages = images?.filter((img) =>
+    img.alternateName !== "color-thumbnail"
+  );
+  const productGroupID = isVariantOf?.productGroupID;
+  const [front, back] = fImages ?? [];
+  const { listPrice, price, installments, availability, seller } = offer;
+  const installmentText = installments?.replace(" sem juros", "").replace(
+    ".",
+    ",",
+  ).replace(" de", "");
 
   const clickEvent = {
     name: "select_item" as const,
@@ -150,8 +162,6 @@ function ProductCard(
       ],
     },
   };
-
-  const { newVariants, outOfStock } = getVariants(product);
 
   return (
     <div
@@ -213,48 +223,25 @@ function ProductCard(
             </ul>
           </figcaption>
           {/* SKU Selector */}
-
-          {newVariants.length > 0
+          {productVariants.length > 0
             ? (
-              newVariants.length > 0
-                ? (
-                  <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
-                    <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
-                      {newVariants.map((item) => (
-                        <AddToCartAvatar
-                          skuId={item?.productID || productID}
-                          sellerId={seller || ""}
-                          price={price ?? 0}
-                          discount={price && listPrice ? listPrice - price : 0}
-                          name={product.name ?? ""}
-                          productGroupId={product.isVariantOf?.productGroupID ??
-                            ""}
-                          variant={item?.lvl !== 0 ? "default" : "disabled"}
-                          content={item?.value!}
-                        />
-                      ))}
-                    </ul>
-                  </figcaption>
-                )
-                : (
-                  <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
-                    <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
-                      {newVariants.map((item) => (
-                        <AddToCartAvatar
-                          skuId={item?.productID || productID}
-                          sellerId={seller || ""}
-                          price={price ?? 0}
-                          discount={price && listPrice ? listPrice - price : 0}
-                          name={product.name ?? ""}
-                          productGroupId={product.isVariantOf?.productGroupID ??
-                            ""}
-                          variant={item?.lvl !== 0 ? "default" : "disabled"}
-                          content={item?.value!}
-                        />
-                      ))}
-                    </ul>
-                  </figcaption>
-                )
+              <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
+                <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
+                  {productVariants.map((item) => (
+                    <AddToCartAvatar
+                      skuId={item?.productID || productID}
+                      sellerId={seller || ""}
+                      price={price ?? 0}
+                      discount={price && listPrice ? listPrice - price : 0}
+                      name={product.name ?? ""}
+                      productGroupId={product.isVariantOf?.productGroupID ??
+                        ""}
+                      variant={item?.lvl !== 0 ? "default" : "disabled"}
+                      content={item?.value!}
+                    />
+                  ))}
+                </ul>
+              </figcaption>
             )
             : ("")}
         </div>
@@ -317,15 +304,34 @@ function ProductCard(
           </div>
         </div>
       </div>
-      <div class="flex">
-        {similars.map((similar) => (
-          <AvatarColor
-            variant="default"
-            image={similar.images
-              ? similar.images[similar.images.length - 1]!
-              : ""}
-          />
-        ))}
+      <div class="h-[30px]">
+        {similarProducts.length > 1
+          ? (
+            <div class="flex flex-row-reverse">
+              {similarProducts.map((similar) => {
+                const availability = (similar.offers?.offers.find(of => of.seller === seller)?.inventoryLevel.value!) > 0
+                if (!availability) {
+                  return null;
+                }
+                return (<AvatarColor
+                  onClick={(e) => {
+                    updateProduct(similar);
+                  }}
+                  variant={similar.productID === visibleProduct.productID
+                    ? "active"
+                    : "default"}
+                  image={similar.image?.filter((img) =>
+                      img.alternateName === "color-thumbnail"
+                    ).length
+                    ? similar.image?.filter((img) =>
+                      img.alternateName === "color-thumbnail"
+                    )[0].url!
+                    : similar.image?.slice(-1)[0].url!}
+                />);
+              })}
+            </div>
+          )
+          : null}
       </div>
     </div>
   );

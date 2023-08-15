@@ -24,6 +24,7 @@ const colors: Record<string, string> = {
 interface Props {
   variant?: "active" | "disabled" | "default";
   image: string;
+  onClick: (e: MouseEvent) => void;
 }
 
 const variants = {
@@ -33,13 +34,13 @@ const variants = {
   default: "",
 };
 
-function AvatarColor({ variant = "default", image }: Props) {
+function AvatarColor({ variant = "default", image, onClick }: Props) {
   return (
-    <div class="cursor-pointer avatar placeholder flex justify-center items-center max-h-[30px] ">
+    <div class="cursor-pointer avatar placeholder flex justify-center items-center max-h-[30px] "  onClick={onClick}>
       <div
-        class={`w-full flex justify-center items-center   max-h-[20px] transform transition duration-300 hover:scale-150 p-1 rounded-2xl overflow-hidden`}
+        class={`w-full flex justify-center items-center max-h-[30px] transform transition duration-300 hover:scale-150 p-1 rounded-2xl overflow-hidden`}
       >
-        <img class="rounded-2xl" src={image} />
+        <img class={ variant== 'active' ? 'rounded-2xl w-full h-full border border-black' : '' + `rounded-2xl w-full h-full border`} src={image} />
       </div>
     </div>
   );
