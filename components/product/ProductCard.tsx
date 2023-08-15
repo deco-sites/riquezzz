@@ -309,25 +309,29 @@ function ProductCard(
           ? (
             <div class="flex flex-row-reverse">
               {similarProducts.map((similar) => {
-                const availability = (similar.offers?.offers.find(of => of.seller === seller)?.inventoryLevel.value!) > 0
+                const availability = (similar.offers?.offers.find((of) =>
+                  of.seller === seller
+                )?.inventoryLevel.value!) > 0;
                 if (!availability) {
                   return null;
                 }
-                return (<AvatarColor
-                  onClick={(e) => {
-                    updateProduct(similar);
-                  }}
-                  variant={similar.productID === visibleProduct.productID
-                    ? "active"
-                    : "default"}
-                  image={similar.image?.filter((img) =>
-                      img.alternateName === "color-thumbnail"
-                    ).length
-                    ? similar.image?.filter((img) =>
-                      img.alternateName === "color-thumbnail"
-                    )[0].url!
-                    : similar.image?.slice(-1)[0].url!}
-                />);
+                return (
+                  <AvatarColor
+                    onClick={(e) => {
+                      updateProduct(similar);
+                    }}
+                    variant={similar.productID === visibleProduct.productID
+                      ? "active"
+                      : "default"}
+                    image={similar.image?.filter((img) =>
+                        img.alternateName === "color-thumbnail"
+                      ).length
+                      ? similar.image?.filter((img) =>
+                        img.alternateName === "color-thumbnail"
+                      )[0].url!
+                      : similar.image?.slice(-1)[0].url!}
+                  />
+                );
               })}
             </div>
           )
