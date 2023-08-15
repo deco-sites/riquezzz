@@ -96,8 +96,7 @@ function NotFound() {
   );
 }
 
-function Result({
-  page,
+function Result({  page,
   variant,
 }: Omit<Props, "page"> & { page: ProductListingPage }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;

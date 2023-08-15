@@ -1,8 +1,18 @@
 import { useId } from "preact/hooks";
-import Image from "deco-sites/std/components/Image.tsx";
 import { Picture, Source } from "deco-sites/std/components/Picture.tsx";
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
 import type { Video as LiveViedo } from "deco-sites/std/components/types.ts";
+import { useOffer } from "$store/sdk/useOffer.ts";
+import WishlistIcon from "$store/islands/WishlistButton.tsx";
+import Image from "deco-sites/std/components/Image.tsx";
+import AddToCartAvatar from "$store/islands/AddToCartAvatar.tsx";
+import { formatPrice } from "$store/sdk/format.ts";
+import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
+import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/productToAnalyticsItem.ts";
+import { sendEventOnClick } from "$store/sdk/analytics.tsx";
+import type { Product } from "deco-sites/std/commerce/types.ts";
+import type { LoaderReturnType } from "$live/types.ts";
+import type { ProductListingPage } from "deco-sites/std/commerce/types.ts";
 
 export type BorderRadius =
   | "none"
@@ -18,54 +28,30 @@ export type MD =
   | "sim"
   | "nao";
 
-export interface Product {
-  mobile: MD;
-  desktop: MD;
-  srcdesktop: LiveImage;
-  secondImg?: LiveImage;
-
-  price?: number;
-
-  qtdportion?: number;
-
-  oldPrice?: number;
-
-  colorRed?: boolean;
-  name: string;
-  alt: string;
-  href: string;
-  size: 1 | 2 | 3;
-
-  vertical?: "start" | "center" | "end";
-}
 export interface Text {
   mobile: MD;
-
   desktop: MD;
-
   text?: string;
-
   size: 1 | 2 | 3;
 }
 
 export interface BannerMovieIMG {
   mobile: MD;
   desktop: MD;
-
   type?: "movie" | "image";
-
   srcMobile?: LiveViedo;
   srcDesktop?: LiveViedo;
   srcMobileIMG?: LiveImage;
   srcDesktopIMG?: LiveImage;
-
   alt?: string;
-
   href?: string;
   size: 1 | 2 | 3;
   vertical?: "start" | "center" | "end";
 }
-
+export interface CardUnid {
+  vertical?: "start" | "center" | "end";
+  productCard?: Product[] | null;
+}
 export interface Props {
   ordem: "Card/Movie/Text" | "Text/Movie/card";
 
@@ -73,13 +59,19 @@ export interface Props {
     mobile?: BorderRadius;
     desktop?: BorderRadius;
   };
-  horizontal: "start" | "center" | "end";
+
+  horizontal: "start" | "center" | "end" | "between" | "around" | "evenly";
 
   cards?: {
-    productCard?: Product[];
     banner?: BannerMovieIMG;
     text?: Text;
   };
+  productCard?: LoaderReturnType<ProductListingPage | null>;
+  size: 1 | 2 | 3;
+
+  itemListName?: string;
+  preload?: boolean;
+  colorRed?: boolean;
 }
 
 const RADIUS_MOBILE = {
@@ -109,11 +101,19 @@ const SIZE_IMG = {
   2: "h-[330px] w-[150px] lg:h-[860px] lg:w-[510px]",
   3: "h-[330px] w-[150px] lg:w-[400px]",
 };
+const SIZE_BANNER = {
+  1: "h-[330px] w-[150px] lg:h-[1200px] lg:w-[620px]",
+  2: "h-[330px] w-[150px] lg:h-[730px] lg:w-[625px]",
+  3: "h-[330px] w-[150px] lg:w-[400px]",
+};
 
 const HORIZONTAL = {
   start: "justify-start",
   center: "justify-center",
   end: "justify-end",
+  between: "justify-between",
+  around: "justify-around",
+  evenly: "justify-evenly",
 };
 
 const SIZE_IMG_H = {
@@ -170,7 +170,7 @@ function CardMovie(
                 } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
               >
                 <div
-                  class={` m-0 p-0  ${SIZE_IMG[banner!.size!]}`}
+                  class={` m-0 p-0  ${SIZE_BANNER[banner!.size!]}`}
                 >
                   <video
                     src={banner?.srcDesktop}
@@ -220,7 +220,7 @@ function CardMovie(
                 ? (
                   <Source
                     src={banner?.srcMobileIMG}
-                    class={` m-0 p-0  ${SIZE_IMG[banner!.size!]}`}
+                    class={` m-0 p-0  ${SIZE_BANNER[banner!.size!]}`}
                     width={335}
                     height={500}
                     media="(max-width: 767px)"
@@ -231,7 +231,7 @@ function CardMovie(
                 ? (
                   <Source
                     src={banner.srcDesktopIMG}
-                    class={` m-0 p-0  ${SIZE_IMG[banner!.size!]}`}
+                    class={` m-0 p-0  ${SIZE_BANNER[banner!.size!]}`}
                     width={960}
                     height={1440}
                     media="(min-width: 767px)"
@@ -242,7 +242,7 @@ function CardMovie(
               {banner?.srcDesktop
                 ? (
                   <img
-                    class={` m-0 p-0  ${SIZE_IMG[banner!.size!]}`}
+                    class={` m-0 p-0  ${SIZE_BANNER[banner!.size!]}`}
                     src={banner.srcDesktopIMG}
                     alt={banner.alt}
                   />
@@ -274,46 +274,131 @@ function TextCamp({ text }: { text: Text }) {
     </div>
   );
 }
-function CardItem({ image, lcp }: { image: Product; lcp?: boolean }) {
-  const {
-    alt,
-    srcdesktop,
-    desktop,
-    mobile,
-    href,
-    size,
-    vertical,
-    price,
-    oldPrice,
-    colorRed,
-    name,
-    qtdportion,
-    secondImg,
-  } = image;
-  const priceStr = image.price + "";
+function CardItem(
+  { product, itemListName, lcp, preload, colorRed, size }: {
+    product: Product;
+    lcp?: boolean;
+    itemListName?: string;
+    preload?: boolean;
+    colorRed?: boolean;
+    size: 1 | 2 | 3;
+  },
+) {
   const id = useId();
+  const {
+    url,
+    productID,
+    name,
+    image: images,
+    offers,
+    isVariantOf,
+  } = product;
+  const fImages = images?.filter((img) =>
+    img.alternateName !== "color-thumbnail"
+  );
+  const productGroupID = isVariantOf?.productGroupID;
+  const [front, back] = fImages ?? [];
+  const { listPrice, price, installments, availability, seller } = useOffer(
+    offers,
+  );
+  const installmentText = installments?.replace(" sem juros", "").replace(
+    ".",
+    ",",
+  ).replace(" de", "");
+
+  const possibilities = useVariantPossibilities(product);
+
+  const allProperties = (isVariantOf?.hasVariant ?? [])
+    .flatMap(({ offers = {}, url, productID }) =>
+      offers.offers?.map((property) => ({ property, url, productID }))
+    ).map((p) => ({
+      lvl: p?.property.inventoryLevel.value,
+      url: p?.url,
+      productID: p?.productID,
+    }));
+
+  const variants = Object.entries(Object.values(possibilities)[0] ?? {}).map(
+    (v) => {
+      const [value, [link]] = v;
+      const lvl = allProperties.find((p) => p.url === link)?.lvl;
+      const skuID = allProperties.find((p) => p.url === link)?.productID;
+      return { value, link, lvl: lvl as number, productID: skuID };
+    },
+  );
+  const clickEvent = {
+    name: "select_item" as const,
+    params: {
+      item_list_name: itemListName,
+      items: [
+        mapProductToAnalyticsItem({
+          product,
+          price,
+          listPrice,
+        }),
+      ],
+    },
+  };
+
+  const outOfStock = variants.filter((item) => item.lvl > 0).length === 0;
+  const pppp = variants.find((sku) => sku.value === "4P");
+  const ppp = variants.find((sku) => sku.value === "3P");
+  const pp = variants.find((sku) => sku.value === "PP");
+  const p = variants.find((sku) => sku.value === "P");
+  const m = variants.find((sku) => sku.value === "M");
+  const g = variants.find((sku) => sku.value === "G");
+  const gg = variants.find((sku) => sku.value === "GG");
+  const ggg = variants.find((sku) => sku.value === "3G");
+  const gggg = variants.find((sku) => sku.value === "4G");
+
+  let newVariants = [pppp, ppp, pp, p, m, g, gg, ggg, gggg];
+  newVariants = newVariants.filter((item) => item !== undefined);
+
+  const relative = (url: string) => {
+    const link = new URL(url);
+    return `${link.pathname}`;
+  };
+
+  const WIDTH = SIZE_IMG_W[size];
+  const HEIGHT = SIZE_IMG_H[size];
 
   return (
     <div
-      id={id}
-      class={`  card card-compact card-bordered rounded-none border-transparent group    ${
-        HORIZONTAL[vertical!]
-      }  `}
+      class="card card-compact card-bordered rounded-none border-transparent group "
       data-deco="view-product"
+      id={`product-card-${productID}`}
+      {...sendEventOnClick(clickEvent)}
     >
       <div class={`relative ${SIZE_IMG[size!]} `}>
         <figure
-          class="relative"
+          class="relative "
           style={{ aspectRatio: `${SIZE_IMG_W[size!]} / ${SIZE_IMG_H[size!]}` }}
         >
+          {/* Wishlist button */}
+          <div class="absolute top-0 right-0 z-10">
+            <WishlistIcon
+              productGroupID={productGroupID}
+              productID={productID}
+            />
+          </div>
+          {listPrice !== price
+            ? (
+              <div class="absolute flex justify-center top-0 left-0 z-10 mt-3 ml-2">
+                <span class="rounded-[100px] font-bold bg-black text-white p-1 px-2  text-xs">
+                  {Math.floor(price! / listPrice! * 100)}% OFF
+                </span>
+              </div>
+            )
+            : ("")}
+
+          {/* Product Images */}
           <a
-            href={href}
+            href={url && relative(url)}
             aria-label="view product"
             class="contents"
           >
             <Image
-              src={srcdesktop}
-              alt={alt}
+              src={front.url!}
+              alt={front.alternateName}
               width={510}
               height={760}
               class="absolute top-0 left-0  transition-opacity w-full max-h-[760px]  object-cover opacity-100 group-hover:opacity-0 "
@@ -322,8 +407,8 @@ function CardItem({ image, lcp }: { image: Product; lcp?: boolean }) {
               decoding="async"
             />
             <Image
-              src={image.secondImg ?? srcdesktop!}
-              alt={alt}
+              src={back?.url ?? front.url!}
+              alt={back?.alternateName ?? front.alternateName}
               width={510}
               height={760}
               class=" absolute top-0 left-0  transition-opacity w-full max-h-[760px] object-cover opacity-0 group-hover:opacity-100"
@@ -341,57 +426,116 @@ function CardItem({ image, lcp }: { image: Product; lcp?: boolean }) {
                 </a>
               </ul>
             </figcaption>
+            {/* SKU Selector */}
+
+            {variants.length > 0
+              ? (
+                newVariants.length > 0
+                  ? (
+                    <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
+                      <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
+                        {newVariants.map((item) => (
+                          <AddToCartAvatar
+                            skuId={item?.productID || productID}
+                            sellerId={seller || ""}
+                            price={price ?? 0}
+                            discount={price && listPrice
+                              ? listPrice - price
+                              : 0}
+                            name={product.name ?? ""}
+                            productGroupId={product.isVariantOf
+                              ?.productGroupID ??
+                              ""}
+                            variant={item?.lvl !== 0 ? "default" : "disabled"}
+                            content={item?.value!}
+                          />
+                        ))}
+                      </ul>
+                    </figcaption>
+                  )
+                  : (
+                    <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
+                      <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
+                        {variants.map((item) => (
+                          <AddToCartAvatar
+                            skuId={item?.productID || productID}
+                            sellerId={seller || ""}
+                            price={price ?? 0}
+                            discount={price && listPrice
+                              ? listPrice - price
+                              : 0}
+                            name={product.name ?? ""}
+                            productGroupId={product.isVariantOf
+                              ?.productGroupID ??
+                              ""}
+                            variant={item?.lvl !== 0 ? "default" : "disabled"}
+                            content={item?.value!}
+                          />
+                        ))}
+                      </ul>
+                    </figcaption>
+                  )
+              )
+              : ("")}
           </div>
         </figure>
-        <div class="flex flex-col p-0 m-0 h-[90px] justify-start items-start">
+        {/* Prices & Name */}
+        <div class=" flex flex-col p-0 m-0 h-[90px] max-h-[90px] justify-start items-start">
           <h2 class="card-title w-full   text-base-300 text-sm 2xl:text-lg  font-normal uppercase">
-            {name}
+            {isVariantOf!.name}
           </h2>
-          {price !== undefined
-            ? (
-              <div class="flex flex-col  sm:flew-row items-start ">
-                <div class=" flew-row  items-start flex flex-wrap">
-                  {qtdportion !== undefined
-                    ? (
-                      <span
-                        class={`text-xs 2xl:text-base font-bold pl-1`}
-                      >
-                        {qtdportion + "x R$" +
-                          (price / qtdportion!).toFixed(2) +
-                          " / "}
-                      </span>
-                    )
-                    : ("")}
-                  {oldPrice !== price
-                    ? (
-                      <span class="line-through text-xs 2xl:text-base  text-base-300 px-1 ">
-                        R$ {oldPrice !== price
-                          ? (priceStr.length <= 3
-                            ? (oldPrice + ",00 ")
-                            : (priceStr?.length <= 5
-                              ? (oldPrice + "0 ")
-                              : (oldPrice)))
-                          : (" ")}
-                      </span>
-                    )
-                    : ("")}
+          <div class="flex flex-col  sm:flew-row items-start ">
+            <div class="hidden flew-row  items-start sm:flex flex-wrap">
+              <span class="text-xs 2xl:text-base font-bold sm:flex hidden  ">
+                {installmentText
+                  ? (installmentText?.length === 8
+                    ? (installmentText + ",00" + " / ")
+                    : (installmentText?.length === 10
+                      ? (installmentText + "0" + " / ")
+                      : (installmentText + " / ")))
+                  : ("")}
+              </span>
 
-                  <span class="text-xs 2xl:text-base font-bold px-1">
-                    {oldPrice !== price ? (" / ") : (" ")}
-                  </span>
-                  <span
-                    class={`${
-                      colorRed! ? "text-red-700 " : ""
-                    }text-xs 2xl:text-base font-bold pl-1`}
-                  >
-                    R$ {priceStr.length <= 3
-                      ? (price + ",00")
-                      : (priceStr?.length <= 5 ? (price + "0") : (price))}
-                  </span>
-                </div>
-              </div>
-            )
-            : ("")}
+              <span class="line-through px-1  text-xs 2xl:text-base text-base-300 sm:flex hidden">
+                {listPrice !== price
+                  ? (`${formatPrice(listPrice, offers!.priceCurrency!)} `)
+                  : ("")}
+              </span>
+              <span class="text-xs 2xl:text-base  pr-1  font-bold text-black sm:flex hidden">
+                {listPrice !== price ? (` /`) : ("")}
+              </span>
+              <span
+                class={`${
+                  colorRed ? "text-red-700 " : ""
+                }text-xs 2xl:text-base font-bold`}
+              >
+                {price && !outOfStock
+                  ? (formatPrice(price, offers!.priceCurrency!))
+                  : ("Produto esgotado")}
+              </span>
+            </div>
+
+            <div class="flex flew-row  items-start sm:hidden flex-wrap">
+              <span class="line-through text-xs 2xl:text-base  text-base-300 px-1 ">
+                {listPrice !== price
+                  ? (formatPrice(listPrice, offers!.priceCurrency!))
+                  : (" ")}
+              </span>
+
+              <span class="text-xs 2xl:text-base  font-bold ">
+                {listPrice !== price ? ("/ ") : (" ")}
+              </span>
+              <span
+                class={`${
+                  colorRed ? "text-red-700 " : ""
+                }text-xs 2xl:text-base font-bold pl-1`}
+              >
+                {price && !outOfStock
+                  ? (formatPrice(price, offers!.priceCurrency!))
+                  : (" Produto esgotado")}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -399,29 +543,49 @@ function CardItem({ image, lcp }: { image: Product; lcp?: boolean }) {
 }
 
 function CardsCamps(
-  { cards, ordem, horizontal, borderRadius }: Props,
+  {
+    cards,
+    ordem,
+    horizontal,
+    borderRadius,
+    colorRed,
+    itemListName,
+    preload,
+    productCard,
+    size,
+  }: Omit<Props, "productCard"> & { productCard: ProductListingPage },
 ) {
+
   const id = useId();
   return (
     <>
       {ordem === "Card/Movie/Text"
         ? (
           <div
-            class={`flex flex-col lg:flex-row gap-5 lg:gap-0 px-[25px] sm:px-[25px] pt-[10px]   lg:px-[50px] lg:pt-[40px] ${
+            class={`flex flex-col  lg:flex-row gap-5 lg:gap-0 px-[25px] sm:px-[25px] pt-[10px]   lg:px-[50px] lg:pt-[40px] sm:min-h-[700px] ${
               HORIZONTAL[horizontal!]
             } `}
           >
-            {cards?.productCard! !== undefined
+            {cards! !== undefined
               ? (
                 <div
                   id={id}
-                  class="flex flex-row flex-wrap gap-5  h-full lg:gap-20 justify-start"
+                  class={`flex container flex-row flex-wrap gap-5  sm:min-h-[700px]  lg:gap-20 w-full ${
+                    HORIZONTAL[horizontal!]
+                  } `}
                 >
-                  {cards?.productCard?.map((image, index) => (
-                    <CardItem
-                      image={image}
-                    />
-                  ))}
+                  {productCard !== undefined
+                    ? (productCard!.products?.map((product, index) => (
+                      <CardItem
+                        product={product}
+                        colorRed={colorRed}
+                        itemListName={itemListName}
+                        preload={preload}
+                        size={size}
+                      />
+                    )))
+                    : ("")}
+
                   {cards?.banner !== undefined
                     ? (
                       <CardMovie
@@ -450,7 +614,7 @@ function CardsCamps(
         )
         : (
           <div
-            class={`w-full flex flex-col lg:flex-row gap-5 lg:gap-10 px-[15px] sm:px-[15px] pt-[10px] h-full  max-h-[1100px] lg:px-[50px] lg:pt-[40px] ${
+            class={`flex flex-col container lg:flex-row gap-5 lg:gap-0 px-[25px] sm:px-[25px] pt-[10px]   lg:px-[50px] lg:pt-[40px] sm:min-h-[700px] w-full ${
               HORIZONTAL[horizontal!]
             } `}
           >
@@ -467,11 +631,13 @@ function CardsCamps(
               )
               : ("")}
 
-            {cards?.productCard !== undefined
+            {cards !== undefined
               ? (
                 <div
                   id={id}
-                  class="flex flex-row flex-wrap gap-5 h-full  lg:gap-20 justify-start"
+                  class={`flex flex-row flex-wrap gap-5  sm:min-h-[700px] lg:gap-20 ${
+                    HORIZONTAL[horizontal!]
+                  } `}
                 >
                   {cards?.banner !== undefined
                     ? (
@@ -481,11 +647,17 @@ function CardsCamps(
                       />
                     )
                     : ("")}
-                  {cards?.productCard?.map((image, index) => (
-                    <CardItem
-                      image={image}
-                    />
-                  ))}
+                  {productCard !== undefined
+                    ? (productCard.products?.map((product, index) => (
+                      <CardItem
+                        product={product}
+                        colorRed={colorRed}
+                        itemListName={itemListName}
+                        preload={preload}
+                        size={size}
+                      />
+                    )))
+                    : ("")}
                 </div>
               )
               : ("")}
@@ -495,4 +667,11 @@ function CardsCamps(
   );
 }
 
-export default CardsCamps;
+function SearchResult(
+  { productCard, ...props }: Props,
+) {
+
+  return <CardsCamps {...props} productCard={productCard!} />;
+}
+
+export default SearchResult;
