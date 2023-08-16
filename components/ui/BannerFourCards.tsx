@@ -24,25 +24,6 @@ export type BorderRadius =
   | "3xl"
   | "full";
 
-export interface Card {
-  desktop: LiveImage;
-
-  mobile: LiveImage;
-  secondImg?: LiveImage;
-
-  price: number;
-  qtdportion?: number;
-  oldPrice?: number;
-  /** @default true */
-
-  colorRed?: boolean;
-  name: string;
-
-  alt: string;
-
-  href: string;
-}
-
 export interface BannerItem {
   /** @default movie */
   type: "movie" | "image";
@@ -64,9 +45,6 @@ export interface Props {
     desktop?: BorderRadius;
   };
 
-  cards: {
-    images: Card[];
-  };
   productCard?: LoaderReturnType<ProductListingPage | null>;
 
   bannerFirst: BannerItem;
@@ -465,7 +443,6 @@ function CardItem(
 
 function CardsCamps(
   {
-    cards,
     ordem,
 
     borderRadius,
