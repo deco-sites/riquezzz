@@ -4,10 +4,6 @@ import type { ProductDetailsPage } from "deco-sites/std/commerce/types.ts";
 import Button from "deco-sites/riquezzz/components/ui/Button.tsx";
 import { useState } from "preact/hooks";
 
-// export interface Props {
-//   page: LoaderReturnType<ProductDetailsPage | null>;
-// }
-
 const NewRatingForm = () => {
   const [title, setTitle] = useState<string | undefined>(undefined);
   const [name, setName] = useState<string | undefined>(undefined);
@@ -120,19 +116,20 @@ const NewRatingForm = () => {
   );
 };
 
-// function ProductReviews({ page }: { page: ProductDetailsPage }) {
-function ProductReviews() {
-  // const { product } = page;
-  // const {
-  //   productID,
-  // } = product;
+function ProductReviews(
+  { productID }: {
+    productID: string;
+  },
+) {
   const user = {};
 
   return (
     <section class="w-full px-auto flex justify-center mb-5">
-      <div class="border border-black w-[92%] mr-8 p-8">
+      <div class="border border-black w-full mt-12 p-8">
         <div>
-          <h2 class="uppercase font-bold text-3xl">Avaliações do Produto</h2>
+          <h2 class="uppercase font-bold text-3xl">
+            Avaliações do Produto
+          </h2>
           <div className="rating mt-2">
             <input
               type="radio"

@@ -18,16 +18,21 @@ import type { LoaderReturnType } from "$live/types.ts";
 import ProductSelector from "./ProductVariantSelectoPDP.tsx";
 import ProductImageZoom from "$store/islands/ProductImageZoom.tsx";
 import WishlistButton from "../wishlist/WishlistButton.tsx";
+import ProductReviews from "deco-sites/riquezzz/components/product/ProductReviews.tsx";
+import { ResponseReviews } from "$store/loaders/reviewsandratings.ts";
 
 export type Variant = "front-back" | "slider" | "auto";
 
 export interface Props {
   page: LoaderReturnType<ProductDetailsPage | null>;
+  // reviews: LoaderReturnType<ResponseReviews | null>;
   /**
    * @title Product view
    * @description Ask for the developer to remove this option since this is here to help development only and should not be used in production
    */
   variant?: Variant;
+  appKey: string;
+  appToken: string;
 }
 
 const WIDTH = 620;
@@ -275,7 +280,14 @@ function imgZoom() {
 function Details({
   page,
   variant,
-}: { page: ProductDetailsPage; variant: Variant }) {
+  appKey,
+  appToken,
+}: {
+  page: ProductDetailsPage;
+  variant: Variant;
+  appKey: string;
+  appToken: string;
+}) {
   const {
     breadcrumbList,
     product,
@@ -372,6 +384,8 @@ function Details({
           </div>
         </div>
         <SliderJS rootId={id}></SliderJS>
+
+        <ProductReviews productID={page.product.productID} />
       </>
     );
   }
@@ -412,7 +426,9 @@ function Details({
   );
 }
 
-function ProductDetails({ page, variant: maybeVar = "auto" }: Props) {
+function ProductDetails(
+  { page, variant: maybeVar = "auto", appKey, appToken }: Props,
+) {
   /**
    * Showcase the different product views we have on this template. In case there are less
    * than two images, render a front-back, otherwhise render a slider
@@ -426,7 +442,16 @@ function ProductDetails({ page, variant: maybeVar = "auto" }: Props) {
 
   return (
     <div class="px-5  lg:px-10 lg:pb-10">
-      {page ? <Details page={page} variant={variant} /> : <NotFound />}
+      {page
+        ? (
+          <Details
+            page={page}
+            variant={variant}
+            appKey={appKey}
+            appToken={appToken}
+          />
+        )
+        : <NotFound />}
     </div>
   );
 }
