@@ -14,10 +14,11 @@ import * as $$$$$7 from "./islands/ModalCart.tsx";
 import * as $$$$$8 from "./islands/Newsletter.tsx";
 import * as $$$$$9 from "./islands/OutOfStock.tsx";
 import * as $$$$$10 from "./islands/ProductImageZoom.tsx";
-import * as $$$$$11 from "./islands/SearchControls.tsx";
-import * as $$$$$12 from "./islands/ShippingSimulation.tsx";
-import * as $$$$$13 from "./islands/SliderJS.tsx";
-import * as $$$$$14 from "./islands/WishlistButton.tsx";
+import * as $$$$$11 from "./islands/ReadMore.tsx";
+import * as $$$$$12 from "./islands/SearchControls.tsx";
+import * as $$$$$13 from "./islands/ShippingSimulation.tsx";
+import * as $$$$$14 from "./islands/SliderJS.tsx";
+import * as $$$$$15 from "./islands/WishlistButton.tsx";
 import * as $$$$$$$$0 from "./sections/BannerCardPosition.tsx";
 import * as $$$$$$$$1 from "./sections/BannerFourCards.tsx";
 import * as $$$$$$$$2 from "./sections/BannerFull.tsx";
@@ -40,10 +41,11 @@ import * as $$$$$$$$18 from "./sections/Highlights.tsx";
 import * as $$$$$$$$19 from "./sections/LinkTree.tsx";
 import * as $$$$$$$$20 from "./sections/ProductDetails.tsx";
 import * as $$$$$$$$21 from "./sections/ProductShelf.tsx";
-import * as $$$$$$$$22 from "./sections/SearchBreadControls.tsx";
-import * as $$$$$$$$23 from "./sections/SearchResult.tsx";
-import * as $$$$$$$$24 from "./sections/WhatsApp.tsx";
-import * as $$$$$$$$25 from "./sections/WishlistGallery.tsx";
+import * as $$$$$$$$22 from "./sections/ReadMore.tsx";
+import * as $$$$$$$$23 from "./sections/SearchBreadControls.tsx";
+import * as $$$$$$$$24 from "./sections/SearchResult.tsx";
+import * as $$$$$$$$25 from "./sections/WhatsApp.tsx";
+import * as $$$$$$$$26 from "./sections/WishlistGallery.tsx";
 import * as $live_workflows from "$live/routes/live/workflows/run.ts";
 import * as $live_middleware from "$live/routes/_middleware.ts";
 import * as $live_workbench from "$live/routes/live/workbench.ts";
@@ -220,10 +222,11 @@ const manifest = {
     "./islands/Newsletter.tsx": $$$$$8,
     "./islands/OutOfStock.tsx": $$$$$9,
     "./islands/ProductImageZoom.tsx": $$$$$10,
-    "./islands/SearchControls.tsx": $$$$$11,
-    "./islands/ShippingSimulation.tsx": $$$$$12,
-    "./islands/SliderJS.tsx": $$$$$13,
-    "./islands/WishlistButton.tsx": $$$$$14,
+    "./islands/ReadMore.tsx": $$$$$11,
+    "./islands/SearchControls.tsx": $$$$$12,
+    "./islands/ShippingSimulation.tsx": $$$$$13,
+    "./islands/SliderJS.tsx": $$$$$14,
+    "./islands/WishlistButton.tsx": $$$$$15,
   },
   "sections": {
     "$live/sections/Conditional_Beta.tsx": i2$$$$$0,
@@ -253,10 +256,11 @@ const manifest = {
     "deco-sites/riquezzz/sections/LinkTree.tsx": $$$$$$$$19,
     "deco-sites/riquezzz/sections/ProductDetails.tsx": $$$$$$$$20,
     "deco-sites/riquezzz/sections/ProductShelf.tsx": $$$$$$$$21,
-    "deco-sites/riquezzz/sections/SearchBreadControls.tsx": $$$$$$$$22,
-    "deco-sites/riquezzz/sections/SearchResult.tsx": $$$$$$$$23,
-    "deco-sites/riquezzz/sections/WhatsApp.tsx": $$$$$$$$24,
-    "deco-sites/riquezzz/sections/WishlistGallery.tsx": $$$$$$$$25,
+    "deco-sites/riquezzz/sections/ReadMore.tsx": $$$$$$$$22,
+    "deco-sites/riquezzz/sections/SearchBreadControls.tsx": $$$$$$$$23,
+    "deco-sites/riquezzz/sections/SearchResult.tsx": $$$$$$$$24,
+    "deco-sites/riquezzz/sections/WhatsApp.tsx": $$$$$$$$25,
+    "deco-sites/riquezzz/sections/WishlistGallery.tsx": $$$$$$$$26,
     "deco-sites/std/sections/Analytics.tsx": i2$$$$$5,
     "deco-sites/std/sections/configButterCMS.global.tsx": i2$$$$$6,
     "deco-sites/std/sections/configLinxImpulse.global.tsx": i2$$$$$7,

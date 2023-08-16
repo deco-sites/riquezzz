@@ -80,11 +80,11 @@ interface Size {
 }
 
 const IMAGE_SIZE: Size = {
-  1: "col-span-1",
-  2: "col-span-2",
-  3: "col-span-3",
-  4: "col-span-4",
-  6: "col-span-6",
+  1: "sm:col-span-1",
+  2: "sm:col-span-2",
+  3: "sm:col-span-3",
+  4: "sm:col-span-4",
+  6: "sm:col-span-6",
 };
 
 const ROW_SIZE: Size = {
@@ -124,10 +124,11 @@ export default function BawBannner({
 
   banners = [],
 }: Props) {
+  console.log({ itemsPerLine });
   return (
     <section class="w-full  md:pl-2 mx-auto md:pr-[42px]">
       <div
-        class={` sm:pl-2 grid  grid-flow-row-dense  gap-4 md:gap-4  ${
+        class={` sm:px-4 sm:py-2 grid  grid-flow-row-dense  gap-4 md:gap-4  ${
           MOBILE_COLUMNS[itemsPerLine.mobile ?? 2]
         } ${DESKTOP_COLUMNS[itemsPerLine.desktop ?? 4]}`}
       >
@@ -143,13 +144,13 @@ export default function BawBannner({
           index,
         ) => (
           <div
-            class={` ${IMAGE_SIZE[size_cols ?? 2]} ${
+            class={`${IMAGE_SIZE[size_cols ?? 2]} ${
               ROW_SIZE[size_rows ?? 1]
             } transform transition duration-500 hover:scale-95  `}
           >
             <Picture
               class={index > 1
-                ? "hidden md:block text-center  "
+                ? "hidden sm:block text-center  "
                 : "w-full flex "}
             >
               <Source
