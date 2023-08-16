@@ -84,18 +84,18 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
           <span class="line-through text-black text-lg">
             {formatPrice(listPrice, offers!.priceCurrency!)}
           </span>
-          <span class=" text-2xl text-red-600 font-bold">
-            {formatPrice(price, offers!.priceCurrency!)}
+          <div class="flex items-center">
+            <span class=" text-2xl text-red-600 font-bold">
+              {formatPrice(price, offers!.priceCurrency!)}
+            </span>
             {listPrice !== price
               ? (
-                <div class="absolute flex justify-center top-0 left-0 z-10 lg:mt-3 lg:ml-2">
-                  <span class="rounded-[100px] font-bold bg-black text-white p-1 lg:px-2  text-xs">
-                    {Math.floor(price! / listPrice! * 100)}% OFF
-                  </span>
-                </div>
+                <span class="rounded-[100px] font-bold bg-black text-white p-1 lg:px-2  text-xs  ml-2 p-2">
+                  {Math.floor(price! / listPrice! * 100)}% OFF
+                </span>
               )
               : ("")}
-          </span>
+          </div>
         </div>
       </div>
       {/* Sku Selector */}
