@@ -64,7 +64,7 @@ const RADIUS_DESKTOP = {
 };
 
 function BannerMovieImg(
-  { borderRadius , altMovie, hrefMovie, srcMovieDesktop, srcMovieMobile, type }:
+  { borderRadius, altMovie, hrefMovie, srcMovieDesktop, srcMovieMobile, type }:
     Props,
 ) {
   return (

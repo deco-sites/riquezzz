@@ -38,11 +38,9 @@ export interface Text {
 export interface BannerMovieIMG {
   mobile: MD;
   desktop: MD;
-  type?: "movie" | "image";
-  srcMobile?: LiveViedo;
-  srcDesktop?: LiveViedo;
-  srcMobileIMG?: LiveImage;
-  srcDesktopIMG?: LiveImage;
+  type: "movie" | "image";
+  srcMobile?: LiveViedo | LiveImage;
+  srcDesktop?: LiveViedo | LiveImage;
   alt?: string;
   href?: string;
   size: 1 | 2 | 3;
@@ -154,7 +152,7 @@ function CardMovie(
 
   return (
     <>
-      {banner?.type === "movie"
+      {banner.type === "movie"
         ? (
           <section
             id={id}
@@ -173,8 +171,8 @@ function CardMovie(
                   class={` m-0 p-0  ${SIZE_BANNER[banner!.size!]}`}
                 >
                   <video
-                    src={banner?.srcDesktop}
-                    alt={banner?.alt}
+                    src={banner.srcDesktop}
+                    alt={banner.alt}
                     autoPlay
                     muted
                     loop
@@ -187,8 +185,8 @@ function CardMovie(
                     Video não suportado!
                   </video>
                   <video
-                    src={banner?.srcMobile}
-                    alt={banner?.alt}
+                    src={banner.srcMobile}
+                    alt={banner.alt}
                     autoPlay
                     muted
                     loop
@@ -216,10 +214,10 @@ function CardMovie(
               preload
               class="col-start-1 col-span-1 row-start-1 row-span-1"
             >
-              {banner?.srcMobileIMG
+              {banner.srcMobile
                 ? (
                   <Source
-                    src={banner?.srcMobileIMG}
+                    src={banner.srcMobile}
                     class={` m-0 p-0  ${SIZE_BANNER[banner!.size!]}`}
                     width={335}
                     height={500}
@@ -227,10 +225,10 @@ function CardMovie(
                   />
                 )
                 : ("")}
-              {banner?.srcDesktopIMG
+              {banner.srcDesktop
                 ? (
                   <Source
-                    src={banner.srcDesktopIMG}
+                    src={banner.srcDesktop}
                     class={` m-0 p-0  ${SIZE_BANNER[banner!.size!]}`}
                     width={960}
                     height={1440}
@@ -239,11 +237,11 @@ function CardMovie(
                 )
                 : ("")}
 
-              {banner?.srcDesktop
+              {banner.srcDesktop
                 ? (
                   <img
                     class={` m-0 p-0  ${SIZE_BANNER[banner!.size!]}`}
-                    src={banner.srcDesktopIMG}
+                    src={banner.srcDesktop}
                     alt={banner.alt}
                   />
                 )
@@ -251,7 +249,9 @@ function CardMovie(
             </Picture>
           </div>
         )}
-    </>
+   
+ 
+  </>
   );
 }
 function TextCamp({ text }: { text: Text }) {
@@ -555,7 +555,6 @@ function CardsCamps(
     size,
   }: Omit<Props, "productCard"> & { productCard: ProductListingPage },
 ) {
-
   const id = useId();
   return (
     <>
@@ -670,7 +669,6 @@ function CardsCamps(
 function SearchResult(
   { productCard, ...props }: Props,
 ) {
-
   return <CardsCamps {...props} productCard={productCard!} />;
 }
 
