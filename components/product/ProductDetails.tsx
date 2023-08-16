@@ -25,7 +25,7 @@ export type Variant = "front-back" | "slider" | "auto";
 
 export interface Props {
   page: LoaderReturnType<ProductDetailsPage | null>;
-  // reviews: LoaderReturnType<ResponseReviews | null>;
+  reviews: ResponseReviews | null;
   /**
    * @title Product view
    * @description Ask for the developer to remove this option since this is here to help development only and should not be used in production

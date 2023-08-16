@@ -40,11 +40,11 @@ const url = "https://bawclothing.myvtex.com/reviews-and-ratings/api/reviews";
 
 const loader = async (
   props: Props,
-): Promise<Reviews | undefined | []> => {
+): Promise<ResponseReviews | null> => {
   const productId = props.productId;
 
   try {
-    const { data } = await fetchAPI<ResponseReviews>(
+    const response = await fetchAPI<ResponseReviews>(
       url + "?product_id=" + productId,
       {
         method: "GET",
@@ -57,9 +57,9 @@ const loader = async (
       },
     );
 
-    return data;
+    return response;
   } catch {
-    return [];
+    return null;
   }
 };
 
