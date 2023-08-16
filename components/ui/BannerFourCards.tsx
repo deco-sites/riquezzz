@@ -289,7 +289,7 @@ function CardItem(
       id={`product-card-${productID}`}
       {...sendEventOnClick(clickEvent)}
     >
-      <div class={`relative  `}>
+      <div class={`relative h-[330px] w-[150px] lg:h-[660px] lg:w-[300px] `}>
         <figure
           class="relative "
           style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
@@ -322,7 +322,7 @@ function CardItem(
               alt={front.alternateName}
               width={300}
               height={500}
-              class="absolute top-0 left-0  transition-opacity w-full max-h-[760px]  object-cover opacity-100 group-hover:opacity-0 "
+              class="absolute top-0 left-0  transition-opacity w-full max-h-[500px]  object-cover opacity-100 group-hover:opacity-0 "
               loading={lcp ? "eager" : "lazy"}
               sizes="(max-width: 640px) "
               decoding="async"
@@ -332,7 +332,7 @@ function CardItem(
               alt={back?.alternateName ?? front.alternateName}
               width={300}
               height={500}
-              class=" absolute top-0 left-0  transition-opacity w-full max-h-[760px] object-cover opacity-0 group-hover:opacity-100"
+              class=" absolute top-0 left-0  transition-opacity w-full max-h-[500px] object-cover opacity-0 group-hover:opacity-100"
               loading={lcp ? "eager" : "lazy"}
               sizes="(max-width: 640px) "
               decoding="async"
@@ -483,14 +483,14 @@ function CardsCamps(
         ? (
           <div class=" w-full flex flex-col lg:flex-row gap-5 lg:gap-10 px-[15px] pt-[10px] h-[1400px] lg:px-[50px] lg:pt-[40px] justify-center">
             <div
-              class={`w-full flex `}
+              class={`w-full lg:max-w-[50vw] flex `}
             >
               <CardMovie banner={bannerFirst} borderRadius={borderRadius} />
             </div>
 
             <div
               id={id}
-              class="flex flex-row flex-wrap gap-5  px-[15px] lg:gap-10 justify-start"
+              class="flex flex-row flex-wrap gap-5  px-[15px] lg:gap-10 justify-center"
             >
               {productCard !== undefined
                 ? (productCard!.products?.map((product, index) => (
@@ -509,7 +509,7 @@ function CardsCamps(
           <div class=" w-full flex flex-col lg:flex-row gap-5 lg:gap-10 px-[15px] pt-[10px] h-[1400px] lg:px-[50px] lg:pt-[40px] justify-center">
             <div
               id={id}
-              class="flex flex-row flex-wrap gap-5  px-[15px] lg:gap-10 justify-start"
+              class="flex flex-row flex-wrap gap-5  px-[15px] lg:gap-10 justify-center"
             >
               {productCard !== undefined
                 ? (productCard!.products?.map((product, index) => (
@@ -524,7 +524,7 @@ function CardsCamps(
             </div>
 
             <div
-              class={`w-full flex `}
+              class={`w-full lg:max-w-[50vw] flex `}
             >
               <CardMovie banner={bannerFirst} borderRadius={borderRadius} />
             </div>

@@ -249,9 +249,7 @@ function CardMovie(
             </Picture>
           </div>
         )}
-   
- 
-  </>
+    </>
   );
 }
 function TextCamp({ text }: { text: Text }) {
@@ -358,8 +356,7 @@ function CardItem(
     return `${link.pathname}`;
   };
 
-  const WIDTH = SIZE_IMG_W[size];
-  const HEIGHT = SIZE_IMG_H[size];
+  
 
   return (
     <div
@@ -383,7 +380,7 @@ function CardItem(
           {listPrice !== price
             ? (
               <div class="absolute flex justify-center top-0 left-0 z-10 mt-3 ml-2">
-                <span class="rounded-[100px] font-bold bg-black text-white p-1 px-2  text-xs">
+                <span class="rounded-[100px] font-bold bg-black text-white p-1 px-2 text-xs">
                   {Math.floor(price! / listPrice! * 100)}% OFF
                 </span>
               </div>
