@@ -356,8 +356,6 @@ function CardItem(
     return `${link.pathname}`;
   };
 
-  
-
   return (
     <div
       class="card card-compact card-bordered rounded-none border-transparent group "
