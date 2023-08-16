@@ -44,12 +44,13 @@ export interface BannerMovieIMG {
   alt?: string;
   href?: string;
   size: 1 | 2 | 3;
+  sizeMobile: 1 | 2;
+
   vertical?: "start" | "center" | "end";
+  desalinhamento: boolean;
+  desalinhamentoAltura?: 1 | 2 | 3 | 4 | 5;
 }
-export interface CardUnid {
-  vertical?: "start" | "center" | "end";
-  productCard?: Product[] | null;
-}
+
 export interface Props {
   ordem: "Card/Movie/Text" | "Text/Movie/card";
 
@@ -66,10 +67,13 @@ export interface Props {
   };
   productCard?: LoaderReturnType<ProductListingPage | null>;
   size: 1 | 2 | 3;
+  sizeMobile: 1 | 2;
 
+  productCardMobileColum: boolean;
   itemListName?: string;
   preload?: boolean;
   colorRed?: boolean;
+  desalinhamento?: 1 | 2 | 3 | 4 | 5;
 }
 
 const RADIUS_MOBILE = {
@@ -95,29 +99,51 @@ const RADIUS_DESKTOP = {
 };
 
 const SIZE_IMG = {
-  1: "h-[330px] w-[150px] lg:h-[1200px] lg:w-[620px]",
-  2: "h-[330px] w-[150px] lg:h-[860px] lg:w-[510px]",
-  3: "h-[330px] w-[150px] lg:w-[400px]",
+  1: " lg:h-[1100px] lg:w-[620px]",
+  2: " lg:h-[860px] lg:w-[510px]",
+  3: " lg:w-[400px]",
 };
 const SIZE_BANNER = {
-  1: "h-[330px] w-[150px] lg:h-[1200px] lg:w-[620px]",
-  2: "h-[330px] w-[150px] lg:h-[730px] lg:w-[625px]",
-  3: "h-[330px] w-[150px] lg:w-[400px]",
+  1: " lg:h-[1100px] lg:w-[620px]",
+  2: " lg:h-[730px] lg:w-[625px]",
+  3: " lg:w-[400px]",
+};
+const SIZE_BANNER_MOBILE = {
+  1: "h-[400px] w-[335px] ",
+  2: "h-[330px] w-[150px] ",
+};
+const SIZE_CARD_MOBILE = {
+  1: "h-[600px] w-[335px] ",
+  2: "h-[330px] w-[150px] ",
 };
 
 const HORIZONTAL = {
-  start: "justify-start",
-  center: "justify-center",
-  end: "justify-end",
-  between: "justify-between",
-  around: "justify-around",
-  evenly: "justify-evenly",
+  start: "lg:justify-start",
+  center: "lg:justify-center",
+  end: "lg:justify-end",
+  between: "lg:justify-between",
+  around: "lg:justify-around",
+  evenly: "lg:justify-evenly",
 };
 
 const SIZE_IMG_H = {
   1: 1100,
   2: 760,
   3: 600,
+};
+const DESALINHAMENTO = {
+  1: "lg:mt-[100px]",
+  2: "lg:mt-[200px]",
+  3: "lg:mt-[300px]",
+  4: "lg:mt-[-80px]",
+  5: "lg:mt-[0px]",
+};
+const DESALINHAMENTOBANNER = {
+  1: "lg:mt-[-100px]",
+  2: "lg:mt-[-200px]",
+  3: "lg:mt-[-300px]",
+  4: "lg:mt-[80px]",
+  5: "lg:mt-[0px]",
 };
 const SIZE_IMG_W = {
   1: 620,
@@ -168,7 +194,9 @@ function CardMovie(
                 } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
               >
                 <div
-                  class={` m-0 p-0  ${SIZE_BANNER[banner!.size!]}`}
+                  class={` m-0 p-0  ${SIZE_BANNER[banner!.size!]} ${
+                    SIZE_BANNER_MOBILE[banner!.sizeMobile!]
+                  }`}
                 >
                   <video
                     src={banner.srcDesktop}
@@ -194,7 +222,7 @@ function CardMovie(
                     webkit-playsinline
                     x5-playsinline
                     playsInline
-                    class="sm:hidden w-full h-full inline-block"
+                    class="sm:hidden w-full inline-block"
                   >
                     Video não suportado!
                   </video>
@@ -218,7 +246,9 @@ function CardMovie(
                 ? (
                   <Source
                     src={banner.srcMobile}
-                    class={` m-0 p-0  ${SIZE_BANNER[banner!.size!]}`}
+                    class={` m-0 p-0  ${SIZE_BANNER[banner!.size!]}  ${
+                      SIZE_BANNER_MOBILE[banner!.sizeMobile!]
+                    }`}
                     width={335}
                     height={500}
                     media="(max-width: 767px)"
@@ -229,7 +259,9 @@ function CardMovie(
                 ? (
                   <Source
                     src={banner.srcDesktop}
-                    class={` m-0 p-0  ${SIZE_BANNER[banner!.size!]}`}
+                    class={` m-0 p-0  ${SIZE_BANNER[banner!.size!]}  ${
+                      SIZE_BANNER_MOBILE[banner!.sizeMobile!]
+                    }`}
                     width={960}
                     height={1440}
                     media="(min-width: 767px)"
@@ -240,7 +272,9 @@ function CardMovie(
               {banner.srcDesktop
                 ? (
                   <img
-                    class={` m-0 p-0  ${SIZE_BANNER[banner!.size!]}`}
+                    class={` m-0 p-0  ${SIZE_BANNER[banner!.size!]}  ${
+                      SIZE_BANNER_MOBILE[banner!.sizeMobile!]
+                    }`}
                     src={banner.srcDesktop}
                     alt={banner.alt}
                   />
@@ -273,13 +307,26 @@ function TextCamp({ text }: { text: Text }) {
   );
 }
 function CardItem(
-  { product, itemListName, lcp, preload, colorRed, size }: {
+  {
+    product,
+    itemListName,
+    lcp,
+    preload,
+    colorRed,
+    size,
+    index,
+    desalinhamento,
+    sizeMobile,
+  }: {
     product: Product;
     lcp?: boolean;
     itemListName?: string;
     preload?: boolean;
     colorRed?: boolean;
     size: 1 | 2 | 3;
+    index: number;
+    desalinhamento: 1 | 2 | 3 | 4 | 5;
+    sizeMobile: 1 | 2;
   },
 ) {
   const id = useId();
@@ -305,7 +352,6 @@ function CardItem(
   ).replace(" de", "");
 
   const possibilities = useVariantPossibilities(product);
-
   const allProperties = (isVariantOf?.hasVariant ?? [])
     .flatMap(({ offers = {}, url, productID }) =>
       offers.offers?.map((property) => ({ property, url, productID }))
@@ -355,7 +401,6 @@ function CardItem(
     const link = new URL(url);
     return `${link.pathname}`;
   };
-
   return (
     <div
       class="card card-compact card-bordered rounded-none border-transparent group "
@@ -363,7 +408,11 @@ function CardItem(
       id={`product-card-${productID}`}
       {...sendEventOnClick(clickEvent)}
     >
-      <div class={`relative ${SIZE_IMG[size!]} `}>
+      <div
+        class={`relative ${SIZE_IMG[size!]} ${SIZE_CARD_MOBILE[sizeMobile!]} ${
+          index === 1 ? (DESALINHAMENTO[desalinhamento!]) : ("")
+        }`}
+      >
         <figure
           class="relative "
           style={{ aspectRatio: `${SIZE_IMG_W[size!]} / ${SIZE_IMG_H[size!]}` }}
@@ -548,6 +597,9 @@ function CardsCamps(
     preload,
     productCard,
     size,
+    desalinhamento,
+    productCardMobileColum,
+    sizeMobile,
   }: Omit<Props, "productCard"> & { productCard: ProductListingPage },
 ) {
   const id = useId();
@@ -556,40 +608,89 @@ function CardsCamps(
       {ordem === "Card/Movie/Text"
         ? (
           <div
-            class={`flex flex-col  lg:flex-row gap-5 lg:gap-0 px-[25px] sm:px-[25px] pt-[10px]   lg:px-[50px] lg:pt-[40px] sm:min-h-[700px] ${
+            class={`flex flex-col  lg:flex-row gap-5 lg:gap-0 px-[25px] sm:px-[25px] pt-[10px]   lg:px-[50px] lg:pt-[100px] lg:min-h-[700px] justify-center ${
               HORIZONTAL[horizontal!]
             } `}
           >
             {cards! !== undefined
-              ? (
-                <div
-                  id={id}
-                  class={`flex container flex-row flex-wrap gap-5  sm:min-h-[700px]  lg:gap-20 w-full ${
-                    HORIZONTAL[horizontal!]
-                  } `}
-                >
-                  {productCard !== undefined
-                    ? (productCard!.products?.map((product, index) => (
-                      <CardItem
-                        product={product}
-                        colorRed={colorRed}
-                        itemListName={itemListName}
-                        preload={preload}
-                        size={size}
-                      />
-                    )))
-                    : ("")}
+              ? (cards?.banner?.desalinhamento === true
+                ? (
+                  <div class={`flex lg:container flex-col`}>
+                    <div
+                      id={id}
+                      class={`flex container  ${
+                        productCardMobileColum === true
+                          ? ("flex-col")
+                          : ("flex-row")
+                      } flex-wrap gap-5  lg:min-h-[700px]  lg:gap-20 w-full justify-center ${
+                        HORIZONTAL[horizontal!]
+                      } `}
+                    >
+                      {productCard !== undefined
+                        ? (productCard!.products?.map((product, index) => (
+                          <CardItem
+                            product={product}
+                            colorRed={colorRed}
+                            itemListName={itemListName}
+                            preload={preload}
+                            size={size}
+                            index={index}
+                            desalinhamento={desalinhamento!}
+                            sizeMobile={sizeMobile}
+                          />
+                        )))
+                        : ("")}
+                    </div>
+                    <div
+                      class={`flex container ${
+                        DESALINHAMENTOBANNER[
+                          cards?.banner?.desalinhamentoAltura!
+                        ]
+                      }`}
+                    >
+                      {cards?.banner !== undefined
+                        ? (
+                          <CardMovie
+                            banner={cards?.banner!}
+                            borderRadius={borderRadius}
+                          />
+                        )
+                        : ("")}
+                    </div>
+                  </div>
+                )
+                : (
+                  <div
+                    id={id}
+                    class={`flex container flex-row flex-wrap gap-5  lg:min-h-[700px]  lg:gap-20 w-full justify-center ${
+                      HORIZONTAL[horizontal!]
+                    } `}
+                  >
+                    {productCard !== undefined
+                      ? (productCard!.products?.map((product, index) => (
+                        <CardItem
+                          product={product}
+                          colorRed={colorRed}
+                          itemListName={itemListName}
+                          preload={preload}
+                          size={size}
+                          index={index}
+                          desalinhamento={desalinhamento!}
+                          sizeMobile={sizeMobile}
+                        />
+                      )))
+                      : ("")}
 
-                  {cards?.banner !== undefined
-                    ? (
-                      <CardMovie
-                        banner={cards?.banner!}
-                        borderRadius={borderRadius}
-                      />
-                    )
-                    : ("")}
-                </div>
-              )
+                    {cards?.banner !== undefined
+                      ? (
+                        <CardMovie
+                          banner={cards?.banner!}
+                          borderRadius={borderRadius}
+                        />
+                      )
+                      : ("")}
+                  </div>
+                ))
               : ("")}
 
             {cards?.text !== undefined
@@ -608,52 +709,84 @@ function CardsCamps(
         )
         : (
           <div
-            class={`flex flex-col container lg:flex-row gap-5 lg:gap-0 px-[25px] sm:px-[25px] pt-[10px]   lg:px-[50px] lg:pt-[40px] sm:min-h-[700px] w-full ${
+            class={`flex flex-col  container lg:flex-row gap-5 lg:gap-0 px-[25px] sm:px-[25px] pt-[10px]   lg:px-[50px] lg:pt-[40px] lg:min-h-[700px] w-full justify-center ${
               HORIZONTAL[horizontal!]
             } `}
           >
-            {cards?.text !== undefined
-              ? (
-                <div
-                  id={id}
-                  class={` flex`}
-                >
-                  <TextCamp
-                    text={cards?.text!}
-                  />
-                </div>
-              )
-              : ("")}
-
-            {cards !== undefined
-              ? (
-                <div
-                  id={id}
-                  class={`flex flex-row flex-wrap gap-5  sm:min-h-[700px] lg:gap-20 ${
-                    HORIZONTAL[horizontal!]
-                  } `}
-                >
-                  {cards?.banner !== undefined
-                    ? (
-                      <CardMovie
-                        banner={cards?.banner!}
-                        borderRadius={borderRadius}
-                      />
-                    )
-                    : ("")}
-                  {productCard !== undefined
-                    ? (productCard.products?.map((product, index) => (
-                      <CardItem
-                        product={product}
-                        colorRed={colorRed}
-                        itemListName={itemListName}
-                        preload={preload}
-                        size={size}
-                      />
-                    )))
-                    : ("")}
-                </div>
-              )
+            {cards! !== undefined
+              ? (cards?.banner?.desalinhamento === true
+                ? (
+                  <div class={`flex container flex-col`}>
+                    <div
+                      id={id}
+                      class={`flex container flex-row flex-wrap gap-5  lg:min-h-[700px]  lg:gap-20 w-full justify-center ${
+                        HORIZONTAL[horizontal!]
+                      } `}
+                    >
+                      {productCard !== undefined
+                        ? (productCard!.products?.map((product, index) => (
+                          <CardItem
+                            product={product}
+                            colorRed={colorRed}
+                            itemListName={itemListName}
+                            preload={preload}
+                            size={size}
+                            index={index}
+                            desalinhamento={desalinhamento!}
+                            sizeMobile={sizeMobile}
+                          />
+                        )))
+                        : ("")}
+                    </div>
+                    <div
+                      class={`flex container ${
+                        DESALINHAMENTOBANNER[
+                          cards?.banner?.desalinhamentoAltura!
+                        ]
+                      }`}
+                    >
+                      {cards?.banner !== undefined
+                        ? (
+                          <CardMovie
+                            banner={cards?.banner!}
+                            borderRadius={borderRadius}
+                          />
+                        )
+                        : ("")}
+                    </div>
+                  </div>
+                )
+                : (
+                  <div
+                    id={id}
+                    class={`flex container flex-row flex-wrap gap-5  lg:min-h-[700px]  lg:gap-20 w-full justify-center ${
+                      HORIZONTAL[horizontal!]
+                    } `}
+                  >
+                    {cards?.banner !== undefined
+                      ? (
+                        <CardMovie
+                          banner={cards?.banner!}
+                          borderRadius={borderRadius}
+                        />
+                      )
+                      : ("")}
+                    {productCard !== undefined
+                      ? (productCard!.products?.map((product, index) => (
+                        <CardItem
+                          product={product}
+                          colorRed={colorRed}
+                          itemListName={itemListName}
+                          preload={preload}
+                          size={size}
+                          index={index}
+                          desalinhamento={desalinhamento!}
+                          sizeMobile={sizeMobile}
+                        />
+                      )))
+                      : ("")}
+                  </div>
+                ))
               : ("")}
           </div>
         )}
