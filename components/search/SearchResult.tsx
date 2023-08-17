@@ -96,10 +96,9 @@ function NotFound() {
   );
 }
 
-function Result({
-  page,
-  variant,
-}: Omit<Props, "page"> & { page: ProductListingPage }) {
+function Result(
+  { page, variant }: Omit<Props, "page"> & { page: ProductListingPage },
+) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const [value, setValue] = useState(2);
 

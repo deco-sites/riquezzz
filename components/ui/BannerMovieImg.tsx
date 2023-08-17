@@ -16,27 +16,22 @@ export type BorderRadius =
   | "3xl"
   | "full";
 
-export interface BannerCampaing {
-  /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
-  matcher: string;
+export interface Props {
+  /** @default movie */
+  /** @description Options  movie | image */
 
-  bannerM?: {
-    /** @default movie */
-    /** @description Options  movie | image */
+  type?: "movie" | "image";
 
-    type?: "movie" | "image";
-
-    srcMovieMobile?: LiveViedo | LiveImage;
-    srcMovieDesktop?: LiveViedo | LiveImage;
-    /**
-     * @description Movie alt text
-     */
-    altMovie?: string;
-    /**
-     * @description When you click you go to
-     */
-    hrefMovie?: string;
-  };
+  srcMovieMobile?: LiveViedo | LiveImage;
+  srcMovieDesktop?: LiveViedo | LiveImage;
+  /**
+   * @description Movie alt text
+   */
+  altMovie?: string;
+  /**
+   * @description When you click you go to
+   */
+  hrefMovie?: string;
 
   borderRadius: {
     /** @default none */
@@ -44,10 +39,6 @@ export interface BannerCampaing {
     /** @default none */
     desktop?: BorderRadius;
   };
-}
-export interface Props {
-  page?: LoaderReturnType<ProductListingPage | null>;
-  banners?: BannerCampaing[];
 }
 
 const RADIUS_MOBILE = {
@@ -72,25 +63,26 @@ const RADIUS_DESKTOP = {
   "full": "sm:rounded-full",
 };
 
-function BannerMovieImg({ banner }: { banner: BannerCampaing }) {
-  const { bannerM, borderRadius } = banner;
-
+function BannerMovieImg(
+  { borderRadius, altMovie, hrefMovie, srcMovieDesktop, srcMovieMobile, type }:
+    Props,
+) {
   return (
     <>
-      {bannerM?.type === "movie"
+      {type === "movie"
         ? (
-          <section class="w-full px-auto sm:max-w-none sm:m-0 sm:overflow-hidden pr-[40px]">
+          <section class="w-full px-auto sm:max-w-none sm:m-0 sm:overflow-hidden lg:pr-[40px]">
             <div>
               <a
-                href={bannerM?.hrefMovie}
+                href={hrefMovie}
                 class={`overflow-hidden ${
                   RADIUS_MOBILE[borderRadius.mobile ?? "none"]
                 } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
               >
                 <div class="w-full h-full m-0 p-0 b">
                   <video
-                    src={bannerM?.srcMovieDesktop}
-                    alt={bannerM?.altMovie}
+                    src={srcMovieDesktop}
+                    alt={altMovie}
                     autoPlay
                     muted
                     loop
@@ -103,8 +95,8 @@ function BannerMovieImg({ banner }: { banner: BannerCampaing }) {
                     Video não suportado!
                   </video>
                   <video
-                    src={bannerM?.srcMovieMobile}
-                    alt={bannerM?.altMovie}
+                    src={srcMovieMobile}
+                    alt={altMovie}
                     autoPlay
                     muted
                     loop
@@ -127,20 +119,20 @@ function BannerMovieImg({ banner }: { banner: BannerCampaing }) {
               preload
               class="col-start-1 col-span-1 row-start-1 row-span-1"
             >
-              {bannerM?.srcMovieMobile
+              {srcMovieMobile
                 ? (
                   <Source
-                    src={bannerM?.srcMovieMobile}
+                    src={srcMovieMobile}
                     width={375}
                     height={230}
                     media="(max-width: 767px)"
                   />
                 )
                 : ("")}
-              {bannerM?.srcMovieDesktop
+              {srcMovieDesktop
                 ? (
                   <Source
-                    src={bannerM.srcMovieDesktop}
+                    src={srcMovieDesktop}
                     width={960}
                     height={600}
                     media="(min-width: 767px)"
@@ -148,12 +140,12 @@ function BannerMovieImg({ banner }: { banner: BannerCampaing }) {
                 )
                 : ("")}
 
-              {bannerM?.srcMovieDesktop
+              {srcMovieDesktop
                 ? (
                   <img
                     class="w-full"
-                    src={bannerM.srcMovieDesktop}
-                    alt={bannerM.altMovie}
+                    src={srcMovieDesktop}
+                    alt={altMovie}
                   />
                 )
                 : ("")}
@@ -164,24 +156,4 @@ function BannerMovieImg({ banner }: { banner: BannerCampaing }) {
   );
 }
 
-function BannerMovie({ page, banners = [] }: Props) {
-  if (!page || page.breadcrumb.itemListElement.length === 0) {
-    return null;
-  }
-
-  const { item: canonical } = page
-    .breadcrumb
-    .itemListElement
-    .reduce((curr, acc) => curr.position > acc.position ? curr : acc);
-
-  const matching = banners.find(({ matcher }) =>
-    new RegExp(matcher).test(canonical)
-  );
-
-  if (!matching) {
-    return null;
-  }
-  return <BannerMovieImg banner={matching} />;
-}
-
-export default BannerMovie;
+export default BannerMovieImg;
