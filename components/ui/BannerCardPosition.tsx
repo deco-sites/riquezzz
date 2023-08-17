@@ -292,14 +292,14 @@ function TextCamp({ text }: { text: Text }) {
   return (
     <div
       id={id}
-      class={`flex flex-col justify-center font-bold w-full  ${
+      class={`flex flex-col justify-center w-full font-bold   ${
         DESKTOP[text.desktop!]
       }  ${MOBILE[text.mobile!]} `}
     >
       <h1
         class={`sm:-rotate-90 ${
           SIZE_FONT[text.size!]
-        } w-full text-center uppercase font-extrabold text-gray-700`}
+        }  text-center uppercase font-extrabold text-gray-700`}
       >
         {text.text !== undefined ? (text.text) : ("")}
       </h1>
@@ -709,10 +709,22 @@ function CardsCamps(
         )
         : (
           <div
-            class={`flex flex-col  container lg:flex-row gap-5 lg:gap-0 px-[25px] sm:px-[25px] pt-[10px]   lg:px-[50px] lg:pt-[40px] lg:min-h-[700px] w-full justify-center ${
+            class={`flex flex-col   lg:flex-row gap-5 lg:gap-0 px-[25px] sm:px-[25px] pt-[10px]   lg:px-[50px] lg:pt-[40px] lg:min-h-[700px] w-full justify-center ${
               HORIZONTAL[horizontal!]
             } `}
           >
+            {cards?.text !== undefined
+              ? (
+                <div
+                  id={id}
+                  class={` flex`}
+                >
+                  <TextCamp
+                    text={cards?.text!}
+                  />
+                </div>
+              )
+              : ("")}
             {cards! !== undefined
               ? (cards?.banner?.desalinhamento === true
                 ? (
