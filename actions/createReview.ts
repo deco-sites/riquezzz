@@ -44,7 +44,7 @@ export const create = async (
   // const url = new URL(req.url);
   // const page = Number(url.searchParams.get("page")) || 0;
   const { configVTEX: config } = ctx;
-  const { payload } = parseCookie(req.headers, config!.account);
+  const { cookie, payload } = parseCookie(req.headers, config!.account);
   const user = payload?.sub;
 
   console.log({ user });
@@ -65,7 +65,6 @@ export const create = async (
           reviewerName,
           productId,
           variables: {
-            name: "Wishlist",
             shopperId: user,
           },
         }),
@@ -74,6 +73,7 @@ export const create = async (
           accept: "application/json",
           "X-VTEX-API-AppKey": appkey,
           "X-VTEX-API-AppToken": apptoken,
+          cookie,
         },
       },
     );
@@ -82,7 +82,7 @@ export const create = async (
     return response;
   } catch (e) {
     console.log({ e });
-    return null;
+    return (e);
   }
 };
 

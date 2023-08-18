@@ -40,10 +40,6 @@ const NewRatingForm = (
     });
     setIsLoading(false);
     console.log({ data });
-    // create(body).then((r) => {
-    //   setIsLoading(false);
-    //   console.log({ responseCreate: r });
-    // }).catch((e) => console.log({ e }));
   }, []);
 
   return (
@@ -257,11 +253,13 @@ function ProductReviews(
             </div>
           )
           : (
-            <div class="text-center mt-4">
-              <Button class="bg-black rounded-none text-white shadow-none font-semibold text-base px-11">
-                Faça login para escrever uma avaliação
-              </Button>
-            </div>
+            <a href="/login">
+              <div class="text-center mt-4">
+                <Button class="bg-black rounded-none text-white shadow-none font-semibold text-base px-11">
+                  Faça login para escrever uma avaliação
+                </Button>
+              </div>
+            </a>
           )}
       </div>
     </section>
