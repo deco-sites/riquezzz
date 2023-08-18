@@ -5,6 +5,7 @@ import Button from "deco-sites/riquezzz/components/ui/Button.tsx";
 import { useState } from "preact/hooks";
 import { Runtime } from "../../runtime.ts";
 import { useCallback } from "preact/hooks";
+import { useUser } from "deco-sites/std/packs/vtex/hooks/useUser.ts";
 
 const NewRatingForm = (
   { productId }: {
@@ -171,7 +172,8 @@ function ProductReviews(
     productID: string;
   },
 ) {
-  const user = {};
+  const { user } = useUser();
+  console.log({ userUseUser: user });
 
   return (
     <section class="w-full px-auto flex justify-center mb-5">
