@@ -173,7 +173,7 @@ function ProductReviews(
   },
 ) {
   const { user } = useUser();
-  console.log({ userUseUser: user });
+  const isUserLoggedIn = Boolean(user.value?.email);
 
   return (
     <section class="w-full px-auto flex justify-center mb-5">
@@ -239,7 +239,7 @@ function ProductReviews(
           <h2 class="text-2xl font-bold">Nenhuma Avaliação</h2>
           <span>Seja o primeiro a avaliar este produto</span>
         </div>
-        {user
+        {isUserLoggedIn
           ? (
             <div class="text-left mt-4">
               <div
