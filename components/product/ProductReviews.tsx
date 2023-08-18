@@ -37,6 +37,7 @@ const NewRatingForm = (
         reviewerName,
       },
     });
+    setIsLoading(false);
     console.log({ data });
     // create(body).then((r) => {
     //   setIsLoading(false);
