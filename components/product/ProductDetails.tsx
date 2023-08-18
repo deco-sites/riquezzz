@@ -31,8 +31,6 @@ export interface Props {
    * @description Ask for the developer to remove this option since this is here to help development only and should not be used in production
    */
   variant?: Variant;
-  appKey: string;
-  appToken: string;
 }
 
 const WIDTH = 620;
@@ -280,13 +278,9 @@ function imgZoom() {
 function Details({
   page,
   variant,
-  appKey,
-  appToken,
 }: {
   page: ProductDetailsPage;
   variant: Variant;
-  appKey: string;
-  appToken: string;
 }) {
   const {
     breadcrumbList,
@@ -427,7 +421,7 @@ function Details({
 }
 
 function ProductDetails(
-  { page, variant: maybeVar = "auto", appKey, appToken }: Props,
+  { page, variant: maybeVar = "auto" }: Props,
 ) {
   /**
    * Showcase the different product views we have on this template. In case there are less
@@ -447,8 +441,6 @@ function ProductDetails(
           <Details
             page={page}
             variant={variant}
-            appKey={appKey}
-            appToken={appToken}
           />
         )
         : <NotFound />}

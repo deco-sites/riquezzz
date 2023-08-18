@@ -1,14 +1,17 @@
 import { fetchAPI } from "deco-sites/std/utils/fetch.ts";
 
-export interface Props {
-  /**
-   * @productId Items per page
-   * @description Number of products per page to display
-   */
+export interface PropsLoad {
   productId: number;
-  appkey: string;
-  apptoken: string;
+  rating: string;
 }
+
+// export interface PropsCreate {
+//   productId: string;
+//   rating: number;
+//   title: string;
+//   text: string;
+//   reviewerName: string;
+// }
 
 export interface ResponseReviews {
   data?: Reviews;
@@ -36,31 +39,90 @@ export interface Reviews {
 }
 [];
 
-const url = "https://bawclothing.myvtex.com/reviews-and-ratings/api/reviews";
+// export interface CreateResponse {
+//   id: string;
+//   productId: string;
+//   rating: number;
+//   title: string;
+//   text: string;
+//   reviewerName: string;
+//   shopperId: string;
+//   reviewDateTime: string;
+//   searchDate: string;
+//   verifiedPurchaser: boolean;
+//   sku: string | null;
+//   approved: boolean;
+//   location: string | null;
+//   locale: string | null;
+//   pastReviews: string | null;
+// }
+
+const url = "https://bawclothing.myvtex.com/reviews-and-ratings/api";
+
+//mocking values to study how to get them better
+const appkey = "vtexappkey-bawclothing-WYAOPB";
+const apptoken =
+  "VUZGDTEYYUAQUJMAFABWQWTAURVGEZQIPRGQOFHFOXTGAXCRVYIFPJDXWHCZYZMOYWOQEZVVXKTFZMOXGODJPFGHZIYRLUFYYNDERYORQDHUTBZHBARDYWKSWLTZFTWC";
+const productId = "2147351545";
 
 const loader = async (
-  props: Props,
+  // props: PropsLoad,
 ): Promise<ResponseReviews | null> => {
-  const productId = props.productId;
+  // const productId = props.productId;
 
   try {
     const response = await fetchAPI<ResponseReviews>(
-      url + "?product_id=" + productId,
+      url + "/reviews?product_id=" + productId,
       {
         method: "GET",
         headers: {
           "content-type": "application/json",
           accept: "application/json",
-          "X-VTEX-API-AppKey": props.appkey,
-          "X-VTEX-API-AppToken": props.apptoken,
+          "X-VTEX-API-AppKey": appkey,
+          "X-VTEX-API-AppToken": apptoken,
         },
       },
     );
 
     return response;
-  } catch {
+  } catch (e) {
+    console.log({ e });
     return null;
   }
 };
+
+// export const create = async (
+//   props: PropsCreate,
+// ): Promise<CreateResponse | null> => {
+//   const { rating, title, text, reviewerName } = props;
+
+//   console.log("create");
+
+//   try {
+//     const response = await fetchAPI<CreateResponse>(
+//       url + "/review",
+//       {
+//         method: "POST",
+//         body: JSON.stringify({
+//           rating,
+//           title,
+//           text,
+//           reviewerName,
+//         }),
+//         headers: {
+//           "content-type": "application/json",
+//           accept: "application/json",
+//           "X-VTEX-API-AppKey": appkey,
+//           "X-VTEX-API-AppToken": apptoken,
+//         },
+//       },
+//     );
+
+//     return response;
+//   } catch (e) {
+//     console.log({ e });
+//     return null;
+//   }
+// };
 
 export default loader;

@@ -3,16 +3,60 @@ import type { LoaderReturnType } from "$live/types.ts";
 import type { ProductDetailsPage } from "deco-sites/std/commerce/types.ts";
 import Button from "deco-sites/riquezzz/components/ui/Button.tsx";
 import { useState } from "preact/hooks";
+import { Runtime } from "../../runtime.ts";
+import { useCallback } from "preact/hooks";
 
-const NewRatingForm = () => {
+const NewRatingForm = (
+  { productId }: {
+    productId: string;
+  },
+) => {
   const [title, setTitle] = useState<string | undefined>(undefined);
-  const [name, setName] = useState<string | undefined>(undefined);
-  const [review, setReview] = useState<string | undefined>(undefined);
+  const [reviewerName, setReviewerName] = useState<string | undefined>(
+    undefined,
+  );
+  const [text, setText] = useState<string | undefined>(undefined);
+  const [rating, setRating] = useState<number>(5);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const createReview = useCallback(async (body: {
+    productId: string;
+    rating: number;
+    title: string;
+    text: string;
+    reviewerName: string;
+  }) => {
+    setIsLoading(true);
+    const data = await Runtime.invoke({
+      key: "deco-sites/std/actions/vtex/reviewsandratings/createReview.ts",
+      props: {
+        productId,
+        rating,
+        title,
+        text,
+        reviewerName,
+      },
+    });
+    console.log({ data });
+    // create(body).then((r) => {
+    //   setIsLoading(false);
+    //   console.log({ responseCreate: r });
+    // }).catch((e) => console.log({ e }));
+  }, []);
 
   return (
     <form
       className="form-control w-full  mt-8"
-      onSubmit={() => alert("submit!")}
+      onSubmit={(e) => {
+        e.preventDefault();
+        createReview({
+          text: text!,
+          title: title!,
+          rating,
+          reviewerName: reviewerName!,
+          productId,
+        });
+      }}
     >
       <h2 class="font-bold text-2xl">Adicionar avaliação</h2>
       <label className="label mt-4">
@@ -46,26 +90,31 @@ const NewRatingForm = () => {
             type="radio"
             name="rating-1"
             className="mask mask-star cursor-default"
+            onClick={() => setRating(1)}
           />
           <input
             type="radio"
             name="rating-1"
             className="mask mask-star cursor-default"
+            onClick={() => setRating(2)}
           />
           <input
             type="radio"
             name="rating-1"
             className="mask mask-star cursor-default"
+            onClick={() => setRating(3)}
           />
           <input
             type="radio"
             name="rating-1"
             className="mask mask-star cursor-default"
+            onClick={() => setRating(4)}
           />
           <input
             type="radio"
             name="rating-1"
             className="mask mask-star cursor-default"
+            onClick={() => setRating(5)}
           />
         </div>
 
@@ -74,15 +123,15 @@ const NewRatingForm = () => {
         </label>
         <input
           type="text"
-          value={name}
+          value={reviewerName}
           className="input input-bordered w-full font-normal text-lg border-[#808080]"
           onClick={() => {
-            if (!name) setName("");
+            if (!reviewerName) setReviewerName("");
           }}
-          onChange={(e) => e.target && setName(e.currentTarget.value)}
+          onChange={(e) => e.target && setReviewerName(e.currentTarget.value)}
           required
         />
-        {name?.length == 0 && (
+        {reviewerName?.length == 0 && (
           <p class="text-red-500 text-sm">Informe seu nome</p>
         )}
         <label className="label mt-4">
@@ -90,15 +139,15 @@ const NewRatingForm = () => {
         </label>
         <textarea
           className="textarea textarea-bordered w-full font-normal text-lg border-[#808080] h-36"
-          value={review}
+          value={text}
           onClick={() => {
-            if (!review) setReview("");
+            if (!text) setText("");
           }}
-          onChange={(e) => e.target && setReview(e.currentTarget.value)}
+          onChange={(e) => e.target && setText(e.currentTarget.value)}
           required
         >
         </textarea>
-        {review?.length == 0 && (
+        {text?.length == 0 && (
           <p class="text-red-500 text-sm">
             Escreva um comentário para a sua avaliação
           </p>
@@ -109,7 +158,7 @@ const NewRatingForm = () => {
           class="bg-black rounded-none text-white shadow-none font-semibold text-base px-11 w-fit mt-6"
           type={"submit"}
         >
-          Enviar avaliação
+          {isLoading ? "carregando..." : "Enviar avaliação"}
         </Button>
       </div>
     </form>
@@ -128,7 +177,7 @@ function ProductReviews(
       <div class="border border-black w-full mt-12 p-8">
         <div>
           <h2 class="uppercase font-bold text-3xl">
-            Avaliações do Produto
+            Avaliações do Produto {productID}
           </h2>
           <div className="rating mt-2">
             <input
@@ -199,7 +248,7 @@ function ProductReviews(
                   Escreva uma avaliação
                 </div>
                 <div className="collapse-content transition   duration-[800ms]">
-                  <NewRatingForm />
+                  <NewRatingForm productId={productID} />
                 </div>
               </div>
             </div>
