@@ -28,7 +28,7 @@ const NewRatingForm = (
   }) => {
     setIsLoading(true);
     const data = await Runtime.invoke({
-      key: "deco-sites/std/actions/vtex/reviewsandratings/createReview.ts",
+      key: "deco-sites/riquezzz/actions/createReview.ts",
       props: {
         productId,
         rating,
