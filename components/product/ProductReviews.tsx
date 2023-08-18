@@ -40,10 +40,6 @@ const NewRatingForm = (
     });
     setIsLoading(false);
     console.log({ data });
-    // create(body).then((r) => {
-    //   setIsLoading(false);
-    //   console.log({ responseCreate: r });
-    // }).catch((e) => console.log({ e }));
   }, []);
 
   return (
