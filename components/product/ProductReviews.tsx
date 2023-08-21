@@ -164,6 +164,7 @@ function ProductReviews(
 ) {
   const { user } = useUser();
   const isUserLoggedIn = Boolean(user.value?.email);
+  console.log({ user });
 
   return (
     <section class="w-full px-auto flex justify-center mb-5">
