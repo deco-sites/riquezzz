@@ -82,7 +82,7 @@ export const create = async (
     return response;
   } catch (e) {
     console.log({ e });
-    return (e);
+    return e;
   }
 };
 

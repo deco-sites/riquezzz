@@ -20,7 +20,7 @@ function Breadcrumb({ itemListElement = [] }: Props) {
               <a href={item}>
                 {name === "Home"
                   ? <Icon size={20} id="home" strokeWidth={2} />
-                  : (name)}
+                  : name}
               </a>
             </li>
           ))}
