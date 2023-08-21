@@ -291,6 +291,8 @@ function Details({
   const id = `product-image-gallery:${useId()}`;
   const images = useStableImages(product);
 
+  console.log({ reviews });
+
   if (variant === "slider") {
     return (
       <>
