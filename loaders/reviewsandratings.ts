@@ -59,7 +59,7 @@ export interface Reviews {
 
 const url = "https://bawclothing.myvtex.com/reviews-and-ratings/api";
 
-const productId = "2147351545";
+const productId = "1944875713";
 
 const loader = async (
   // props: PropsLoad,
