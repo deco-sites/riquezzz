@@ -1,10 +1,9 @@
 import { fetchAPI } from "deco-sites/std/utils/fetch.ts";
 import { useUser } from "deco-sites/std/packs/vtex/hooks/useUser.ts";
 
-export interface PropsLoad {
-  productId: number;
-  rating: string;
-}
+// export interface PropsLoad {
+//   productId: number;
+// }
 
 // export interface PropsCreate {
 //   productId: string;
@@ -15,12 +14,13 @@ export interface PropsLoad {
 // }
 
 export interface ResponseReviews {
-  data?: Reviews;
+  data?: Reviews[];
   range: {
     total: number;
     from: number;
     to: number;
   };
+  userHasReviewed?: boolean;
 }
 
 export interface Reviews {
@@ -38,7 +38,6 @@ export interface Reviews {
   locale: string | null;
   pastReviews: string | null;
 }
-[];
 
 // export interface CreateResponse {
 //   id: string;
@@ -65,9 +64,34 @@ const productId = "2147351545";
 const loader = async (
   // props: PropsLoad,
 ): Promise<ResponseReviews | null> => {
-  // const productId = props.productId;
   const { user } = useUser();
-  console.log({ user });
+  const shopperId = user.value?.email;
+  let userHasReviewed = false;
+
+  console.log({ user, shopperId });
+
+  if (shopperId) {
+    try {
+      const r = await fetchAPI<ResponseReviews>(
+        url + "/reviews?product_id=" + productId + "&search_term=" +
+          shopperId + "&status=false",
+        {
+          method: "GET",
+          headers: {
+            "content-type": "application/json",
+            accept: "application/json",
+          },
+        },
+      );
+
+      if (r.data && r.data.length > 0) {
+        userHasReviewed = true;
+      }
+    } catch (e) {
+      console.log({ e });
+      return null;
+    }
+  }
 
   try {
     const response = await fetchAPI<ResponseReviews>(
@@ -81,7 +105,7 @@ const loader = async (
       },
     );
 
-    return response;
+    return { ...response, userHasReviewed };
   } catch (e) {
     console.log({ e });
     return null;
