@@ -158,13 +158,13 @@ const NewRatingForm = (
 };
 
 function ProductReviews(
-  { productID }: {
+  { productID, userHasReviewed }: {
     productID: string;
+    userHasReviewed: boolean;
   },
 ) {
   const { user } = useUser();
   const isUserLoggedIn = Boolean(user.value?.email);
-  console.log({ user });
 
   return (
     <section class="w-full px-auto flex justify-center mb-5">
@@ -242,7 +242,15 @@ function ProductReviews(
                   Escreva uma avaliação
                 </div>
                 <div className="collapse-content transition   duration-[800ms]">
-                  <NewRatingForm productId={productID} />
+                  {userHasReviewed
+                    ? (
+                      <div>
+                        <span>
+                          Você já enviou uma avaliação para este produto
+                        </span>
+                      </div>
+                    )
+                    : <NewRatingForm productId={productID} />}
                 </div>
               </div>
             </div>

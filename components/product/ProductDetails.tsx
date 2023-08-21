@@ -278,9 +278,11 @@ function imgZoom() {
 function Details({
   page,
   variant,
+  reviews,
 }: {
   page: ProductDetailsPage;
   variant: Variant;
+  reviews: ResponseReviews;
 }) {
   const {
     breadcrumbList,
@@ -379,7 +381,10 @@ function Details({
         </div>
         <SliderJS rootId={id}></SliderJS>
 
-        <ProductReviews productID={page.product.productID} />
+        <ProductReviews
+          productID={page.product.productID}
+          userHasReviewed={reviews.userHasReviewed!}
+        />
       </>
     );
   }
@@ -421,7 +426,7 @@ function Details({
 }
 
 function ProductDetails(
-  { page, variant: maybeVar = "auto" }: Props,
+  { page, variant: maybeVar = "auto", reviews }: Props,
 ) {
   /**
    * Showcase the different product views we have on this template. In case there are less
@@ -441,6 +446,7 @@ function ProductDetails(
           <Details
             page={page}
             variant={variant}
+            reviews={reviews!}
           />
         )
         : <NotFound />}
