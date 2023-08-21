@@ -30,6 +30,17 @@ export interface CreateResponse {
 
 const url = "https://bawclothing.myvtex.com/reviews-and-ratings/api";
 
+const parseCookies = (str: string): { [key: string]: string } => {
+  return str
+    .split(";")
+    .map((v) => v.split("="))
+    .reduce((acc, v) => {
+      const [key, value] = v.map(decodeURIComponent);
+      acc[key.trim()] = value.trim();
+      return acc;
+    }, {} as { [key: string]: string });
+};
+
 export const create = async (
   props: PropsCreate,
   req: Request,
@@ -41,8 +52,6 @@ export const create = async (
   const { configVTEX: config } = ctx;
   const { cookie, payload } = parseCookie(req.headers, config!.account);
   const user = payload?.sub;
-
-  console.log({ user });
 
   if (!user) {
     return null;
@@ -62,19 +71,21 @@ export const create = async (
           variables: {
             shopperId: user,
           },
+          approved: false,
         }),
         headers: {
           "content-type": "application/json",
           accept: "application/json",
           cookie,
+          "VtexIdclientAutCookie":
+            parseCookies(cookie).VtexIdclientAutCookie_bawclothing,
         },
       },
     );
-    console.log({ response });
 
     return response;
   } catch (e) {
-    console.log({ e });
+    // console.log({ e });
     return e;
   }
 };
