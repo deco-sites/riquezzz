@@ -30,11 +30,6 @@ export interface CreateResponse {
 
 const url = "https://bawclothing.myvtex.com/reviews-and-ratings/api";
 
-//mocking values to study how to get them better
-const appkey = "vtexappkey-bawclothing-WYAOPB";
-const apptoken =
-  "VUZGDTEYYUAQUJMAFABWQWTAURVGEZQIPRGQOFHFOXTGAXCRVYIFPJDXWHCZYZMOYWOQEZVVXKTFZMOXGODJPFGHZIYRLUFYYNDERYORQDHUTBZHBARDYWKSWLTZFTWC";
-
 export const create = async (
   props: PropsCreate,
   req: Request,
@@ -71,8 +66,6 @@ export const create = async (
         headers: {
           "content-type": "application/json",
           accept: "application/json",
-          "X-VTEX-API-AppKey": appkey,
-          "X-VTEX-API-AppToken": apptoken,
           cookie,
         },
       },
