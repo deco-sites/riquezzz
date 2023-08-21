@@ -1,4 +1,5 @@
 import { fetchAPI } from "deco-sites/std/utils/fetch.ts";
+import { useUser } from "deco-sites/std/packs/vtex/hooks/useUser.ts";
 
 export interface PropsLoad {
   productId: number;
@@ -59,16 +60,14 @@ export interface Reviews {
 
 const url = "https://bawclothing.myvtex.com/reviews-and-ratings/api";
 
-//mocking values to study how to get them better
-const appkey = "vtexappkey-bawclothing-WYAOPB";
-const apptoken =
-  "VUZGDTEYYUAQUJMAFABWQWTAURVGEZQIPRGQOFHFOXTGAXCRVYIFPJDXWHCZYZMOYWOQEZVVXKTFZMOXGODJPFGHZIYRLUFYYNDERYORQDHUTBZHBARDYWKSWLTZFTWC";
 const productId = "2147351545";
 
 const loader = async (
   // props: PropsLoad,
 ): Promise<ResponseReviews | null> => {
   // const productId = props.productId;
+  const { user } = useUser();
+  console.log({ user });
 
   try {
     const response = await fetchAPI<ResponseReviews>(
@@ -78,8 +77,6 @@ const loader = async (
         headers: {
           "content-type": "application/json",
           accept: "application/json",
-          "X-VTEX-API-AppKey": appkey,
-          "X-VTEX-API-AppToken": apptoken,
         },
       },
     );
