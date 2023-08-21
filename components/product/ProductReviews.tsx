@@ -30,13 +30,7 @@ const NewRatingForm = (
     setIsLoading(true);
     const data = await Runtime.invoke({
       key: "deco-sites/riquezzz/actions/createReview.ts",
-      props: {
-        productId,
-        rating,
-        title,
-        text,
-        reviewerName,
-      },
+      props: body,
     });
     setIsLoading(false);
     console.log({ data });
