@@ -59,7 +59,7 @@ export interface Reviews {
 
 const url = "https://bawclothing.myvtex.com/reviews-and-ratings/api";
 
-//mocking specific product to test with reviews
+// mocking specific product to test with reviews
 // http://localhost:8000/camiseta-logo-classic-colors-preto-0075486040/p
 const productId = "2147359182";
 
