@@ -14,7 +14,7 @@ function AuthIframe({
       </header>
       <main class="w-full max-w-[80%] sm:max-w-[50%] text-center">
         <iframe
-          src={url}
+          src={"http://localhost"+url}
           class={`w-[100vw] text-center h-[500px]`}
           frameBorder="0"
           scrolling="no"
