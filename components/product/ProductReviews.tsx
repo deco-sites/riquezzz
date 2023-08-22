@@ -248,10 +248,78 @@ function ProductReviews(
             <option>5 estrelas</option>
           </select>
         </div>
-        <div class="text-center">
-          <h2 class="text-2xl font-bold">Nenhuma Avaliação</h2>
-          <span>Seja o primeiro a avaliar este produto</span>
-        </div>
+        {userHasReviewed.data?.length
+          ? (
+            <div class="mt-5 mb-16">
+              {userHasReviewed.data.map((e) => {
+                return (
+                  <div class="pb-5 border-b border-[#e3e3e3]">
+                    <div class="flex items-center">
+                      <div className="rating rating-md">
+                        <input
+                          type="radio"
+                          name="rating-0"
+                          className="mask mask-star cursor-default"
+                          disabled
+                          checked={e.rating == 1}
+                        />
+                        <input
+                          type="radio"
+                          name="rating-0"
+                          className="mask mask-star cursor-default"
+                          disabled
+                          checked={e.rating == 2}
+                        />
+                        <input
+                          type="radio"
+                          name="rating-0"
+                          className="mask mask-star cursor-default"
+                          disabled
+                          checked={e.rating == 3}
+                        />
+                        <input
+                          type="radio"
+                          name="rating-0"
+                          className="mask mask-star cursor-default"
+                          disabled
+                          checked={e.rating == 4}
+                        />
+                        <input
+                          type="radio"
+                          name="rating-0"
+                          className="mask mask-star cursor-default"
+                          disabled
+                          checked={e.rating == 5}
+                        />
+                      </div>
+                      <span class="text-2xl font-bold ml-2">{e.title}</span>
+                    </div>
+                    <div>
+                      <span class="text-sm">
+                        Enviado em{" "}
+                        <span class="font-bold">
+                          {new Date(e.reviewDateTime).getUTCDate()}/{new Date(
+                            e.reviewDateTime,
+                          ).getUTCMonth()}/{new Date(e.reviewDateTime)
+                            .getUTCFullYear()}
+                        </span>{"  "}
+                        por <span class="font-bold">{e.reviewerName}</span>
+                      </span>
+                    </div>
+                    <div class="mt-2">
+                      <span class="font-medium text-gray-500">{e.text}</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )
+          : (
+            <div class="text-center">
+              <h2 class="text-2xl font-bold">Nenhuma Avaliação</h2>
+              <span>Seja o primeiro a avaliar este produto</span>
+            </div>
+          )}
         {!isUserLoggedIn
           ? (
             <div class="text-left mt-4">
