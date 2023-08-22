@@ -13,7 +13,15 @@ function AuthIframe({
         <span class="text-base-100">{title}</span>
       </header>
       <main class="w-full max-w-[80%] sm:max-w-[50%] text-center">
-        <iframe src={url} class={`w-[100vw] text-center h-[500px]`}  frameBorder="0" scrolling="no" marginHeight={0} marginWidth={0}> </iframe>
+        <iframe
+          src={url}
+          class={`w-[100vw] text-center h-[500px]`}
+          frameBorder="0"
+          scrolling="no"
+          marginHeight={0}
+          marginWidth={0}
+        >
+        </iframe>
       </main>
     </div>
   );
