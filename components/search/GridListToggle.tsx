@@ -5,7 +5,6 @@ function GridListToggle() {
 
   return (
     <div class="lg:flex hidden">
-      <p>{listingType.value}</p>
       <span class="p-1 font-bold mt-[10px] text-base">Visualização</span>
       <button
         onClick={() => {

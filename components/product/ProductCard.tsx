@@ -135,7 +135,7 @@ function ProductCard(
       <figure class="relative " style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}>
         {/* Wishlist button */}
         <div class="absolute top-0 right-0 z-10">
-          {/* <WishlistIcon productGroupID={productGroupID} productID={productID} /> */}
+          <WishlistIcon productGroupID={productGroupID} productID={productID} />
         </div>
         {listPrice !== price
           ? (
@@ -186,8 +186,8 @@ function ProductCard(
           </figcaption>
           {/* SKU Selector */}
 
-          {
-            /* {variants.length > 0
+          
+            {variants.length > 0
             ? (
               newVariants.length > 0
                 ? (
@@ -205,7 +205,7 @@ function ProductCard(
                           variant={item?.lvl !== 0 ? "default" : "disabled"}
                           content={item?.value!}
                         />
-                      ))}
+                      ))} 
                     </ul>
                   </figcaption>
                 )
@@ -229,8 +229,8 @@ function ProductCard(
                   </figcaption>
                 )
             )
-            : ("")} */
-          }
+            : ("")} 
+          
         </div>
       </figure>
       {/* Prices & Name */}
