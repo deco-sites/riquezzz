@@ -300,7 +300,7 @@ function CardItem(
               alt={front.alternateName}
               width={300}
               height={500}
-              class="absolute top-0 left-0  transition-opacity w-full max-h-[500px]  object-cover opacity-100 group-hover:opacity-0 "
+              class="absolute top-0 left-0  transition-opacity w-full max-h-[500px] w-[150px] h-[250px]  lg:w-[300px] lg:h-[500px]  object-cover opacity-100 group-hover:opacity-0 "
               loading={lcp ? "eager" : "lazy"}
               sizes="(max-width: 640px) "
               decoding="async"
@@ -310,7 +310,7 @@ function CardItem(
               alt={back?.alternateName ?? front.alternateName}
               width={300}
               height={500}
-              class=" absolute top-0 left-0  transition-opacity w-full max-h-[500px] object-cover opacity-0 group-hover:opacity-100"
+              class=" absolute top-0 left-0  transition-opacity w-full max-h-[500px] w-[150px] h-[250px]  lg:w-[300px] lg:h-[500px] object-cover opacity-0 group-hover:opacity-100"
               loading={lcp ? "eager" : "lazy"}
               sizes="(max-width: 640px) "
               decoding="async"
