@@ -143,7 +143,7 @@ function BannerMovieImg(
               {srcMovieDesktop
                 ? (
                   <img
-                    class="w-full"
+                    class="w-full h-full"
                     src={srcMovieDesktop}
                     alt={altMovie}
                   />
