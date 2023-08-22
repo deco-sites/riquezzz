@@ -45,24 +45,6 @@ export interface Reviews {
   pastReviews: string | null;
 }
 
-// export interface CreateResponse {
-//   id: string;
-//   productId: string;
-//   rating: number;
-//   title: string;
-//   text: string;
-//   reviewerName: string;
-//   shopperId: string;
-//   reviewDateTime: string;
-//   searchDate: string;
-//   verifiedPurchaser: boolean;
-//   sku: string | null;
-//   approved: boolean;
-//   location: string | null;
-//   locale: string | null;
-//   pastReviews: string | null;
-// }
-
 const url = "https://bawclothing.myvtex.com/reviews-and-ratings/api";
 
 // mocking specific product to test with reviews
@@ -77,13 +59,13 @@ const loader = async (
   let userHasReviewed = false;
   let averageRating: AverageResponse;
 
-  console.log({ user, shopperId });
-
   if (shopperId) {
     try {
       const r = await fetchAPI<ResponseReviews>(
         url + "/reviews?product_id=" + productId + "&search_term=" +
-          shopperId + "&status=false",
+          "&status=false",
+        // url + "/reviews?product_id=" + productId + "&search_term=" +
+        //   shopperId + "&status=false",
         {
           method: "GET",
           headers: {
@@ -137,39 +119,5 @@ const loader = async (
     return null;
   }
 };
-
-// export const create = async (
-//   props: PropsCreate,
-// ): Promise<CreateResponse | null> => {
-//   const { rating, title, text, reviewerName } = props;
-
-//   console.log("create");
-
-//   try {
-//     const response = await fetchAPI<CreateResponse>(
-//       url + "/review",
-//       {
-//         method: "POST",
-//         body: JSON.stringify({
-//           rating,
-//           title,
-//           text,
-//           reviewerName,
-//         }),
-//         headers: {
-//           "content-type": "application/json",
-//           accept: "application/json",
-//           "X-VTEX-API-AppKey": appkey,
-//           "X-VTEX-API-AppToken": apptoken,
-//         },
-//       },
-//     );
-
-//     return response;
-//   } catch (e) {
-//     console.log({ e });
-//     return null;
-//   }
-// };
 
 export default loader;
