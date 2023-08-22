@@ -267,7 +267,7 @@ function CardItem(
       id={`product-card-${productID}`}
       {...sendEventOnClick(clickEvent)}
     >
-      <div class={`relative h-[330px] w-[150px] lg:h-[660px] lg:w-[300px] `}>
+      <div class={`relative h-[350px] w-[150px] lg:h-[660px] lg:w-[300px] `}>
         <figure
           class="relative "
           style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
@@ -293,14 +293,14 @@ function CardItem(
           <a
             href={url && relative(url)}
             aria-label="view product"
-            class="contents"
+            class="contents hidden lg:flex"
           >
             <Image
               src={front.url!}
               alt={front.alternateName}
               width={300}
               height={500}
-              class="absolute top-0 left-0  transition-opacity w-full max-h-[500px] w-[150px] h-[250px]  lg:w-[300px] lg:h-[500px]  object-cover opacity-100 group-hover:opacity-0 "
+              class="absolute top-0 left-0  transition-opacity  w-[300px] h-[500px]  object-cover opacity-100 group-hover:opacity-0 "
               loading={lcp ? "eager" : "lazy"}
               sizes="(max-width: 640px) "
               decoding="async"
@@ -310,7 +310,33 @@ function CardItem(
               alt={back?.alternateName ?? front.alternateName}
               width={300}
               height={500}
-              class=" absolute top-0 left-0  transition-opacity w-full max-h-[500px] w-[150px] h-[250px]  lg:w-[300px] lg:h-[500px] object-cover opacity-0 group-hover:opacity-100"
+              class="absolute top-0 left-0  transition-opacity  w-[300px] h-[500px] object-cover opacity-0 group-hover:opacity-100"
+              loading={lcp ? "eager" : "lazy"}
+              sizes="(max-width: 640px) "
+              decoding="async"
+            />
+          </a>
+          <a
+            href={url && relative(url)}
+            aria-label="view product"
+            class="contents flex lg:hidden"
+          >
+            <Image
+              src={front.url!}
+              alt={front.alternateName}
+              width={150}
+              height={250}
+              class="absolute top-0 left-0  transition-opacity  w-[150px] h-[250px]   object-cover opacity-100 group-hover:opacity-0 "
+              loading={lcp ? "eager" : "lazy"}
+              sizes="(max-width: 640px) "
+              decoding="async"
+            />
+            <Image
+              src={back?.url ?? front.url!}
+              alt={back?.alternateName ?? front.alternateName}
+              width={150}
+              height={250}
+              class="absolute top-0 left-0  transition-opacity  w-[150px] h-[250px]  object-cover opacity-0 group-hover:opacity-100"
               loading={lcp ? "eager" : "lazy"}
               sizes="(max-width: 640px) "
               decoding="async"
