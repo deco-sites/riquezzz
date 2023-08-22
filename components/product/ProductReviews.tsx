@@ -6,6 +6,7 @@ import { useState } from "preact/hooks";
 import { Runtime } from "../../runtime.ts";
 import { useCallback } from "preact/hooks";
 import { useUser } from "deco-sites/std/packs/vtex/hooks/useUser.ts";
+import { ResponseReviews } from "$store/loaders/reviewsandratings.ts";
 
 const NewRatingForm = (
   { productId }: {
@@ -160,11 +161,13 @@ const NewRatingForm = (
 function ProductReviews(
   { productID, userHasReviewed }: {
     productID: string;
-    userHasReviewed: boolean;
+    userHasReviewed: ResponseReviews;
   },
 ) {
   const { user } = useUser();
   const isUserLoggedIn = Boolean(user.value?.email);
+
+  console.log({userHasReviewed})
 
   return (
     <section class="w-full px-auto flex justify-center mb-5">
@@ -242,7 +245,7 @@ function ProductReviews(
                   Escreva uma avaliação
                 </div>
                 <div className="collapse-content transition   duration-[800ms]">
-                  {userHasReviewed
+                  {userHasReviewed.userHasReviewed
                     ? (
                       <div>
                         <span>
