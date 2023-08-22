@@ -5,50 +5,50 @@
 import * as $$$0 from "./loaders/productDetailsPageWithReviews.ts";
 import * as $$$1 from "./loaders/reviewsandratings.ts";
 import * as $$$$0 from "./routes/_app.tsx";
-import * as $$$$$0 from "./islands/Newsletter.tsx";
-import * as $$$$$1 from "./islands/BawFilters.tsx";
-import * as $$$$$2 from "./islands/AddToCartAvatar.tsx";
-import * as $$$$$3 from "./islands/WishlistButton.tsx";
-import * as $$$$$4 from "./islands/ShippingSimulation.tsx";
-import * as $$$$$5 from "./islands/HeaderSearchbar.tsx";
-import * as $$$$$6 from "./islands/ProductReviews.tsx";
-import * as $$$$$7 from "./islands/HeaderButton.tsx";
-import * as $$$$$8 from "./islands/ReadMore.tsx";
-import * as $$$$$9 from "./islands/ModalCart.tsx";
-import * as $$$$$10 from "./islands/BreadcrumbControls.tsx";
-import * as $$$$$11 from "./islands/AddToCartButton.tsx";
-import * as $$$$$12 from "./islands/HeaderModals.tsx";
-import * as $$$$$13 from "./islands/SliderJS.tsx";
-import * as $$$$$14 from "./islands/ProductImageZoom.tsx";
-import * as $$$$$15 from "./islands/OutOfStock.tsx";
-import * as $$$$$16 from "./islands/SearchControls.tsx";
-import * as $$$$$$$$0 from "./sections/WishlistGallery.tsx";
-import * as $$$$$$$$1 from "./sections/LinkTree.tsx";
-import * as $$$$$$$$2 from "./sections/BannerPLPCampaign.tsx";
-import * as $$$$$$$$3 from "./sections/Features.tsx";
-import * as $$$$$$$$4 from "./sections/BannerPLP.tsx";
-import * as $$$$$$$$5 from "./sections/ReadMore.tsx";
-import * as $$$$$$$$6 from "./sections/BannerGrid.tsx";
-import * as $$$$$$$$7 from "./sections/BawHighlights.tsx";
-import * as $$$$$$$$8 from "./sections/SearchResult.tsx";
-import * as $$$$$$$$9 from "./sections/BannerMovieImg.tsx";
-import * as $$$$$$$$10 from "./sections/BannerFourCards.tsx";
-import * as $$$$$$$$11 from "./sections/ProductShelf.tsx";
-import * as $$$$$$$$12 from "./sections/BawBanner.tsx";
-import * as $$$$$$$$13 from "./sections/Footer.tsx";
-import * as $$$$$$$$14 from "./sections/SearchBreadControls.tsx";
-import * as $$$$$$$$15 from "./sections/CookieConsent.tsx";
-import * as $$$$$$$$16 from "./sections/DesignSystem.tsx";
-import * as $$$$$$$$17 from "./sections/BannerCardPosition.tsx";
-import * as $$$$$$$$18 from "./sections/Header.tsx";
-import * as $$$$$$$$19 from "./sections/BawFeatures.tsx";
+import * as $$$$$0 from "./islands/AddToCartAvatar.tsx";
+import * as $$$$$1 from "./islands/AddToCartButton.tsx";
+import * as $$$$$2 from "./islands/BawFilters.tsx";
+import * as $$$$$3 from "./islands/BreadcrumbControls.tsx";
+import * as $$$$$4 from "./islands/HeaderButton.tsx";
+import * as $$$$$5 from "./islands/HeaderModals.tsx";
+import * as $$$$$6 from "./islands/HeaderSearchbar.tsx";
+import * as $$$$$7 from "./islands/ModalCart.tsx";
+import * as $$$$$8 from "./islands/Newsletter.tsx";
+import * as $$$$$9 from "./islands/OutOfStock.tsx";
+import * as $$$$$10 from "./islands/ProductImageZoom.tsx";
+import * as $$$$$11 from "./islands/ProductReviews.tsx";
+import * as $$$$$12 from "./islands/ReadMore.tsx";
+import * as $$$$$13 from "./islands/SearchControls.tsx";
+import * as $$$$$14 from "./islands/ShippingSimulation.tsx";
+import * as $$$$$15 from "./islands/SliderJS.tsx";
+import * as $$$$$16 from "./islands/WishlistButton.tsx";
+import * as $$$$$$$$0 from "./sections/BannerCardPosition.tsx";
+import * as $$$$$$$$1 from "./sections/BannerFourCards.tsx";
+import * as $$$$$$$$2 from "./sections/BannerFull.tsx";
+import * as $$$$$$$$3 from "./sections/BannerGrid.tsx";
+import * as $$$$$$$$4 from "./sections/BannerMovieImg.tsx";
+import * as $$$$$$$$5 from "./sections/BannerPLP.tsx";
+import * as $$$$$$$$6 from "./sections/BannerPLPCampaign.tsx";
+import * as $$$$$$$$7 from "./sections/BawBanner.tsx";
+import * as $$$$$$$$8 from "./sections/BawFeatures.tsx";
+import * as $$$$$$$$9 from "./sections/BawHighlights.tsx";
+import * as $$$$$$$$10 from "./sections/BawProductShelf.tsx";
+import * as $$$$$$$$11 from "./sections/Carousel.tsx";
+import * as $$$$$$$$12 from "./sections/CookieConsent.tsx";
+import * as $$$$$$$$13 from "./sections/DesignSystem.tsx";
+import * as $$$$$$$$14 from "./sections/Features.tsx";
+import * as $$$$$$$$15 from "./sections/Footer.tsx";
+import * as $$$$$$$$16 from "./sections/HeadBanner.tsx";
+import * as $$$$$$$$17 from "./sections/Header.tsx";
+import * as $$$$$$$$18 from "./sections/Highlights.tsx";
+import * as $$$$$$$$19 from "./sections/LinkTree.tsx";
 import * as $$$$$$$$20 from "./sections/ProductDetails.tsx";
-import * as $$$$$$$$21 from "./sections/BannerFull.tsx";
-import * as $$$$$$$$22 from "./sections/HeadBanner.tsx";
-import * as $$$$$$$$23 from "./sections/Highlights.tsx";
-import * as $$$$$$$$24 from "./sections/WhatsApp.tsx";
-import * as $$$$$$$$25 from "./sections/BawProductShelf.tsx";
-import * as $$$$$$$$26 from "./sections/Carousel.tsx";
+import * as $$$$$$$$21 from "./sections/ProductShelf.tsx";
+import * as $$$$$$$$22 from "./sections/ReadMore.tsx";
+import * as $$$$$$$$23 from "./sections/SearchBreadControls.tsx";
+import * as $$$$$$$$24 from "./sections/SearchResult.tsx";
+import * as $$$$$$$$25 from "./sections/WhatsApp.tsx";
+import * as $$$$$$$$26 from "./sections/WishlistGallery.tsx";
 import * as $$$$$$$$$$$0 from "./actions/createReview.ts";
 import * as $live_workflows from "$live/routes/live/workflows/run.ts";
 import * as $live_middleware from "$live/routes/_middleware.ts";
@@ -257,23 +257,23 @@ const manifest = {
     "./routes/live/workflows/run.ts": $live_workflows,
   },
   "islands": {
-    "./islands/AddToCartAvatar.tsx": $$$$$2,
-    "./islands/AddToCartButton.tsx": $$$$$11,
-    "./islands/BawFilters.tsx": $$$$$1,
-    "./islands/BreadcrumbControls.tsx": $$$$$10,
-    "./islands/HeaderButton.tsx": $$$$$7,
-    "./islands/HeaderModals.tsx": $$$$$12,
-    "./islands/HeaderSearchbar.tsx": $$$$$5,
-    "./islands/ModalCart.tsx": $$$$$9,
-    "./islands/Newsletter.tsx": $$$$$0,
-    "./islands/OutOfStock.tsx": $$$$$15,
-    "./islands/ProductImageZoom.tsx": $$$$$14,
-    "./islands/ProductReviews.tsx": $$$$$6,
-    "./islands/ReadMore.tsx": $$$$$8,
-    "./islands/SearchControls.tsx": $$$$$16,
-    "./islands/ShippingSimulation.tsx": $$$$$4,
-    "./islands/SliderJS.tsx": $$$$$13,
-    "./islands/WishlistButton.tsx": $$$$$3,
+    "./islands/AddToCartAvatar.tsx": $$$$$0,
+    "./islands/AddToCartButton.tsx": $$$$$1,
+    "./islands/BawFilters.tsx": $$$$$2,
+    "./islands/BreadcrumbControls.tsx": $$$$$3,
+    "./islands/HeaderButton.tsx": $$$$$4,
+    "./islands/HeaderModals.tsx": $$$$$5,
+    "./islands/HeaderSearchbar.tsx": $$$$$6,
+    "./islands/ModalCart.tsx": $$$$$7,
+    "./islands/Newsletter.tsx": $$$$$8,
+    "./islands/OutOfStock.tsx": $$$$$9,
+    "./islands/ProductImageZoom.tsx": $$$$$10,
+    "./islands/ProductReviews.tsx": $$$$$11,
+    "./islands/ReadMore.tsx": $$$$$12,
+    "./islands/SearchControls.tsx": $$$$$13,
+    "./islands/ShippingSimulation.tsx": $$$$$14,
+    "./islands/SliderJS.tsx": $$$$$15,
+    "./islands/WishlistButton.tsx": $$$$$16,
   },
   "sections": {
     "$live/sections/Conditional_Beta.tsx": i2$$$$$0,
@@ -281,33 +281,33 @@ const manifest = {
     "$live/sections/PageInclude.tsx": i2$$$$$2,
     "$live/sections/Slot.tsx": i2$$$$$3,
     "$live/sections/UseSlot.tsx": i2$$$$$4,
-    "deco-sites/riquezzz/sections/BannerCardPosition.tsx": $$$$$$$$17,
-    "deco-sites/riquezzz/sections/BannerFourCards.tsx": $$$$$$$$10,
-    "deco-sites/riquezzz/sections/BannerFull.tsx": $$$$$$$$21,
-    "deco-sites/riquezzz/sections/BannerGrid.tsx": $$$$$$$$6,
-    "deco-sites/riquezzz/sections/BannerMovieImg.tsx": $$$$$$$$9,
-    "deco-sites/riquezzz/sections/BannerPLP.tsx": $$$$$$$$4,
-    "deco-sites/riquezzz/sections/BannerPLPCampaign.tsx": $$$$$$$$2,
-    "deco-sites/riquezzz/sections/BawBanner.tsx": $$$$$$$$12,
-    "deco-sites/riquezzz/sections/BawFeatures.tsx": $$$$$$$$19,
-    "deco-sites/riquezzz/sections/BawHighlights.tsx": $$$$$$$$7,
-    "deco-sites/riquezzz/sections/BawProductShelf.tsx": $$$$$$$$25,
-    "deco-sites/riquezzz/sections/Carousel.tsx": $$$$$$$$26,
-    "deco-sites/riquezzz/sections/CookieConsent.tsx": $$$$$$$$15,
-    "deco-sites/riquezzz/sections/DesignSystem.tsx": $$$$$$$$16,
-    "deco-sites/riquezzz/sections/Features.tsx": $$$$$$$$3,
-    "deco-sites/riquezzz/sections/Footer.tsx": $$$$$$$$13,
-    "deco-sites/riquezzz/sections/HeadBanner.tsx": $$$$$$$$22,
-    "deco-sites/riquezzz/sections/Header.tsx": $$$$$$$$18,
-    "deco-sites/riquezzz/sections/Highlights.tsx": $$$$$$$$23,
-    "deco-sites/riquezzz/sections/LinkTree.tsx": $$$$$$$$1,
+    "deco-sites/riquezzz/sections/BannerCardPosition.tsx": $$$$$$$$0,
+    "deco-sites/riquezzz/sections/BannerFourCards.tsx": $$$$$$$$1,
+    "deco-sites/riquezzz/sections/BannerFull.tsx": $$$$$$$$2,
+    "deco-sites/riquezzz/sections/BannerGrid.tsx": $$$$$$$$3,
+    "deco-sites/riquezzz/sections/BannerMovieImg.tsx": $$$$$$$$4,
+    "deco-sites/riquezzz/sections/BannerPLP.tsx": $$$$$$$$5,
+    "deco-sites/riquezzz/sections/BannerPLPCampaign.tsx": $$$$$$$$6,
+    "deco-sites/riquezzz/sections/BawBanner.tsx": $$$$$$$$7,
+    "deco-sites/riquezzz/sections/BawFeatures.tsx": $$$$$$$$8,
+    "deco-sites/riquezzz/sections/BawHighlights.tsx": $$$$$$$$9,
+    "deco-sites/riquezzz/sections/BawProductShelf.tsx": $$$$$$$$10,
+    "deco-sites/riquezzz/sections/Carousel.tsx": $$$$$$$$11,
+    "deco-sites/riquezzz/sections/CookieConsent.tsx": $$$$$$$$12,
+    "deco-sites/riquezzz/sections/DesignSystem.tsx": $$$$$$$$13,
+    "deco-sites/riquezzz/sections/Features.tsx": $$$$$$$$14,
+    "deco-sites/riquezzz/sections/Footer.tsx": $$$$$$$$15,
+    "deco-sites/riquezzz/sections/HeadBanner.tsx": $$$$$$$$16,
+    "deco-sites/riquezzz/sections/Header.tsx": $$$$$$$$17,
+    "deco-sites/riquezzz/sections/Highlights.tsx": $$$$$$$$18,
+    "deco-sites/riquezzz/sections/LinkTree.tsx": $$$$$$$$19,
     "deco-sites/riquezzz/sections/ProductDetails.tsx": $$$$$$$$20,
-    "deco-sites/riquezzz/sections/ProductShelf.tsx": $$$$$$$$11,
-    "deco-sites/riquezzz/sections/ReadMore.tsx": $$$$$$$$5,
-    "deco-sites/riquezzz/sections/SearchBreadControls.tsx": $$$$$$$$14,
-    "deco-sites/riquezzz/sections/SearchResult.tsx": $$$$$$$$8,
-    "deco-sites/riquezzz/sections/WhatsApp.tsx": $$$$$$$$24,
-    "deco-sites/riquezzz/sections/WishlistGallery.tsx": $$$$$$$$0,
+    "deco-sites/riquezzz/sections/ProductShelf.tsx": $$$$$$$$21,
+    "deco-sites/riquezzz/sections/ReadMore.tsx": $$$$$$$$22,
+    "deco-sites/riquezzz/sections/SearchBreadControls.tsx": $$$$$$$$23,
+    "deco-sites/riquezzz/sections/SearchResult.tsx": $$$$$$$$24,
+    "deco-sites/riquezzz/sections/WhatsApp.tsx": $$$$$$$$25,
+    "deco-sites/riquezzz/sections/WishlistGallery.tsx": $$$$$$$$26,
     "deco-sites/std/sections/Analytics.tsx": i2$$$$$5,
     "deco-sites/std/sections/configButterCMS.global.tsx": i2$$$$$6,
     "deco-sites/std/sections/configLinxImpulse.global.tsx": i2$$$$$7,
