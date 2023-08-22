@@ -20,6 +20,8 @@ import ProductImageZoom from "$store/islands/ProductImageZoom.tsx";
 import WishlistButton from "../wishlist/WishlistButton.tsx";
 import ProductReviews from "deco-sites/riquezzz/components/product/ProductReviews.tsx";
 import { ResponseReviews } from "$store/loaders/reviewsandratings.ts";
+import type { SectionProps } from "$live/mod.ts";
+import { default as reviewsLoader } from "deco-sites/riquezzz/loaders/reviewsandratings.ts";
 
 export type Variant = "front-back" | "slider" | "auto";
 
@@ -36,6 +38,22 @@ export interface Props {
 const WIDTH = 620;
 const HEIGHT = 930;
 const ASPECT_RATIO = `${WIDTH} / ${HEIGHT}`;
+
+export async function loader(
+  { page, reviews, variant }: Props,
+  _req: Request,
+) {
+  let reviewsReturn = {};
+  try {
+    reviewsReturn = (await reviewsLoader({
+      productId: page!.product!.productID,
+    })) as ResponseReviews;
+  } catch (e) {
+    console.log({ e });
+  }
+
+  return { page, reviews, variant, reviewsReturn };
+}
 
 /**
  * Rendered when a not found is returned by any of the loaders run on this page
@@ -426,13 +444,18 @@ function Details({
 }
 
 function ProductDetails(
-  { page, variant: maybeVar = "auto", reviews }: Props,
+  { page, variant: maybeVar = "auto", reviews, reviewsReturn }: SectionProps<
+    typeof loader
+  >,
 ) {
   /**
    * Showcase the different product views we have on this template. In case there are less
    * than two images, render a front-back, otherwhise render a slider
    * Remove one of them and go with the best suited for your use case.
    */
+
+  console.log({ product: page?.product.productID, reviews, reviewsReturn });
+
   const variant = maybeVar === "auto"
     ? page?.product.image?.length && page?.product.image?.length < 2
       ? "front-back"
