@@ -88,7 +88,7 @@ function CardMovie(
     <>
       {banner?.type === "movie"
         ? (
-          <section class="w-full px-auto  sm:m-0 sm:overflow-hidden pr-[40px] ">
+          <section class="w-full px-auto  xl:m-0 xl:overflow-hidden pr-[40px] ">
             <div>
               <a
                 href={banner?.href}
@@ -107,7 +107,7 @@ function CardMovie(
                     webkit-playsinline
                     x5-playsinline
                     playsInline
-                    class="hidden w-full h-full sm:inline-block"
+                    class="hidden w-full h-full xl:inline-block"
                   >
                     Video não suportado!
                   </video>
@@ -121,7 +121,7 @@ function CardMovie(
                     webkit-playsinline
                     x5-playsinline
                     playsInline
-                    class="sm:hidden w-full h-full inline-block"
+                    class="xl:hidden w-full h-full inline-block"
                   >
                     Video não suportado!
                   </video>
@@ -175,7 +175,7 @@ function CardMovie(
   );
 }
 function CardItem(
-  { product, itemListName, lcp, preload, colorRed }: {
+  { product, itemListName, lcp, colorRed }: {
     product: Product;
     lcp?: boolean;
     itemListName?: string;
@@ -266,7 +266,9 @@ function CardItem(
       id={`product-card-${productID}`}
       {...sendEventOnClick(clickEvent)}
     >
-      <div class={`relative h-[350px] w-[150px] lg:h-[660px] lg:w-[300px] `}>
+      <div
+        class={`relative h-[350px] w-[150px] xl:h-[660px] lg:w-[250px] lg:h-[560px] xl:w-[250px] 2xl:h-[660px] 2xl:w-[300px] `}
+      >
         <figure
           class="relative "
           style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
@@ -292,14 +294,14 @@ function CardItem(
           <a
             href={url && relative(url)}
             aria-label="view product"
-            class="contents hidden lg:flex"
+            class="contents hidden xl:flex"
           >
             <Image
               src={front.url!}
               alt={front.alternateName}
               width={300}
               height={500}
-              class="absolute top-0 left-0  transition-opacity  w-[300px] h-[500px]  object-cover opacity-100 group-hover:opacity-0 "
+              class="absolute top-0 left-0  transition-opacity w-full  object-cover opacity-100 group-hover:opacity-0 "
               loading={lcp ? "eager" : "lazy"}
               sizes="(max-width: 640px) "
               decoding="async"
@@ -309,7 +311,7 @@ function CardItem(
               alt={back?.alternateName ?? front.alternateName}
               width={300}
               height={500}
-              class="absolute top-0 left-0  transition-opacity  w-[300px] h-[500px] object-cover opacity-0 group-hover:opacity-100"
+              class="absolute top-0 left-0  transition-opacity  w-full object-cover opacity-0 group-hover:opacity-100"
               loading={lcp ? "eager" : "lazy"}
               sizes="(max-width: 640px) "
               decoding="async"
@@ -318,14 +320,14 @@ function CardItem(
           <a
             href={url && relative(url)}
             aria-label="view product"
-            class="contents flex lg:hidden"
+            class="contents flex xl:hidden"
           >
             <Image
               src={front.url!}
               alt={front.alternateName}
               width={150}
               height={250}
-              class="absolute top-0 left-0  transition-opacity  w-[150px] h-[250px]   object-cover opacity-100 group-hover:opacity-0 "
+              class="absolute top-0 left-0  transition-opacity  w-full   object-cover opacity-100 group-hover:opacity-0 "
               loading={lcp ? "eager" : "lazy"}
               sizes="(max-width: 640px) "
               decoding="async"
@@ -335,7 +337,7 @@ function CardItem(
               alt={back?.alternateName ?? front.alternateName}
               width={150}
               height={250}
-              class="absolute top-0 left-0  transition-opacity  w-[150px] h-[250px]  object-cover opacity-0 group-hover:opacity-100"
+              class="absolute top-0 left-0  transition-opacity  w-full  object-cover opacity-0 group-hover:opacity-100"
               loading={lcp ? "eager" : "lazy"}
               sizes="(max-width: 640px) "
               decoding="async"
@@ -405,12 +407,12 @@ function CardItem(
         </figure>
         {/* Prices & Name */}
         <div class=" flex flex-col p-0 m-0 h-[90px] max-h-[90px] justify-start items-start">
-          <h2 class="card-title w-full   text-base-300 text-sm 2xl:text-lg  font-normal uppercase">
+          <h2 class="card-title w-full   text-base-300 text-sm 2xl:text-base  font-normal uppercase">
             {isVariantOf!.name}
           </h2>
-          <div class="flex flex-col  sm:flew-row items-start ">
-            <div class="hidden flew-row  items-start sm:flex flex-wrap">
-              <span class="text-xs 2xl:text-base font-bold sm:flex hidden  ">
+          <div class="flex flex-col  xl:flew-row items-start ">
+            <div class="hidden flew-row  items-start xl:flex flex-wrap">
+              <span class="text-xs 2xl:text-base font-bold xl:flex hidden  ">
                 {installmentText
                   ? (installmentText?.length === 8
                     ? (installmentText + ",00" + " / ")
@@ -420,12 +422,12 @@ function CardItem(
                   : ("")}
               </span>
 
-              <span class="line-through px-1  text-xs 2xl:text-base text-base-300 sm:flex hidden">
+              <span class="line-through px-1  text-xs 2xl:text-base text-base-300 xl:flex hidden">
                 {listPrice !== price
                   ? (`${formatPrice(listPrice, offers!.priceCurrency!)} `)
                   : ("")}
               </span>
-              <span class="text-xs 2xl:text-base  pr-1  font-bold text-black sm:flex hidden">
+              <span class="text-xs 2xl:text-base  pr-1  font-bold text-black xl:flex hidden">
                 {listPrice !== price ? (` /`) : ("")}
               </span>
               <span
@@ -439,7 +441,7 @@ function CardItem(
               </span>
             </div>
 
-            <div class="flex flew-row  items-start sm:hidden flex-wrap">
+            <div class="flex flew-row  items-start xl:hidden flex-wrap">
               <span class="line-through text-xs 2xl:text-base  text-base-300 px-1 ">
                 {listPrice !== price
                   ? (formatPrice(listPrice, offers!.priceCurrency!))
@@ -483,16 +485,16 @@ function CardsCamps(
     <>
       {ordem === "Banner/Cards"
         ? (
-          <div class="w-full flex flex-col lg:flex-row gap-5 lg:gap-10 px-[15px] pt-[10px] h-[1400px] lg:px-[50px] lg:pt-[40px] justify-center">
+          <div class="w-full flex flex-col xl:flex-row gap-5 xl:gap-10 px-[15px] pt-[10px]  xl:px-[50px] xl:pt-[40px] justify-center my-2">
             <div
-              class={`w-full lg:max-w-[50vw] flex `}
+              class={`w-full lx:max-w-[50vw] flex `}
             >
               <CardMovie banner={bannerFirst} borderRadius={borderRadius} />
             </div>
 
             <div
               id={id}
-              class="flex flex-row flex-wrap gap-5  px-[15px] lg:gap-10 justify-center"
+              class="flex flex-row flex-wrap gap-5    justify-center"
             >
               {productCard !== undefined
                 ? (productCard!.products?.map((product, index) => (
@@ -508,10 +510,10 @@ function CardsCamps(
           </div>
         )
         : (
-          <div class=" w-full flex flex-col lg:flex-row gap-5 lg:gap-10 px-[15px] pt-[10px] h-[1400px] lg:px-[50px] lg:pt-[40px] justify-center">
+          <div class="w-full flex flex-col xl:flex-row gap-5 xl:gap-10 px-[15px] pt-[10px]  xl:px-[50px] xl:pt-[40px] justify-center my-2">
             <div
               id={id}
-              class="flex flex-row flex-wrap gap-5  px-[15px] lg:gap-10 justify-center"
+              class="flex flex-row flex-wrap gap-5   justify-center"
             >
               {productCard !== undefined
                 ? (productCard!.products?.map((product, index) => (
@@ -526,7 +528,7 @@ function CardsCamps(
             </div>
 
             <div
-              class={`w-full lg:max-w-[50vw] flex `}
+              class={`w-full lx:max-w-[50vw] flex `}
             >
               <CardMovie banner={bannerFirst} borderRadius={borderRadius} />
             </div>

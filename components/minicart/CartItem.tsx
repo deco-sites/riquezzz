@@ -64,7 +64,6 @@ function CartItem({ index }: Props) {
           </span>
         </div>
         <div>
-          
           <QuantitySelector
             disabled={loading.value || isGift}
             quantity={quantity}
