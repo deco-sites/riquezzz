@@ -42,7 +42,9 @@ function FilterValues(props: { filter: FilterToggle; isOpen: boolean }) {
   if (key === "price") {
     //parsing range values for price filter
     const valuesArray = Object.entries(values);
+
     const url = valuesArray[0][1].url;
+
     const urlPrice = url.split("&").slice(0, -1).filter((r) =>
       r.includes("filter.price")
     )[0]?.split("=")[1]?.split("%3A");
