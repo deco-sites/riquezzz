@@ -6,6 +6,7 @@ import Modal from "$store/components/ui/Modal.tsx";
 import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
 import { useSignal } from "@preact/signals";
 import type { ProductListingPage } from "deco-sites/std/commerce/types.ts";
+import GridListToggle from "./GridListToggle.tsx";
 
 type Props =
   & Pick<ProductListingPage, "filters" | "breadcrumb" | "sortOptions">
@@ -20,6 +21,8 @@ function SearchControls(
 
   return (
     <div class="flex flex-col justify-between mb-4 p-4 sm:mb-0 sm:p-0 sm:gap-4 sm:flex-row sm:h-[53px] ">
+      <GridListToggle />
+
       <div class="flex flex-row items-center justify-between border-b border-base-200 sm:gap-4 sm:border-none">
         {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />}
         <Button
