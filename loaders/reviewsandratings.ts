@@ -21,6 +21,12 @@ export interface ResponseReviews {
     to: number;
   };
   userHasReviewed?: boolean;
+  averageRating?: AverageResponse;
+}
+
+export interface AverageResponse {
+  average: number;
+  totalCount: number;
 }
 
 export interface Reviews {
@@ -39,29 +45,11 @@ export interface Reviews {
   pastReviews: string | null;
 }
 
-// export interface CreateResponse {
-//   id: string;
-//   productId: string;
-//   rating: number;
-//   title: string;
-//   text: string;
-//   reviewerName: string;
-//   shopperId: string;
-//   reviewDateTime: string;
-//   searchDate: string;
-//   verifiedPurchaser: boolean;
-//   sku: string | null;
-//   approved: boolean;
-//   location: string | null;
-//   locale: string | null;
-//   pastReviews: string | null;
-// }
-
 const url = "https://bawclothing.myvtex.com/reviews-and-ratings/api";
 
 // mocking specific product to test with reviews
-// http://localhost:8000/camiseta-logo-classic-colors-preto-0075486040/p
-const productId = "2147359182";
+// /sweatshirt-logo-azul-0070430005/p
+const productId = "1944875713";
 
 const loader = async (
   // props: PropsLoad,
@@ -69,8 +57,7 @@ const loader = async (
   const { user } = useUser();
   const shopperId = user.value?.email;
   let userHasReviewed = false;
-
-  console.log({ user, shopperId });
+  let averageRating: AverageResponse;
 
   if (shopperId) {
     try {
@@ -96,6 +83,23 @@ const loader = async (
   }
 
   try {
+    const resp = await fetchAPI<AverageResponse>(
+      url + "/rating/" + productId,
+      {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+          accept: "application/json",
+        },
+      },
+    );
+    averageRating = resp;
+  } catch (e) {
+    console.log({ e });
+    return null;
+  }
+
+  try {
     const response = await fetchAPI<ResponseReviews>(
       url + "/reviews?product_id=" + productId,
       {
@@ -107,45 +111,11 @@ const loader = async (
       },
     );
 
-    return { ...response, userHasReviewed };
+    return { ...response, userHasReviewed, averageRating };
   } catch (e) {
     console.log({ e });
     return null;
   }
 };
-
-// export const create = async (
-//   props: PropsCreate,
-// ): Promise<CreateResponse | null> => {
-//   const { rating, title, text, reviewerName } = props;
-
-//   console.log("create");
-
-//   try {
-//     const response = await fetchAPI<CreateResponse>(
-//       url + "/review",
-//       {
-//         method: "POST",
-//         body: JSON.stringify({
-//           rating,
-//           title,
-//           text,
-//           reviewerName,
-//         }),
-//         headers: {
-//           "content-type": "application/json",
-//           accept: "application/json",
-//           "X-VTEX-API-AppKey": appkey,
-//           "X-VTEX-API-AppToken": apptoken,
-//         },
-//       },
-//     );
-
-//     return response;
-//   } catch (e) {
-//     console.log({ e });
-//     return null;
-//   }
-// };
 
 export default loader;

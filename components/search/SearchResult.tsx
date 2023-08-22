@@ -1,14 +1,12 @@
-import Filters from "$store/components/search/Filters.tsx";
 import BawFilters from "$store/components/search/BawFilters.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import SearchControls from "$store/islands/SearchControls.tsx";
 import { SendEventOnLoad } from "$store/sdk/analytics.tsx";
 import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/productToAnalyticsItem.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
-import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
+import ProductGallery from "$store/islands/ProductGallery.tsx";
 import type { LoaderReturnType } from "$live/types.ts";
 import type { ProductListingPage } from "deco-sites/std/commerce/types.ts";
-import { useState } from "preact/hooks";
 
 export interface Props {
   page: LoaderReturnType<ProductListingPage | null>;
@@ -16,10 +14,6 @@ export interface Props {
    * @description Use drawer for mobile like behavior on desktop. Aside for rendering the filters alongside the products
    */
   variant?: "aside" | "drawer";
-  /**
-   * @description Number of products per line on grid
-   */
-  columns: Columns;
 }
 
 function NotFound() {
@@ -100,8 +94,6 @@ function Result(
   { page, variant }: Omit<Props, "page"> & { page: ProductListingPage },
 ) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
-  const [value, setValue] = useState(2);
-
   return (
     <>
       <div class="px-4 sm:py-10 sm:pr-14 w-full">
@@ -123,28 +115,6 @@ function Result(
                 <span class="sm:pl-5 min-w-[80px] font-bold text-base flex flex-row">
                   {pageInfo.records} produtos
                 </span>
-
-                <div class="sm:flex hidden">
-                  <span class="p-1 font-bold text-base">Visualização</span>
-                  <button
-                    class="p-1 font-semibold hover:font-bold hover:bg-black hover:text-white cursor-pointer m-1"
-                    onClick={() => setValue(2)}
-                  >
-                    2
-                  </button>
-                  <button
-                    class="p-1 font-semibold hover:font-bold hover:bg-black hover:text-white cursor-pointer m-1"
-                    onClick={() => setValue(4)}
-                  >
-                    4
-                  </button>
-                  <button
-                    class="p-1 font-semibold hover:font-bold hover:bg-black hover:text-white cursor-pointer m-1"
-                    onClick={() => setValue(6)}
-                  >
-                    6
-                  </button>
-                </div>
               </div>
 
               <SearchControls
@@ -154,7 +124,7 @@ function Result(
                 displayFilter={variant === "drawer"}
               />
             </div>
-            <ProductGallery products={products} value={value} />
+            <ProductGallery products={products} />
           </div>
         </div>
 
@@ -213,12 +183,8 @@ function Result(
 function SearchResult(
   { page, ...props }: Props,
 ) {
-  if (page!.products.length === 0) {
-    return (
-      <>
-        <NotFound />
-      </>
-    );
+  if (!page) {
+    return <NotFound />;
   }
   return <Result {...props} page={page!} />;
 }
