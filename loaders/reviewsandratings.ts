@@ -21,6 +21,12 @@ export interface ResponseReviews {
     to: number;
   };
   userHasReviewed?: boolean;
+  averageRating?: AverageResponse;
+}
+
+export interface AverageResponse {
+  average: number;
+  totalCount: number;
 }
 
 export interface Reviews {
@@ -69,6 +75,7 @@ const loader = async (
   const { user } = useUser();
   const shopperId = user.value?.email;
   let userHasReviewed = false;
+  let averageRating: AverageResponse;
 
   console.log({ user, shopperId });
 
@@ -96,6 +103,23 @@ const loader = async (
   }
 
   try {
+    const resp = await fetchAPI<AverageResponse>(
+      url + "/rating/" + productId,
+      {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+          accept: "application/json",
+        },
+      },
+    );
+    averageRating = resp;
+  } catch (e) {
+    console.log({ e });
+    return null;
+  }
+
+  try {
     const response = await fetchAPI<ResponseReviews>(
       url + "/reviews?product_id=" + productId,
       {
@@ -107,7 +131,7 @@ const loader = async (
       },
     );
 
-    return { ...response, userHasReviewed };
+    return { ...response, userHasReviewed, averageRating };
   } catch (e) {
     console.log({ e });
     return null;

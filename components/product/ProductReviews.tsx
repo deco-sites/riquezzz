@@ -20,6 +20,7 @@ const NewRatingForm = (
   const [text, setText] = useState<string | undefined>(undefined);
   const [rating, setRating] = useState<number>(5);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [formSent, setFormSent] = useState<boolean>(false);
 
   const createReview = useCallback(async (body: {
     productId: string;
@@ -33,6 +34,10 @@ const NewRatingForm = (
       key: "deco-sites/riquezzz/actions/createReview.ts",
       props: body,
     });
+    setFormSent(true);
+    setText(undefined);
+    setReviewerName(undefined);
+    setTitle(undefined);
     setIsLoading(false);
     console.log({ data });
   }, []);
@@ -147,12 +152,18 @@ const NewRatingForm = (
         )}
       </div>
       <div class="text-left">
-        <Button
-          class="bg-black rounded-none text-white shadow-none font-semibold text-base px-11 w-fit mt-6"
-          type={"submit"}
-        >
-          {isLoading ? "carregando..." : "Enviar avaliação"}
-        </Button>
+        {formSent
+          ? <span class="text-green-600">Sua avaliação foi enviada!</span>
+          : (
+            <Button
+              class="bg-black rounded-none text-white shadow-none font-semibold text-base px-11 w-fit mt-6"
+              type={"submit"}
+            >
+              {isLoading
+                ? <span class="loading loading-spinner loading-sm"></span>
+                : ("Enviar avaliação")}
+            </Button>
+          )}
       </div>
     </form>
   );
@@ -166,8 +177,9 @@ function ProductReviews(
 ) {
   const { user } = useUser();
   const isUserLoggedIn = Boolean(user.value?.email);
+  const { averageRating } = userHasReviewed;
 
-  console.log({userHasReviewed})
+  console.log({ userHasReviewed });
 
   return (
     <section class="w-full px-auto flex justify-center mb-5">
@@ -182,35 +194,42 @@ function ProductReviews(
               name="rating-0"
               className="mask mask-star cursor-default"
               disabled
+              checked={Math.floor(averageRating?.average!) == 1}
             />
             <input
               type="radio"
               name="rating-0"
               className="mask mask-star cursor-default"
               disabled
-            />
-            <input
-              type="radio"
-              name="rating-0"
-              className="mask mask-star cursor-default"
-              checked
-              disabled
+              checked={Math.floor(averageRating?.average!) == 2}
             />
             <input
               type="radio"
               name="rating-0"
               className="mask mask-star cursor-default"
               disabled
+              checked={Math.floor(averageRating?.average!) == 3}
             />
             <input
               type="radio"
               name="rating-0"
               className="mask mask-star cursor-default"
               disabled
+              checked={Math.floor(averageRating?.average!) == 4}
+            />
+            <input
+              type="radio"
+              name="rating-0"
+              className="mask mask-star cursor-default"
+              disabled
+              checked={Math.floor(averageRating?.average!) == 5}
             />
           </div>
           <div>
-            <span>Classificação Média: 0 (0 avaliações)</span>
+            <span>
+              Classificação Média: {averageRating?.average!}{" "}
+              ({averageRating?.totalCount!} avaliações)
+            </span>
           </div>
         </div>
         <div class="text-right">
@@ -233,7 +252,7 @@ function ProductReviews(
           <h2 class="text-2xl font-bold">Nenhuma Avaliação</h2>
           <span>Seja o primeiro a avaliar este produto</span>
         </div>
-        {isUserLoggedIn
+        {!isUserLoggedIn
           ? (
             <div class="text-left mt-4">
               <div
