@@ -458,7 +458,7 @@ function CardsCamps(
     <>
       {ordem === "Banner/Cards"
         ? (
-          <div class=" w-full flex flex-col lg:flex-row gap-5 lg:gap-10 px-[15px] pt-[10px] h-[1400px] lg:px-[50px] lg:pt-[40px] justify-center">
+          <div class="w-full flex flex-col lg:flex-row gap-5 lg:gap-10 px-[15px] pt-[10px] h-[1400px] lg:px-[50px] lg:pt-[40px] justify-center">
             <div
               class={`w-full lg:max-w-[50vw] flex `}
             >
