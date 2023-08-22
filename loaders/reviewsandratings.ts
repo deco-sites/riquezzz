@@ -48,8 +48,8 @@ export interface Reviews {
 const url = "https://bawclothing.myvtex.com/reviews-and-ratings/api";
 
 // mocking specific product to test with reviews
-// http://localhost:8000/camiseta-logo-classic-colors-preto-0075486040/p
-const productId = "2147359182";
+// /sweatshirt-logo-azul-0070430005/p
+const productId = "1944875713";
 
 const loader = async (
   // props: PropsLoad,
@@ -63,9 +63,7 @@ const loader = async (
     try {
       const r = await fetchAPI<ResponseReviews>(
         url + "/reviews?product_id=" + productId + "&search_term=" +
-          "&status=false",
-        // url + "/reviews?product_id=" + productId + "&search_term=" +
-        //   shopperId + "&status=false",
+          shopperId + "&status=false",
         {
           method: "GET",
           headers: {
