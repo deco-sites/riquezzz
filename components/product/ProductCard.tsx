@@ -1,7 +1,7 @@
 import Image from "deco-sites/std/components/Image.tsx";
 import Avatar from "$store/components/ui/Avatar.tsx";
-import AddToCartAvatar from "$store/islands/AddToCartAvatar.tsx";
-import WishlistIcon from "$store/islands/WishlistButton.tsx";
+import AddToCartAvatar from "$store/components/product/AddToCartAvatar.tsx";
+import WishlistIcon from "$store/components/wishlist/WishlistButton.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
@@ -135,7 +135,7 @@ function ProductCard(
       <figure class="relative " style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}>
         {/* Wishlist button */}
         <div class="absolute top-0 right-0 z-10">
-          <WishlistIcon productGroupID={productGroupID} productID={productID} />
+          {/* <WishlistIcon productGroupID={productGroupID} productID={productID} /> */}
         </div>
         {listPrice !== price
           ? (
@@ -186,7 +186,7 @@ function ProductCard(
           </figcaption>
           {/* SKU Selector */}
 
-          {variants.length > 0
+          {/* {variants.length > 0
             ? (
               newVariants.length > 0
                 ? (
@@ -228,7 +228,7 @@ function ProductCard(
                   </figcaption>
                 )
             )
-            : ("")}
+            : ("")} */}
         </div>
       </figure>
       {/* Prices & Name */}
