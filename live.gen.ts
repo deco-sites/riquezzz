@@ -50,6 +50,7 @@ import * as $$$$$$$$23 from "./sections/SearchBreadControls.tsx";
 import * as $$$$$$$$24 from "./sections/SearchResult.tsx";
 import * as $$$$$$$$25 from "./sections/WhatsApp.tsx";
 import * as $$$$$$$$26 from "./sections/WishlistGallery.tsx";
+
 import * as $$$$$$$$$$$0 from "./actions/createReview.ts";
 import * as $live_workflows from "$live/routes/live/workflows/run.ts";
 import * as $live_middleware from "$live/routes/_middleware.ts";
@@ -310,6 +311,7 @@ const manifest = {
     "deco-sites/riquezzz/sections/SearchResult.tsx": $$$$$$$$24,
     "deco-sites/riquezzz/sections/WhatsApp.tsx": $$$$$$$$25,
     "deco-sites/riquezzz/sections/WishlistGallery.tsx": $$$$$$$$26,
+
     "deco-sites/std/sections/Analytics.tsx": i2$$$$$5,
     "deco-sites/std/sections/configButterCMS.global.tsx": i2$$$$$6,
     "deco-sites/std/sections/configLinxImpulse.global.tsx": i2$$$$$7,

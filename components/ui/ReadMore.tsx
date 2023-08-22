@@ -29,7 +29,7 @@ function ReadMoreUI({ readMore }: { readMore: ReadMore }) {
       <div class="max-w-3xl">
         <div
           class={`transition-all duration-[1500ms] ${
-            isShowing ? "max-h-[900px]" : "max-h-[70px]"
+            isShowing ? "max-h-fit" : "max-h-[70px]"
           } overflow-hidden text-gray-500`}
         >
           <HTMLRenderer html={content} />

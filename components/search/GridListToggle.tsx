@@ -10,7 +10,7 @@ function GridListToggle() {
         onClick={() => {
           listingType.value = "2";
         }}
-        class={`p-1 font-semibold ${
+        class={`px-1 h-[30px] w-[30px] mt-[12px] font-semibold ${
           listingType.value === "2" ? ("bg-black text-white") : ("")
         } hover:font-bold hover:bg-black hover:text-white cursor-pointer m-1`}
       >
@@ -24,7 +24,7 @@ function GridListToggle() {
       </button>
       <button
         onClick={() => listingType.value = "4"}
-        class={`p-1 font-semibold ${
+        class={`px-1 h-[30px] w-[30px] mt-[12px] font-semibold ${
           listingType.value === "4" ? ("bg-black text-white") : ("")
         } hover:font-bold hover:bg-black hover:text-white cursor-pointer m-1`}
       >
@@ -38,7 +38,7 @@ function GridListToggle() {
       </button>
       <button
         onClick={() => listingType.value = "6"}
-        class={`p-1 font-semibold ${
+        class={`px-1 h-[30px] w-[30px] mt-[12px] font-semibold ${
           listingType.value === "6" ? ("bg-black text-white") : ("")
         } hover:font-bold hover:bg-black hover:text-white cursor-pointer m-1`}
       >
