@@ -92,7 +92,7 @@ function Footer(
       <footer class="before:content-[''] before:absolute before:top-0 before:left-0 before:bottom-0 before:right-0 before:z-[9] before:opacity-20 before:bg-cover
       before:bg-[url('https://bawclothing.vtexassets.com/assets/vtex/assets-builder/bawclothing.theme/4.5.13/img/bg-img-footer___f97b5671fcf089ebf7415649360e7e9a.png')] 
       relative w-full sm:bg-primary-dark flex flex-col divide-y divide-primary-content sm:pb-[80px] sm:px-8 bg-[#000]">
-        <div>
+        
           <div class=" w-full flex flex-col divide-y divide-primary-content border-b border-[#9a9a9a79]">
             <FooterContainer>
               <div class="flex sm:hidden mb-4">
@@ -107,7 +107,6 @@ function Footer(
               <ul class="flex flex-col lg:flex-row justify-start gap-8 lg:justify-between">
                 {sections.map((section) => (
                   <li>
-                    <div>
                       <span class="text-[14px] text-[#9a9a9a]">
                         {section.label}
                       </span>
@@ -123,77 +122,73 @@ function Footer(
                           </li>
                         ))}
                       </ul>
-                    </div>
                   </li>
                 ))}
 
                 <li>
-                  <div>
-                    <span class="text-[14px] text-[#9a9a9a]">
-                      Fale Conosco
-                    </span>
+                  <span class="text-[14px] text-[#9a9a9a]">
+                    Fale Conosco
+                  </span>
+                  <ul class="flex flex-col gap-2 pt-2 flex-wrap">
+                    <li>
+                      <SectionItem item={{ label: "SAC " + Phone_Number }} />
+                    </li>
+                    <li>
+                      <SectionItem
+                        item={{ label: "Horários de Atendimento" }}
+                      />
+                    </li>
+                    <li>
+                      <SectionItem item={{ label: Service }} />
+                    </li>
+                    <li>
+                      <div class="flex flex-row object-center justify-start text-end gap-5">
+                        <a
+                          href={Href_Facebook}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="F Facebook"
+                        >
+                          <Icon
+                            class="text-white"
+                            width={25}
+                            height={25}
+                            id="F Facebook"
+                            strokeWidth={0}
+                          />
+                        </a>
 
-                    <ul class="flex flex-col gap-2 pt-2 flex-wrap">
-                      <li>
-                        <SectionItem item={{ label: "SAC " + Phone_Number }} />
-                      </li>
-                      <li>
-                        <SectionItem
-                          item={{ label: "Horários de Atendimento" }}
-                        />
-                      </li>
-                      <li>
-                        <SectionItem item={{ label: Service }} />
-                      </li>
-                      <li>
-                        <div class="flex flex-row object-center justify-start text-end gap-5">
-                          <a
-                            href={Href_Facebook}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="F Facebook"
-                          >
-                            <Icon
-                              class="text-white"
-                              width={25}
-                              height={25}
-                              id="F Facebook"
-                              strokeWidth={0}
-                            />
-                          </a>
-
-                          <a
-                            href={Href_Twitter}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="Twitter Logo"
-                          >
-                            <Icon
-                              class="text-white"
-                              width={25}
-                              height={25}
-                              id="TwitterLogo"
-                              strokeWidth={1}
-                            />
-                          </a>
-                          <a
-                            href={Href_Instagram}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="Instagram logo"
-                          >
-                            <Icon
-                              class="text-white pb-1"
-                              width={32}
-                              height={32}
-                              id="Instagram"
-                              strokeWidth={2}
-                            />
-                          </a>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
+                        <a
+                          href={Href_Twitter}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="Twitter Logo"
+                        >
+                          <Icon
+                            class="text-white"
+                            width={25}
+                            height={25}
+                            id="TwitterLogo"
+                            strokeWidth={1}
+                          />
+                        </a>
+                        <a
+                          href={Href_Instagram}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="Instagram logo"
+                        >
+                          <Icon
+                            class="text-white pb-1"
+                            width={32}
+                            height={32}
+                            id="Instagram"
+                            strokeWidth={2}
+                          />
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
                 </li>
                 <div class="hidden sm:flex">
                   <Newsletter
@@ -206,7 +201,6 @@ function Footer(
               </ul>
             </FooterContainer>
           </div>
-        </div>
       </footer>
 
       <div class="w-full bg-black">

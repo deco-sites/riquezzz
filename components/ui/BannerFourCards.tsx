@@ -88,7 +88,7 @@ function CardMovie(
     <>
       {banner?.type === "movie"
         ? (
-          <section class="w-full px-auto sm:max-w-none sm:m-0 sm:overflow-hidden pr-[40px] ">
+          <section class="w-full px-auto  sm:m-0 sm:overflow-hidden pr-[40px] ">
             <div>
               <a
                 href={banner?.href}
@@ -183,7 +183,6 @@ function CardItem(
     colorRed?: boolean;
   },
 ) {
-  const id = useId();
   const {
     url,
     productID,

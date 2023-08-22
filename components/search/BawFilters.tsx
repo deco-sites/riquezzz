@@ -118,6 +118,7 @@ function FilterValues(props: { filter: FilterToggle; isOpen: boolean }) {
 
           return range && (
             <div>
+              
               <ValueItem
                 {...item}
                 label={`${formatPrice(range.from)} - ${formatPrice(range.to)}`}
