@@ -47,7 +47,6 @@ function ProgressiveDots({ highlights }: Props) {
         <div>
           <div class="w-[84px] h-[5px] rounded bg-[#f2f2f2] group-disabled:bg-[#414042]" />
           {/* <div class="w-[10px] h-[10px]  rounded border border-[#414042]  group-disabled:bg-[#414042]" /> */}
-
         </div>
       ))}
     </SliderDots>
