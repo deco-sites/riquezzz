@@ -186,8 +186,7 @@ function ProductCard(
           </figcaption>
           {/* SKU Selector */}
 
-          
-            {variants.length > 0
+          {variants.length > 0
             ? (
               newVariants.length > 0
                 ? (
@@ -205,7 +204,7 @@ function ProductCard(
                           variant={item?.lvl !== 0 ? "default" : "disabled"}
                           content={item?.value!}
                         />
-                      ))} 
+                      ))}
                     </ul>
                   </figcaption>
                 )
@@ -229,8 +228,7 @@ function ProductCard(
                   </figcaption>
                 )
             )
-            : ("")} 
-          
+            : ("")}
         </div>
       </figure>
       {/* Prices & Name */}
