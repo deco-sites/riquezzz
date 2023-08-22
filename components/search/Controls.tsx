@@ -44,9 +44,8 @@ function SearchControls(
           open.value = false;
         }}
       >
-        <BawFilters filters={filters} /> 
+        <BawFilters filters={filters} />
       </Modal>
- 
     </div>
   );
 }

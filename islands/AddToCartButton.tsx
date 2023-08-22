@@ -1,4 +1,3 @@
-
 import AddToCartButton from "$store/components/product/AddToCartButton.tsx";
 import type { Props } from "$store/components/product/AddToCartButton.tsx";
 
