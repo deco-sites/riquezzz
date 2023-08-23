@@ -144,7 +144,8 @@ export default function BawBannner({
           },
           index,
         ) => (
-          <a href={href}
+          <a 
+          href={href}
             class={`${IMAGE_SIZE[size_cols ?? 2]} ${ROW_SIZE[size_rows ?? 1]} ${
               index === 1 ? ("px-[30px] py-[20px] lg:px-0 lg:py-0") : ("")
             } transform transition duration-500 hover:scale-95  `}

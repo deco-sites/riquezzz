@@ -4,20 +4,23 @@ import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
 export interface Props {
   title?: string;
   subtitle?: string;
-  srcMobile: LiveImage;
-  srcDesktop?: LiveImage;
+  srcDesktop: LiveImage;
+  showMobile: boolean;
+  srcMobile?: LiveImage;
   alt: string;
   href: string;
 }
 
-function BannerUI({ srcDesktop, srcMobile, alt, title, subtitle }: Props) {
+function BannerUI({ srcDesktop, srcMobile, alt, title, subtitle, showMobile }: Props) {
   const id = useId();
   return (
     <>
       <div id={id} class="sm:px-4 w-full">
-        <div class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full  mb-1 mx-auto">
+
+        { showMobile ? (<div class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full  mb-1 mx-auto">
           <img class="w-full" src={srcMobile} alt={alt} />
-        </div>
+        </div>) : ("") }
+        
         <div class="hidden md:flex flex-row justify-between items-center border-b border-base-200 w-full mb-2 gap  mx-auto">
           <img class="w-full" src={srcDesktop} alt={alt} />
         </div>
