@@ -1,6 +1,5 @@
 import Modal from "$store/components/ui/Modal.tsx";
 import ModalMenu from "$store/components/ui/ModalMenu.tsx";
-import ModalCart from "$store/components/ui/ModalCart.tsx";
 
 import { lazy, Suspense } from "preact/compat";
 import { useUI } from "$store/sdk/useUI.ts";
@@ -24,9 +23,8 @@ function Modals({ menu, searchbar }: Props) {
   return (
     <>
       <ModalMenu
-        title="Menu"
-        mode="sidebar-left"
         loading="lazy"
+        class="left-auto md:left-0 absolute top-[50px] p-0 rounded-none "
         open={displayMenu.value}
         onClose={() => {
           displayMenu.value = false;
@@ -38,8 +36,6 @@ function Modals({ menu, searchbar }: Props) {
       </ModalMenu>
 
       <Modal
-        title="Buscar"
-        mode="sidebar-right"
         loading="lazy"
         open={displaySearchbar.value &&
           window?.matchMedia("(max-width: 767px)")?.matches}
@@ -52,10 +48,9 @@ function Modals({ menu, searchbar }: Props) {
         </Suspense>
       </Modal>
 
-      <ModalCart
-        title="Minha sacola"
-        mode="sidebar-right"
+      <Modal
         loading="lazy"
+        class="right-auto md:right-[40px] md:w-[400px] absolute top-[50px] p-0 rounded-none"
         open={displayCart.value}
         onClose={() => {
           displayCart.value = false;
@@ -64,7 +59,7 @@ function Modals({ menu, searchbar }: Props) {
         <Suspense fallback={<Loading />}>
           <Cart />
         </Suspense>
-      </ModalCart>
+      </Modal>
     </>
   );
 }
