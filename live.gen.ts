@@ -51,18 +51,6 @@ import * as $$$$$$$$25 from "./sections/WhatsApp.tsx";
 import * as $$$$$$$$26 from "./sections/BawProductShelf.tsx";
 import * as $$$$$$$$27 from "./sections/Carousel.tsx";
 import * as $$$$$$$$$$$0 from "./actions/createReview.ts";
-import * as $live_workflows from "$live/routes/live/workflows/run.ts";
-import * as $live_middleware from "$live/routes/_middleware.ts";
-import * as $live_workbench from "$live/routes/live/workbench.ts";
-import * as $live_invoke from "$live/routes/live/invoke/index.ts";
-import * as $live_invoke_key from "$live/routes/live/invoke/[...key].ts";
-import * as $live_editorData from "$live/routes/live/editorData.ts";
-import * as $live_inspect from "$live/routes/live/inspect/[...block].ts";
-import * as $live_release from "$live/routes/live/release.ts";
-import * as $live_meta from "$live/routes/live/_meta.ts";
-import * as $live_previews_block from "$live/routes/live/previews/[...block].tsx";
-import * as $live_previews_index from "$live/routes/live/previews/index.tsx";
-import * as $live_catchall from "$live/routes/[...catchall].tsx";
 import { DecoManifest } from "$live/types.ts";
 import * as i2$$$0 from "$live/loaders/secret.ts";
 import * as i2$$$1 from "$live/loaders/state.ts";
@@ -243,19 +231,6 @@ const manifest = {
   },
   "routes": {
     "./routes/_app.tsx": $$$$0,
-    "./routes/_middleware.ts": $live_middleware,
-    "./routes/[...catchall].tsx": $live_catchall,
-    "./routes/index.tsx": $live_catchall,
-    "./routes/live/_meta.ts": $live_meta,
-    "./routes/live/editorData.ts": $live_editorData,
-    "./routes/live/inspect/[...block].ts": $live_inspect,
-    "./routes/live/invoke/[...key].ts": $live_invoke_key,
-    "./routes/live/invoke/index.ts": $live_invoke,
-    "./routes/live/previews/[...block].tsx": $live_previews_block,
-    "./routes/live/previews/index.tsx": $live_previews_index,
-    "./routes/live/release.ts": $live_release,
-    "./routes/live/workbench.ts": $live_workbench,
-    "./routes/live/workflows/run.ts": $live_workflows,
   },
   "islands": {
     "./islands/AddToCartAvatar.tsx": $$$$$2,
