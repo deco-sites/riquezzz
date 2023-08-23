@@ -44,12 +44,12 @@ import * as $$$$$$$$18 from "./sections/BannerCardPosition.tsx";
 import * as $$$$$$$$19 from "./sections/Header.tsx";
 import * as $$$$$$$$20 from "./sections/BawFeatures.tsx";
 import * as $$$$$$$$21 from "./sections/ProductDetails.tsx";
-import * as $$$$$$$$22 from "./sections/ProductShelf.tsx";
-import * as $$$$$$$$23 from "./sections/ReadMore.tsx";
-import * as $$$$$$$$24 from "./sections/SearchBreadControls.tsx";
-import * as $$$$$$$$25 from "./sections/SearchResult.tsx";
-import * as $$$$$$$$26 from "./sections/WhatsApp.tsx";
-import * as $$$$$$$$27 from "./sections/WishlistGallery.tsx";
+import * as $$$$$$$$22 from "./sections/BannerFull.tsx";
+import * as $$$$$$$$23 from "./sections/HeadBanner.tsx";
+import * as $$$$$$$$24 from "./sections/Highlights.tsx";
+import * as $$$$$$$$25 from "./sections/WhatsApp.tsx";
+import * as $$$$$$$$26 from "./sections/BawProductShelf.tsx";
+import * as $$$$$$$$27 from "./sections/Carousel.tsx";
 import * as $$$$$$$$$$$0 from "./actions/createReview.ts";
 import * as $live_workflows from "$live/routes/live/workflows/run.ts";
 import * as $live_middleware from "$live/routes/_middleware.ts";
@@ -282,34 +282,34 @@ const manifest = {
     "$live/sections/PageInclude.tsx": i2$$$$$2,
     "$live/sections/Slot.tsx": i2$$$$$3,
     "$live/sections/UseSlot.tsx": i2$$$$$4,
-    "deco-sites/riquezzz/sections/AuthIframe.tsx": $$$$$$$$0,
-    "deco-sites/riquezzz/sections/BannerCardPosition.tsx": $$$$$$$$1,
-    "deco-sites/riquezzz/sections/BannerFourCards.tsx": $$$$$$$$2,
-    "deco-sites/riquezzz/sections/BannerFull.tsx": $$$$$$$$3,
-    "deco-sites/riquezzz/sections/BannerGrid.tsx": $$$$$$$$4,
-    "deco-sites/riquezzz/sections/BannerMovieImg.tsx": $$$$$$$$5,
-    "deco-sites/riquezzz/sections/BannerPLP.tsx": $$$$$$$$6,
-    "deco-sites/riquezzz/sections/BannerPLPCampaign.tsx": $$$$$$$$7,
-    "deco-sites/riquezzz/sections/BawBanner.tsx": $$$$$$$$8,
-    "deco-sites/riquezzz/sections/BawFeatures.tsx": $$$$$$$$9,
-    "deco-sites/riquezzz/sections/BawHighlights.tsx": $$$$$$$$10,
-    "deco-sites/riquezzz/sections/BawProductShelf.tsx": $$$$$$$$11,
-    "deco-sites/riquezzz/sections/Carousel.tsx": $$$$$$$$12,
-    "deco-sites/riquezzz/sections/CookieConsent.tsx": $$$$$$$$13,
-    "deco-sites/riquezzz/sections/DesignSystem.tsx": $$$$$$$$14,
-    "deco-sites/riquezzz/sections/Features.tsx": $$$$$$$$15,
-    "deco-sites/riquezzz/sections/Footer.tsx": $$$$$$$$16,
-    "deco-sites/riquezzz/sections/HeadBanner.tsx": $$$$$$$$17,
-    "deco-sites/riquezzz/sections/Header.tsx": $$$$$$$$18,
-    "deco-sites/riquezzz/sections/Highlights.tsx": $$$$$$$$19,
-    "deco-sites/riquezzz/sections/LinkTree.tsx": $$$$$$$$20,
+    "deco-sites/riquezzz/sections/AuthIframe.tsx": $$$$$$$$5,
+    "deco-sites/riquezzz/sections/BannerCardPosition.tsx": $$$$$$$$18,
+    "deco-sites/riquezzz/sections/BannerFourCards.tsx": $$$$$$$$11,
+    "deco-sites/riquezzz/sections/BannerFull.tsx": $$$$$$$$22,
+    "deco-sites/riquezzz/sections/BannerGrid.tsx": $$$$$$$$7,
+    "deco-sites/riquezzz/sections/BannerMovieImg.tsx": $$$$$$$$10,
+    "deco-sites/riquezzz/sections/BannerPLP.tsx": $$$$$$$$4,
+    "deco-sites/riquezzz/sections/BannerPLPCampaign.tsx": $$$$$$$$2,
+    "deco-sites/riquezzz/sections/BawBanner.tsx": $$$$$$$$13,
+    "deco-sites/riquezzz/sections/BawFeatures.tsx": $$$$$$$$20,
+    "deco-sites/riquezzz/sections/BawHighlights.tsx": $$$$$$$$8,
+    "deco-sites/riquezzz/sections/BawProductShelf.tsx": $$$$$$$$26,
+    "deco-sites/riquezzz/sections/Carousel.tsx": $$$$$$$$27,
+    "deco-sites/riquezzz/sections/CookieConsent.tsx": $$$$$$$$16,
+    "deco-sites/riquezzz/sections/DesignSystem.tsx": $$$$$$$$17,
+    "deco-sites/riquezzz/sections/Features.tsx": $$$$$$$$3,
+    "deco-sites/riquezzz/sections/Footer.tsx": $$$$$$$$14,
+    "deco-sites/riquezzz/sections/HeadBanner.tsx": $$$$$$$$23,
+    "deco-sites/riquezzz/sections/Header.tsx": $$$$$$$$19,
+    "deco-sites/riquezzz/sections/Highlights.tsx": $$$$$$$$24,
+    "deco-sites/riquezzz/sections/LinkTree.tsx": $$$$$$$$1,
     "deco-sites/riquezzz/sections/ProductDetails.tsx": $$$$$$$$21,
-    "deco-sites/riquezzz/sections/ProductShelf.tsx": $$$$$$$$22,
-    "deco-sites/riquezzz/sections/ReadMore.tsx": $$$$$$$$23,
-    "deco-sites/riquezzz/sections/SearchBreadControls.tsx": $$$$$$$$24,
-    "deco-sites/riquezzz/sections/SearchResult.tsx": $$$$$$$$25,
-    "deco-sites/riquezzz/sections/WhatsApp.tsx": $$$$$$$$26,
-    "deco-sites/riquezzz/sections/WishlistGallery.tsx": $$$$$$$$27,
+    "deco-sites/riquezzz/sections/ProductShelf.tsx": $$$$$$$$12,
+    "deco-sites/riquezzz/sections/ReadMore.tsx": $$$$$$$$6,
+    "deco-sites/riquezzz/sections/SearchBreadControls.tsx": $$$$$$$$15,
+    "deco-sites/riquezzz/sections/SearchResult.tsx": $$$$$$$$9,
+    "deco-sites/riquezzz/sections/WhatsApp.tsx": $$$$$$$$25,
+    "deco-sites/riquezzz/sections/WishlistGallery.tsx": $$$$$$$$0,
     "deco-sites/std/sections/Analytics.tsx": i2$$$$$5,
     "deco-sites/std/sections/configButterCMS.global.tsx": i2$$$$$6,
     "deco-sites/std/sections/configLinxImpulse.global.tsx": i2$$$$$7,
