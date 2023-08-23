@@ -1,7 +1,7 @@
 import Image from "deco-sites/std/components/Image.tsx";
 import Avatar from "$store/components/ui/Avatar.tsx";
-import AddToCartAvatar from "$store/islands/AddToCartAvatar.tsx";
-import WishlistIcon from "$store/islands/WishlistButton.tsx";
+import AddToCartAvatar from "$store/components/product/AddToCartAvatar.tsx";
+import WishlistIcon from "$store/components/wishlist/WishlistButton.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";

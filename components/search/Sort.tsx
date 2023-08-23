@@ -48,7 +48,12 @@ function Sort({ sortOptions }: Props) {
         class="w-[100px] sm:w-full h-[30px] px-1  bg-transparent text-button font-button text-base-content cursor-pointer outline-none border-b border-black"
       >
         {sortOptions.map(({ value, label }) => (
-          <option key={value} value={value} selected={value === sort}>
+          <option
+            key={value}
+            label={value}
+            value={value}
+            selected={value === sort}
+          >
             <span class="text-sm items-center  sm:w-full">{labels[label]}</span>
           </option>
         ))}
