@@ -1,17 +1,9 @@
 import { fetchAPI } from "deco-sites/std/utils/fetch.ts";
 import { useUser } from "deco-sites/std/packs/vtex/hooks/useUser.ts";
 
-// export interface PropsLoad {
-//   productId: number;
-// }
-
-// export interface PropsCreate {
-//   productId: string;
-//   rating: number;
-//   title: string;
-//   text: string;
-//   reviewerName: string;
-// }
+export interface PropsLoad {
+  productId: string;
+}
 
 export interface ResponseReviews {
   data?: Reviews[];
@@ -49,15 +41,23 @@ const url = "https://bawclothing.myvtex.com/reviews-and-ratings/api";
 
 // mocking specific product to test with reviews
 // /sweatshirt-logo-azul-0070430005/p
-const productId = "1944875713";
+// let productId = "1944875713";
 
 const loader = async (
-  // props: PropsLoad,
+  props: PropsLoad,
 ): Promise<ResponseReviews | null> => {
   const { user } = useUser();
   const shopperId = user.value?.email;
   let userHasReviewed = false;
   let averageRating: AverageResponse;
+
+  let productId = "";
+
+  // console.log({ propsProductId: props.productId });
+
+  if (props.productId) {
+    productId = props.productId;
+  }
 
   if (shopperId) {
     try {
@@ -110,6 +110,8 @@ const loader = async (
         },
       },
     );
+
+    // console.log({ resposta: { ...response, userHasReviewed, averageRating } });
 
     return { ...response, userHasReviewed, averageRating };
   } catch (e) {

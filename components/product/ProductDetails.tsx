@@ -20,12 +20,13 @@ import ProductImageZoom from "$store/islands/ProductImageZoom.tsx";
 import WishlistButton from "../wishlist/WishlistButton.tsx";
 import ProductReviews from "deco-sites/riquezzz/components/product/ProductReviews.tsx";
 import { ResponseReviews } from "$store/loaders/reviewsandratings.ts";
+import type { SectionProps } from "$live/mod.ts";
+import { default as reviewsLoader } from "deco-sites/riquezzz/loaders/reviewsandratings.ts";
 
 export type Variant = "front-back" | "slider" | "auto";
 
 export interface Props {
   page: LoaderReturnType<ProductDetailsPage | null>;
-  reviews: ResponseReviews | null;
   /**
    * @title Product view
    * @description Ask for the developer to remove this option since this is here to help development only and should not be used in production
@@ -36,6 +37,25 @@ export interface Props {
 const WIDTH = 620;
 const HEIGHT = 930;
 const ASPECT_RATIO = `${WIDTH} / ${HEIGHT}`;
+
+export async function loader(
+  { page, variant }: Props,
+  _req: Request,
+) {
+  let reviews = {} as ResponseReviews;
+
+  try {
+    reviews = (await reviewsLoader({
+      productId: page!.product!.isVariantOf
+        ? page!.product!.isVariantOf?.productGroupID
+        : page!.product!.productID,
+    })) as ResponseReviews;
+  } catch (e) {
+    console.log({ e });
+  }
+
+  return { page, variant, reviews };
+}
 
 /**
  * Rendered when a not found is returned by any of the loaders run on this page
@@ -382,7 +402,9 @@ function Details({
         <SliderJS rootId={id}></SliderJS>
 
         <ProductReviews
-          productID={page.product.productID}
+          productID={page.product.isVariantOf
+            ? page.product.isVariantOf.productGroupID
+            : page.product.productID}
           userHasReviewed={reviews}
         />
       </>
@@ -426,13 +448,24 @@ function Details({
 }
 
 function ProductDetails(
-  { page, variant: maybeVar = "auto", reviews }: Props,
+  { page, variant: maybeVar = "auto", reviews }: SectionProps<
+    typeof loader
+  >,
 ) {
   /**
    * Showcase the different product views we have on this template. In case there are less
    * than two images, render a front-back, otherwhise render a slider
    * Remove one of them and go with the best suited for your use case.
    */
+
+  // console.log({
+  //   product: page?.product.isVariantOf
+  //     ? page.product.isVariantOf.productGroupID
+  //     : page?.product.productID,
+  //   reviews,
+  // });
+  // console.log({ page });
+
   const variant = maybeVar === "auto"
     ? page?.product.image?.length && page?.product.image?.length < 2
       ? "front-back"
@@ -446,7 +479,7 @@ function ProductDetails(
           <Details
             page={page}
             variant={variant}
-            reviews={reviews!}
+            reviews={reviews}
           />
         )
         : <NotFound />}

@@ -39,7 +39,7 @@ const NewRatingForm = (
     setReviewerName(undefined);
     setTitle(undefined);
     setIsLoading(false);
-    console.log({ data });
+    // console.log({ data });
   }, []);
 
   return (
@@ -179,14 +179,12 @@ function ProductReviews(
   const isUserLoggedIn = Boolean(user.value?.email);
   const { averageRating } = userHasReviewed;
 
-  console.log({ userHasReviewed });
-
   return (
     <section class="w-full px-auto flex justify-center mb-5">
       <div class="border border-black w-full mt-12 p-8">
         <div>
           <h2 class="uppercase font-bold text-3xl">
-            Avaliações do Produto {productID}
+            Avaliações do Produto {/*{productID}*/}
           </h2>
           <div className="rating mt-2">
             <input
