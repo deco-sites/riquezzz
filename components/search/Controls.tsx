@@ -37,8 +37,7 @@ function SearchControls(
 
       <Modal
         loading="lazy"
-        title="Filtrar"
-        mode="sidebar-right"
+        class="left-auto md:left-0 absolute top-[50px] p-0 rounded-none"
         open={open.value}
         onClose={() => {
           open.value = false;
