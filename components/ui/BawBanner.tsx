@@ -126,7 +126,6 @@ export default function BawBannner({
 
   banners = [],
 }: Props) {
-  console.log({ itemsPerLine });
   return (
     <section class="w-full  md:pl-2 mx-auto md:pr-[42px]">
       <div
@@ -145,7 +144,7 @@ export default function BawBannner({
           },
           index,
         ) => (
-          <div
+          <a href={href}
             class={`${IMAGE_SIZE[size_cols ?? 2]} ${ROW_SIZE[size_rows ?? 1]} ${
               index === 1 ? ("px-[30px] py-[20px] lg:px-0 lg:py-0") : ("")
             } transform transition duration-500 hover:scale-95  `}
@@ -176,7 +175,7 @@ export default function BawBannner({
                 loading="lazy"
               />
             </Picture>
-          </div>
+          </a>
         ))}
       </div>
     </section>
