@@ -186,49 +186,47 @@ function CardMovie(
               DESKTOP[banner!.desktop!]
             }  ${MOBILE[banner!.mobile!]}`}
           >
-            <div>
-              <a
-                href={banner?.href}
-                class={`overflow-hidden ${
-                  RADIUS_MOBILE[borderRadius.mobile ?? "none"]
-                } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
+            <a
+              href={banner?.href}
+              class={`overflow-hidden ${
+                RADIUS_MOBILE[borderRadius.mobile ?? "none"]
+              } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
+            >
+              <div
+                class={` m-0 p-0  ${SIZE_BANNER[banner!.size!]} ${
+                  SIZE_BANNER_MOBILE[banner!.sizeMobile!]
+                }`}
               >
-                <div
-                  class={` m-0 p-0  ${SIZE_BANNER[banner!.size!]} ${
-                    SIZE_BANNER_MOBILE[banner!.sizeMobile!]
-                  }`}
+                <video
+                  src={banner.srcDesktop}
+                  alt={banner.alt}
+                  autoPlay
+                  muted
+                  loop
+                  preload="auto"
+                  webkit-playsinline
+                  x5-playsinline
+                  playsInline
+                  class="hidden w-full h-full sm:inline-block"
                 >
-                  <video
-                    src={banner.srcDesktop}
-                    alt={banner.alt}
-                    autoPlay
-                    muted
-                    loop
-                    preload="auto"
-                    webkit-playsinline
-                    x5-playsinline
-                    playsInline
-                    class="hidden w-full h-full sm:inline-block"
-                  >
-                    Video não suportado!
-                  </video>
-                  <video
-                    src={banner.srcMobile}
-                    alt={banner.alt}
-                    autoPlay
-                    muted
-                    loop
-                    preload="auto"
-                    webkit-playsinline
-                    x5-playsinline
-                    playsInline
-                    class="sm:hidden w-full inline-block"
-                  >
-                    Video não suportado!
-                  </video>
-                </div>
-              </a>
-            </div>
+                  Video não suportado!
+                </video>
+                <video
+                  src={banner.srcMobile}
+                  alt={banner.alt}
+                  autoPlay
+                  muted
+                  loop
+                  preload="auto"
+                  webkit-playsinline
+                  x5-playsinline
+                  playsInline
+                  class="sm:hidden w-full inline-block"
+                >
+                  Video não suportado!
+                </video>
+              </div>
+            </a>
           </section>
         )
         : (
@@ -246,7 +244,7 @@ function CardMovie(
                 ? (
                   <Source
                     src={banner.srcMobile}
-                    class={` m-0 p-0  ${SIZE_BANNER[banner!.size!]}  ${
+                    class={` m-0 p-0   ${
                       SIZE_BANNER_MOBILE[banner!.sizeMobile!]
                     }`}
                     width={335}
@@ -259,9 +257,7 @@ function CardMovie(
                 ? (
                   <Source
                     src={banner.srcDesktop}
-                    class={` m-0 p-0  ${SIZE_BANNER[banner!.size!]}  ${
-                      SIZE_BANNER_MOBILE[banner!.sizeMobile!]
-                    }`}
+                    class={` m-0 p-0  ${SIZE_BANNER[banner!.size!]}  `}
                     width={960}
                     height={1440}
                     media="(min-width: 767px)"
