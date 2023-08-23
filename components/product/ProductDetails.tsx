@@ -27,7 +27,6 @@ export type Variant = "front-back" | "slider" | "auto";
 
 export interface Props {
   page: LoaderReturnType<ProductDetailsPage | null>;
-  reviews: ResponseReviews | null;
   /**
    * @title Product view
    * @description Ask for the developer to remove this option since this is here to help development only and should not be used in production
@@ -40,19 +39,22 @@ const HEIGHT = 930;
 const ASPECT_RATIO = `${WIDTH} / ${HEIGHT}`;
 
 export async function loader(
-  { page, reviews, variant }: Props,
+  { page, variant }: Props,
   _req: Request,
 ) {
-  let reviewsReturn = {};
+  let reviews = {} as ResponseReviews;
+
   try {
-    reviewsReturn = (await reviewsLoader({
-      productId: page!.product!.productID,
+    reviews = (await reviewsLoader({
+      productId: page!.product!.isVariantOf
+        ? page!.product!.isVariantOf?.productGroupID
+        : page!.product!.productID,
     })) as ResponseReviews;
   } catch (e) {
     console.log({ e });
   }
 
-  return { page, reviews, variant, reviewsReturn };
+  return { page, variant, reviews };
 }
 
 /**
@@ -400,7 +402,9 @@ function Details({
         <SliderJS rootId={id}></SliderJS>
 
         <ProductReviews
-          productID={page.product.productID}
+          productID={page.product.isVariantOf
+            ? page.product.isVariantOf.productGroupID
+            : page.product.productID}
           userHasReviewed={reviews}
         />
       </>
@@ -444,7 +448,7 @@ function Details({
 }
 
 function ProductDetails(
-  { page, variant: maybeVar = "auto", reviews, reviewsReturn }: SectionProps<
+  { page, variant: maybeVar = "auto", reviews }: SectionProps<
     typeof loader
   >,
 ) {
@@ -454,7 +458,13 @@ function ProductDetails(
    * Remove one of them and go with the best suited for your use case.
    */
 
-  console.log({ product: page?.product.productID, reviews, reviewsReturn });
+  // console.log({
+  //   product: page?.product.isVariantOf
+  //     ? page.product.isVariantOf.productGroupID
+  //     : page?.product.productID,
+  //   reviews,
+  // });
+  // console.log({ page });
 
   const variant = maybeVar === "auto"
     ? page?.product.image?.length && page?.product.image?.length < 2
@@ -469,7 +479,7 @@ function ProductDetails(
           <Details
             page={page}
             variant={variant}
-            reviews={reviews!}
+            reviews={reviews}
           />
         )
         : <NotFound />}

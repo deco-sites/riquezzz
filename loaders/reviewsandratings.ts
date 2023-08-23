@@ -41,7 +41,7 @@ const url = "https://bawclothing.myvtex.com/reviews-and-ratings/api";
 
 // mocking specific product to test with reviews
 // /sweatshirt-logo-azul-0070430005/p
-let productId = "1944875713";
+// let productId = "1944875713";
 
 const loader = async (
   props: PropsLoad,
@@ -50,6 +50,10 @@ const loader = async (
   const shopperId = user.value?.email;
   let userHasReviewed = false;
   let averageRating: AverageResponse;
+
+  let productId = "";
+
+  // console.log({ propsProductId: props.productId });
 
   if (props.productId) {
     productId = props.productId;
@@ -107,7 +111,7 @@ const loader = async (
       },
     );
 
-    console.log({ resposta: { ...response, userHasReviewed, averageRating } });
+    // console.log({ resposta: { ...response, userHasReviewed, averageRating } });
 
     return { ...response, userHasReviewed, averageRating };
   } catch (e) {
