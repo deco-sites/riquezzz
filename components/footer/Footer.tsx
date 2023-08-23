@@ -92,7 +92,7 @@ function Footer(
       <footer class="before:content-[''] before:absolute before:top-0 before:left-0 before:bottom-0 before:right-0 before:z-[9] before:opacity-20 before:bg-cover
       before:bg-[url('https://bawclothing.vtexassets.com/assets/vtex/assets-builder/bawclothing.theme/4.5.13/img/bg-img-footer___f97b5671fcf089ebf7415649360e7e9a.png')] 
       relative w-full sm:bg-primary-dark flex flex-col divide-y divide-primary-content sm:pb-[80px] sm:px-8 bg-[#000]">
-        <div class=" w-full flex flex-col divide-y divide-primary-content border-b border-[#9a9a9a79]">
+        <div class=" w-full flex flex-col divide-y divide-primary-content border-b border-[#9a9a9a79] z-10">
           <FooterContainer>
             <div class="flex sm:hidden mb-4">
               <Newsletter
