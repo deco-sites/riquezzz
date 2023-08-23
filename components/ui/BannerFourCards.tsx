@@ -96,7 +96,7 @@ function CardMovie(
                   RADIUS_MOBILE[borderRadius.mobile ?? "none"]
                 } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
               >
-                <div class="w-full h-full m-0 p-o b">
+                <div class="w-full  m-0 p-o b">
                   <video
                     src={banner?.srcDesktop}
                     alt={banner?.alt}
@@ -107,7 +107,7 @@ function CardMovie(
                     webkit-playsinline
                     x5-playsinline
                     playsInline
-                    class="hidden w-full h-full xl:inline-block"
+                    class="hidden w-full xl:inline-block"
                   >
                     Video não suportado!
                   </video>
@@ -121,7 +121,7 @@ function CardMovie(
                     webkit-playsinline
                     x5-playsinline
                     playsInline
-                    class="xl:hidden w-full h-full inline-block"
+                    class="xl:hidden w-full inline-block"
                   >
                     Video não suportado!
                   </video>
@@ -131,7 +131,7 @@ function CardMovie(
           </section>
         )
         : (
-          <div class="grid grid-cols-1 grid-rows-1">
+          <div class="grid grid-cols-1 grid-rows-1 ">
             <Picture
               preload
               class="col-start-1 col-span-1 row-start-1 row-span-1"
@@ -140,7 +140,7 @@ function CardMovie(
                 ? (
                   <Source
                     src={banner?.srcMobile}
-                    class="w-full h-full"
+                    class="w-full  "
                     width={335}
                     height={500}
                     media="(max-width: 767px)"
@@ -151,7 +151,7 @@ function CardMovie(
                 ? (
                   <Source
                     src={banner.srcDesktop}
-                    class="w-full h-full"
+                    class="w-full  "
                     width={960}
                     height={1440}
                     media="(min-width: 767px)"
@@ -162,7 +162,7 @@ function CardMovie(
               {banner?.srcDesktop
                 ? (
                   <img
-                    class="w-full h-full"
+                    class="w-full object-cover 2xl:h-[1300px]  "
                     src={banner.srcDesktop}
                     alt={banner.alt}
                   />
@@ -261,13 +261,13 @@ function CardItem(
 
   return (
     <div
-      class="card card-compact card-bordered rounded-none border-transparent group "
+      class="card card-compact card-bordered rounded-none border-transparent group  w-[150px] lg:w-[200px]    2xl:w-[300px]  "
       data-deco="view-product"
       id={`product-card-${productID}`}
       {...sendEventOnClick(clickEvent)}
     >
       <div
-        class={`relative h-[350px] w-[150px] xl:h-[660px] lg:w-[250px] lg:h-[560px] xl:w-[250px] 2xl:h-[660px] 2xl:w-[300px] `}
+        class={`relative  w-[150px] lg:w-[200px]    2xl:w-[300px] `}
       >
         <figure
           class="relative "
@@ -294,7 +294,7 @@ function CardItem(
           <a
             href={url && relative(url)}
             aria-label="view product"
-            class="contents hidden xl:flex"
+            class="contents flex"
           >
             <Image
               src={front.url!}
@@ -317,32 +317,7 @@ function CardItem(
               decoding="async"
             />
           </a>
-          <a
-            href={url && relative(url)}
-            aria-label="view product"
-            class="contents flex xl:hidden"
-          >
-            <Image
-              src={front.url!}
-              alt={front.alternateName}
-              width={150}
-              height={250}
-              class="absolute top-0 left-0  transition-opacity  w-full   object-cover opacity-100 group-hover:opacity-0 "
-              loading={lcp ? "eager" : "lazy"}
-              sizes="(max-width: 640px) "
-              decoding="async"
-            />
-            <Image
-              src={back?.url ?? front.url!}
-              alt={back?.alternateName ?? front.alternateName}
-              width={150}
-              height={250}
-              class="absolute top-0 left-0  transition-opacity  w-full  object-cover opacity-0 group-hover:opacity-100"
-              loading={lcp ? "eager" : "lazy"}
-              sizes="(max-width: 640px) "
-              decoding="async"
-            />
-          </a>
+
           <div class="group/edit">
             <figcaption class=" card-body card-actions absolute bottom-0 left-0 w-full  transition-opacity opacity-0 group-hover:opacity-100 bg-green-600">
               {/* COMPRA */}
@@ -485,16 +460,16 @@ function CardsCamps(
     <>
       {ordem === "Banner/Cards"
         ? (
-          <div class="w-full flex flex-col xl:flex-row gap-5 xl:gap-10 px-[15px] pt-[10px]  xl:px-[50px] xl:pt-[40px] justify-center my-2">
+          <div class="w-full lg:container lg:max-w-[90vw] flex flex-col lg:flex-row gap-5 lg:gap-10 px-[15px] pt-[10px] justify-center my-2">
             <div
-              class={`w-full lx:max-w-[50vw] flex `}
+              class={`w-full justify-end  flex `}
             >
               <CardMovie banner={bannerFirst} borderRadius={borderRadius} />
             </div>
 
             <div
               id={id}
-              class="flex flex-row flex-wrap gap-5    justify-center"
+              class="flex flex-row flex-wrap gap-2  justify-center  lg:justify-start"
             >
               {productCard !== undefined
                 ? (productCard!.products?.map((product, index) => (
@@ -510,10 +485,10 @@ function CardsCamps(
           </div>
         )
         : (
-          <div class="w-full flex flex-col xl:flex-row gap-5 xl:gap-10 px-[15px] pt-[10px]  xl:px-[50px] xl:pt-[40px] justify-center my-2">
+          <div class="w-full lg:container lg:max-w-[90vw] flex flex-col lg:flex-row gap-5 lg:gap-10 px-[15px] pt-[10px] justify-center my-2">
             <div
               id={id}
-              class="flex flex-row flex-wrap gap-5   justify-center"
+              class="flex flex-row flex-wrap gap-2  justify-center  lg:justify-end"
             >
               {productCard !== undefined
                 ? (productCard!.products?.map((product, index) => (
@@ -528,7 +503,7 @@ function CardsCamps(
             </div>
 
             <div
-              class={`w-full lx:max-w-[50vw] flex `}
+              class={`w-full justify-start  flex `}
             >
               <CardMovie banner={bannerFirst} borderRadius={borderRadius} />
             </div>
