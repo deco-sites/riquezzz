@@ -353,6 +353,7 @@ const manifest = {
     "deco-sites/std/actions/vtex/wishlist/addItem.ts": i2$$$$$$23,
     "deco-sites/std/actions/vtex/wishlist/removeItem.ts": i2$$$$$$24,
   },
+  "name": "deco-sites/riquezzz",
   "handlers": {
     "$live/handlers/devPage.ts": i2$$$$0,
     "$live/handlers/fresh.ts": i2$$$$1,
