@@ -41,7 +41,7 @@ function SectionItem({ item }: { item: Item }) {
           </div>
         )
         : (
-          <a href={item.href}>
+          <a href={item.href} target={"_blank"}>
             {item.label}
           </a>
         )}
