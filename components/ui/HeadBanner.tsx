@@ -11,16 +11,21 @@ export interface Props {
   href: string;
 }
 
-function BannerUI({ srcDesktop, srcMobile, alt, title, subtitle, showMobile }: Props) {
+function BannerUI(
+  { srcDesktop, srcMobile, alt, title, subtitle, showMobile }: Props,
+) {
   const id = useId();
   return (
     <>
       <div id={id} class="sm:px-4 w-full">
+        {showMobile
+          ? (
+            <div class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full  mb-1 mx-auto">
+              <img class="w-full" src={srcMobile} alt={alt} />
+            </div>
+          )
+          : ("")}
 
-        { showMobile ? (<div class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full  mb-1 mx-auto">
-          <img class="w-full" src={srcMobile} alt={alt} />
-        </div>) : ("") }
-        
         <div class="hidden md:flex flex-row justify-between items-center border-b border-base-200 w-full mb-2 gap  mx-auto">
           <img class="w-full" src={srcDesktop} alt={alt} />
         </div>
