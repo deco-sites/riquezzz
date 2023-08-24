@@ -47,7 +47,12 @@ export interface BannerMovieIMG {
   sizeMobile: 1 | 2;
   vertical?: "start" | "center" | "end";
   desalinhamento?: boolean;
-  desalinhamentoAltura?: "margin-top--100px" | "margin-top--200px" | "margin-top--300px" | "margin-top--80px" | "align";
+  desalinhamentoAltura?:
+    | "margin-top--100px"
+    | "margin-top--200px"
+    | "margin-top--300px"
+    | "margin-top--80px"
+    | "align";
 }
 
 export interface Props {
@@ -55,11 +60,16 @@ export interface Props {
 
   productCard?: LoaderReturnType<ProductListingPage | null>;
   horizontal: "start" | "center" | "end" | "between" | "around" | "evenly";
-  
+
   /** @default 2 */
   size: 1 | 2 | 3;
   sizeMobile: 1 | 2;
-  desalinhamento?: "margin-top-100px" | "margin-top-200px" | "margin-top-300px" | "margin-top--80px"| "align";
+  desalinhamento?:
+    | "margin-top-100px"
+    | "margin-top-200px"
+    | "margin-top-300px"
+    | "margin-top--80px"
+    | "align";
   productCardMobileColum?: boolean;
   itemListName?: string;
   preload?: boolean;
@@ -320,7 +330,12 @@ function CardItem(
     colorRed?: boolean;
     size: 1 | 2 | 3;
     index: number;
-    desalinhamento: "margin-top-100px" | "margin-top-200px" | "margin-top-300px" | "margin-top--80px"| "align";
+    desalinhamento:
+      | "margin-top-100px"
+      | "margin-top-200px"
+      | "margin-top-300px"
+      | "margin-top--80px"
+      | "align";
     sizeMobile: 1 | 2;
   },
 ) {
