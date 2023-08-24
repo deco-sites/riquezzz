@@ -7,6 +7,8 @@ export type IconItem = { icon: AvailableIcons; href: string };
 export type StringItem = {
   label: string;
   href?: string;
+  /** @default blank */
+  target?: 'blank' | 'self';
 };
 export type StringNewsletter = {
   Title: string;
@@ -41,7 +43,7 @@ function SectionItem({ item }: { item: Item }) {
           </div>
         )
         : (
-          <a href={item.href} target={"_blank"}>
+          <a href={item.href} target={item.target ? `_${item.target}` : '_blank'}>
             {item.label}
           </a>
         )}
