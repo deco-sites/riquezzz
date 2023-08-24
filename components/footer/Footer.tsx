@@ -41,7 +41,7 @@ function SectionItem({ item }: { item: Item }) {
           </div>
         )
         : (
-          <a href={item.href}>
+          <a href={item.href} target={"_blank"}>
             {item.label}
           </a>
         )}
@@ -92,7 +92,7 @@ function Footer(
       <footer class="before:content-[''] before:absolute before:top-0 before:left-0 before:bottom-0 before:right-0 before:z-[9] before:opacity-20 before:bg-cover
       before:bg-[url('https://bawclothing.vtexassets.com/assets/vtex/assets-builder/bawclothing.theme/4.5.13/img/bg-img-footer___f97b5671fcf089ebf7415649360e7e9a.png')] 
       relative w-full sm:bg-primary-dark flex flex-col divide-y divide-primary-content sm:pb-[80px] sm:px-8 bg-[#000]">
-        <div class=" w-full flex flex-col divide-y divide-primary-content border-b border-[#9a9a9a79]">
+        <div class=" w-full flex flex-col divide-y divide-primary-content border-b border-[#9a9a9a79] z-10">
           <FooterContainer>
             <div class="flex sm:hidden mb-4">
               <Newsletter
@@ -202,53 +202,36 @@ function Footer(
         </div>
       </footer>
 
-      <div class="w-full bg-black">
+      <div class="w-full bg-white">
         <div class="container w-full">
           <FooterContainer class="flex justify-between w-full">
-            <span class="flex items-center gap-1 text-primary-content">
-              Powered by{" "}
-              <a
-                href="https://www.deco.cx"
-                aria-label="powered by https://www.deco.cx"
-              >
-                <Icon id="Deco" height={20} width={60} strokeWidth={0.01} />
-              </a>
-            </span>
+            <div class="">
+              <div>
+                <span class="text-xs">
+                  © Baw Clothing - Todos os direitos reservado - BAW Clothing
+                  Indústria e Comércio de Vestuários Ltda. CNPJ
+                  27.238.862/0001-03 SAC (11) 3181-6118
+                </span>
+              </div>
+              <div class="mt-2">
+                <span class="flex items-center gap-1 text-[#747474] text-xs">
+                  Powered by{" "}
+                  <a
+                    href="https://www.deco.cx"
+                    aria-label="powered by https://www.deco.cx"
+                  >
+                    <Icon id="Deco" height={15} width={45} strokeWidth={0.01} />
+                  </a>
+                </span>
+              </div>
+            </div>
 
-            <ul class="flex items-center justify-center gap-2">
-              <li>
-                <a
-                  href="https://www.instagram.com/deco.cx"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram logo"
-                >
-                  <Icon
-                    class="text-primary-content"
-                    width={32}
-                    height={32}
-                    id="Instagram"
-                    strokeWidth={1}
-                  />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="http://www.deco.cx/discord"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Discord logo"
-                >
-                  <Icon
-                    class="text-primary-content"
-                    width={32}
-                    height={32}
-                    id="Discord"
-                    strokeWidth={5}
-                  />
-                </a>
-              </li>
-            </ul>
+            <div class="flex">
+              <img
+                src={"https://bawclothing.vtexassets.com/assets/vtex.file-manager-graphql/images/cb2b8e5a-8783-4090-a3b9-aecc33ce8c42___206c3b8b0da92d76e40c362f80f2cf6a.svg"}
+                alt="credit cards"
+              />
+            </div>
           </FooterContainer>
         </div>
       </div>

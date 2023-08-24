@@ -1,4 +1,5 @@
 {
   "namespace": "deco-sites/riquezzz",
-  "siteId": 1285
+  "siteId": 1285,
+  "imports": ["$live/live.gen.ts", "deco-sites/std/live.gen.ts"]
 }
