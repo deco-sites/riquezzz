@@ -29,13 +29,12 @@ const runOnMount = () => {
       "vtex-my-account-1-x-menuLink",
     )[0];
     let logout = false;
-    if(d) {
+    if (d) {
       d.addEventListener("click", (e) => {
         logout = true;
         console.log({ e });
       });
     }
-    
 
     console.log({ d });
 
@@ -74,6 +73,7 @@ function AuthIframe({
             id="auth-iframe"
             class={`w-[100vw] text-center`}
             frameBorder="0"
+            height={700}
             scrolling="no"
             marginHeight={0}
             marginWidth={0}
