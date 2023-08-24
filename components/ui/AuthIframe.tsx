@@ -22,29 +22,33 @@ const runOnMount = () => {
     //   y: iFrame!.contentWindow!.document.body.scrollHeight,
     // });
 
-    const d = iFrame!.contentDocument!.documentElement!.getElementsByClassName("vtex-my-account-1-x-menuLink")[0]
-    let logout = false;
-    d.addEventListener("click", (e) => {
-      logout = true
-      console.log({ e })
-    })
     
-    console.log({ d })
-
-    iFrame.onload = (e) => {
-      const routes: IDictionary<string> = {
-        "Cartões": "/conta/cartoes",
-        "Endereços": "/conta/enderecos",
-        "Perfil": "/conta/perfil",
-        "Pedidos": "/conta/pedidos",
-        "Autenticação": "/conta/autenticacao",
-        "Login": "/",
-      };
-      window.location.href = logout ? "/" : (routes[iFrame.title] || "/");
-    };
 
     iFrame.height = iFrame!.contentWindow!.document.body.scrollHeight
       .toString() + "px";
+
+      const d = iFrame!.contentDocument!.documentElement!.getElementsByClassName(
+        "vtex-my-account-1-x-menuLink",
+      )[0];
+      let logout = false;
+      d.addEventListener("click", (e) => {
+        logout = true;
+        console.log({ e });
+      });
+  
+      console.log({ d });
+  
+      iFrame.onload = (e) => {
+        const routes: IDictionary<string> = {
+          "Cartões": "/conta/cartoes",
+          "Endereços": "/conta/enderecos",
+          "Perfil": "/conta/perfil",
+          "Pedidos": "/conta/pedidos",
+          "Autenticação": "/conta/autenticacao",
+          "Login": "/",
+        };
+        window.location.href = logout ? "/" : (routes[iFrame.title] || "/");
+      };
 
     // console.log({ iframeHeight: iFrame.height });
     // console.log("Foi");
