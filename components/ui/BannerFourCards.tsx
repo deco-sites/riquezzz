@@ -4,7 +4,7 @@ import { Picture, Source } from "deco-sites/std/components/Picture.tsx";
 import type { LoaderReturnType } from "$live/types.ts";
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
 import type { ProductListingPage } from "deco-sites/std/commerce/types.ts";
-import type { Video as LiveViedo } from "deco-sites/std/components/types.ts";
+import type { Video as LiveVideo } from "deco-sites/std/components/types.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import WishlistIcon from "$store/islands/WishlistButton.tsx";
 import AddToCartAvatar from "$store/islands/AddToCartAvatar.tsx";
@@ -28,14 +28,13 @@ export interface BannerItem {
   /** @default movie */
   type: "movie" | "image";
 
-  srcMobile: LiveViedo | LiveImage;
-  srcDesktop: LiveViedo | LiveImage;
+  srcMobile: LiveVideo | LiveImage;
+  srcDesktop: LiveVideo | LiveImage;
   /** */
   alt?: string;
   /** */
   href?: string;
   /** @default "Left"  */
-  Position: "Left" | "Rigth";
 }
 
 export interface Props {

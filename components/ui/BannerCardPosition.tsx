@@ -39,41 +39,40 @@ export interface BannerMovieIMG {
   mobile: MD;
   desktop: MD;
   type: "movie" | "image";
-  srcMobile?: LiveViedo | LiveImage;
   srcDesktop?: LiveViedo | LiveImage;
+  srcMobile?: LiveViedo | LiveImage;
   alt?: string;
   href?: string;
   size: 1 | 2 | 3;
   sizeMobile: 1 | 2;
-
   vertical?: "start" | "center" | "end";
-  desalinhamento: boolean;
-  desalinhamentoAltura?: 1 | 2 | 3 | 4 | 5;
+  desalinhamento?: boolean;
+  desalinhamentoAltura?: "margin-top--100px" | "margin-top--200px" | "margin-top--300px" | "margin-top--80px" | "align";
 }
 
 export interface Props {
   ordem: "Card/Movie/Text" | "Text/Movie/card";
 
+  productCard?: LoaderReturnType<ProductListingPage | null>;
+  horizontal: "start" | "center" | "end" | "between" | "around" | "evenly";
+  
+  /** @default 2 */
+  size: 1 | 2 | 3;
+  sizeMobile: 1 | 2;
+  desalinhamento?: "margin-top-100px" | "margin-top-200px" | "margin-top-300px" | "margin-top--80px"| "align";
+  productCardMobileColum?: boolean;
+  itemListName?: string;
+  preload?: boolean;
+  colorRed?: boolean;
   borderRadius: {
     mobile?: BorderRadius;
     desktop?: BorderRadius;
   };
 
-  horizontal: "start" | "center" | "end" | "between" | "around" | "evenly";
-
   cards?: {
     banner?: BannerMovieIMG;
     text?: Text;
   };
-  productCard?: LoaderReturnType<ProductListingPage | null>;
-  size: 1 | 2 | 3;
-  sizeMobile: 1 | 2;
-
-  productCardMobileColum: boolean;
-  itemListName?: string;
-  preload?: boolean;
-  colorRed?: boolean;
-  desalinhamento?: 1 | 2 | 3 | 4 | 5;
 }
 
 const RADIUS_MOBILE = {
@@ -99,22 +98,22 @@ const RADIUS_DESKTOP = {
 };
 
 const SIZE_IMG = {
-  1: " lg:h-[1100px] lg:w-[620px]",
-  2: " lg:h-[860px] lg:w-[510px]",
+  1: " lg:w-[620px]",
+  2: " lg:w-[510px]",
   3: " lg:w-[400px]",
 };
 const SIZE_BANNER = {
-  1: " lg:h-[1100px] lg:w-[620px]",
-  2: " lg:h-[730px] lg:w-[625px]",
-  3: " lg:w-[400px]",
+  1: " md:w-[820px]",
+  2: " md:w-[625px]",
+  3: " md:w-[400px]",
 };
 const SIZE_BANNER_MOBILE = {
-  1: "h-[400px] w-[335px] ",
-  2: "h-[330px] w-[150px] ",
+  1: " w-[335px] ",
+  2: " w-[150px] ",
 };
 const SIZE_CARD_MOBILE = {
-  1: "h-[600px] w-[335px] ",
-  2: "h-[330px] w-[150px] ",
+  1: " w-[335px] ",
+  2: " w-[150px] ",
 };
 
 const HORIZONTAL = {
@@ -132,18 +131,18 @@ const SIZE_IMG_H = {
   3: 600,
 };
 const DESALINHAMENTO = {
-  1: "lg:mt-[100px]",
-  2: "lg:mt-[200px]",
-  3: "lg:mt-[300px]",
-  4: "lg:mt-[-80px]",
-  5: "lg:mt-[0px]",
+  "margin-top-100px": "lg:mt-[100px]",
+  "margin-top-200px": "lg:mt-[200px]",
+  "margin-top-300px": "lg:mt-[300px]",
+  "margin-top--80px": "lg:mt-[-80px]",
+  "align": "lg:mt-[0px]",
 };
 const DESALINHAMENTOBANNER = {
-  1: "lg:mt-[-100px]",
-  2: "lg:mt-[-200px]",
-  3: "lg:mt-[-300px]",
-  4: "lg:mt-[80px]",
-  5: "lg:mt-[0px]",
+  "margin-top--100px": "lg:mt-[-100px]",
+  "margin-top--200px": "lg:mt-[-200px]",
+  "margin-top--300px": "lg:mt-[-300px]",
+  "margin-top--80px": "lg:mt-[80px]",
+  "align": "lg:mt-[0px]",
 };
 const SIZE_IMG_W = {
   1: 620,
@@ -321,7 +320,7 @@ function CardItem(
     colorRed?: boolean;
     size: 1 | 2 | 3;
     index: number;
-    desalinhamento: 1 | 2 | 3 | 4 | 5;
+    desalinhamento: "margin-top-100px" | "margin-top-200px" | "margin-top-300px" | "margin-top--80px"| "align";
     sizeMobile: 1 | 2;
   },
 ) {
