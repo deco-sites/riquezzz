@@ -9,7 +9,7 @@ export interface Props {
 
 function BannerFull({ alt, desktop, mobile }: Props) {
   return (
-    <div class="w-full px-auto lg:max-w-none sm:m-0 lg:overflow-hidden lg:pr-[40px]">
+    <div class="w-full  sm:m-0  lg:pr-[40px]">
       <Picture
         preload
         class="col-start-1 col-span-1 row-start-1 row-span-1"
@@ -20,7 +20,7 @@ function BannerFull({ alt, desktop, mobile }: Props) {
               src={mobile}
               width={2170}
               height={1315}
-              class=""
+              class=" hidden w-full h-full sm:inline-block"
             />
           )
           : ("")}
@@ -30,12 +30,14 @@ function BannerFull({ alt, desktop, mobile }: Props) {
               src={desktop}
               width={2170}
               height={1315}
-              class=""
+              class=" sm:hidden w-full h-full inline-block"
             />
           )
           : ("")}
 
-        {desktop ? <img class="w-full" src={desktop} alt={alt} /> : ("")}
+        {desktop
+          ? <img class="w-full object-cover" src={desktop} alt={alt} />
+          : ("")}
       </Picture>
     </div>
   );

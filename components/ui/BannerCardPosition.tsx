@@ -207,7 +207,7 @@ function CardMovie(
                   webkit-playsinline
                   x5-playsinline
                   playsInline
-                  class="hidden w-full h-full sm:inline-block"
+                  class="hidden w-full  sm:inline-block"
                 >
                   Video não suportado!
                 </video>
