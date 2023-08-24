@@ -22,6 +22,15 @@ const runOnMount = () => {
     //   y: iFrame!.contentWindow!.document.body.scrollHeight,
     // });
 
+    const d = iFrame!.contentDocument!.documentElement!.getElementsByClassName("vtex-my-account-1-x-menuLink")[0]
+    let logout = false;
+    d.addEventListener("click", (e) => {
+      logout = true
+      console.log({ e })
+    })
+    
+    console.log({ d })
+
     iFrame.onload = (e) => {
       const routes: IDictionary<string> = {
         "Cartões": "/conta/cartoes",
@@ -31,7 +40,7 @@ const runOnMount = () => {
         "Autenticação": "/conta/autenticacao",
         "Login": "/",
       };
-      window.location.href = routes[iFrame.title] || "/";
+      window.location.href = logout ? "/" : (routes[iFrame.title] || "/");
     };
 
     iFrame.height = iFrame!.contentWindow!.document.body.scrollHeight
