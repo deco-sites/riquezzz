@@ -5,6 +5,7 @@
 import * as $$$0 from "./loaders/productDetailsPageWithReviews.ts";
 import * as $$$1 from "./loaders/reviewsandratings.ts";
 import * as $$$$0 from "./routes/_app.tsx";
+
 import * as $$$$$0 from "./islands/AddToCartAvatar.tsx";
 import * as $$$$$1 from "./islands/AddToCartButton.tsx";
 import * as $$$$$2 from "./islands/BawFilters.tsx";
@@ -43,6 +44,7 @@ import * as $$$$$$$$17 from "./sections/HeadBanner.tsx";
 import * as $$$$$$$$18 from "./sections/Header.tsx";
 import * as $$$$$$$$19 from "./sections/Highlights.tsx";
 import * as $$$$$$$$20 from "./sections/LinkTree.tsx";
+
 import * as $$$$$$$$21 from "./sections/ProductDetails.tsx";
 import * as $$$$$$$$22 from "./sections/ProductShelf.tsx";
 import * as $$$$$$$$23 from "./sections/ReadMore.tsx";
@@ -233,23 +235,25 @@ const manifest = {
     "./routes/_app.tsx": $$$$0,
   },
   "islands": {
-    "./islands/AddToCartAvatar.tsx": $$$$$0,
-    "./islands/AddToCartButton.tsx": $$$$$1,
-    "./islands/BawFilters.tsx": $$$$$2,
-    "./islands/BreadcrumbControls.tsx": $$$$$3,
-    "./islands/HeaderButton.tsx": $$$$$4,
-    "./islands/HeaderModals.tsx": $$$$$5,
-    "./islands/HeaderSearchbar.tsx": $$$$$6,
-    "./islands/Newsletter.tsx": $$$$$7,
-    "./islands/OutOfStock.tsx": $$$$$8,
-    "./islands/ProductGallery.tsx": $$$$$9,
-    "./islands/ProductImageZoom.tsx": $$$$$10,
-    "./islands/ProductReviews.tsx": $$$$$11,
-    "./islands/ReadMore.tsx": $$$$$12,
-    "./islands/SearchControls.tsx": $$$$$13,
-    "./islands/ShippingSimulation.tsx": $$$$$14,
-    "./islands/SliderJS.tsx": $$$$$15,
-    "./islands/WishlistButton.tsx": $$$$$16,
+
+    "./islands/AddToCartAvatar.tsx": $$$$$2,
+    "./islands/AddToCartButton.tsx": $$$$$10,
+    "./islands/BawFilters.tsx": $$$$$1,
+    "./islands/BreadcrumbControls.tsx": $$$$$9,
+    "./islands/HeaderButton.tsx": $$$$$7,
+    "./islands/HeaderModals.tsx": $$$$$11,
+    "./islands/HeaderSearchbar.tsx": $$$$$5,
+    "./islands/Newsletter.tsx": $$$$$0,
+    "./islands/OutOfStock.tsx": $$$$$14,
+    "./islands/ProductGallery.tsx": $$$$$15,
+    "./islands/ProductImageZoom.tsx": $$$$$13,
+    "./islands/ProductReviews.tsx": $$$$$6,
+    "./islands/ReadMore.tsx": $$$$$8,
+    "./islands/SearchControls.tsx": $$$$$16,
+    "./islands/ShippingSimulation.tsx": $$$$$4,
+    "./islands/SliderJS.tsx": $$$$$12,
+    "./islands/WishlistButton.tsx": $$$$$3,
+
   },
   "sections": {
     "$live/sections/Conditional_Beta.tsx": i2$$$$$0,
