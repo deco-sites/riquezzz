@@ -50,7 +50,6 @@ function Sort({ sortOptions }: Props) {
         {sortOptions.map(({ value, label }) => (
           <option
             key={value}
-            label={value}
             value={value}
             selected={value === sort}
           >
