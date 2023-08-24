@@ -235,7 +235,6 @@ const manifest = {
     "./routes/_app.tsx": $$$$0,
   },
   "islands": {
-
     "./islands/AddToCartAvatar.tsx": $$$$$2,
     "./islands/AddToCartButton.tsx": $$$$$10,
     "./islands/BawFilters.tsx": $$$$$1,
@@ -253,7 +252,6 @@ const manifest = {
     "./islands/ShippingSimulation.tsx": $$$$$4,
     "./islands/SliderJS.tsx": $$$$$12,
     "./islands/WishlistButton.tsx": $$$$$3,
-
   },
   "sections": {
     "$live/sections/Conditional_Beta.tsx": i2$$$$$0,

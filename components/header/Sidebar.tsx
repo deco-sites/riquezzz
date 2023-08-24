@@ -26,7 +26,7 @@ function Sidebar({ interval = 5, items, searchbar }: Props) {
         <div class="w-full flex text-center justify-center items-start mb-6">
           <a
             class="transform transition   duration-100 hover:scale-125  text-center justify-center items-start"
-            href="/login"
+            href="/auth"
             aria-label="Log in"
           >
             <Icon id="BawLogin" width={25} height={25} strokeWidth={0.4} />
@@ -35,8 +35,8 @@ function Sidebar({ interval = 5, items, searchbar }: Props) {
         <div class="w-full flex text-center justify-center items-start mb-6">
           <a
             class=" transform transition  duration-100 hover:scale-125  text-center justify-center  items-start "
-            href="/orders"
-            aria-label="Orders"
+            href="/conta/pedidos"
+            aria-label="Pedidos"
           >
             <Icon id="BawOrders" width={25} height={25} strokeWidth={0.4} />
           </a>
