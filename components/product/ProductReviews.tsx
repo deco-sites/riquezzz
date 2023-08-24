@@ -318,7 +318,7 @@ function ProductReviews(
               <span>Seja o primeiro a avaliar este produto</span>
             </div>
           )}
-        {!isUserLoggedIn
+        {isUserLoggedIn
           ? (
             <div class="text-left mt-4">
               <div

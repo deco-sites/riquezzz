@@ -6,7 +6,7 @@ export interface Props {
 }
 
 const runOnMount = () => {
-  window.onload = () => {
+  window.onload = (e) => {
     const iFrame = document.getElementById(
       "auth-iframe",
     ) as HTMLIFrameElement;
@@ -19,6 +19,11 @@ const runOnMount = () => {
       x: iFrame!.contentWindow!.document.body.scrollWidth,
       y: iFrame!.contentWindow!.document.body.scrollHeight,
     });
+
+    iFrame.onload = (e) => {
+      console.log({ e })
+      console.log("ONLOAD")
+    }
 
     iFrame.height = iFrame!.contentWindow!.document.body.scrollHeight
       .toString() + "px";

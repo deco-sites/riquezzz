@@ -3,7 +3,9 @@ import HTMLRenderer from "deco-sites/std/components/HTMLRenderer.tsx";
 import { useState } from "preact/hooks";
 import type { LoaderReturnType } from "$live/types.ts";
 import type { ProductListingPage } from "deco-sites/std/commerce/types.ts";
-
+/**
+@titleBy matcher
+*/
 export interface ReadMore {
   /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
   matcher: string;
