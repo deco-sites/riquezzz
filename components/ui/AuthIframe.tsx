@@ -15,20 +15,15 @@ const runOnMount = () => {
       return console.error("Couldn't find iframe");
     }
 
-    console.log({
-      x: iFrame!.contentWindow!.document.body.scrollWidth,
-      y: iFrame!.contentWindow!.document.body.scrollHeight,
-    });
-
-    iFrame.onload = (e) => {
-      console.log({ e })
-      console.log("ONLOAD")
-    }
+    // console.log({
+    //   x: iFrame!.contentWindow!.document.body.scrollWidth,
+    //   y: iFrame!.contentWindow!.document.body.scrollHeight,
+    // });
 
     iFrame.height = iFrame!.contentWindow!.document.body.scrollHeight
       .toString() + "px";
-    console.log({ iframeHeight: iFrame.height });
-    console.log("Foi");
+    // console.log({ iframeHeight: iFrame.height });
+    // console.log("Foi");
   };
 };
 
