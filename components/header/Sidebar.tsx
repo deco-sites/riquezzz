@@ -36,7 +36,7 @@ function Sidebar({ interval = 5, items, searchbar }: Props) {
           <a
             class=" transform transition  duration-100 hover:scale-125  text-center justify-center  items-start "
             href="/conta/pedidos"
-            aria-label="Pedidos"
+            aria-label="Orders"
           >
             <Icon id="BawOrders" width={25} height={25} strokeWidth={0.4} />
           </a>
