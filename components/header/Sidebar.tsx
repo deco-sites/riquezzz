@@ -5,7 +5,6 @@ import { useId } from "preact/hooks";
 import type { INavItem } from "./NavItem.tsx";
 import { useUser } from "deco-sites/std/packs/vtex/hooks/useUser.ts";
 
-
 export interface Props {
   /**
    * @title Autoplay interval
@@ -29,7 +28,7 @@ function Sidebar({ interval = 5, items, searchbar }: Props) {
         <div class="w-full flex text-center justify-center items-start mb-6">
           <a
             class="transform transition   duration-100 hover:scale-125  text-center justify-center items-start"
-            href={isUserLoggedIn ? "/conta/perfil" : "/auth" }
+            href={isUserLoggedIn ? "/conta/perfil" : "/auth"}
             aria-label="Log in"
           >
             <Icon id="BawLogin" width={25} height={25} strokeWidth={0.4} />
