@@ -11,9 +11,6 @@ const runOnMount = () => {
       "auth-iframe",
     ) as HTMLIFrameElement;
 
-
-
-
     if (!iFrame) {
       return console.error("Couldn't find iframe");
     }
@@ -24,8 +21,8 @@ const runOnMount = () => {
     // });
 
     iFrame.onload = (e) => {
-      window.location.href = '/';
-    }
+      window.location.href = "/";
+    };
 
     iFrame.height = iFrame!.contentWindow!.document.body.scrollHeight
       .toString() + "px";
