@@ -3,6 +3,8 @@ import Icon from "$store/components/ui/Icon.tsx";
 import Buttons from "$store/islands/HeaderButton.tsx";
 import { useId } from "preact/hooks";
 import type { INavItem } from "./NavItem.tsx";
+import { useUser } from "deco-sites/std/packs/vtex/hooks/useUser.ts";
+
 
 export interface Props {
   /**
@@ -16,7 +18,8 @@ export interface Props {
 
 function Sidebar({ interval = 5, items, searchbar }: Props) {
   const id = useId();
-
+  const { user } = useUser();
+  const isUserLoggedIn = Boolean(user.value?.email);
   return (
     <div id={id}>
       <div class="w-[80px] flex flex-col min-h-[300px]  bg-white pr-8 justify-center items-center ">
@@ -26,7 +29,7 @@ function Sidebar({ interval = 5, items, searchbar }: Props) {
         <div class="w-full flex text-center justify-center items-start mb-6">
           <a
             class="transform transition   duration-100 hover:scale-125  text-center justify-center items-start"
-            href="/auth"
+            href={isUserLoggedIn ? "/conta/perfil" : "/auth" }
             aria-label="Log in"
           >
             <Icon id="BawLogin" width={25} height={25} strokeWidth={0.4} />
