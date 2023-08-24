@@ -8,7 +8,7 @@ export type StringItem = {
   label: string;
   href?: string;
   /** @default blank */
-  target?: 'blank' | 'self';
+  target?: "blank" | "self";
 };
 export type StringNewsletter = {
   Title: string;
@@ -43,7 +43,10 @@ function SectionItem({ item }: { item: Item }) {
           </div>
         )
         : (
-          <a href={item.href} target={item.target ? `_${item.target}` : '_blank'}>
+          <a
+            href={item.href}
+            target={item.target ? `_${item.target}` : "_blank"}
+          >
             {item.label}
           </a>
         )}
