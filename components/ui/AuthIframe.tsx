@@ -23,14 +23,14 @@ const runOnMount = () => {
     // });
 
     iFrame.onload = (e) => {
-      const routes: IDictionary<string>  = {
+      const routes: IDictionary<string> = {
         "Cartões": "/conta/cartoes",
         "Endereços": "/conta/enderecos",
         "Perfil": "/conta/perfil",
         "Pedidos": "/conta/pedidos",
         "Autenticação": "/conta/autenticacao",
-        "Login": "/"
-      }
+        "Login": "/",
+      };
       window.location.href = routes[iFrame.title] || "/";
     };
 
