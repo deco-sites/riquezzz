@@ -4,7 +4,9 @@ export interface Props {
   title?: string;
   url: string;
 }
-
+interface IDictionary<T> {
+  [key: string]: T;
+}
 const runOnMount = () => {
   window.onload = (e) => {
     const iFrame = document.getElementById(
@@ -21,7 +23,15 @@ const runOnMount = () => {
     // });
 
     iFrame.onload = (e) => {
-      window.location.href = "/";
+      const routes: IDictionary<string>  = {
+        "Cartões": "/conta/cartoes",
+        "Endereços": "/conta/enderecos",
+        "Perfil": "/conta/perfil",
+        "Pedidos": "/conta/pedidos",
+        "Autenticação": "/conta/autenticacao",
+        "Login": "/"
+      }
+      window.location.href = routes[iFrame.title] || "/";
     };
 
     iFrame.height = iFrame!.contentWindow!.document.body.scrollHeight
@@ -53,6 +63,7 @@ function AuthIframe({
             scrolling="no"
             marginHeight={0}
             marginWidth={0}
+            title={title}
           >
           </iframe>
         </main>
