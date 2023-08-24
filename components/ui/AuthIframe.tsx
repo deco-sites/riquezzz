@@ -20,7 +20,6 @@ const runOnMount = () => {
       y: iFrame!.contentWindow!.document.body.scrollHeight,
     });
 
-
     iFrame.height = iFrame!.contentWindow!.document.body.scrollHeight
       .toString() + "px";
     // console.log({ iframeHeight: iFrame.height });
