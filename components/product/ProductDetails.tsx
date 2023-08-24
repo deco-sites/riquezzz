@@ -14,7 +14,7 @@ import { SendEventOnLoad } from "$store/sdk/analytics.tsx";
 import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/productToAnalyticsItem.ts";
 import type { ProductDetailsPage } from "deco-sites/std/commerce/types.ts";
 import type { LoaderReturnType } from "$live/types.ts";
-
+import type { Product } from "deco-sites/std/commerce/types.ts";
 import ProductSelector from "./ProductVariantSelectoPDP.tsx";
 import ProductImageZoom from "$store/islands/ProductImageZoom.tsx";
 import WishlistButton from "../wishlist/WishlistButton.tsx";
@@ -279,20 +279,25 @@ const useStableImages = (product: ProductDetailsPage["product"]) => {
 };
 
 function imgZoom() {
-  const img = document.getElementById("imgzom");
+  const img = document.getElementsByName("imgzom");
   const box = document.getElementById("box");
+
+  console.log(img);
 
   box!.addEventListener("mousemove", (e) => {
     const x = e.offsetX;
     const y = e.offsetY;
-
-    img!.style.transformOrigin = `${x}px ${y}px`;
-    img!.style.transform = "scale(2)";
+    for (let index = 0; index < img.length; index++) {
+      img[index]!.style.transformOrigin = `${x}px ${y}px`;
+      img[index]!.style.transform = "scale(2)";
+    }
   });
-  box!.addEventListener("mouseleave", () => {
-    img!.style.transformOrigin = "center center";
-    img!.style.transform = "scale(1)";
-  });
+  for (let index = 0; index < img.length; index++) {
+    box!.addEventListener("mouseleave", () => {
+      img[index]!.style.transformOrigin = "center center";
+      img[index]!.style.transform = "scale(1)";
+    });
+  }
 }
 
 function Details({
@@ -323,19 +328,19 @@ function Details({
         >
           {/* Image Slider */}
           <div class="relative lg:col-start-2 lg:col-span-1 lg:row-start-1 lg:max-h-[930px]">
-            <Slider class="carousel gap-2 lg:gap-6 min-w-[40vw] sm:max-w-[40vw]">
+            <Slider
+              class="carousel gap-2 lg:gap-6 min-w-[40vw] sm:max-w-[40vw]"
+              id="box"
+            >
               {images.filter((img) => img.alternateName !== "color-thumbnail")
                 .map((img, index) => (
                   <Slider.Item
                     index={index}
                     class="carousel-item min-w-[40vw]  lg:min-w-[40vw]  justify-center"
                   >
-                    <div
-                      id="box"
-                      class="flex items-center justify-center m-0 lg:min-h-[930px] overflow-hidden"
-                    >
+                    <div class="flex items-center justify-center m-0 lg:min-h-[930px] overflow-hidden">
                       <Image
-                        class="w-[335px] h-[480px] lg:w-[620px] lg:h-[930px] object-cover  origin-center "
+                        class="flex w-[335px] h-[480px] lg:w-[620px] lg:h-[930px] object-cover"
                         // sizes="(max-width: 640px) 100vw, 40vw"
                         style={{ aspectRatio: ASPECT_RATIO }}
                         src={img.url!}
@@ -345,7 +350,8 @@ function Details({
                         // Preload LCP image for better web vitals
                         preload={index === 0}
                         loading={index === 0 ? "eager" : "lazy"}
-                        id="imgzom"
+                        id={"imgzom"}
+                        name={"imgzom"}
                       />
                       <script
                         dangerouslySetInnerHTML={{
