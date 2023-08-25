@@ -27,6 +27,10 @@ export interface Banner {
    * @description It will set the number of rows for the image
    */
   size_rows: number;
+  /**
+   * @description Must be used in the main image of the group
+   */
+  preload?: boolean;
 }
 
 export type BorderRadius =
@@ -141,6 +145,7 @@ export default function BawBannner({
             alt,
             size_cols,
             size_rows,
+            preload = false,
           },
           index,
         ) => (
@@ -151,6 +156,7 @@ export default function BawBannner({
             } transform transition duration-500 hover:scale-95  `}
           >
             <Picture
+              preload={preload}
               class={index > 1
                 ? "hidden sm:block text-center  "
                 : "w-full flex "}
@@ -173,7 +179,7 @@ export default function BawBannner({
                 src={srcMobile}
                 alt={alt}
                 decoding="async"
-                loading="lazy"
+                loading={preload === true ? "eager" : "lazy"}
               />
             </Picture>
           </a>
