@@ -183,8 +183,8 @@ export default function BawBannner({
                 width={390}
                 height={443}
                 decoding="async"
-                loading={preload === true ? "eager" : "lazy"}
-                preload={preload}
+                loading={index === 0 ? "eager" : "lazy"}
+                preload={index === 0 ? true : false}
               />
             </Picture>
           </a>
