@@ -2,6 +2,7 @@ import Icon, { AvailableIcons } from "$store/components/ui/Icon.tsx";
 import Newsletter from "$store/islands/Newsletter.tsx";
 import type { ComponentChildren } from "preact";
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
+import Image from "deco-sites/std/components/Image.tsx";
 
 export type IconItem = { icon: AvailableIcons; href: string };
 export type StringItem = {
@@ -232,7 +233,10 @@ function Footer(
             </div>
 
             <div class="flex">
-              <img
+              <Image
+                height={200}
+                width={200}
+                loading={"lazy"}
                 src={"https://bawclothing.vtexassets.com/assets/vtex.file-manager-graphql/images/cb2b8e5a-8783-4090-a3b9-aecc33ce8c42___206c3b8b0da92d76e40c362f80f2cf6a.svg"}
                 alt="credit cards"
               />

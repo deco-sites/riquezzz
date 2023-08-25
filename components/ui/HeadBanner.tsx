@@ -1,5 +1,6 @@
 import { useId } from "preact/hooks";
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
+import Image from "deco-sites/std/components/Image.tsx";
 
 export interface Props {
   title?: string;
@@ -21,13 +22,13 @@ function BannerUI(
         {showMobile
           ? (
             <div class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full  mb-1 mx-auto">
-              <img class="w-full" src={srcMobile} alt={alt} />
+              <Image width={1920} height={350} class="w-full" src={srcMobile!} alt={alt} loading={"lazy"}/>
             </div>
           )
           : ("")}
 
-        <div class="hidden md:flex flex-row justify-between items-center border-b border-base-200 w-full mb-2 gap  mx-auto">
-          <img class="w-full" src={srcDesktop} alt={alt} />
+        <div class="hidden md:flex flex-row justify-between items-center border-b border-base-200 w-full mb-2 gap pr-[40px] mx-auto">
+          <Image  width={1920} height={350} class="w-full" src={srcDesktop} alt={alt}  loading={"lazy"}/>
         </div>
       </div>
       {title !== undefined
