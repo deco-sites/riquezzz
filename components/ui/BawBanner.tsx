@@ -1,5 +1,7 @@
 import { Picture, Source } from "deco-sites/std/components/Picture.tsx";
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
+import Image from "deco-sites/std/components/Image.tsx";
+
 /**
 @titleBy alt
 */
@@ -164,22 +166,25 @@ export default function BawBannner({
               <Source
                 media="(max-width: 767px)"
                 src={srcMobile}
-                width={810}
-                height={920}
+                width={390}
+                height={443}
               />
               <Source
                 media="(min-width: 768px)"
                 src={srcDesktop ? srcDesktop : srcMobile}
-                width={810}
-                height={920}
+                width={390}
+                height={443}
               />
-              <img
+              <Image
                 class="w-full object-cover "
                 //sizes="(max-width: 640px) 100vw, 30vw"
                 src={srcMobile}
                 alt={alt}
+                width={390}
+                height={443}
                 decoding="async"
                 loading={preload === true ? "eager" : "lazy"}
+                preload={preload}
               />
             </Picture>
           </a>
