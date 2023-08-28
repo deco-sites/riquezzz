@@ -46,7 +46,6 @@ function Navbar({ items, searchbar }: {
               width="50"
               class="shrink-0 w-auto h-[27px]"
               alt={"Logo Baw"}
-
             />
           </a>
         </div>

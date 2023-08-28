@@ -71,8 +71,8 @@ function Modal(props: Props) {
                 width="50"
                 class="shrink-0 w-full h-[27px]"
                 alt="Logo Baw"
-                loading='lazy'
-                preload={'false'}
+                loading="lazy"
+                preload={"false"}
               />
             </a>
 
@@ -104,9 +104,8 @@ function Modal(props: Props) {
                   width="50"
                   class="shrink-0 w-[32px] h-[32px]"
                   alt={"Logo Baw"}
-                  loading='lazy'
-                  preload={'false'}
-
+                  loading="lazy"
+                  preload={"false"}
                 />
               </a>
               <span class="text-[12px] ">MEUS PEDIDOS</span>

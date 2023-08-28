@@ -67,8 +67,18 @@ function Highlights({ highlights = [], title, interval }: Props) {
           <div class="bg-[#eaeaea] p-5 text-center">
             <a href={href} class="bg-[#eaeaea] pb-6 group">
               <figure class="relative">
-                <img src={src} alt={alt} class="w-full" />
-                <Button class="
+                <Image
+                  src={src}
+                  alt={alt}
+                  class="w-full"
+                  loading={"lazy"}
+                  preload={false}
+                  width={390}
+                  height={443}
+                />
+                <Button
+                  name="shop now"
+                  class="
                 bg-white 
                 text-black 
                 uppercase 
@@ -76,7 +86,8 @@ function Highlights({ highlights = [], title, interval }: Props) {
                 rounded-none 
                 text-xl
                 px-8 
-                group-hover:bg-white group-hover:scale-125 group-hover:rotate-[-3deg] group-hover:translate-y-[-3rem]">
+                group-hover:bg-white group-hover:scale-125 group-hover:rotate-[-3deg] group-hover:translate-y-[-3rem]"
+                >
                   {buttonText || "Comprar agora"}
                 </Button>
               </figure>
@@ -98,7 +109,15 @@ function Highlights({ highlights = [], title, interval }: Props) {
                 <div class="bg-[#eaeaea] p-5 text-center">
                   <a href={href} class="bg-[#eaeaea] pb-6 group">
                     <figure class="relative">
-                      <img src={src} alt={alt} class="w-full" />
+                      <Image
+                        src={src}
+                        alt={alt}
+                        class="w-full"
+                        width={390}
+                        height={443}
+                        loading={"lazy"}
+                        preload={false}
+                      />
                       <Button class="
                 bg-white 
                 text-black 
@@ -116,19 +135,6 @@ function Highlights({ highlights = [], title, interval }: Props) {
               </Slider.Item>
             ))}
           </Slider>
-          {
-            /* <ul class="col-start-1 flex gap-[10px] justify-self-center overflow-auto px-4 sm:hidden">
-            {images!.map((img, index) => (
-              <li>
-                <Slider.Dot index={index}>
-                  <div class="py-5">
-                    <div class="w-[10px] h-[10px] bg-light-gray group-disabled:bg-light-blue rounded-full" />
-                  </div>
-                </Slider.Dot>
-              </li>
-            ))}
-          </ul> */
-          }
 
           <ProgressiveDots highlights={highlights} interval={interval} />
 
