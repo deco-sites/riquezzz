@@ -114,7 +114,7 @@ function ShippingSimulation({ items }: Props) {
             <input
               as="input"
               type="text"
-              aria-label={'Cep'}
+              aria-label={"Cep"}
               class="flex-grow input w-[85%] input-primary h-[40px] focus:outline-none border-none"
               placeholder="Seu cep aqui"
               value={postalCode.value}
@@ -126,8 +126,8 @@ function ShippingSimulation({ items }: Props) {
             <button
               class="bg-transparent  border-none w-[15%]  text-center px-5 pt-4 "
               disabled={loading}
-              name={'Envie seu cep'}
-              aria-label={'Envie seu cep'}
+              name={"Envie seu cep"}
+              aria-label={"Envie seu cep"}
             >
               <Icon
                 class="text-black"

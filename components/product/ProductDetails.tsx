@@ -156,10 +156,8 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
               >
                 Descrição da peça
               </summary>
-              <div
-                class="ml-2 py-4 text-base whitespace-pre-line"
-                alt={"Descrição"}
-              >
+              <div class="ml-2 py-4 text-base whitespace-pre-line"
+                alt={"Descrição"}>
                 {description}
               </div>
             </details>
@@ -171,10 +169,7 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
         <span class="text-lg">
           {description && (
             <details class="  border-b border-black">
-              <summary
-                about={"Troca e devolução"}
-                class="cursor-pointer  transform transition duration-700   hover:font-extrabold"
-              >
+              <summary about={'Troca e devolução'} class="cursor-pointer  transform transition duration-700   hover:font-extrabold">
                 TROCA E DEVOLUÇÃO
               </summary>
               <div class="ml-2 py-4 text-base whitespace-pre-line">
@@ -345,11 +340,11 @@ function Details({
                 .map((img, index) => (
                   <Slider.Item
                     index={index}
-                    class="carousel-item min-w-[40vw]  lg:min-w-[40vw]  justify-center"
+                    class="carousel-item  lg:min-w-[40vw]  justify-center"
                   >
                     <div class="flex items-center justify-center m-0 lg:min-h-[930px] overflow-hidden">
                       <Image
-                        class="flex w-[335px] h-[480px] lg:w-[620px] lg:h-[930px] object-cover"
+                        class="hidden sm:flex w-[335px] h-[480px] lg:w-[620px] lg:h-[930px] object-cover"
                         // sizes="(max-width: 640px) 100vw, 40vw"
                         style={{ aspectRatio: ASPECT_RATIO }}
                         src={img.url!}
@@ -361,6 +356,19 @@ function Details({
                         loading={index === 0 ? "eager" : "lazy"}
                         id={"imgzom"}
                         name={"imgzom"}
+                      />
+
+                         <Image
+                        class="flex sm:hidden  object-cover"
+                        // sizes="(max-width: 640px) 100vw, 40vw"
+                        style={{ aspectRatio: ASPECT_RATIO }}
+                        src={img.url!}
+                        alt={img.alternateName}
+                        width={335}
+                        height={480}
+                        // Preload LCP image for better web vitals
+                        preload={index === 0}
+                        loading={index === 0 ? "eager" : "lazy"}
                       />
                       <script
                         dangerouslySetInnerHTML={{
