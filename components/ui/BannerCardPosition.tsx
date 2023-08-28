@@ -279,7 +279,7 @@ function CardMovie(
                 ? (
                   <img
                     loading="eager"
-                    preload='true'
+                    preload="true"
                     class={` m-0 p-0  ${SIZE_BANNER[banner!.size!]}  ${
                       SIZE_BANNER_MOBILE[banner!.sizeMobile!]
                     }`}

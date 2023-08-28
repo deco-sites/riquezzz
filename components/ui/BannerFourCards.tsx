@@ -178,7 +178,7 @@ function CardMovie(
   );
 }
 function CardItem(
-  { product, itemListName, lcp =false, colorRed }: {
+  { product, itemListName, lcp = false, colorRed }: {
     product: Product;
     lcp?: boolean;
     itemListName?: string;

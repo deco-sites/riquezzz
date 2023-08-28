@@ -25,7 +25,17 @@ function BannerFull({ alt, desktop, mobile }: Props) {
               />
             )
             : ("")}
-          {desktop ? <img class="w-full" loading={'eager'} preload={'true'} src={desktop} alt={alt} /> : ("")}
+          {desktop
+            ? (
+              <img
+                class="w-full"
+                loading={"eager"}
+                preload={"true"}
+                src={desktop}
+                alt={alt}
+              />
+            )
+            : ("")}
         </Picture>
       </div>
       <div class="flex md:hidden">
@@ -43,7 +53,17 @@ function BannerFull({ alt, desktop, mobile }: Props) {
               />
             )
             : ("")}
-          {desktop ? <img  loading={'eager'} preload={'true'} class="w-full" src={desktop} alt={alt} /> : ("")}
+          {desktop
+            ? (
+              <img
+                loading={"eager"}
+                preload={"true"}
+                class="w-full"
+                src={desktop}
+                alt={alt}
+              />
+            )
+            : ("")}
         </Picture>
       </div>
     </div>
