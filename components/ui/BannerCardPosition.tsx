@@ -246,7 +246,8 @@ function CardMovie(
             }  ${MOBILE[banner!.mobile!]}`}
           >
             <Picture
-              preload
+              preload={true}
+              loading="eager"
               class="col-start-1 col-span-1 row-start-1 row-span-1"
             >
               {banner.srcMobile
@@ -277,6 +278,8 @@ function CardMovie(
               {banner.srcDesktop
                 ? (
                   <img
+                    loading="eager"
+                    preload='true'
                     class={` m-0 p-0  ${SIZE_BANNER[banner!.size!]}  ${
                       SIZE_BANNER_MOBILE[banner!.sizeMobile!]
                     }`}
@@ -456,7 +459,8 @@ function CardItem(
               width={510}
               height={760}
               class="absolute top-0 left-0  transition-opacity w-full max-h-[760px]  object-cover opacity-100 group-hover:opacity-0 "
-              loading={lcp ? "eager" : "lazy"}
+              loading={preload ? "eager" : "lazy"}
+              preload={preload}
               sizes="(max-width: 640px) "
               decoding="async"
             />
@@ -466,7 +470,8 @@ function CardItem(
               width={510}
               height={760}
               class=" absolute top-0 left-0  transition-opacity w-full max-h-[760px] object-cover opacity-0 group-hover:opacity-100"
-              loading={lcp ? "eager" : "lazy"}
+              loading={preload ? "eager" : "lazy"}
+              preload={preload}
               sizes="(max-width: 640px) "
               decoding="async"
             />
