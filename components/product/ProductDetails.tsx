@@ -150,10 +150,16 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
         <span class="text-lg">
           {description && (
             <details open class="  border-b border-black">
-              <summary class="cursor-pointer transform transition  duration-700 hover:font-extrabold uppercase">
+              <summary
+                alt={" Descrição da peça"}
+                class="cursor-pointer transform transition  duration-700 hover:font-extrabold uppercase"
+              >
                 Descrição da peça
               </summary>
-              <div class="ml-2 py-4 text-base whitespace-pre-line">
+              <div
+                class="ml-2 py-4 text-base whitespace-pre-line"
+                alt={"Descrição"}
+              >
                 {description}
               </div>
             </details>
@@ -165,7 +171,10 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
         <span class="text-lg">
           {description && (
             <details class="  border-b border-black">
-              <summary class="cursor-pointer  transform transition duration-700   hover:font-extrabold">
+              <summary
+                about={"Troca e devolução"}
+                class="cursor-pointer  transform transition duration-700   hover:font-extrabold"
+              >
                 TROCA E DEVOLUÇÃO
               </summary>
               <div class="ml-2 py-4 text-base whitespace-pre-line">
@@ -393,6 +402,8 @@ function Details({
                         height={180}
                         src={img.url!}
                         alt={img.alternateName}
+                        preload={false}
+                        loading={"lazy"}
                       />
                     </Slider.Dot>
                   </li>
