@@ -64,7 +64,7 @@ function Coupon() {
             class="bg-transparent  border-none w-[15%]  text-center px-5"
             disabled={loading}
             onClick={applyCouponToCart}
-            aria-label={'text-black'}
+            aria-label={"text-black"}
           >
             <Icon
               class="text-black"
@@ -81,7 +81,7 @@ function Coupon() {
             class="bg-transparent  border-none w-[15%]  text-center pr-6"
             disabled={loading}
             onClick={removeCouponFromCart}
-            aria-label={'remover'}
+            aria-label={"remover"}
           >
             <span>remover</span>
           </button>

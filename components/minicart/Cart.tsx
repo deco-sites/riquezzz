@@ -135,7 +135,7 @@ function Cart() {
           <a class="inline-block w-full" href="/checkout">
             <button
               data-deco="buy-button "
-              aria-label='checkout'
+              aria-label="checkout"
               class="w-full font-bold py-2 uppercase bg-green-500 border-none rounded-none text-white hover:bg-green-700"
               disabled={loading.value || cart.value.items.length === 0}
               onClick={() => {

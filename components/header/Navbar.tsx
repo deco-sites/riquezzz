@@ -24,15 +24,15 @@ function Navbar({ items, searchbar }: {
           style={{ minHeight: navbarHeight }}
           aria-label="Store logo"
         >
-             <Image
-              src="https://bawclothing.vtexassets.com/assets/vtex/assets-builder/bawclothing.theme/4.5.11/icons/logo___043f201c675b2c2939f6d4796ccf0144.svg"
-              width={50}
-              height={50}
-              class="shrink-0 w-auto h-[27px]"
-              alt={"Logo Baw"}
-              loading={"lazy"}
-              preload={false}
-            />
+          <Image
+            src="https://bawclothing.vtexassets.com/assets/vtex/assets-builder/bawclothing.theme/4.5.11/icons/logo___043f201c675b2c2939f6d4796ccf0144.svg"
+            width={50}
+            height={50}
+            class="shrink-0 w-auto h-[27px]"
+            alt={"Logo Baw"}
+            loading={"lazy"}
+            preload={false}
+          />
         </a>
 
         <div class="flex gap-1">

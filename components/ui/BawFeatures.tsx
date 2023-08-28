@@ -42,7 +42,7 @@ function FeatureHighlights(
               </div>
             </div>
             <div class="flex flex-row py-6 sm:flex-col sm:py-0 sm:px-8 relative w-[290px]">
-              <Image
+              <img
                 width={291}
                 height={291}
                 class="mt-[-15px] max-w-none"
@@ -62,7 +62,7 @@ function FeatureHighlights(
               </div>
             </div>
             <div class="flex flex-row py-6 sm:flex-col sm:py-0 sm:px-8 relative w-[290px]">
-              <Image
+              <img
                 width={228}
                 height={228}
                 class="mt-[-85px] max-w-none"

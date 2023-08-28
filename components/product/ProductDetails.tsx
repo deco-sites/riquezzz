@@ -68,7 +68,9 @@ function NotFound() {
           Página não encontrada
         </span>
         <a href="/">
-          <Button aria-label={'Voltar à página home'}>Voltar à página inicial</Button>
+          <Button aria-label={"Voltar à página home"}>
+            Voltar à página inicial
+          </Button>
         </a>
       </div>
     </div>
@@ -453,11 +455,10 @@ function Details({
       {/* Image slider */}
 
       <ul class="carousel carousel-center gap-6">
-      dadasdas
+        dadasdas
         {[images[0], images[1] ?? images[0]].map((img, index) => (
           <li class="carousel-item min-w-[100vw] sm:min-w-[24vw]">
             <Image
-            
               sizes="(max-width: 640px) 100vw, 24vw"
               style={{ aspectRatio: ASPECT_RATIO }}
               src={img.url!}

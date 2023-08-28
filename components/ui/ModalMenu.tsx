@@ -57,7 +57,6 @@ function Modal(props: Props) {
               class="bg-transparent hover:bg-transparent  border-none p-0 m-0 w-[30px] text-black"
               onClick={onClose}
               aria-label={"XMark"}
-
             >
               <Icon id="XMark" width={32} height={32} strokeWidth={2} />
             </Button>

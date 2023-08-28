@@ -30,7 +30,7 @@ function SearchControls(
           onClick={() => {
             open.value = true;
           }}
-          aria-label={'filtrar'}
+          aria-label={"filtrar"}
         >
           Filtrar
         </Button>
