@@ -26,7 +26,7 @@ function ProductGallery({ products }: Props) {
     return (
       <div class=" grid grid-cols-2 gap-2 sm:gap-8 items-center   lg:grid-cols-4">
         {products?.map((product, index) => (
-          <ProductCard product={product}preload={true} />
+          <ProductCard product={product} preload={true} />
         ))}
       </div>
     );
@@ -34,7 +34,7 @@ function ProductGallery({ products }: Props) {
     return (
       <div class=" grid grid-cols-2 gap-2 sm:gap-8 items-center   lg:grid-cols-6">
         {products?.map((product, index) => (
-          <ProductCard product={product}preload={true} />
+          <ProductCard product={product} preload={true} />
         ))}
       </div>
     );

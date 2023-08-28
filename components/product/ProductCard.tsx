@@ -55,7 +55,7 @@ const WIDTH = 280;
 const HEIGHT = 420;
 
 function ProductCard(
-  { product, preload =false, itemListName, colorRed = false }: Props,
+  { product, preload = false, itemListName, colorRed = false }: Props,
 ) {
   const {
     url,
@@ -171,7 +171,8 @@ function ProductCard(
             height={HEIGHT}
             class="absolute transition-opacity w-full opacity-0 group-hover:opacity-100"
             sizes="(max-width: 640px) 50vw, 20vw"
-            loading="lazy"
+            preload={preload}
+            loading={preload ? "eager" : "lazy"}
             decoding="async"
           />
         </a>
