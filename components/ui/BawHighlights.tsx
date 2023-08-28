@@ -77,6 +77,7 @@ function Highlights({ highlights = [], title, interval }: Props) {
                   height={443}
                 />
                 <Button
+                  aria-label={buttonText || "comprar agora"}
                   name="shop now"
                   class="
                 bg-white 
@@ -118,7 +119,9 @@ function Highlights({ highlights = [], title, interval }: Props) {
                         loading={"lazy"}
                         preload={false}
                       />
-                      <Button class="
+                      <Button
+                        aria-label={buttonText || "comprar agora"}
+                        class="
                 bg-white 
                 text-black 
                 uppercase 
@@ -126,7 +129,8 @@ function Highlights({ highlights = [], title, interval }: Props) {
                 rounded-none 
                 text-xl
                 px-8 
-                group-hover:bg-white group-hover:scale-125 group-hover:rotate-[-3deg] group-hover:translate-y-[-3rem]">
+                group-hover:bg-white group-hover:scale-125 group-hover:rotate-[-3deg] group-hover:translate-y-[-3rem]"
+                      >
                         {buttonText || "Comprar agora"}
                       </Button>
                     </figure>

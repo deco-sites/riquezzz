@@ -82,7 +82,7 @@ function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
           <span class="font-medium text-xl text-base-100">
             {action.subTitle}
           </span>
-          <Button class="glass">{action.label}</Button>
+          <Button class="glass" aria-label={action.label}>{action.label}</Button>
         </div>
       )}
     </a>

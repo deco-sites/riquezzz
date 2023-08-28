@@ -13,6 +13,8 @@ function GridListToggle() {
         class={`px-1 h-[30px] w-[30px] mt-[12px] font-semibold ${
           listingType.value === "2" ? ("bg-black text-white") : ("")
         } hover:font-bold hover:bg-black hover:text-white cursor-pointer m-1`}
+        aria-label={'2'}
+
       >
         <p
           class={`${
@@ -24,6 +26,7 @@ function GridListToggle() {
       </button>
       <button
         onClick={() => listingType.value = "4"}
+        aria-label={'4'}
         class={`px-1 h-[30px] w-[30px] mt-[12px] font-semibold ${
           listingType.value === "4" ? ("bg-black text-white") : ("")
         } hover:font-bold hover:bg-black hover:text-white cursor-pointer m-1`}
@@ -37,6 +40,8 @@ function GridListToggle() {
         </p>
       </button>
       <button
+              aria-label={'6'}
+
         onClick={() => listingType.value = "6"}
         class={`px-1 h-[30px] w-[30px] mt-[12px] font-semibold ${
           listingType.value === "6" ? ("bg-black text-white") : ("")

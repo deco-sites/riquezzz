@@ -158,6 +158,7 @@ const NewRatingForm = (
             <Button
               class="bg-black rounded-none text-white shadow-none font-semibold text-base px-11 w-fit mt-6"
               type={"submit"}
+              aria-label={'Enviar avaliação'}
             >
               {isLoading
                 ? <span class="loading loading-spinner loading-sm"></span>
@@ -346,7 +347,8 @@ function ProductReviews(
           : (
             <a href="/login">
               <div class="text-center mt-4">
-                <Button class="bg-black rounded-none text-white shadow-none font-semibold text-base px-11">
+                <Button class="bg-black rounded-none text-white shadow-none font-semibold text-base px-11"
+                aria-label={'Login'}>
                   Faça login para escrever uma avaliação
                 </Button>
               </div>

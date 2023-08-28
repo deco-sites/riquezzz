@@ -26,6 +26,7 @@ function AddToCartButton(
   return (
     <Button
       data-deco="add-to-cart "
+      aria-label={'Adicionar à sacola'}
       {...props}
       class="w-[280px] text-white uppercase bg-[#00a95b] border-none rounded-none"
     >
