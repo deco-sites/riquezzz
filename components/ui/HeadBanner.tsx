@@ -6,14 +6,23 @@ export interface Props {
   title?: string;
   subtitle?: string;
   srcDesktop: LiveImage;
-  showMobile: boolean;
+  showMobile?: boolean;
   srcMobile?: LiveImage;
   alt: string;
   href: string;
+  preload?: boolean;
 }
 
 function BannerUI(
-  { srcDesktop, srcMobile, alt, title, subtitle, showMobile }: Props,
+  {
+    srcDesktop,
+    srcMobile,
+    alt,
+    title,
+    subtitle,
+    showMobile = false,
+    preload = false,
+  }: Props,
 ) {
   const id = useId();
   return (
@@ -22,13 +31,28 @@ function BannerUI(
         {showMobile
           ? (
             <div class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full  mb-1 mx-auto">
-              <Image width={1920} height={350} class="w-full" src={srcMobile!} alt={alt} loading={"lazy"}/>
+              <Image
+                width={1920}
+                height={350}
+                class="w-full"
+                src={srcMobile!}
+                alt={alt}
+                loading={preload ? "eager" : "lazy"}
+                preload={preload ? true : false}/>
             </div>
           )
           : ("")}
 
         <div class="hidden md:flex flex-row justify-between items-center border-b border-base-200 w-full mb-2 gap pr-[40px] mx-auto">
-          <Image  width={1920} height={350} class="w-full" src={srcDesktop} alt={alt}  loading={"lazy"}/>
+          <Image
+            width={1920}
+            height={350}
+            class="w-full"
+            src={srcDesktop}
+            alt={alt}
+            loading={preload ? "eager" : "lazy"}
+            preload={preload ? true : false}
+          />
         </div>
       </div>
       {title !== undefined
