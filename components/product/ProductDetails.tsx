@@ -156,8 +156,10 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
               >
                 Descrição da peça
               </summary>
-              <div class="ml-2 py-4 text-base whitespace-pre-line"
-                alt={"Descrição"}>
+              <div
+                class="ml-2 py-4 text-base whitespace-pre-line"
+                alt={"Descrição"}
+              >
                 {description}
               </div>
             </details>
@@ -169,7 +171,10 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
         <span class="text-lg">
           {description && (
             <details class="  border-b border-black">
-              <summary about={'Troca e devolução'} class="cursor-pointer  transform transition duration-700   hover:font-extrabold">
+              <summary
+                about={"Troca e devolução"}
+                class="cursor-pointer  transform transition duration-700   hover:font-extrabold"
+              >
                 TROCA E DEVOLUÇÃO
               </summary>
               <div class="ml-2 py-4 text-base whitespace-pre-line">
@@ -358,7 +363,7 @@ function Details({
                         name={"imgzom"}
                       />
 
-                         <Image
+                      <Image
                         class="flex sm:hidden  object-cover"
                         // sizes="(max-width: 640px) 100vw, 40vw"
                         style={{ aspectRatio: ASPECT_RATIO }}
