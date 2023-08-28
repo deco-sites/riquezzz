@@ -37,7 +37,7 @@ function LinkTree({
       <header class="flex flex-col justify-center items-center gap-4">
         <div class="rounded-full w-min bg-base-100 p-4">
           {avatar
-            ? <Image src={avatar} width={150} height={150} />
+            ? <Image src={avatar} width={150} height={150} alt={'avatar'} />
             : <Icon id="Logo" size={150} />}
         </div>
         <span class="font-medium text-xl text-base-100">{title}</span>

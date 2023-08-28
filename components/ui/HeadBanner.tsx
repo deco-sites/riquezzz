@@ -38,7 +38,8 @@ function BannerUI(
                 src={srcMobile!}
                 alt={alt}
                 loading={preload ? "eager" : "lazy"}
-                preload={preload ? true : false}/>
+                preload={preload ? true : false}
+              />
             </div>
           )
           : ("")}

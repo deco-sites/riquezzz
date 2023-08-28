@@ -171,7 +171,7 @@ function ProductCard(
             height={HEIGHT}
             class="absolute transition-opacity w-full opacity-0 group-hover:opacity-100"
             sizes="(max-width: 640px) 50vw, 20vw"
-            loading="lazy"
+            loading={preload ? "eager" : "lazy"}
             decoding="async"
           />
         </a>
