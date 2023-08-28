@@ -354,10 +354,10 @@ function Details({
                         style={{ aspectRatio: ASPECT_RATIO }}
                         src={img.url!}
                         alt={img.alternateName}
-                        width={WIDTH}
-                        height={HEIGHT}
+                        width={620}
+                        height={930}
                         // Preload LCP image for better web vitals
-                        preload={index === 0}
+                        preload={true}
                         loading={index === 0 ? "eager" : "lazy"}
                         id={"imgzom"}
                         name={"imgzom"}
