@@ -55,7 +55,7 @@ const WIDTH = 280;
 const HEIGHT = 420;
 
 function ProductCard(
-  { product, preload, itemListName, colorRed = false }: Props,
+  { product, preload =false, itemListName, colorRed = false }: Props,
 ) {
   const {
     url,
