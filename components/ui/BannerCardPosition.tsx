@@ -211,6 +211,7 @@ function CardMovie(
                   alt={banner.alt}
                   autoPlay
                   muted
+                  loading="eager"
                   loop
                   preload="auto"
                   webkit-playsinline
@@ -227,6 +228,7 @@ function CardMovie(
                   muted
                   loop
                   preload="auto"
+                  loading="eager"
                   webkit-playsinline
                   x5-playsinline
                   playsInline
@@ -319,7 +321,7 @@ function CardItem(
     product,
     itemListName,
     lcp,
-    preload,
+    preload = false,
     colorRed,
     size,
     index,

@@ -1,16 +1,17 @@
 import { Picture, Source } from "deco-sites/std/components/Picture.tsx";
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
+import Image from "deco-sites/std/components/Image.tsx";
 
 export interface Props {
   desktop: LiveImage;
-  mobile: LiveImage;
   alt: string;
+  preload?: boolean;
 }
 
-function BannerFull({ alt, desktop, mobile }: Props) {
+function BannerFull({ alt, desktop, preload }: Props) {
   return (
     <div class="w-full px-auto lg:max-w-none sm:m-0 lg:overflow-hidden lg:pr-[40px]">
-      <div class="hidden md:flex">
+      <div class="flex">
         <Picture
           preload
           class="col-start-1 col-span-1 row-start-1 row-span-1"
@@ -21,44 +22,18 @@ function BannerFull({ alt, desktop, mobile }: Props) {
                 src={desktop}
                 width={1920}
                 height={1000}
-                class="hidden lg:flex"
+                class="flex"
               />
             )
             : ("")}
           {desktop
             ? (
-              <img
+              <Image
                 class="w-full"
-                loading={"eager"}
-                preload={"true"}
-                src={desktop}
-                alt={alt}
-              />
-            )
-            : ("")}
-        </Picture>
-      </div>
-      <div class="flex md:hidden">
-        <Picture
-          preload
-          class="col-start-1 col-span-1 row-start-1 row-span-1"
-        >
-          {mobile
-            ? (
-              <Source
-                src={mobile}
-                width={720}
-                height={480}
-                class="flex lg:hidden"
-              />
-            )
-            : ("")}
-          {desktop
-            ? (
-              <img
-                loading={"eager"}
-                preload={"true"}
-                class="w-full"
+                loading={preload ? "eager" : "lazy"}
+                width={1920}
+                height={1000}
+                preload={preload}
                 src={desktop}
                 alt={alt}
               />
