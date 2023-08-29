@@ -19,7 +19,7 @@ export interface Props {
 function NotFound() {
   return (
     <div class="w-full flex flex-col justify-center items-center">
-      <div class="w-full flex flex-col sm:flex-row justify-center items-center h-full pb-[30px] sm:pb-[60px] ">
+      <div class="w-full flex flex-col sm:flex-row justify-center items-center h-full pb-[30px] sm:pb-[60px] my-[110px] ">
         <div class="flex flex-col justify-center text-center w-full sm:w-[600px] ">
           <span class="text-[8rem] sm:text-[10.5rem] text-[#ccc] font-extrabold ">
             Oops!
@@ -82,7 +82,7 @@ function NotFound() {
         </div>
       </div>
       <span
-        class={"hidden w-full  justify-center items-center text-center sm:flex text-[3rem]  text-[#ccc] font-extrabold"}
+        class={"hidden w-full  justify-center items-center text-center sm:flex text-[3rem]  text-[#3a3a3a] font-extrabold"}
       >
         Eita, alguma coisa se perdeu por aqui.. talvez esses produtos te ajudem?
       </span>
@@ -183,7 +183,7 @@ function Result(
 function SearchResult(
   { page, ...props }: Props,
 ) {
-  if (!page) {
+  if (!page || page?.pageInfo.records === 0) {
     return <NotFound />;
   }
   return <Result {...props} page={page!} />;

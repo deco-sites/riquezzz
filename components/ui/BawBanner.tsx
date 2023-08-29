@@ -172,8 +172,10 @@ export default function BawBannner({
               <Source
                 media="(min-width: 768px)"
                 src={srcDesktop ? srcDesktop : srcMobile}
+
                 width={390}
                 height={443}
+
               />
               <Image
                 class="w-full object-cover "
