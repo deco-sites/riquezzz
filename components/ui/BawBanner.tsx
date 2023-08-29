@@ -1,5 +1,7 @@
 import { Picture, Source } from "deco-sites/std/components/Picture.tsx";
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
+import Image from "deco-sites/std/components/Image.tsx";
+
 /**
 @titleBy alt
 */
@@ -27,6 +29,10 @@ export interface Banner {
    * @description It will set the number of rows for the image
    */
   size_rows: number;
+  /**
+   * @description Must be used in the main image of the group
+   */
+  preload?: boolean;
 }
 
 export type BorderRadius =
@@ -141,6 +147,7 @@ export default function BawBannner({
             alt,
             size_cols,
             size_rows,
+            preload = false,
           },
           index,
         ) => (
@@ -151,6 +158,7 @@ export default function BawBannner({
             } transform transition duration-500 hover:scale-95  `}
           >
             <Picture
+              preload={preload}
               class={index > 1
                 ? "hidden sm:block text-center  "
                 : "w-full flex "}
@@ -158,22 +166,27 @@ export default function BawBannner({
               <Source
                 media="(max-width: 767px)"
                 src={srcMobile}
-                width={810}
-                height={920}
+                width={390}
+                height={443}
               />
               <Source
                 media="(min-width: 768px)"
                 src={srcDesktop ? srcDesktop : srcMobile}
-                width={index >= 3 ? 1000 : 810}
-                height={index >= 3 ? 1000 : 920}
+
+                width={390}
+                height={443}
+
               />
-              <img
+              <Image
                 class="w-full object-cover "
                 //sizes="(max-width: 640px) 100vw, 30vw"
                 src={srcMobile}
                 alt={alt}
+                width={390}
+                height={443}
                 decoding="async"
-                loading="lazy"
+                loading={index === 0 ? "eager" : "lazy"}
+                preload={index === 0 ? true : false}
               />
             </Picture>
           </a>

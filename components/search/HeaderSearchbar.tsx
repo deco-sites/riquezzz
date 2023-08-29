@@ -53,6 +53,7 @@ function CloseButton() {
     <Button
       class="bg-transparent p-0 m-0 w-[28px] border-none justify-center items-center text-black hover:bg-transparent transform transition  duration-100 hover:scale-125"
       onClick={() => (displaySearchbar.value = false)}
+      aria-label={"xMark"}
     >
       <Icon id="XMark" width={20} height={20} strokeWidth={2} />
     </Button>

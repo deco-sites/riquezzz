@@ -160,10 +160,14 @@ function CardMovie(
 
               {banner?.srcDesktop
                 ? (
-                  <img
+                  <Image
                     class="w-full object-cover 2xl:h-[1300px]  "
                     src={banner.srcDesktop}
                     alt={banner.alt}
+                    width={960}
+                    height={1440}
+                    preload={true}
+                    loading={"eager"}
                   />
                 )
                 : ("")}
@@ -174,7 +178,7 @@ function CardMovie(
   );
 }
 function CardItem(
-  { product, itemListName, lcp, colorRed }: {
+  { product, itemListName, lcp = false, colorRed }: {
     product: Product;
     lcp?: boolean;
     itemListName?: string;

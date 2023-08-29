@@ -68,7 +68,9 @@ function NotFound() {
           Página não encontrada
         </span>
         <a href="/">
-          <Button>Voltar à página inicial</Button>
+          <Button aria-label={"Voltar à página home"}>
+            Voltar à página inicial
+          </Button>
         </a>
       </div>
     </div>
@@ -137,6 +139,7 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
                   price={price ?? 0}
                   discount={price && listPrice ? listPrice - price : 0}
                   name={product.name ?? ""}
+                  aria-label="Adicionar ao carrinho"
                   productGroupId={product.isVariantOf?.productGroupID ?? ""}
                 />
               )}
@@ -150,10 +153,16 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
         <span class="text-lg">
           {description && (
             <details open class="  border-b border-black">
-              <summary class="cursor-pointer transform transition  duration-700 hover:font-extrabold uppercase">
+              <summary
+                alt={" Descrição da peça"}
+                class="cursor-pointer transform transition  duration-700 hover:font-extrabold uppercase"
+              >
                 Descrição da peça
               </summary>
-              <div class="ml-2 py-4 text-base whitespace-pre-line">
+              <div
+                class="ml-2 py-4 text-base whitespace-pre-line"
+                alt={"Descrição"}
+              >
                 {description}
               </div>
             </details>
@@ -165,7 +174,10 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
         <span class="text-lg">
           {description && (
             <details class="  border-b border-black">
-              <summary class="cursor-pointer  transform transition duration-700   hover:font-extrabold">
+              <summary
+                about={"Troca e devolução"}
+                class="cursor-pointer  transform transition duration-700   hover:font-extrabold"
+              >
                 TROCA E DEVOLUÇÃO
               </summary>
               <div class="ml-2 py-4 text-base whitespace-pre-line">
@@ -336,22 +348,35 @@ function Details({
                 .map((img, index) => (
                   <Slider.Item
                     index={index}
-                    class="carousel-item min-w-[40vw]  lg:min-w-[40vw]  justify-center"
+                    class="carousel-item  lg:min-w-[40vw]  justify-center"
                   >
                     <div class="flex items-center justify-center m-0 lg:min-h-[930px] overflow-hidden">
                       <Image
-                        class="flex w-[335px] h-[480px] lg:w-[620px] lg:h-[930px] object-cover"
+                        class="hidden sm:flex w-[335px] h-[480px] lg:w-[620px] lg:h-[930px] object-cover"
                         // sizes="(max-width: 640px) 100vw, 40vw"
                         style={{ aspectRatio: ASPECT_RATIO }}
                         src={img.url!}
                         alt={img.alternateName}
-                        width={WIDTH}
-                        height={HEIGHT}
+                        width={620}
+                        height={930}
                         // Preload LCP image for better web vitals
-                        preload={index === 0}
+                        preload={true}
                         loading={index === 0 ? "eager" : "lazy"}
                         id={"imgzom"}
                         name={"imgzom"}
+                      />
+
+                      <Image
+                        class="flex sm:hidden  object-cover"
+                        // sizes="(max-width: 640px) 100vw, 40vw"
+                        style={{ aspectRatio: ASPECT_RATIO }}
+                        src={img.url!}
+                        alt={img.alternateName}
+                        width={335}
+                        height={480}
+                        // Preload LCP image for better web vitals
+                        preload={index === 0}
+                        loading={index === 0 ? "eager" : "lazy"}
                       />
                       <script
                         dangerouslySetInnerHTML={{
@@ -393,6 +418,8 @@ function Details({
                         height={180}
                         src={img.url!}
                         alt={img.alternateName}
+                        preload={false}
+                        loading={"lazy"}
                       />
                     </Slider.Dot>
                   </li>
@@ -428,6 +455,7 @@ function Details({
       {/* Image slider */}
 
       <ul class="carousel carousel-center gap-6">
+        dadasdas
         {[images[0], images[1] ?? images[0]].map((img, index) => (
           <li class="carousel-item min-w-[100vw] sm:min-w-[24vw]">
             <Image

@@ -1,5 +1,6 @@
 import Icon, { AvailableIcons } from "$store/components/ui/Icon.tsx";
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
+import Image from "deco-sites/std/components/Image.tsx";
 
 export interface Feature {
   /**
@@ -46,9 +47,13 @@ function FeatureHighlights(
             </div>
             <div class="flex flex-row py-6 sm:flex-col sm:py-0 sm:px-8 relative w-[290px]">
               <img
+                width={291}
+                height={291}
                 class="mt-[-15px] max-w-none"
+                loading={"lazy"}
                 src={IMAGE_SRC[0]}
-                alt={img_alt}
+                alt={"primeiro icone"}
+
               />
             </div>
             <div class="flex flex-row gap-8 py-3 sm:flex-col sm:py-0 sm:px-2 relative  h-full justify-center">
@@ -63,9 +68,13 @@ function FeatureHighlights(
             </div>
             <div class="flex flex-row py-6 sm:flex-col sm:py-0 sm:px-8 relative w-[290px]">
               <img
+                width={228}
+                height={228}
                 class="mt-[-85px] max-w-none"
+                loading={"lazy"}
                 src={IMAGE_SRC[1]}
-                alt={img_alt}
+                alt={"segundo icone"}
+
               />
             </div>
 

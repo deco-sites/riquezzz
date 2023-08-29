@@ -56,6 +56,7 @@ function Modal(props: Props) {
             <Button
               class="bg-transparent hover:bg-transparent  border-none p-0 m-0 w-[30px] text-black"
               onClick={onClose}
+              aria-label={"XMark"}
             >
               <Icon id="XMark" width={32} height={32} strokeWidth={2} />
             </Button>
@@ -71,6 +72,8 @@ function Modal(props: Props) {
                 width="50"
                 class="shrink-0 w-full h-[27px]"
                 alt="Logo Baw"
+                loading="lazy"
+                preload={"false"}
               />
             </a>
 
@@ -101,6 +104,9 @@ function Modal(props: Props) {
                   src="https://bawclothing.vtexassets.com/assets/vtex/assets-builder/bawclothing.theme/4.5.13/icons/iconMyOrders___43cd4a2fbf8e478ca5a5fc5f999af1d4.svg"
                   width="50"
                   class="shrink-0 w-[32px] h-[32px]"
+                  alt={"Logo Baw"}
+                  loading="lazy"
+                  preload={"false"}
                 />
               </a>
               <span class="text-[12px] ">MEUS PEDIDOS</span>

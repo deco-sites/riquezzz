@@ -61,10 +61,13 @@ function Newsletter({ Title, desc, successText, errorText }: StringNewsletter) {
             name="email"
             class="flex-grow input w-[85%] input-primary h-[40px] focus:outline-none border-none"
             placeholder="e-mail"
+            aria-label={"e-mail"}
           />
           <button
             class="bg-transparent  border-none w-[15%]  text-center px-5 pt-4 "
             disabled={loading.value}
+            name="envie seu e-mail"
+            aria-label={"envie seu e-mail"}
           >
             <Icon
               class="text-black"
