@@ -43,12 +43,16 @@ function SectionItem({ item }: { item: Item }) {
           </div>
         )
         : (
-          <a
-            href={item.href}
-            target={item.target ? `_${item.target}` : "_blank"}
-          >
-            {item.label}
-          </a>
+          item.href
+            ? (
+              <a
+                href={item.href}
+                target={item.target ? `_${item.target}` : "_blank"}
+              >
+                {item.label}
+              </a>
+            )
+            : <span>{item.label}</span>
         )}
     </span>
   );
