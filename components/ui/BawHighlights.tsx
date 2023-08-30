@@ -73,8 +73,8 @@ function Highlights({ highlights = [], title, interval }: Props) {
                   class="w-full"
                   loading={"lazy"}
                   preload={false}
-                  width={390}
-                  height={443}
+                  width={600}
+                  height={600}
                 />
                 <Button
                   aria-label={buttonText || "comprar agora"}
@@ -114,8 +114,8 @@ function Highlights({ highlights = [], title, interval }: Props) {
                         src={src}
                         alt={alt}
                         class="w-full"
-                        width={390}
-                        height={443}
+                        width={600}
+                        height={600}
                         loading={"lazy"}
                         preload={false}
                       />
