@@ -14,6 +14,7 @@ export interface Props {
    * @description Use drawer for mobile like behavior on desktop. Aside for rendering the filters alongside the products
    */
   variant?: "aside" | "drawer";
+  colorRed?: boolean;
 }
 
 function NotFound() {
@@ -91,7 +92,7 @@ function NotFound() {
 }
 
 function Result(
-  { page, variant }: Omit<Props, "page"> & { page: ProductListingPage },
+  { page, variant, colorRed }: Omit<Props, "page"> & { page: ProductListingPage },
 ) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   return (
@@ -124,7 +125,7 @@ function Result(
                 displayFilter={variant === "drawer"}
               />
             </div>
-            <ProductGallery products={products} />
+            <ProductGallery products={products} colorRed={colorRed}/>
           </div>
         </div>
 
