@@ -15,7 +15,7 @@ function Navbar({ items, searchbar }: {
       {/* Mobile Version */}
       <div
         style={{ height: navbarHeight }}
-        class="md:hidden flex flex-row justify-between px-4 py-6 items-center  w-full"
+        class="tb:hidden flex flex-row justify-between px-4 py-6 items-center  w-full"
       >
         <Buttons variant="menu" />
         <a
@@ -42,7 +42,7 @@ function Navbar({ items, searchbar }: {
       </div>
 
       {/* Desktop Version */}
-      <div class="hidden md:flex flex-row justify-between items-center w-full pl-2 pr-6 gap-8">
+      <div class="hidden tb:flex flex-row justify-between items-center w-full pl-2 pr-6 gap-8">
         <div class="flex-none w-44 shrink-0">
           <a href="/" aria-label="Store logo" class="block px-4 py-3 w-[160px]">
             <Image

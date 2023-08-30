@@ -6,6 +6,9 @@ export default {
   daisyui: { themes: [], logs: false },
   theme: {
     // https://tailwindcss.com/docs/container#centering-by-default
+    screens: {
+      "tb": "825px",
+    },
     container: {
       center: true,
     },
