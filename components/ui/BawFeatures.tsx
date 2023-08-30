@@ -53,7 +53,6 @@ function FeatureHighlights(
                 loading={"lazy"}
                 src={IMAGE_SRC[0]}
                 alt={"primeiro icone"}
-
               />
             </div>
             <div class="flex flex-row gap-8 py-3 sm:flex-col sm:py-0 sm:px-2 relative  h-full justify-center">
@@ -74,7 +73,6 @@ function FeatureHighlights(
                 loading={"lazy"}
                 src={IMAGE_SRC[1]}
                 alt={"segundo icone"}
-
               />
             </div>
 
