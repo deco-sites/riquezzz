@@ -9,16 +9,17 @@ export interface Columns {
 
 export interface Props {
   products: Product[] | null;
+  colorRed?: boolean;
 }
 
-function ProductGallery({ products }: Props) {
+function ProductGallery({ products, colorRed }: Props) {
   const { listingType } = useUI();
 
   if (listingType.value === "2") {
     return (
       <div class=" grid grid-cols-2 gap-2 sm:gap-8 items-center  lg:grid-cols-2">
         {products?.map((product, index) => (
-          <ProductCard product={product} preload={true} />
+          <ProductCard product={product} preload={true} colorRed={colorRed} />
         ))}
       </div>
     );
@@ -26,7 +27,7 @@ function ProductGallery({ products }: Props) {
     return (
       <div class=" grid grid-cols-2 gap-2 sm:gap-8 items-center   lg:grid-cols-4">
         {products?.map((product, index) => (
-          <ProductCard product={product} preload={true} />
+          <ProductCard product={product} preload={true} colorRed={colorRed} />
         ))}
       </div>
     );
