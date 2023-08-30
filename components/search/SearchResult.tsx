@@ -92,7 +92,9 @@ function NotFound() {
 }
 
 function Result(
-  { page, variant, colorRed }: Omit<Props, "page"> & { page: ProductListingPage },
+  { page, variant, colorRed }: Omit<Props, "page"> & {
+    page: ProductListingPage;
+  },
 ) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   return (
@@ -125,7 +127,7 @@ function Result(
                 displayFilter={variant === "drawer"}
               />
             </div>
-            <ProductGallery products={products} colorRed={colorRed}/>
+            <ProductGallery products={products} colorRed={colorRed} />
           </div>
         </div>
 
