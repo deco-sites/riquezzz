@@ -104,6 +104,9 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
         </h1>
       </div>
       {/* Prices */}
+      <div>
+        <div id="sizebay-container"></div>
+      </div>
       <div class="mt-1 lg:mt-4">
         <div class="flex flex-col gap-0 lg:gap-2">
           <span class="line-through text-black text-lg">
