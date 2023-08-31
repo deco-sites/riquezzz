@@ -21,6 +21,7 @@ function ProductImageZoom({ images, width, height }: Props) {
   return (
     <>
       <Button
+        aria-label={"Arrow Pont"}
         class="hidden sm:inline-flex cursor-zoom-in btn-ghost"
         onClick={() => open.value = true}
       >
@@ -33,7 +34,6 @@ function ProductImageZoom({ images, width, height }: Props) {
       </Button>
       <Modal
         loading="lazy"
-        mode="center"
         open={open.value}
         onClose={() => {
           open.value = false;

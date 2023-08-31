@@ -1,25 +1,59 @@
 import { useId } from "preact/hooks";
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
+import Image from "deco-sites/std/components/Image.tsx";
 
 export interface Props {
   title?: string;
   subtitle?: string;
-  srcMobile: LiveImage;
-  srcDesktop?: LiveImage;
+  srcDesktop: LiveImage;
+  showMobile?: boolean;
+  srcMobile?: LiveImage;
   alt: string;
   href: string;
+  preload?: boolean;
 }
 
-function BannerUI({ srcDesktop, srcMobile, alt, title, subtitle }: Props) {
+function BannerUI(
+  {
+    srcDesktop,
+    srcMobile,
+    alt,
+    title,
+    subtitle,
+    showMobile = false,
+    preload = false,
+  }: Props,
+) {
   const id = useId();
   return (
     <>
       <div id={id} class="sm:px-4 w-full">
-        <div class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full  mb-1 mx-auto">
-          <img class="w-full" src={srcMobile} alt={alt} />
-        </div>
-        <div class="hidden md:flex flex-row justify-between items-center border-b border-base-200 w-full mb-2 gap  mx-auto">
-          <img class="w-full" src={srcDesktop} alt={alt} />
+        {showMobile
+          ? (
+            <div class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full  mb-1 mx-auto">
+              <Image
+                width={1920}
+                height={350}
+                class="w-full"
+                src={srcMobile!}
+                alt={alt}
+                loading={preload ? "eager" : "lazy"}
+                preload={preload ? true : false}
+              />
+            </div>
+          )
+          : ("")}
+
+        <div class="hidden md:flex flex-row justify-between items-center border-b border-base-200 w-full mb-2 gap pr-[40px] mx-auto">
+          <Image
+            width={1920}
+            height={350}
+            class="w-full"
+            src={srcDesktop}
+            alt={alt}
+            loading={preload ? "eager" : "lazy"}
+            preload={preload ? true : false}
+          />
         </div>
       </div>
       {title !== undefined

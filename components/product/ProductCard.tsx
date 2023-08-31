@@ -1,7 +1,7 @@
 import Image from "deco-sites/std/components/Image.tsx";
 import AvatarColor from "$store/components/ui/AvatarColor.tsx";
-import AddToCartAvatar from "$store/islands/AddToCartAvatar.tsx";
-import WishlistIcon from "$store/islands/WishlistButton.tsx";
+import AddToCartAvatar from "$store/components/product/AddToCartAvatar.tsx";
+import WishlistIcon from "$store/components/wishlist/WishlistButton.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
@@ -63,7 +63,7 @@ const WIDTH = 280;
 const HEIGHT = 420;
 
 function ProductCard(
-  { product, preload, itemListName, colorRed = false }: Props,
+  { product, preload = false, itemListName, colorRed = false }: Props,
 ) {
   const [visibleProduct, setVisibleProduct] = useState(product);
   const [similarProducts, setSimilarProducts] = useState(
@@ -209,7 +209,8 @@ function ProductCard(
             height={HEIGHT}
             class="absolute transition-opacity w-full opacity-0 group-hover:opacity-100"
             sizes="(max-width: 640px) 50vw, 20vw"
-            loading="lazy"
+            preload={preload}
+            loading={preload ? "eager" : "lazy"}
             decoding="async"
           />
         </a>
@@ -309,10 +310,13 @@ function ProductCard(
           ? (
             <div class="flex flex-row-reverse">
               {similarProducts.map((similar) => {
+                const colorImg = similar.image?.find((img) =>
+                  img.alternateName === "color-thumbnail"
+                )?.url;
                 const availability = (similar.offers?.offers.find((of) =>
                   of.seller === seller
                 )?.inventoryLevel.value!) > 0;
-                if (!availability) {
+                if (!colorImg || !availability) {
                   return null;
                 }
                 return (
@@ -323,13 +327,7 @@ function ProductCard(
                     variant={similar.productID === visibleProduct.productID
                       ? "active"
                       : "default"}
-                    image={similar.image?.filter((img) =>
-                        img.alternateName === "color-thumbnail"
-                      ).length
-                      ? similar.image?.filter((img) =>
-                        img.alternateName === "color-thumbnail"
-                      )[0].url!
-                      : similar.image?.slice(-1)[0].url!}
+                    image={colorImg}
                   />
                 );
               })}

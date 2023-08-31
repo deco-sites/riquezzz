@@ -1,6 +1,10 @@
 import { Picture, Source } from "deco-sites/std/components/Picture.tsx";
 import type { Image as LiveImage } from "deco-sites/std/components/types.ts";
+import Image from "deco-sites/std/components/Image.tsx";
 
+/**
+@titleBy alt
+*/
 export interface Banner {
   srcMobile: LiveImage;
   srcDesktop?: LiveImage;
@@ -25,6 +29,10 @@ export interface Banner {
    * @description It will set the number of rows for the image
    */
   size_rows: number;
+  /**
+   * @description Must be used in the main image of the group
+   */
+  preload?: boolean;
 }
 
 export type BorderRadius =
@@ -124,7 +132,6 @@ export default function BawBannner({
 
   banners = [],
 }: Props) {
-  console.log({ itemsPerLine });
   return (
     <section class="w-full  md:pl-2 mx-auto md:pr-[42px]">
       <div
@@ -140,15 +147,18 @@ export default function BawBannner({
             alt,
             size_cols,
             size_rows,
+            preload = false,
           },
           index,
         ) => (
-          <div
-            class={`${IMAGE_SIZE[size_cols ?? 2]} ${
-              ROW_SIZE[size_rows ?? 1]
+          <a
+            href={href}
+            class={`${IMAGE_SIZE[size_cols ?? 2]} ${ROW_SIZE[size_rows ?? 1]} ${
+              index === 1 ? ("px-[30px] py-[20px] lg:px-0 lg:py-0") : ("")
             } transform transition duration-500 hover:scale-95  `}
           >
             <Picture
+              preload={preload}
               class={index > 1
                 ? "hidden sm:block text-center  "
                 : "w-full flex "}
@@ -156,25 +166,28 @@ export default function BawBannner({
               <Source
                 media="(max-width: 767px)"
                 src={srcMobile}
-                width={810}
-                height={920}
+                width={index >= 3 ? 443 : 390}
+                height={443}
               />
               <Source
                 media="(min-width: 768px)"
                 src={srcDesktop ? srcDesktop : srcMobile}
-                width={810}
-                height={920}
+                width={index >= 3 ? 443 : 390}
+                height={443}
               />
-              <img
+              <Image
                 class="w-full object-cover "
                 //sizes="(max-width: 640px) 100vw, 30vw"
                 src={srcMobile}
                 alt={alt}
+                width={390}
+                height={443}
                 decoding="async"
-                loading="lazy"
+                loading={index === 0 ? "eager" : "lazy"}
+                preload={index === 0 ? true : false}
               />
             </Picture>
-          </div>
+          </a>
         ))}
       </div>
     </section>

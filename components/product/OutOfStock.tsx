@@ -51,6 +51,7 @@ function Notify({ productID }: Props) {
       <button
         class="btn max-w-[100px] max-h-[20px] p-1 rounded-none font-normal uppercase text-white bg-black disabled:loading"
         disabled={loading}
+        aria-label={"Enviar"}
       >
         Enviar
       </button>

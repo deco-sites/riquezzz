@@ -10,6 +10,9 @@ export default {
       center: true,
     },
     extend: {
+      screens: {
+        "tb": "1148px",
+      },
       transitionProperty: {
         "height": "height",
         "spacing": "margin, padding",

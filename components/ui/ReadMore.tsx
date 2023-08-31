@@ -3,7 +3,9 @@ import HTMLRenderer from "deco-sites/std/components/HTMLRenderer.tsx";
 import { useState } from "preact/hooks";
 import type { LoaderReturnType } from "$live/types.ts";
 import type { ProductListingPage } from "deco-sites/std/commerce/types.ts";
-
+/**
+@titleBy matcher
+*/
 export interface ReadMore {
   /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
   matcher: string;
@@ -29,8 +31,8 @@ function ReadMoreUI({ readMore }: { readMore: ReadMore }) {
       <div class="max-w-3xl">
         <div
           class={`transition-all duration-[1500ms] ${
-            isShowing ? "max-h-[900px]" : "max-h-[70px]"
-          } overflow-hidden text-gray-500`}
+            isShowing ? "max-h-fit" : "max-h-[70px]"
+          } overflow-hidden text-gray-500 [&_ul]:pl-4 [&_ul]:mx-3 [&_ul]:list-disc [&_h1]:mt-3 [&_h2]:mt-3 [&_h3]:mt-3 [&_h4]:mt-3 [&_h5]:mt-3 [&_a]:text-blue-600 [&_a]:underline [&_a]:font-medium`}
         >
           <HTMLRenderer html={content} />
         </div>

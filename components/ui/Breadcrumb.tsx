@@ -17,10 +17,10 @@ function Breadcrumb({ itemListElement = [] }: Props) {
           .filter(({ name, item }) => name && item)
           .map(({ name, item }) => (
             <li>
-              <a href={item}>
+              <a href={item} name={name} aria-label={name}>
                 {name === "Home"
                   ? <Icon size={20} id="home" strokeWidth={2} />
-                  : (name)}
+                  : name}
               </a>
             </li>
           ))}

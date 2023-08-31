@@ -1,4 +1,4 @@
-import ProductCard from "$store/components/product/ProductCard.tsx";
+import ProductCard from "$store/components/product/ProductCardShelf.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
@@ -28,7 +28,7 @@ function ProductShelf({ colorRed, title, products }: Props) {
       id={id}
       class="grid grid-cols-[48px_1fr_48px] grid-rows-[48px_1fr_48px_1fr] py-10 px-0 sm:pl-8 sm:pr-[75px]"
     >
-      <h2 class="text-left row-start-1 col-span-full">
+      <h2 class="text-left row-start-1 col-span-full ml-6 sm:ml-0">
         <span class="font-black text-3xl">{title}</span>
       </h2>
 

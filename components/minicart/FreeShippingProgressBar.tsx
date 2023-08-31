@@ -19,6 +19,7 @@ function FreeShippingProgressBar({ target, total, currency, locale }: Props) {
       <div class="flex justify-start items-center gap-2 text-white w-full">
         <Button
           class="btn btn-ghost"
+          aria-label={"xMark"}
           onClick={() => displayCart.value = !displayCart.value}
         >
           <Icon id="XMark" width={20} height={20} strokeWidth={2} />

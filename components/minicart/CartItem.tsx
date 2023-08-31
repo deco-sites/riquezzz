@@ -106,6 +106,7 @@ function CartItem({ index }: Props) {
         disabled={loading.value || isGift}
         // loading={loading.value}
         class="btn btn-ghost"
+        aria-label="trash"
       >
         <Icon id="Trash" width={20} height={20} />
       </Button>

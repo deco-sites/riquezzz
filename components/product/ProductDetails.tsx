@@ -14,10 +14,14 @@ import { SendEventOnLoad } from "$store/sdk/analytics.tsx";
 import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/productToAnalyticsItem.ts";
 import type { ProductDetailsPage } from "deco-sites/std/commerce/types.ts";
 import type { LoaderReturnType } from "$live/types.ts";
-
+import type { Product } from "deco-sites/std/commerce/types.ts";
 import ProductSelector from "./ProductVariantSelectoPDP.tsx";
 import ProductImageZoom from "$store/islands/ProductImageZoom.tsx";
 import WishlistButton from "../wishlist/WishlistButton.tsx";
+import ProductReviews from "deco-sites/riquezzz/components/product/ProductReviews.tsx";
+import { ResponseReviews } from "$store/loaders/reviewsandratings.ts";
+import type { SectionProps } from "$live/mod.ts";
+import { default as reviewsLoader } from "deco-sites/riquezzz/loaders/reviewsandratings.ts";
 
 export type Variant = "front-back" | "slider" | "auto";
 
@@ -34,6 +38,25 @@ const WIDTH = 620;
 const HEIGHT = 930;
 const ASPECT_RATIO = `${WIDTH} / ${HEIGHT}`;
 
+export async function loader(
+  { page, variant }: Props,
+  _req: Request,
+) {
+  let reviews = {} as ResponseReviews;
+
+  try {
+    reviews = (await reviewsLoader({
+      productId: page!.product!.isVariantOf
+        ? page!.product!.isVariantOf?.productGroupID
+        : page!.product!.productID,
+    })) as ResponseReviews;
+  } catch (e) {
+    console.log({ e });
+  }
+
+  return { page, variant, reviews };
+}
+
 /**
  * Rendered when a not found is returned by any of the loaders run on this page
  */
@@ -45,7 +68,9 @@ function NotFound() {
           Página não encontrada
         </span>
         <a href="/">
-          <Button>Voltar à página inicial</Button>
+          <Button aria-label={"Voltar à página home"}>
+            Voltar à página inicial
+          </Button>
         </a>
       </div>
     </div>
@@ -114,6 +139,7 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
                   price={price ?? 0}
                   discount={price && listPrice ? listPrice - price : 0}
                   name={product.name ?? ""}
+                  aria-label="Adicionar ao carrinho"
                   productGroupId={product.isVariantOf?.productGroupID ?? ""}
                 />
               )}
@@ -127,10 +153,16 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
         <span class="text-lg">
           {description && (
             <details open class="  border-b border-black">
-              <summary class="cursor-pointer transform transition  duration-700 hover:font-extrabold uppercase">
+              <summary
+                alt={" Descrição da peça"}
+                class="cursor-pointer transform transition  duration-700 hover:font-extrabold uppercase"
+              >
                 Descrição da peça
               </summary>
-              <div class="ml-2 py-4 text-base whitespace-pre-line">
+              <div
+                class="ml-2 py-4 text-base whitespace-pre-line"
+                alt={"Descrição"}
+              >
                 {description}
               </div>
             </details>
@@ -142,7 +174,10 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
         <span class="text-lg">
           {description && (
             <details class="  border-b border-black">
-              <summary class="cursor-pointer  transform transition duration-700   hover:font-extrabold">
+              <summary
+                about={"Troca e devolução"}
+                class="cursor-pointer  transform transition duration-700   hover:font-extrabold"
+              >
                 TROCA E DEVOLUÇÃO
               </summary>
               <div class="ml-2 py-4 text-base whitespace-pre-line">
@@ -256,26 +291,36 @@ const useStableImages = (product: ProductDetailsPage["product"]) => {
 };
 
 function imgZoom() {
-  const img = document.getElementById("imgzom");
+  const img = document.getElementsByName("imgzom");
   const box = document.getElementById("box");
+
+  console.log(img);
 
   box!.addEventListener("mousemove", (e) => {
     const x = e.offsetX;
     const y = e.offsetY;
-
-    img!.style.transformOrigin = `${x}px ${y}px`;
-    img!.style.transform = "scale(2)";
+    for (let index = 0; index < img.length; index++) {
+      img[index]!.style.transformOrigin = `${x}px ${y}px`;
+      img[index]!.style.transform = "scale(2)";
+    }
   });
-  box!.addEventListener("mouseleave", () => {
-    img!.style.transformOrigin = "center center";
-    img!.style.transform = "scale(1)";
-  });
+  for (let index = 0; index < img.length; index++) {
+    box!.addEventListener("mouseleave", () => {
+      img[index]!.style.transformOrigin = "center center";
+      img[index]!.style.transform = "scale(1)";
+    });
+  }
 }
 
 function Details({
   page,
   variant,
-}: { page: ProductDetailsPage; variant: Variant }) {
+  reviews,
+}: {
+  page: ProductDetailsPage;
+  variant: Variant;
+  reviews: ResponseReviews;
+}) {
   const {
     breadcrumbList,
     product,
@@ -295,29 +340,43 @@ function Details({
         >
           {/* Image Slider */}
           <div class="relative lg:col-start-2 lg:col-span-1 lg:row-start-1 lg:max-h-[930px]">
-            <Slider class="carousel gap-2 lg:gap-6 min-w-[40vw] sm:max-w-[40vw]">
+            <Slider
+              class="carousel gap-2 lg:gap-6 min-w-[40vw] sm:max-w-[40vw]"
+              id="box"
+            >
               {images.filter((img) => img.alternateName !== "color-thumbnail")
                 .map((img, index) => (
                   <Slider.Item
                     index={index}
-                    class="carousel-item min-w-[40vw]  lg:min-w-[40vw]  justify-center"
+                    class="carousel-item  lg:min-w-[40vw]  justify-center"
                   >
-                    <div
-                      id="box"
-                      class="flex items-center justify-center m-0 lg:min-h-[930px] overflow-hidden"
-                    >
+                    <div class="flex items-center justify-center m-0 lg:min-h-[930px] overflow-hidden">
                       <Image
-                        class="w-[335px] h-[480px] lg:w-[620px] lg:h-[930px] object-cover  origin-center "
+                        class="hidden sm:flex w-[335px] h-[480px] lg:w-[620px] lg:h-[930px] object-cover"
                         // sizes="(max-width: 640px) 100vw, 40vw"
                         style={{ aspectRatio: ASPECT_RATIO }}
                         src={img.url!}
                         alt={img.alternateName}
-                        width={WIDTH}
-                        height={HEIGHT}
+                        width={620}
+                        height={930}
+                        // Preload LCP image for better web vitals
+                        preload={true}
+                        loading={index === 0 ? "eager" : "lazy"}
+                        id={"imgzom"}
+                        name={"imgzom"}
+                      />
+
+                      <Image
+                        class="flex sm:hidden  object-cover"
+                        // sizes="(max-width: 640px) 100vw, 40vw"
+                        style={{ aspectRatio: ASPECT_RATIO }}
+                        src={img.url!}
+                        alt={img.alternateName}
+                        width={335}
+                        height={480}
                         // Preload LCP image for better web vitals
                         preload={index === 0}
                         loading={index === 0 ? "eager" : "lazy"}
-                        id="imgzom"
                       />
                       <script
                         dangerouslySetInnerHTML={{
@@ -359,6 +418,8 @@ function Details({
                         height={180}
                         src={img.url!}
                         alt={img.alternateName}
+                        preload={false}
+                        loading={"lazy"}
                       />
                     </Slider.Dot>
                   </li>
@@ -372,6 +433,13 @@ function Details({
           </div>
         </div>
         <SliderJS rootId={id}></SliderJS>
+
+        <ProductReviews
+          productID={page.product.isVariantOf
+            ? page.product.isVariantOf.productGroupID
+            : page.product.productID}
+          userHasReviewed={reviews}
+        />
       </>
     );
   }
@@ -387,6 +455,7 @@ function Details({
       {/* Image slider */}
 
       <ul class="carousel carousel-center gap-6">
+        dadasdas
         {[images[0], images[1] ?? images[0]].map((img, index) => (
           <li class="carousel-item min-w-[100vw] sm:min-w-[24vw]">
             <Image
@@ -412,12 +481,25 @@ function Details({
   );
 }
 
-function ProductDetails({ page, variant: maybeVar = "auto" }: Props) {
+function ProductDetails(
+  { page, variant: maybeVar = "auto", reviews }: SectionProps<
+    typeof loader
+  >,
+) {
   /**
    * Showcase the different product views we have on this template. In case there are less
    * than two images, render a front-back, otherwhise render a slider
    * Remove one of them and go with the best suited for your use case.
    */
+
+  // console.log({
+  //   product: page?.product.isVariantOf
+  //     ? page.product.isVariantOf.productGroupID
+  //     : page?.product.productID,
+  //   reviews,
+  // });
+  // console.log({ page });
+
   const variant = maybeVar === "auto"
     ? page?.product.image?.length && page?.product.image?.length < 2
       ? "front-back"
@@ -426,7 +508,15 @@ function ProductDetails({ page, variant: maybeVar = "auto" }: Props) {
 
   return (
     <div class="px-5  lg:px-10 lg:pb-10">
-      {page ? <Details page={page} variant={variant} /> : <NotFound />}
+      {page
+        ? (
+          <Details
+            page={page}
+            variant={variant}
+            reviews={reviews}
+          />
+        )
+        : <NotFound />}
     </div>
   );
 }
