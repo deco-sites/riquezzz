@@ -57,7 +57,7 @@ export async function loader(
     ).split("?")[0];
   } else if (page?.product.url?.includes("https://riquezzz.deco.site/")) {
     permaLink = page?.product.url?.replace(
-      "https://riquezzz.deco.site/",
+      "https://riquezzz.deco.site",
       "https://www.bawclothing.com.br",
     ).split("?")[0];
   } else {
