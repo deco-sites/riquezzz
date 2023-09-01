@@ -48,7 +48,10 @@ export type AvailableIcons =
   | ">"
   | "home"
   | "share"
-  | "pinterest";
+  | "pinterest"
+  | "Hanger"
+  | "Ruler";
+
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**

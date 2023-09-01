@@ -24,6 +24,7 @@ import ProductReviews from "deco-sites/riquezzz/components/product/ProductReview
 import { ResponseReviews } from "$store/loaders/reviewsandratings.ts";
 import type { SectionProps } from "$live/mod.ts";
 import { default as reviewsLoader } from "deco-sites/riquezzz/loaders/reviewsandratings.ts";
+import SizebayButtons from "deco-sites/riquezzz/components/product/SizebayButtons.tsx";
 
 export type Variant = "front-back" | "slider" | "auto";
 
@@ -41,6 +42,69 @@ const HEIGHT = 930;
 const ASPECT_RATIO = `${WIDTH} / ${HEIGHT}`;
 
 export async function loader(
+  { page, variant }: Props,
+  _req: Request,
+) {
+  let reviews = {} as ResponseReviews;
+  let SID = "";
+  let showButtons: string | null = null;
+  let buttonsUrl: (mode: string) => string = (a: string) => "a";
+  let permaLink = "";
+
+  if (page?.product.url?.includes("http://localhost:8000/")) {
+    // to work in local
+    permaLink = page?.product.url?.replace(
+      "http://localhost:8000",
+      "https://www.bawclothing.com.br",
+    ).split("?")[0];
+  } else if (page?.product.url?.includes("https://riquezzz.deco.site/")) {
+    permaLink = page?.product.url?.replace(
+      "https://riquezzz.deco.site",
+      "https://www.bawclothing.com.br",
+    ).split("?")[0];
+  } else {
+    permaLink = page?.product.url!;
+  }
+
+  try {
+    reviews = (await reviewsLoader({
+      productId: page!.product!.isVariantOf
+        ? page!.product!.isVariantOf?.productGroupID
+        : page!.product!.productID,
+    })) as ResponseReviews;
+  } catch (e) {
+    console.log({ e });
+  }
+
+  try {
+    SID = await fetch(
+      `https://vfr-v3-production.sizebay.technology/api/me/session-id`,
+    ).then((r) => r.json()) as string;
+
+    const sizebayProductURL =
+      `https://vfr-v3-production.sizebay.technology/plugin/my-product-id?sid=${SID}&permalink=${permaLink}`;
+
+    const sizebayProduct = await fetch(
+      sizebayProductURL,
+    ).then((r) => r.json());
+
+    if (sizebayProduct && typeof sizebayProduct !== "string") {
+      showButtons = sizebayProduct.accessory ? "accessory" : "noAccessory";
+    }
+
+    console.log({ sizebayProductURL });
+    console.log({ sizebayProduct });
+
+    buttonsUrl = (mode: string) =>
+      `https://vfr-v3-production.sizebay.technology/V4/?mode=${mode}&id=${sizebayProduct.id}&sid=${SID}&tenantId=664&watchOpeningEvents=true&lang=pt`;
+  } catch (e) {
+    console.log({ e });
+  }
+
+  return { page, variant, reviews, showButtons, buttonsUrl };
+}
+
+export async function sizeBaySIDLoader(
   { page, variant }: Props,
   _req: Request,
 ) {
@@ -79,7 +143,13 @@ function NotFound() {
   );
 }
 
-function ProductInfo({ page }: { page: ProductDetailsPage }) {
+function ProductInfo(
+  { page, showButtons, buttonsUrl }: {
+    page: ProductDetailsPage;
+    showButtons: string | null;
+    buttonsUrl: (mode: string) => string;
+  },
+) {
   const {
     breadcrumbList,
     product,
@@ -126,6 +196,13 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
           </div>
         </div>
       </div>
+      {/* Sizebay */}
+      <SizebayButtons
+        showButtons={showButtons}
+        urlChart={buttonsUrl("chart")}
+        urlVfr={buttonsUrl("vfr")}
+      />
+
       {/* Sku Selector */}
       <div class="mt-2 mb-2 lg:mb-0 lg:mt-6">
         <ProductSelector product={product} />
@@ -319,10 +396,14 @@ function Details({
   page,
   variant,
   reviews,
+  showButtons,
+  buttonsUrl,
 }: {
   page: ProductDetailsPage;
   variant: Variant;
   reviews: ResponseReviews;
+  showButtons: string | null;
+  buttonsUrl: (mode: string) => string;
 }) {
   const {
     breadcrumbList,
@@ -447,7 +528,11 @@ function Details({
 
           {/* Product Info */}
           <div class="px-4 sm:pr-0 sm:pl-6 lg:col-start-3 lg:col-span-1 lg:row-start-1">
-            <ProductInfo page={page} />
+            <ProductInfo
+              page={page}
+              showButtons={showButtons}
+              buttonsUrl={buttonsUrl}
+            />
           </div>
         </div>
         <SliderJS rootId={id}></SliderJS>
@@ -493,30 +578,27 @@ function Details({
 
       {/* Product Info */}
       <div class="px-4 sm:pr-0 sm:pl-6">
-        <ProductInfo page={page} />
+        <ProductInfo
+          page={page}
+          showButtons={showButtons}
+          buttonsUrl={buttonsUrl}
+        />
       </div>
     </div>
   );
 }
 
 function ProductDetails(
-  { page, variant: maybeVar = "auto", reviews }: SectionProps<
-    typeof loader
-  >,
+  { page, variant: maybeVar = "auto", reviews, showButtons, buttonsUrl }:
+    SectionProps<
+      typeof loader
+    >,
 ) {
   /**
    * Showcase the different product views we have on this template. In case there are less
    * than two images, render a front-back, otherwhise render a slider
    * Remove one of them and go with the best suited for your use case.
    */
-
-  // console.log({
-  //   product: page?.product.isVariantOf
-  //     ? page.product.isVariantOf.productGroupID
-  //     : page?.product.productID,
-  //   reviews,
-  // });
-  // console.log({ page });
 
   const variant = maybeVar === "auto"
     ? page?.product.image?.length && page?.product.image?.length < 2
@@ -532,6 +614,8 @@ function ProductDetails(
             page={page}
             variant={variant}
             reviews={reviews}
+            showButtons={showButtons}
+            buttonsUrl={buttonsUrl}
           />
         )
         : <NotFound />}
