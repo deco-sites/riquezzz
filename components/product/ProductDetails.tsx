@@ -55,6 +55,11 @@ export async function loader(
       "http://localhost:8000",
       "https://www.bawclothing.com.br",
     ).split("?")[0];
+  } else if (page?.product.url?.includes("https://riquezzz.deco.site/")) {
+    permaLink = page?.product.url?.replace(
+      "https://riquezzz.deco.site/",
+      "https://www.bawclothing.com.br",
+    ).split("?")[0];
   } else {
     permaLink = page?.product.url!;
   }
@@ -194,7 +199,6 @@ function ProductInfo(
         showButtons={showButtons}
         urlChart={buttonsUrl("chart")}
         urlVfr={buttonsUrl("vfr")}
-        productUrl={product.url}
       />
 
       {/* Sku Selector */}

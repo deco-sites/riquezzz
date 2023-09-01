@@ -9,13 +9,12 @@ export interface Props {
   showButtons: string | null;
   urlChart: string;
   urlVfr: string;
-  productUrl: string | undefined;
 }
 
 function SizebayButtons(
-  { showButtons, urlChart, urlVfr, productUrl }: Props,
+  { showButtons, urlChart, urlVfr }: Props,
 ) {
-  console.log({ showButtons, urlChart, urlVfr, productUrl });
+  console.log({ showButtons, urlChart, urlVfr });
   const [displayChartIframe, setDisplayChartIframe] = useState(false);
   const [displayVfrIframe, setDisplayVfrIframe] = useState(false);
 
