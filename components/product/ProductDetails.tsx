@@ -18,6 +18,7 @@ import type { Product } from "deco-sites/std/commerce/types.ts";
 import ProductSelector from "./ProductVariantSelectoPDP.tsx";
 import ProductImageZoom from "$store/islands/ProductImageZoom.tsx";
 import WishlistIcon from "$store/components/wishlist/WishlistButton.tsx";
+import ShareButton from "$store/islands/ShareButton.tsx";
 
 import ProductReviews from "deco-sites/riquezzz/components/product/ProductReviews.tsx";
 import { ResponseReviews } from "$store/loaders/reviewsandratings.ts";
@@ -355,14 +356,18 @@ function Details({
                     class="carousel-item  lg:min-w-[40vw]  justify-center"
                   >
                     <div class="flex items-center justify-center m-0 lg:min-h-[930px] overflow-hidden">
-                      <div class="absolute top-0 right-[80px] z-10">
+                      <div class="absolute flex flex-col top-0 right-[80px] z-10">
                         <WishlistIcon
                           productGroupID={productGroupID}
                           productID={productID}
                         />
-                      </div>     <div class="absolute top-0 right-[80px] z-10">
-                    
+                          <ShareButton
+                          productGroupID={productGroupID}
+                          productID={productID}
+                        />
+                     
                       </div>
+                    
                       <Image
                         class="hidden sm:flex w-[335px] h-[480px] lg:w-[620px] lg:h-[930px] object-cover"
                         // sizes="(max-width: 640px) 100vw, 40vw"
