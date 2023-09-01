@@ -330,7 +330,7 @@ function Details({
   const id = `product-image-gallery:${useId()}`;
   const images = useStableImages(product);
 
-  const { productID, isVariantOf } = product;
+  const { productID, isVariantOf,url } = product;
   const productGroupID = isVariantOf?.productGroupID;
 
   if (variant === "slider") {
@@ -356,7 +356,7 @@ function Details({
                     class="carousel-item  lg:min-w-[40vw]  justify-center"
                   >
                     <div class="flex items-center justify-center m-0 lg:min-h-[930px] overflow-hidden">
-                      <div class="absolute flex flex-col top-0 right-[80px] z-10">
+                      <div class="absolute flex flex-col top-0 right-[80px]  justify-center items-end  z-10">
                         <WishlistIcon
                           productGroupID={productGroupID}
                           productID={productID}
@@ -364,6 +364,7 @@ function Details({
                         <ShareButton
                           productGroupID={productGroupID}
                           productID={productID}
+                          url={url!}
                         />
                       </div>
 
