@@ -194,6 +194,7 @@ function ProductInfo(
         showButtons={showButtons}
         urlChart={buttonsUrl("chart")}
         urlVfr={buttonsUrl("vfr")}
+        productUrl={product.url}
       />
 
       {/* Sku Selector */}
