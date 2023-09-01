@@ -361,13 +361,12 @@ function Details({
                           productGroupID={productGroupID}
                           productID={productID}
                         />
-                          <ShareButton
+                        <ShareButton
                           productGroupID={productGroupID}
                           productID={productID}
                         />
-                     
                       </div>
-                    
+
                       <Image
                         class="hidden sm:flex w-[335px] h-[480px] lg:w-[620px] lg:h-[930px] object-cover"
                         // sizes="(max-width: 640px) 100vw, 40vw"

@@ -9,8 +9,7 @@ const displayCart = signal(false);
 const displayMenu = signal(false);
 const displaySearchbar = signal(false);
 const listingType = signal("4");
-const buttonShare = signal(false)
-
+const buttonShare = signal(false);
 
 const state = {
   displayCart,
