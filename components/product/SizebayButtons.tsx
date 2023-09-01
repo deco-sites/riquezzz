@@ -9,10 +9,11 @@ export interface Props {
   showButtons: string | null;
   urlChart: string;
   urlVfr: string;
+  recommendedSize: string | null;
 }
 
 function SizebayButtons(
-  { showButtons, urlChart, urlVfr }: Props,
+  { showButtons, urlChart, urlVfr, recommendedSize }: Props,
 ) {
   const [displayChartIframe, setDisplayChartIframe] = useState(false);
   const [displayVfrIframe, setDisplayVfrIframe] = useState(false);
@@ -28,17 +29,27 @@ function SizebayButtons(
   return (
     <div id="sizebay-container">
       {showButtons !== null && (
-        <div class="flex justify-start gap-4">
-          {showButtons === "noAccessory" && (
-            <button class="flex py-4" onClick={toggleDisplayVfr}>
-              <Icon class="mr-1" id="Hanger" height={20} width={25} />DESCUBRA
-              SEU TAMANHO
-            </button>
+        <div class="mt-6">
+          {recommendedSize && (
+            <div>
+              <span class="bg-[#ffce00] p-1">
+                Recomendamos o tamanho:{" "}
+                <span class="font-bold">{recommendedSize}</span>
+              </span>
+            </div>
           )}
-          <button class="flex py-4" onClick={toggleDisplayChart}>
-            <Icon class="mr-1" id="Ruler" height={20} width={25} />GUIA DE
-            MEDIDAS
-          </button>
+          <div class="flex justify-start gap-4">
+            {showButtons === "noAccessory" && (
+              <button class="flex py-4" onClick={toggleDisplayVfr}>
+                <Icon class="mr-1" id="Hanger" height={20} width={25} />DESCUBRA
+                SEU TAMANHO
+              </button>
+            )}
+            <button class="flex py-4" onClick={toggleDisplayChart}>
+              <Icon class="mr-1" id="Ruler" height={20} width={25} />GUIA DE
+              MEDIDAS
+            </button>
+          </div>
         </div>
       )}
       {displayChartIframe && (

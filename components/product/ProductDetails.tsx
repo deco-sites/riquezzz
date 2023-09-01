@@ -48,6 +48,7 @@ export async function loader(
   let showButtons: string | null = null;
   let buttonsUrl: (mode: string) => string = (a: string) => "a";
   let permaLink = "";
+  let recommendedSize: string | null = null;
 
   if (page?.product.url?.includes("http://localhost:8000/")) {
     // to work in local
@@ -75,9 +76,19 @@ export async function loader(
   }
 
   try {
-    SID = await fetch(
-      `https://vfr-v3-production.sizebay.technology/api/me/session-id`,
-    ).then((r) => r.json()) as string;
+    if (!localStorage.getItem("SIZEBAY_SESSION_ID_V4")) {
+      SID = await fetch(
+        `https://vfr-v3-production.sizebay.technology/api/me/session-id`,
+      ).then((r) => r.json()) as string;
+
+      localStorage.setItem("SIZEBAY_SESSION_ID_V4", SID);
+    } else {
+      SID = localStorage.getItem("SIZEBAY_SESSION_ID_V4")!;
+    }
+
+    console.log({
+      localStorage: SID,
+    });
 
     const sizebayProductURL =
       `https://vfr-v3-production.sizebay.technology/plugin/my-product-id?sid=${SID}&permalink=${permaLink}`;
@@ -88,10 +99,17 @@ export async function loader(
 
     if (sizebayProduct && typeof sizebayProduct !== "string") {
       showButtons = sizebayProduct.accessory ? "accessory" : "noAccessory";
-    }
 
-    console.log({ sizebayProductURL });
-    console.log({ sizebayProduct });
+      const response = await fetch(
+        `https://vfr-v3-production.sizebay.technology/api/me/analysis/${sizebayProduct.id}?sid=${SID}&tenant=664`,
+      ).then((r) => r.json());
+
+      if (response.recommendedSize) {
+        recommendedSize = response.recommendedSize;
+      }
+
+      console.log({ recommendedSize });
+    }
 
     buttonsUrl = (mode: string) =>
       `https://vfr-v3-production.sizebay.technology/V4/?mode=${mode}&id=${sizebayProduct.id}&sid=${SID}&tenantId=664&watchOpeningEvents=true&lang=pt`;
@@ -99,7 +117,7 @@ export async function loader(
     console.log({ e });
   }
 
-  return { page, variant, reviews, showButtons, buttonsUrl };
+  return { page, variant, reviews, showButtons, buttonsUrl, recommendedSize };
 }
 
 export async function sizeBaySIDLoader(
@@ -142,10 +160,11 @@ function NotFound() {
 }
 
 function ProductInfo(
-  { page, showButtons, buttonsUrl }: {
+  { page, showButtons, buttonsUrl, recommendedSize }: {
     page: ProductDetailsPage;
     showButtons: string | null;
     buttonsUrl: (mode: string) => string;
+    recommendedSize: string | null;
   },
 ) {
   const {
@@ -199,6 +218,7 @@ function ProductInfo(
         showButtons={showButtons}
         urlChart={buttonsUrl("chart")}
         urlVfr={buttonsUrl("vfr")}
+        recommendedSize={recommendedSize}
       />
 
       {/* Sku Selector */}
@@ -396,12 +416,14 @@ function Details({
   reviews,
   showButtons,
   buttonsUrl,
+  recommendedSize,
 }: {
   page: ProductDetailsPage;
   variant: Variant;
   reviews: ResponseReviews;
   showButtons: string | null;
   buttonsUrl: (mode: string) => string;
+  recommendedSize: string | null;
 }) {
   const {
     breadcrumbList,
@@ -515,6 +537,7 @@ function Details({
               page={page}
               showButtons={showButtons}
               buttonsUrl={buttonsUrl}
+              recommendedSize={recommendedSize}
             />
           </div>
         </div>
@@ -565,6 +588,7 @@ function Details({
           page={page}
           showButtons={showButtons}
           buttonsUrl={buttonsUrl}
+          recommendedSize={recommendedSize}
         />
       </div>
     </div>
@@ -572,10 +596,16 @@ function Details({
 }
 
 function ProductDetails(
-  { page, variant: maybeVar = "auto", reviews, showButtons, buttonsUrl }:
-    SectionProps<
-      typeof loader
-    >,
+  {
+    page,
+    variant: maybeVar = "auto",
+    reviews,
+    showButtons,
+    buttonsUrl,
+    recommendedSize,
+  }: SectionProps<
+    typeof loader
+  >,
 ) {
   /**
    * Showcase the different product views we have on this template. In case there are less
@@ -599,6 +629,7 @@ function ProductDetails(
             reviews={reviews}
             showButtons={showButtons}
             buttonsUrl={buttonsUrl}
+            recommendedSize={recommendedSize}
           />
         )
         : <NotFound />}
