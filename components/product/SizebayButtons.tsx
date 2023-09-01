@@ -1,6 +1,7 @@
+import Button from "$store/components/ui/Button.tsx";
 import { useState } from "preact/hooks";
 import Modal from "$store/components/ui/Modal.tsx";
-import { Suspense } from "preact/compat";
+import { lazy, Suspense } from "preact/compat";
 import Loading from "$store/components/ui/Loading.tsx";
 import SizebayIframe from "deco-sites/riquezzz/components/ui/SizebayIframe.tsx";
 import Icon from "$store/components/ui/Icon.tsx";

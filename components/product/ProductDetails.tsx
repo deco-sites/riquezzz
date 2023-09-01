@@ -97,6 +97,8 @@ export async function loader(
       sizebayProductURL,
     ).then((r) => r.json());
 
+    console.log({ sizebayProduct });
+
     if (sizebayProduct && typeof sizebayProduct !== "string") {
       showButtons = sizebayProduct.accessory ? "accessory" : "noAccessory";
 
