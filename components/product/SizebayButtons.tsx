@@ -6,7 +6,6 @@ import Loading from "$store/components/ui/Loading.tsx";
 import SizebayIframe from "deco-sites/riquezzz/components/ui/SizebayIframe.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 
-
 export interface Props {
   showButtons: string | null;
   urlChart: string;
@@ -32,9 +31,15 @@ function SizebayButtons(
       {showButtons !== null && (
         <div class="flex justify-start gap-4">
           {showButtons === "noAccessory" && (
-            <button class="flex py-4" onClick={toggleDisplayVfr}><Icon class="mr-1" id="Hanger" height={20} width={25} />DESCUBRA SEU TAMANHO</button>
+            <button class="flex py-4" onClick={toggleDisplayVfr}>
+              <Icon class="mr-1" id="Hanger" height={20} width={25} />DESCUBRA
+              SEU TAMANHO
+            </button>
           )}
-          <button class="flex py-4" onClick={toggleDisplayChart}><Icon class="mr-1" id="Ruler" height={20} width={25} />GUIA DE MEDIDAS</button>
+          <button class="flex py-4" onClick={toggleDisplayChart}>
+            <Icon class="mr-1" id="Ruler" height={20} width={25} />GUIA DE
+            MEDIDAS
+          </button>
         </div>
       )}
       {displayChartIframe && (

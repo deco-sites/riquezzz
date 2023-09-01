@@ -11,7 +11,6 @@ const runOnMount = () => {
     "sizebay-iframe",
   ) as HTMLIFrameElement;
 
-  
   if (!iFrame) {
     return console.error("Couldn't find iframe");
   }
