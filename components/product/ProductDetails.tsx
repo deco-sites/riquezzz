@@ -47,11 +47,17 @@ export async function loader(
   let SID = "";
   let showButtons: string | null = null;
   let buttonsUrl: (mode: string) => string = (a: string) => "a";
+  let permaLink = "";
 
-  const permaLink = page?.product.url?.replace(
-    "http://localhost:8000",
-    "https://www.bawclothing.com.br",
-  ).split("?")[0];
+  if (page?.product.url?.includes("http://localhost:8000/")) {
+    // to work in local
+    permaLink = page?.product.url?.replace(
+      "http://localhost:8000",
+      "https://www.bawclothing.com.br",
+    ).split("?")[0];
+  } else {
+    permaLink = page?.product.url!;
+  }
 
   try {
     reviews = (await reviewsLoader({
