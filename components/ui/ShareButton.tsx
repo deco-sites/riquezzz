@@ -49,7 +49,7 @@ function ShareButton({
             <span class="uppercase text-base mb-2">Compartilhar</span>
             <div class="flex flex-row gap-5 justify-center items-center">
               <a
-                href={"https://wa.me/?text="+url}
+                href={"https://wa.me/?text=" + url}
                 target="_blank"
               >
                 <Icon
@@ -60,7 +60,11 @@ function ShareButton({
                 />
               </a>
 
-              <a href={"https://www.facebook.com/sharer/sharer.php?u="+url} target="_blank" rel="noopener noreferrer">
+              <a
+                href={"https://www.facebook.com/sharer/sharer.php?u=" + url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Icon
                   class="text-blue-800"
                   id="Facebook"
@@ -68,7 +72,12 @@ function ShareButton({
                   strokeWidth={2}
                 />
               </a>
-              <a href={"https://br.pinterest.com/pin/create/button/?media="+url} target="_blank" rel="noopener noreferrer">
+              <a
+                href={"https://br.pinterest.com/pin/create/button/?media=" +
+                  url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Icon
                   class="text-red-700"
                   id="pinterest"
@@ -76,7 +85,11 @@ function ShareButton({
                   strokeWidth={1}
                 />
               </a>
-              <a href={"https://twitter.com/intent/tweet?url="+url} target="_blank" rel="noopener noreferrer">
+              <a
+                href={"https://twitter.com/intent/tweet?url=" + url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Icon
                   class="text-blue-500"
                   id="TwitterLogo"
