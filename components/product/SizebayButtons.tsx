@@ -3,6 +3,9 @@ import { useState } from "preact/hooks";
 import Modal from "$store/components/ui/Modal.tsx";
 import { lazy, Suspense } from "preact/compat";
 import Loading from "$store/components/ui/Loading.tsx";
+import SizebayIframe from "deco-sites/riquezzz/components/ui/SizebayIframe.tsx";
+import Icon from "$store/components/ui/Icon.tsx";
+
 
 export interface Props {
   showButtons: string | null;
@@ -27,11 +30,11 @@ function SizebayButtons(
   return (
     <div id="sizebay-container">
       {showButtons !== null && (
-        <div>
-          <button onClick={toggleDisplayChart}>Sizechart</button>
+        <div class="flex justify-start gap-4">
           {showButtons === "noAccessory" && (
-            <button onClick={toggleDisplayVfr}>Provador</button>
+            <button class="flex py-4" onClick={toggleDisplayVfr}><Icon class="mr-1" id="Hanger" height={20} width={25} />DESCUBRA SEU TAMANHO</button>
           )}
+          <button class="flex py-4" onClick={toggleDisplayChart}><Icon class="mr-1" id="Ruler" height={20} width={25} />GUIA DE MEDIDAS</button>
         </div>
       )}
       {displayChartIframe && (
@@ -44,35 +47,25 @@ function SizebayButtons(
             }}
           >
             <Suspense fallback={<Loading />}>
-              <iframe
-                src={urlChart}
-                id="auth-iframe"
-                class={`w-[100vw] text-center`}
-                frameBorder="0"
-                height={700}
-                scrolling="no"
-                marginHeight={0}
-                marginWidth={0}
-              >
-              </iframe>
+              <SizebayIframe url={urlChart} />
             </Suspense>
           </Modal>
         </div>
       )}
       {displayVfrIframe && (
         <div>
-          <span>Teste</span>
-          <iframe
-            src={urlVfr}
-            id="auth-iframe"
-            class={`w-[100vw] text-center`}
-            frameBorder="0"
-            height={700}
-            scrolling="no"
-            marginHeight={0}
-            marginWidth={0}
+          <Modal
+            loading="lazy"
+            open={displayVfrIframe}
+            class={`max-w-[1000px] bg-transparent shadow-none`}
+            onClose={() => {
+              setDisplayVfrIframe(false);
+            }}
           >
-          </iframe>
+            <Suspense fallback={<Loading />}>
+              <SizebayIframe url={urlVfr} />
+            </Suspense>
+          </Modal>
         </div>
       )}
     </div>
