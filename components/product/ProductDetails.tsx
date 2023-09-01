@@ -79,6 +79,7 @@ export async function loader(
       showButtons = sizebayProduct.accessory ? "accessory" : "noAccessory";
     }
 
+    console.log({ sizebayProductURL });
     console.log({ sizebayProduct });
 
     buttonsUrl = (mode: string) =>
