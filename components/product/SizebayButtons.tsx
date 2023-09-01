@@ -14,6 +14,7 @@ export interface Props {
 function SizebayButtons(
   { showButtons, urlChart, urlVfr }: Props,
 ) {
+  console.log({ showButtons, urlChart, urlVfr });
   const [displayChartIframe, setDisplayChartIframe] = useState(false);
   const [displayVfrIframe, setDisplayVfrIframe] = useState(false);
 
