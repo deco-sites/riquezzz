@@ -51,8 +51,7 @@ export async function loader(
   let buttonsUrl: (mode: string) => string = (a: string) => "a";
   let permaLink = "";
   let recommendedSize: string | null = null;
-  let debug = null;
-  let error = null;
+  let debug = {};
 
   if (page?.product.url?.includes("http://localhost:8000/")) {
     // to work in local
@@ -76,21 +75,26 @@ export async function loader(
         : page!.product!.productID,
     })) as ResponseReviews;
   } catch (e) {
-    error = e;
+    debug = { ...debug, reviewsError: e };
     console.log({ e });
   }
 
   try {
     const storageSID = localStorage.getItem("SIZEBAY_SESSION_ID_V4");
 
-    if (!storageSID) {
+    if (storageSID) {
+      SID = storageSID;
+    } else {
+      // SID = await fetch(
+      //   `https://vfr-v3-production.sizebay.technology/api/me/session-id`,
+      // ).then((r) => r.json()) as string;
       SID = await fetch(
         `https://vfr-v3-production.sizebay.technology/api/me/session-id`,
-      ).then((r) => r.json()) as string;
+      ).then((r) => r.json()).catch((e) => {
+        debug = { ...debug, errSID: e };
+      });
 
       localStorage.setItem("SIZEBAY_SESSION_ID_V4", SID);
-    } else {
-      SID = storageSID;
     }
 
     console.log({
@@ -103,7 +107,7 @@ export async function loader(
     const sizebayProduct = await fetch(
       sizebayProductURL,
     ).then((r) => r.json()).catch((e) => {
-      debug = { errSizebayProductFetch: e };
+      debug = { ...debug, errSizebayProductFetch: e };
     });
 
     console.log({ sizebayProduct });
@@ -114,7 +118,7 @@ export async function loader(
       const response = await fetch(
         `https://vfr-v3-production.sizebay.technology/api/me/analysis/${sizebayProduct.id}?sid=${SID}&tenant=664`,
       ).then((r) => r.json()).catch((e) => {
-        debug = { errSizebayRecommendedFetch: e };
+        debug = { ...debug, errSizebayProductFetch: e };
       });
 
       if (response.recommendedSize) {
@@ -125,18 +129,18 @@ export async function loader(
     }
 
     debug = {
+      ...debug,
       storageSID,
       SID,
       sizebayProductURL,
       sizebayProduct,
       showButtons,
-      error,
     };
 
     buttonsUrl = (mode: string) =>
       `https://vfr-v3-production.sizebay.technology/V4/?mode=${mode}&id=${sizebayProduct.id}&sid=${SID}&tenantId=664&watchOpeningEvents=true&lang=pt`;
   } catch (e) {
-    debug = e;
+    debug = { ...debug, generalError: e };
     console.log({ e });
   }
 
