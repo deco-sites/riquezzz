@@ -11,10 +11,11 @@ export interface Props {
   urlChart: string;
   urlVfr: string;
   recommendedSize: string | null;
+  debug: unknown;
 }
 
 function SizebayButtons(
-  { showButtons, urlChart, urlVfr, recommendedSize }: Props,
+  { showButtons, urlChart, urlVfr, recommendedSize, debug }: Props,
 ) {
   const [displayChartIframe, setDisplayChartIframe] = useState(false);
   const [displayVfrIframe, setDisplayVfrIframe] = useState(false);
@@ -26,6 +27,8 @@ function SizebayButtons(
   const toggleDisplayVfr = () => {
     setDisplayVfrIframe(!displayVfrIframe);
   };
+
+  console.log({ debug });
 
   return (
     <div id="sizebay-container">
