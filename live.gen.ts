@@ -5,7 +5,6 @@
 import * as $$$0 from "./loaders/productDetailsPageWithReviews.ts";
 import * as $$$1 from "./loaders/reviewsandratings.ts";
 import * as $$$$0 from "./routes/_app.tsx";
-
 import * as $$$$$0 from "./islands/Newsletter.tsx";
 import * as $$$$$1 from "./islands/BawFilters.tsx";
 import * as $$$$$2 from "./islands/AddToCartAvatar.tsx";
@@ -22,10 +21,11 @@ import * as $$$$$12 from "./islands/HeaderModals.tsx";
 import * as $$$$$13 from "./islands/SliderJS.tsx";
 import * as $$$$$14 from "./islands/ProductImageZoom.tsx";
 import * as $$$$$15 from "./islands/SizebayButtons.tsx";
-import * as $$$$$16 from "./islands/Sidebar.tsx";
-import * as $$$$$17 from "./islands/OutOfStock.tsx";
-import * as $$$$$18 from "./islands/ProductGallery.tsx";
-import * as $$$$$19 from "./islands/SearchControls.tsx";
+import * as $$$$$16 from "./islands/ShareButton.tsx";
+import * as $$$$$17 from "./islands/Sidebar.tsx";
+import * as $$$$$18 from "./islands/OutOfStock.tsx";
+import * as $$$$$19 from "./islands/ProductGallery.tsx";
+import * as $$$$$20 from "./islands/SearchControls.tsx";
 import * as $$$$$$$$0 from "./sections/WishlistGallery.tsx";
 import * as $$$$$$$$1 from "./sections/LinkTree.tsx";
 import * as $$$$$$$$2 from "./sections/BannerPLPCampaign.tsx";
@@ -42,7 +42,6 @@ import * as $$$$$$$$12 from "./sections/ProductShelf.tsx";
 import * as $$$$$$$$13 from "./sections/BawBanner.tsx";
 import * as $$$$$$$$14 from "./sections/Footer.tsx";
 import * as $$$$$$$$15 from "./sections/SearchBreadControls.tsx";
-
 import * as $$$$$$$$16 from "./sections/SEOPLPBaw.tsx";
 import * as $$$$$$$$17 from "./sections/CookieConsent.tsx";
 import * as $$$$$$$$18 from "./sections/DesignSystem.tsx";
@@ -250,14 +249,15 @@ const manifest = {
     "./islands/HeaderModals.tsx": $$$$$12,
     "./islands/HeaderSearchbar.tsx": $$$$$6,
     "./islands/Newsletter.tsx": $$$$$0,
-    "./islands/OutOfStock.tsx": $$$$$17,
-    "./islands/ProductGallery.tsx": $$$$$18,
+    "./islands/OutOfStock.tsx": $$$$$18,
+    "./islands/ProductGallery.tsx": $$$$$19,
     "./islands/ProductImageZoom.tsx": $$$$$14,
     "./islands/ProductReviews.tsx": $$$$$7,
     "./islands/ReadMore.tsx": $$$$$9,
-    "./islands/SearchControls.tsx": $$$$$19,
+    "./islands/SearchControls.tsx": $$$$$20,
+    "./islands/ShareButton.tsx": $$$$$16,
     "./islands/ShippingSimulation.tsx": $$$$$5,
-    "./islands/Sidebar.tsx": $$$$$16,
+    "./islands/Sidebar.tsx": $$$$$17,
     "./islands/SizebayButtons.tsx": $$$$$15,
     "./islands/SizebayIframe.tsx": $$$$$3,
     "./islands/SliderJS.tsx": $$$$$13,
@@ -269,7 +269,6 @@ const manifest = {
     "$live/sections/PageInclude.tsx": i2$$$$$2,
     "$live/sections/Slot.tsx": i2$$$$$3,
     "$live/sections/UseSlot.tsx": i2$$$$$4,
-
     "deco-sites/riquezzz/sections/AuthIframe.tsx": $$$$$$$$5,
     "deco-sites/riquezzz/sections/BannerCardPosition.tsx": $$$$$$$$19,
     "deco-sites/riquezzz/sections/BannerFourCards.tsx": $$$$$$$$11,
