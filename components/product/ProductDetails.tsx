@@ -102,7 +102,9 @@ export async function loader(
 
     const sizebayProduct = await fetch(
       sizebayProductURL,
-    ).then((r) => r.json());
+    ).then((r) => r.json()).catch((e) => {
+      debug = e;
+    });
 
     console.log({ sizebayProduct });
 
@@ -111,7 +113,9 @@ export async function loader(
 
       const response = await fetch(
         `https://vfr-v3-production.sizebay.technology/api/me/analysis/${sizebayProduct.id}?sid=${SID}&tenant=664`,
-      ).then((r) => r.json());
+      ).then((r) => r.json()).catch((e) => {
+        debug = e;
+      });
 
       if (response.recommendedSize) {
         recommendedSize = response.recommendedSize;
