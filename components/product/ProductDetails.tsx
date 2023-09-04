@@ -25,6 +25,8 @@ import { ResponseReviews } from "$store/loaders/reviewsandratings.ts";
 import type { SectionProps } from "$live/mod.ts";
 import { default as reviewsLoader } from "deco-sites/riquezzz/loaders/reviewsandratings.ts";
 import SizebayButtons from "deco-sites/riquezzz/components/product/SizebayButtons.tsx";
+import type { LoaderContext } from "$live/mod.ts";
+import { getCookies, setCookie } from "std/http/mod.ts";
 
 export type Variant = "front-back" | "slider" | "auto";
 
@@ -44,9 +46,11 @@ const ASPECT_RATIO = `${WIDTH} / ${HEIGHT}`;
 export async function loader(
   { page, variant }: Props,
   _req: Request,
+  ctx: LoaderContext,
 ) {
+  const cookies = getCookies(_req.headers);
   let reviews = {} as ResponseReviews;
-  let SID = "";
+  let SID = cookies.SIZEBAY_SESSION_ID_V4;
   let showButtons: string | null = null;
   let buttonsUrl: (mode: string) => string = (a: string) => "a";
   let permaLink = "";
@@ -80,26 +84,21 @@ export async function loader(
   }
 
   try {
-    const storageSID = localStorage.getItem("SIZEBAY_SESSION_ID_V4");
-
-    if (storageSID) {
-      SID = storageSID;
-    } else {
-      // SID = await fetch(
-      //   `https://vfr-v3-production.sizebay.technology/api/me/session-id`,
-      // ).then((r) => r.json()) as string;
+    if (!SID) {
       SID = await fetch(
         `https://vfr-v3-production.sizebay.technology/api/me/session-id`,
       ).then((r) => r.json()).catch((e) => {
         debug = { ...debug, errSID: e };
       });
 
-      localStorage.setItem("SIZEBAY_SESSION_ID_V4", SID);
+      setCookie(ctx.response.headers, {
+        value: SID,
+        name: "SIZEBAY_SESSION_ID_V4",
+        path: "/",
+        secure: true,
+        httpOnly: true,
+      });
     }
-
-    console.log({
-      localStorage: SID,
-    });
 
     const sizebayProductURL =
       `https://vfr-v3-production.sizebay.technology/plugin/my-product-id?sid=${SID}&permalink=${permaLink}`;
@@ -109,8 +108,6 @@ export async function loader(
     ).then((r) => r.json()).catch((e) => {
       debug = { ...debug, errSizebayProductFetch: e };
     });
-
-    console.log({ sizebayProduct });
 
     if (sizebayProduct && typeof sizebayProduct !== "string") {
       showButtons = sizebayProduct.accessory ? "accessory" : "noAccessory";
@@ -124,13 +121,10 @@ export async function loader(
       if (response.recommendedSize) {
         recommendedSize = response.recommendedSize;
       }
-
-      console.log({ recommendedSize });
     }
 
     debug = {
       ...debug,
-      storageSID,
       SID,
       sizebayProductURL,
       sizebayProduct,

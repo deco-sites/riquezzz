@@ -28,7 +28,7 @@ function SizebayButtons(
     setDisplayVfrIframe(!displayVfrIframe);
   };
 
-  console.log({ debug });
+  // console.log({ debug });
 
   return (
     <div id="sizebay-container">
