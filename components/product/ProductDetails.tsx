@@ -451,6 +451,17 @@ function Details({
         >
           {/* Image Slider */}
           <div class="relative lg:col-start-2 lg:col-span-1 lg:row-start-1 lg:max-h-[930px]">
+            <div class="absolute flex flex-col top-1 right-[10px]  lg:right-[80px]  justify-center items-end  z-10">
+              <WishlistIcon
+                productGroupID={productGroupID}
+                productID={productID}
+              />
+              <ShareButton
+                productGroupID={productGroupID}
+                productID={productID}
+                url={url!}
+              />
+            </div>
             <Slider
               class="carousel gap-2 lg:gap-6 min-w-[40vw] sm:max-w-[40vw]"
               id="box"
@@ -462,18 +473,6 @@ function Details({
                     class="carousel-item  lg:min-w-[40vw]  justify-center"
                   >
                     <div class="flex items-center justify-center m-0 lg:min-h-[930px] overflow-hidden">
-                      <div class="absolute flex flex-col top-0 right-[10px]  lg:right-[80px]  justify-center items-end  z-10">
-                        <WishlistIcon
-                          productGroupID={productGroupID}
-                          productID={productID}
-                        />
-                        <ShareButton
-                          productGroupID={productGroupID}
-                          productID={productID}
-                          url={url!}
-                        />
-                      </div>
-
                       <Image
                         class="hidden sm:flex w-[335px] h-[480px] lg:w-[620px] lg:h-[930px] object-cover"
                         // sizes="(max-width: 640px) 100vw, 40vw"

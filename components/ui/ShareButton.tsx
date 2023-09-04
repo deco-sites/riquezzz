@@ -37,7 +37,8 @@ function ShareButton({
       >
         <Icon
           id="share"
-          size={25}
+          width={20}
+          height={22}
           strokeWidth={1}
         />
       </Button>
