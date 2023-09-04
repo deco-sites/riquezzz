@@ -81,14 +81,16 @@ export async function loader(
   }
 
   try {
-    if (!localStorage.getItem("SIZEBAY_SESSION_ID_V4")) {
+    const storageSID = localStorage.getItem("SIZEBAY_SESSION_ID_V4");
+
+    if (!storageSID) {
       SID = await fetch(
         `https://vfr-v3-production.sizebay.technology/api/me/session-id`,
       ).then((r) => r.json()) as string;
 
       localStorage.setItem("SIZEBAY_SESSION_ID_V4", SID);
     } else {
-      SID = localStorage.getItem("SIZEBAY_SESSION_ID_V4")!;
+      SID = storageSID;
     }
 
     console.log({
@@ -118,7 +120,14 @@ export async function loader(
       console.log({ recommendedSize });
     }
 
-    debug = { SID, sizebayProductURL, sizebayProduct, showButtons, error };
+    debug = {
+      storageSID,
+      SID,
+      sizebayProductURL,
+      sizebayProduct,
+      showButtons,
+      error,
+    };
 
     buttonsUrl = (mode: string) =>
       `https://vfr-v3-production.sizebay.technology/V4/?mode=${mode}&id=${sizebayProduct.id}&sid=${SID}&tenantId=664&watchOpeningEvents=true&lang=pt`;
