@@ -52,6 +52,7 @@ export async function loader(
   let permaLink = "";
   let recommendedSize: string | null = null;
   let debug = null;
+  let error = null;
 
   if (page?.product.url?.includes("http://localhost:8000/")) {
     // to work in local
@@ -75,6 +76,7 @@ export async function loader(
         : page!.product!.productID,
     })) as ResponseReviews;
   } catch (e) {
+    error = e;
     console.log({ e });
   }
 
@@ -116,11 +118,12 @@ export async function loader(
       console.log({ recommendedSize });
     }
 
-    debug = { SID, sizebayProductURL, sizebayProduct, showButtons };
+    debug = { SID, sizebayProductURL, sizebayProduct, showButtons, error };
 
     buttonsUrl = (mode: string) =>
       `https://vfr-v3-production.sizebay.technology/V4/?mode=${mode}&id=${sizebayProduct.id}&sid=${SID}&tenantId=664&watchOpeningEvents=true&lang=pt`;
   } catch (e) {
+    debug = { e };
     console.log({ e });
   }
 
