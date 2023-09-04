@@ -27,7 +27,6 @@ import { default as reviewsLoader } from "deco-sites/riquezzz/loaders/reviewsand
 import SizebayButtons from "deco-sites/riquezzz/components/product/SizebayButtons.tsx";
 import type { LoaderContext } from "$live/mod.ts";
 import { getCookies, setCookie } from "std/http/mod.ts";
-import Sidebar from "deco-sites/riquezzz/components/header/Sidebar.tsx";
 
 export type Variant = "front-back" | "slider" | "auto";
 
