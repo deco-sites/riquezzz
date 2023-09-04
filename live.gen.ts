@@ -267,6 +267,7 @@ const manifest = {
     "$live/sections/PageInclude.tsx": i2$$$$$2,
     "$live/sections/Slot.tsx": i2$$$$$3,
     "$live/sections/UseSlot.tsx": i2$$$$$4,
+
     "deco-sites/riquezzz/sections/AuthIframe.tsx": $$$$$$$$5,
     "deco-sites/riquezzz/sections/BannerCardPosition.tsx": $$$$$$$$19,
     "deco-sites/riquezzz/sections/BannerFourCards.tsx": $$$$$$$$11,

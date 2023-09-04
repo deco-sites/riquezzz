@@ -57,8 +57,8 @@ function WishlistButton({
     >
       <Icon
         id="Heart"
-        size={20}
-        strokeWidth={2}
+        size={25}
+        strokeWidth={1}
         fill={inWishlist ? "black" : "none"}
       />
       {variant === "icon" ? null : inWishlist ? "Remover" : "Favoritar"}
