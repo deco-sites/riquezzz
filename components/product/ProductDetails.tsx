@@ -51,6 +51,7 @@ export async function loader(
   let buttonsUrl: (mode: string) => string = (a: string) => "a";
   let permaLink = "";
   let recommendedSize: string | null = null;
+  let debug = null;
 
   if (page?.product.url?.includes("http://localhost:8000/")) {
     // to work in local
@@ -115,13 +116,23 @@ export async function loader(
       console.log({ recommendedSize });
     }
 
+    debug = { SID, sizebayProductURL, sizebayProduct, showButtons };
+
     buttonsUrl = (mode: string) =>
       `https://vfr-v3-production.sizebay.technology/V4/?mode=${mode}&id=${sizebayProduct.id}&sid=${SID}&tenantId=664&watchOpeningEvents=true&lang=pt`;
   } catch (e) {
     console.log({ e });
   }
 
-  return { page, variant, reviews, showButtons, buttonsUrl, recommendedSize };
+  return {
+    page,
+    variant,
+    reviews,
+    showButtons,
+    buttonsUrl,
+    recommendedSize,
+    debug,
+  };
 }
 
 export async function sizeBaySIDLoader(
@@ -164,11 +175,12 @@ function NotFound() {
 }
 
 function ProductInfo(
-  { page, showButtons, buttonsUrl, recommendedSize }: {
+  { page, showButtons, buttonsUrl, recommendedSize, debug }: {
     page: ProductDetailsPage;
     showButtons: string | null;
     buttonsUrl: (mode: string) => string;
     recommendedSize: string | null;
+    debug: unknown;
   },
 ) {
   const {
@@ -223,6 +235,7 @@ function ProductInfo(
         urlChart={buttonsUrl("chart")}
         urlVfr={buttonsUrl("vfr")}
         recommendedSize={recommendedSize}
+        debug={debug}
       />
 
       {/* Sku Selector */}
@@ -421,6 +434,7 @@ function Details({
   showButtons,
   buttonsUrl,
   recommendedSize,
+  debug,
 }: {
   page: ProductDetailsPage;
   variant: Variant;
@@ -428,6 +442,7 @@ function Details({
   showButtons: string | null;
   buttonsUrl: (mode: string) => string;
   recommendedSize: string | null;
+  debug: unknown;
 }) {
   const {
     breadcrumbList,
@@ -556,6 +571,7 @@ function Details({
               showButtons={showButtons}
               buttonsUrl={buttonsUrl}
               recommendedSize={recommendedSize}
+              debug={debug}
             />
           </div>
         </div>
@@ -607,6 +623,7 @@ function Details({
           showButtons={showButtons}
           buttonsUrl={buttonsUrl}
           recommendedSize={recommendedSize}
+          debug={debug}
         />
       </div>
     </div>
@@ -621,6 +638,7 @@ function ProductDetails(
     showButtons,
     buttonsUrl,
     recommendedSize,
+    debug,
   }: SectionProps<
     typeof loader
   >,
@@ -648,6 +666,7 @@ function ProductDetails(
             showButtons={showButtons}
             buttonsUrl={buttonsUrl}
             recommendedSize={recommendedSize}
+            debug={debug}
           />
         )
         : <NotFound />}
