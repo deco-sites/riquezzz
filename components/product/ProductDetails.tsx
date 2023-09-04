@@ -132,7 +132,7 @@ export async function loader(
     buttonsUrl = (mode: string) =>
       `https://vfr-v3-production.sizebay.technology/V4/?mode=${mode}&id=${sizebayProduct.id}&sid=${SID}&tenantId=664&watchOpeningEvents=true&lang=pt`;
   } catch (e) {
-    debug = { e };
+    debug = e;
     console.log({ e });
   }
 
