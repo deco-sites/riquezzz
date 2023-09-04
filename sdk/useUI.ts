@@ -9,12 +9,14 @@ const displayCart = signal(false);
 const displayMenu = signal(false);
 const displaySearchbar = signal(false);
 const listingType = signal("4");
+const buttonShare = signal(false);
 
 const state = {
   displayCart,
   displayMenu,
   displaySearchbar,
   listingType,
+  buttonShare,
 };
 
 export const useUI = () => state;

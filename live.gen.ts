@@ -5,6 +5,7 @@
 import * as $$$0 from "./loaders/productDetailsPageWithReviews.ts";
 import * as $$$1 from "./loaders/reviewsandratings.ts";
 import * as $$$$0 from "./routes/_app.tsx";
+
 import * as $$$$$0 from "./islands/Newsletter.tsx";
 import * as $$$$$1 from "./islands/BawFilters.tsx";
 import * as $$$$$2 from "./islands/AddToCartAvatar.tsx";
@@ -41,6 +42,7 @@ import * as $$$$$$$$12 from "./sections/ProductShelf.tsx";
 import * as $$$$$$$$13 from "./sections/BawBanner.tsx";
 import * as $$$$$$$$14 from "./sections/Footer.tsx";
 import * as $$$$$$$$15 from "./sections/SearchBreadControls.tsx";
+
 import * as $$$$$$$$16 from "./sections/SEOPLPBaw.tsx";
 import * as $$$$$$$$17 from "./sections/CookieConsent.tsx";
 import * as $$$$$$$$18 from "./sections/DesignSystem.tsx";
@@ -267,6 +269,7 @@ const manifest = {
     "$live/sections/PageInclude.tsx": i2$$$$$2,
     "$live/sections/Slot.tsx": i2$$$$$3,
     "$live/sections/UseSlot.tsx": i2$$$$$4,
+
     "deco-sites/riquezzz/sections/AuthIframe.tsx": $$$$$$$$5,
     "deco-sites/riquezzz/sections/BannerCardPosition.tsx": $$$$$$$$19,
     "deco-sites/riquezzz/sections/BannerFourCards.tsx": $$$$$$$$11,
