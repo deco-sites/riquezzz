@@ -657,9 +657,10 @@ function Details({
 }
 
 function ProductDetails(
-  { page, variant: maybeVar = "auto", reviews, noStockProducts = false }: SectionProps<
-    typeof loader
-  >,
+  { page, variant: maybeVar = "auto", reviews, noStockProducts = false }:
+    SectionProps<
+      typeof loader
+    >,
 ) {
   const variant = maybeVar === "auto"
     ? page?.product.image?.length && page?.product.image?.length < 2
