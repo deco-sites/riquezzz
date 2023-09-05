@@ -17,7 +17,9 @@ import type { LoaderReturnType } from "$live/types.ts";
 import type { Product } from "deco-sites/std/commerce/types.ts";
 import ProductSelector from "./ProductVariantSelectoPDP.tsx";
 import ProductImageZoom from "$store/islands/ProductImageZoom.tsx";
-import WishlistButton from "../wishlist/WishlistButton.tsx";
+import WishlistIcon from "$store/components/wishlist/WishlistButton.tsx";
+import ShareButton from "$store/islands/ShareButton.tsx";
+
 import ProductReviews from "deco-sites/riquezzz/components/product/ProductReviews.tsx";
 import { ResponseReviews } from "$store/loaders/reviewsandratings.ts";
 import type { SectionProps } from "$live/mod.ts";
@@ -25,6 +27,9 @@ import { default as reviewsLoader } from "deco-sites/riquezzz/loaders/reviewsand
 import AvatarColor from "$store/components/ui/AvatarColor.tsx";
 import { useState } from "preact/hooks";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
+import SizebayButtons from "deco-sites/riquezzz/components/product/SizebayButtons.tsx";
+import type { LoaderContext } from "$live/mod.ts";
+import { getCookies, setCookie } from "std/http/mod.ts";
 
 export type Variant = "front-back" | "slider" | "auto";
 
@@ -54,6 +59,113 @@ const HEIGHT = 930;
 const ASPECT_RATIO = `${WIDTH} / ${HEIGHT}`;
 
 export async function loader(
+  { page, variant, noStockProducts }: Props,
+  _req: Request,
+  ctx: LoaderContext,
+) {
+  const cookies = getCookies(_req.headers);
+  let reviews = {} as ResponseReviews;
+  let SID = cookies.SIZEBAY_SESSION_ID_V4;
+  let showButtons: string | null = null;
+  let buttonsUrl: (mode: string) => string = (a: string) => "a";
+  let permaLink = "";
+  let recommendedSize: string | null = null;
+  let debug = {};
+
+  if (page?.product.url?.includes("http://localhost:8000/")) {
+    // to work in local
+    permaLink = page?.product.url?.replace(
+      "http://localhost:8000",
+      "https://www.bawclothing.com.br",
+    ).split("?")[0];
+  } else if (page?.product.url?.includes("https://riquezzz.deco.site/")) {
+    permaLink = page?.product.url?.replace(
+      "https://riquezzz.deco.site",
+      "https://www.bawclothing.com.br",
+    ).split("?")[0];
+  } else {
+    permaLink = page?.product.url!;
+  }
+
+  try {
+    reviews = (await reviewsLoader({
+      productId: page!.product!.isVariantOf
+        ? page!.product!.isVariantOf?.productGroupID
+        : page!.product!.productID,
+    })) as ResponseReviews;
+  } catch (e) {
+    debug = { ...debug, reviewsError: e };
+    console.log({ e });
+  }
+
+  try {
+    if (!SID) {
+      SID = await fetch(
+        `https://vfr-v3-production.sizebay.technology/api/me/session-id`,
+      ).then((r) => r.json()).catch((e) => {
+        debug = { ...debug, errSID: e };
+      });
+
+      setCookie(ctx.response.headers, {
+        value: SID,
+        name: "SIZEBAY_SESSION_ID_V4",
+        path: "/",
+        secure: true,
+        httpOnly: true,
+      });
+    }
+
+    const sizebayProductURL =
+      `https://vfr-v3-production.sizebay.technology/plugin/my-product-id?sid=${SID}&permalink=${permaLink}`;
+
+    const sizebayProduct = await fetch(
+      sizebayProductURL,
+    ).then((r) => r.json()).catch((e) => {
+      debug = { ...debug, errSizebayProductFetch: e };
+    });
+
+    if (sizebayProduct && typeof sizebayProduct !== "string") {
+      showButtons = sizebayProduct.accessory ? "accessory" : "noAccessory";
+
+      const response = await fetch(
+        `https://vfr-v3-production.sizebay.technology/api/me/analysis/${sizebayProduct.id}?sid=${SID}&tenant=664`,
+      ).then((r) => r.json()).catch((e) => {
+        debug = { ...debug, errSizebayProductFetch: e };
+      });
+
+      if (response.recommendedSize) {
+        recommendedSize = response.recommendedSize;
+      }
+    }
+
+    debug = {
+      ...debug,
+      SID,
+      sizebayProductURL,
+      sizebayProduct,
+      showButtons,
+    };
+
+    buttonsUrl = (mode: string) =>
+      `https://vfr-v3-production.sizebay.technology/V4/?mode=${mode}&id=${sizebayProduct.id}&sid=${SID}&tenantId=664&watchOpeningEvents=true&lang=pt`;
+  } catch (e) {
+    debug = { ...debug, generalError: e.message };
+    console.log({ e });
+  }
+
+  return {
+    page,
+    variant,
+    reviews,
+    showButtons,
+    buttonsUrl,
+    recommendedSize,
+    debug,
+    noStockProducts,
+  };
+}
+
+export async function sizeBaySIDLoader(
   { page, variant, noStockProducts }: Props,
   _req: Request,
 ) {
@@ -93,9 +205,13 @@ function NotFound() {
 }
 
 function ProductInfo(
-  { page, noStockProducts }: {
+  { page, showButtons, buttonsUrl, recommendedSize, debug, noStockProducts }: {
     page: ProductDetailsPage;
+    showButtons: string | null;
+    buttonsUrl: (mode: string) => string;
+    recommendedSize: string | null;
     noStockProducts: boolean;
+    debug: unknown;
   },
 ) {
   const {
@@ -247,6 +363,7 @@ function ProductInfo(
           </div>
         </div>
       </div>
+
       <div class="h-[30px] mt-2">
         {similarProducts.length > 1
           ? (
@@ -298,6 +415,14 @@ function ProductInfo(
           )
           : null}
       </div>
+      {/* Sizebay */}
+      <SizebayButtons
+        showButtons={showButtons}
+        urlChart={buttonsUrl("chart")}
+        urlVfr={buttonsUrl("vfr")}
+        recommendedSize={recommendedSize}
+        debug={debug}
+      />
 
       {/* Sku Selector */}
       <div class="mt-2 mb-2 lg:mb-0 lg:mt-6">
@@ -490,12 +615,21 @@ function Details({
   page,
   variant,
   reviews,
+
   noStockProducts = false,
+  showButtons,
+  buttonsUrl,
+  recommendedSize,
+  debug,
 }: {
   page: ProductDetailsPage;
   variant: Variant;
   reviews: ResponseReviews;
   noStockProducts: boolean;
+  showButtons: string | null;
+  buttonsUrl: (mode: string) => string;
+  recommendedSize: string | null;
+  debug: unknown;
 }) {
   const {
     breadcrumbList,
@@ -503,6 +637,10 @@ function Details({
   } = page;
   const id = `product-image-gallery:${useId()}`;
   const images = useStableImages(product);
+
+  const { productID, isVariantOf, url } = product;
+  const productGroupID = isVariantOf?.productGroupID;
+
   if (variant === "slider") {
     return (
       <>
@@ -515,6 +653,17 @@ function Details({
         >
           {/* Image Slider */}
           <div class="relative lg:col-start-2 lg:col-span-1 lg:row-start-1 lg:max-h-[930px]">
+            <div class="absolute flex flex-col top-1 right-[10px]  lg:right-[80px]  justify-center items-end  z-10">
+              <WishlistIcon
+                productGroupID={productGroupID}
+                productID={productID}
+              />
+              <ShareButton
+                productGroupID={productGroupID}
+                productID={productID}
+                url={url!}
+              />
+            </div>
             <Slider
               class="carousel gap-2 lg:gap-6 min-w-[40vw] sm:max-w-[40vw]"
               id="box"
@@ -604,7 +753,14 @@ function Details({
 
           {/* Product Info */}
           <div class="px-4 sm:pr-0 sm:pl-6 lg:col-start-3 lg:col-span-1 lg:row-start-1">
-            <ProductInfo page={page} noStockProducts={noStockProducts} />
+            <ProductInfo
+              page={page}
+              showButtons={showButtons}
+              buttonsUrl={buttonsUrl}
+              recommendedSize={recommendedSize}
+              debug={debug}
+              noStockProducts={noStockProducts}
+            />
           </div>
         </div>
         <SliderJS rootId={id}></SliderJS>
@@ -650,18 +806,39 @@ function Details({
 
       {/* Product Info */}
       <div class="px-4 sm:pr-0 sm:pl-6">
-        <ProductInfo page={page} noStockProducts={noStockProducts} />
+        <ProductInfo
+          page={page}
+          showButtons={showButtons}
+          buttonsUrl={buttonsUrl}
+          recommendedSize={recommendedSize}
+          debug={debug}
+          noStockProducts={noStockProducts}
+        />
       </div>
     </div>
   );
 }
 
 function ProductDetails(
-  { page, variant: maybeVar = "auto", reviews, noStockProducts = false }:
-    SectionProps<
-      typeof loader
-    >,
+  {
+    page,
+    variant: maybeVar = "auto",
+    reviews,
+    showButtons,
+    buttonsUrl,
+    recommendedSize,
+    debug,
+    noStockProducts = false,
+  }: SectionProps<
+    typeof loader
+  >,
 ) {
+  /**
+   * Showcase the different product views we have on this template. In case there are less
+   * than two images, render a front-back, otherwhise render a slider
+   * Remove one of them and go with the best suited for your use case.
+   */
+
   const variant = maybeVar === "auto"
     ? page?.product.image?.length && page?.product.image?.length < 2
       ? "front-back"
@@ -677,6 +854,10 @@ function ProductDetails(
             variant={variant}
             reviews={reviews}
             noStockProducts={noStockProducts}
+            showButtons={showButtons}
+            buttonsUrl={buttonsUrl}
+            recommendedSize={recommendedSize}
+            debug={debug}
           />
         )
         : <NotFound />}

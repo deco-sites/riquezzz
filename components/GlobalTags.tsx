@@ -30,6 +30,12 @@ function GlobalTags() {
 
       {/* Web Manifest */}
       <link rel="manifest" href={asset("/site.webmanifest")} />
+      <script
+        defer
+        id="sizebay-vfr-v4"
+        src="https://static.sizebay.technology/664/prescript.js"
+      >
+      </script>
     </Head>
   );
 }

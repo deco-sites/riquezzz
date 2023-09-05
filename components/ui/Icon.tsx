@@ -46,7 +46,11 @@ export type AvailableIcons =
   | "BawOrders"
   | "BawWishlist"
   | ">"
-  | "home";
+  | "home"
+  | "share"
+  | "pinterest"
+  | "Hanger"
+  | "Ruler";
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**
