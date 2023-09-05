@@ -46,7 +46,8 @@ function AvatarColor({ variant = "default", image, onClick }: Props) {
         <img
           class={variant == "active"
             ? "rounded-2xl w-full h-full border border-black"
-            : "" + `rounded-2xl w-full h-full border  hover:border-{2px} hover:border-gray-500`}
+            : "" +
+              `rounded-2xl w-full h-full border  hover:border-{2px} hover:border-gray-500`}
           src={image}
         />
       </div>
