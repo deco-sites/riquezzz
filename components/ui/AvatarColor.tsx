@@ -41,13 +41,13 @@ function AvatarColor({ variant = "default", image, onClick }: Props) {
       onClick={onClick}
     >
       <div
-        class={`w-full flex justify-center  items-center p-[2px] max-h-[25px] rounded-2xl overflow-hidden`}
+        class={`w-full flex justify-center  items-center  max-h-[30px] rounded-2xl overflow-hidden border  hover:border-[2px] hover:border-gray-700`}
       >
         <img
           class={variant == "active"
             ? "rounded-2xl w-full h-full border border-black"
             : "" +
-              `rounded-2xl w-full h-full border  hover:border-{2px} hover:border-gray-500`}
+              `rounded-2xl w-full h-full `}
           src={image}
         />
       </div>

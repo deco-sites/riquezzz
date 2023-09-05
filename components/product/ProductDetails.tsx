@@ -42,6 +42,11 @@ export interface Props {
    * @description Ask for the developer to remove this option since this is here to help development only and should not be used in production
    */
   variant?: Variant;
+  /**
+   * @title Out of stock products
+   * @description Out of stock products appear in the similar or not
+   */
+  noStockProducts?: boolean;
 }
 
 const WIDTH = 620;
@@ -49,7 +54,7 @@ const HEIGHT = 930;
 const ASPECT_RATIO = `${WIDTH} / ${HEIGHT}`;
 
 export async function loader(
-  { page, variant }: Props,
+  { page, variant, noStockProducts }: Props,
   _req: Request,
 ) {
   let reviews = {} as ResponseReviews;
@@ -64,7 +69,7 @@ export async function loader(
     console.log({ e });
   }
 
-  return { page, variant, reviews };
+  return { page, variant, reviews, noStockProducts };
 }
 
 /**
@@ -87,7 +92,12 @@ function NotFound() {
   );
 }
 
-function ProductInfo({ page }: { page: ProductDetailsPage }) {
+function ProductInfo(
+  { page, noStockProducts }: {
+    page: ProductDetailsPage;
+    noStockProducts: boolean;
+  },
+) {
   const {
     breadcrumbList,
     product,
@@ -237,7 +247,7 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
           </div>
         </div>
       </div>
-      <div class="h-[25px] mt-2">
+      <div class="h-[30px] mt-2">
         {similarProducts.length > 1
           ? (
             <div class="flex gap-2 ">
@@ -248,22 +258,41 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
                 const availability = (similar.offers?.offers.find((of) =>
                   of.seller === seller
                 )?.inventoryLevel.value!) > 0;
-                if (!colorImg) {
-                  return null;
+                if (noStockProducts) {
+                  if (!colorImg) {
+                    return null;
+                  }
+                  return (
+                    <a href={similar.url}>
+                      <AvatarColor
+                        onClick={(e) => {
+                          updateProduct(similar);
+                        }}
+                        variant={similar.productID === visibleProduct.productID
+                          ? "active"
+                          : "default"}
+                        image={colorImg}
+                      />
+                    </a>
+                  );
+                } else {
+                  if (!colorImg || availability) {
+                    return null;
+                  }
+                  return (
+                    <a href={similar.url}>
+                      <AvatarColor
+                        onClick={(e) => {
+                          updateProduct(similar);
+                        }}
+                        variant={similar.productID === visibleProduct.productID
+                          ? "active"
+                          : "default"}
+                        image={colorImg}
+                      />
+                    </a>
+                  );
                 }
-                return (
-                  <a href={similar.url}>
-                    <AvatarColor
-                      onClick={(e) => {
-                        updateProduct(similar);
-                      }}
-                      variant={similar.productID === visibleProduct.productID
-                        ? "active"
-                        : "default"}
-                      image={colorImg}
-                    />
-                  </a>
-                );
               })}
             </div>
           )
@@ -461,10 +490,12 @@ function Details({
   page,
   variant,
   reviews,
+  noStockProducts = false,
 }: {
   page: ProductDetailsPage;
   variant: Variant;
   reviews: ResponseReviews;
+  noStockProducts: boolean;
 }) {
   const {
     breadcrumbList,
@@ -573,7 +604,7 @@ function Details({
 
           {/* Product Info */}
           <div class="px-4 sm:pr-0 sm:pl-6 lg:col-start-3 lg:col-span-1 lg:row-start-1">
-            <ProductInfo page={page} />
+            <ProductInfo page={page} noStockProducts={noStockProducts} />
           </div>
         </div>
         <SliderJS rootId={id}></SliderJS>
@@ -619,14 +650,14 @@ function Details({
 
       {/* Product Info */}
       <div class="px-4 sm:pr-0 sm:pl-6">
-        <ProductInfo page={page} />
+        <ProductInfo page={page} noStockProducts={noStockProducts} />
       </div>
     </div>
   );
 }
 
 function ProductDetails(
-  { page, variant: maybeVar = "auto", reviews }: SectionProps<
+  { page, variant: maybeVar = "auto", reviews, noStockProducts = false }: SectionProps<
     typeof loader
   >,
 ) {
@@ -644,6 +675,7 @@ function ProductDetails(
             page={page}
             variant={variant}
             reviews={reviews}
+            noStockProducts={noStockProducts}
           />
         )
         : <NotFound />}
