@@ -22,8 +22,18 @@ import ProductReviews from "deco-sites/riquezzz/components/product/ProductReview
 import { ResponseReviews } from "$store/loaders/reviewsandratings.ts";
 import type { SectionProps } from "$live/mod.ts";
 import { default as reviewsLoader } from "deco-sites/riquezzz/loaders/reviewsandratings.ts";
+import AvatarColor from "$store/components/ui/AvatarColor.tsx";
+import { useState } from "preact/hooks";
+import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 
 export type Variant = "front-back" | "slider" | "auto";
+
+interface VariantsInterface {
+  value: string;
+  lvl: number;
+  link: string;
+  productID?: string;
+}
 
 export interface Props {
   page: LoaderReturnType<ProductDetailsPage | null>;
@@ -82,17 +92,121 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
     breadcrumbList,
     product,
   } = page;
+  // const {
+  //   description,
+  //   productID,
+  //   offers,
+  //   name,
+  //   gtin,
+  //   isVariantOf,
+  // } = product;
   const {
     description,
-    productID,
-    offers,
-    name,
+
     gtin,
-    isVariantOf,
   } = product;
-  const { price, listPrice, seller, installments, availability } = useOffer(
-    offers,
+  const [visibleProduct, setVisibleProduct] = useState(product);
+  const [similarProducts, setSimilarProducts] = useState(
+    product.isSimilarTo?.map((similar: Product) => similar).concat([
+      visibleProduct,
+    ]) || [],
   );
+
+  const getVariants = (product: Product) => {
+    const possibilities = useVariantPossibilities(product);
+    const allProperties = (product.isVariantOf?.hasVariant ?? [])
+      .flatMap(({ offers = {}, url, productID }) => {
+        return (offers.offers?.map((property) => ({
+          property,
+          url,
+          productID,
+        })));
+      }).map((p) => {
+        return ({
+          lvl: p?.property.inventoryLevel.value,
+          url: p?.url,
+          productID: p?.productID,
+        });
+      });
+
+    const variants = Object.entries(Object.values(possibilities)[0] ?? {}).map(
+      (v) => {
+        const [value, [link]] = v;
+        const lvl = allProperties.find((p) => p.url === link)?.lvl;
+        const skuID = allProperties.find((p) => p.url === link)?.productID;
+        return { value, link, lvl: lvl as number, productID: skuID };
+      },
+    );
+
+    const outOfStock = variants.filter((item) => item.lvl > 0).length === 0;
+    const pppp = variants.find((sku) => sku.value === "4P");
+    const ppp = variants.find((sku) => sku.value === "3P");
+    const pp = variants.find((sku) => sku.value === "PP");
+    const p = variants.find((sku) => sku.value === "P");
+    const m = variants.find((sku) => sku.value === "M");
+    const g = variants.find((sku) => sku.value === "G");
+    const gg = variants.find((sku) => sku.value === "GG");
+    const ggg = variants.find((sku) => sku.value === "3G");
+    const gggg = variants.find((sku) => sku.value === "4G");
+
+    let newVariants = [pppp, ppp, pp, p, m, g, gg, ggg, gggg];
+    newVariants = newVariants.filter((item) => item !== undefined);
+    return { newVariants: newVariants as VariantsInterface[], outOfStock };
+  };
+
+  const [productVariants, setProductVariants] = useState(
+    getVariants(visibleProduct).newVariants,
+  );
+  const [outOfStock, setOutOfStock] = useState(false);
+  const [offer, setOffer] = useState(useOffer(visibleProduct.offers));
+  const [installmentsText, setInstallmentsText] = useState("");
+
+  const updateProduct = (product: Product) => {
+    setVisibleProduct(product);
+    setOutOfStock(getVariants(product).outOfStock);
+    setProductVariants(getVariants(product).newVariants);
+    console.log({ productVariants });
+  };
+  const {
+    url,
+    productID,
+    name,
+    image: images,
+    offers,
+    isVariantOf,
+
+    isSimilarTo,
+  } = visibleProduct;
+
+  const fImages = images?.filter((img) =>
+    img.alternateName !== "color-thumbnail"
+  );
+
+  const productGroupID = isVariantOf?.productGroupID;
+  const [front, back] = fImages ?? [];
+  const { listPrice, price, installments, availability, seller } = offer;
+  const installmentText = installments?.replace(" sem juros", "").replace(
+    ".",
+    ",",
+  ).replace(" de", "");
+
+  const clickEvent = {
+    name: "select_item" as const,
+    params: {
+      item_list_name: "",
+      items: [
+        mapProductToAnalyticsItem({
+          product,
+          price,
+          listPrice,
+        }),
+      ],
+    },
+  };
+  // const { price, listPrice, seller, installments, availability } = useOffer(
+  //   offers,
+  // );
+
   return (
     <>
       {/* Code and name */}
@@ -123,6 +237,39 @@ function ProductInfo({ page }: { page: ProductDetailsPage }) {
           </div>
         </div>
       </div>
+      <div class="h-[25px] mt-2">
+        {similarProducts.length > 1
+          ? (
+            <div class="flex gap-2 ">
+              {similarProducts.map((similar) => {
+                const colorImg = similar.image?.find((img) =>
+                  img.alternateName === "color-thumbnail"
+                )?.url;
+                const availability = (similar.offers?.offers.find((of) =>
+                  of.seller === seller
+                )?.inventoryLevel.value!) > 0;
+                if (!colorImg) {
+                  return null;
+                }
+                return (
+                  <a href={similar.url}>
+                    <AvatarColor
+                      onClick={(e) => {
+                        updateProduct(similar);
+                      }}
+                      variant={similar.productID === visibleProduct.productID
+                        ? "active"
+                        : "default"}
+                      image={colorImg}
+                    />
+                  </a>
+                );
+              })}
+            </div>
+          )
+          : null}
+      </div>
+
       {/* Sku Selector */}
       <div class="mt-2 mb-2 lg:mb-0 lg:mt-6">
         <ProductSelector product={product} />
@@ -294,8 +441,6 @@ function imgZoom() {
   const img = document.getElementsByName("imgzom");
   const box = document.getElementById("box");
 
-  console.log(img);
-
   box!.addEventListener("mousemove", (e) => {
     const x = e.offsetX;
     const y = e.offsetY;
@@ -327,7 +472,6 @@ function Details({
   } = page;
   const id = `product-image-gallery:${useId()}`;
   const images = useStableImages(product);
-
   if (variant === "slider") {
     return (
       <>
@@ -486,20 +630,6 @@ function ProductDetails(
     typeof loader
   >,
 ) {
-  /**
-   * Showcase the different product views we have on this template. In case there are less
-   * than two images, render a front-back, otherwhise render a slider
-   * Remove one of them and go with the best suited for your use case.
-   */
-
-  // console.log({
-  //   product: page?.product.isVariantOf
-  //     ? page.product.isVariantOf.productGroupID
-  //     : page?.product.productID,
-  //   reviews,
-  // });
-  // console.log({ page });
-
   const variant = maybeVar === "auto"
     ? page?.product.image?.length && page?.product.image?.length < 2
       ? "front-back"

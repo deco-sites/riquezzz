@@ -30,23 +30,23 @@ interface Props {
 const variants = {
   active: " bg-black text-white border-none",
   disabled:
-    `relative after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-red-800 after:w-full after:block after:-rotate-45 after:content-[""]`,
+    `relative  after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-red-800 after:w-full after:block after:-rotate-45 after:content-[""]`,
   default: "",
 };
 
 function AvatarColor({ variant = "default", image, onClick }: Props) {
   return (
     <div
-      class="cursor-pointer avatar placeholder flex justify-center items-center max-h-[30px] "
+      class="cursor-pointer avatar placeholder flex justify-center items-center max-h-[25px] "
       onClick={onClick}
     >
       <div
-        class={`w-full flex justify-center items-center max-h-[30px] transform transition duration-300 hover:scale-150 p-1 rounded-2xl overflow-hidden`}
+        class={`w-full flex justify-center  items-center p-[2px] max-h-[25px] rounded-2xl overflow-hidden`}
       >
         <img
           class={variant == "active"
             ? "rounded-2xl w-full h-full border border-black"
-            : "" + `rounded-2xl w-full h-full border`}
+            : "" + `rounded-2xl w-full h-full border  hover:border-{2px} hover:border-gray-500`}
           src={image}
         />
       </div>

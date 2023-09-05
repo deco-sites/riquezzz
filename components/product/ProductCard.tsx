@@ -308,7 +308,7 @@ function ProductCard(
       <div class="h-[30px]">
         {similarProducts.length > 1
           ? (
-            <div class="flex flex-row-reverse">
+            <div class="flex gap-1">
               {similarProducts.map((similar) => {
                 const colorImg = similar.image?.find((img) =>
                   img.alternateName === "color-thumbnail"
