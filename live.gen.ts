@@ -20,10 +20,13 @@ import * as $$$$$11 from "./islands/ProductImageZoom.tsx";
 import * as $$$$$12 from "./islands/ProductReviews.tsx";
 import * as $$$$$13 from "./islands/ReadMore.tsx";
 import * as $$$$$14 from "./islands/SearchControls.tsx";
-import * as $$$$$15 from "./islands/ShippingSimulation.tsx";
-import * as $$$$$16 from "./islands/Sidebar.tsx";
-import * as $$$$$17 from "./islands/SliderJS.tsx";
-import * as $$$$$18 from "./islands/WishlistButton.tsx";
+import * as $$$$$15 from "./islands/ShareButton.tsx";
+import * as $$$$$16 from "./islands/ShippingSimulation.tsx";
+import * as $$$$$17 from "./islands/Sidebar.tsx";
+import * as $$$$$18 from "./islands/SizebayButtons.tsx";
+import * as $$$$$19 from "./islands/SizebayIframe.tsx";
+import * as $$$$$20 from "./islands/SliderJS.tsx";
+import * as $$$$$21 from "./islands/WishlistButton.tsx";
 import * as $$$$$$$$0 from "./sections/AuthIframe.tsx";
 import * as $$$$$$$$1 from "./sections/BannerCardPosition.tsx";
 import * as $$$$$$$$2 from "./sections/BannerFourCards.tsx";
@@ -50,8 +53,10 @@ import * as $$$$$$$$22 from "./sections/ProductShelf.tsx";
 import * as $$$$$$$$23 from "./sections/ReadMore.tsx";
 import * as $$$$$$$$24 from "./sections/SearchBreadControls.tsx";
 import * as $$$$$$$$25 from "./sections/SearchResult.tsx";
-import * as $$$$$$$$26 from "./sections/WhatsApp.tsx";
-import * as $$$$$$$$27 from "./sections/WishlistGallery.tsx";
+import * as $$$$$$$$26 from "./sections/SEOPDPBaw.tsx";
+import * as $$$$$$$$27 from "./sections/SEOPLPBaw.tsx";
+import * as $$$$$$$$28 from "./sections/WhatsApp.tsx";
+import * as $$$$$$$$29 from "./sections/WishlistGallery.tsx";
 import * as $$$$$$$$$$$0 from "./actions/createReview.ts";
 import { DecoManifest } from "$live/types.ts";
 import * as i2$$$0 from "$live/loaders/secret.ts";
@@ -252,10 +257,13 @@ const manifest = {
     "./islands/ProductReviews.tsx": $$$$$12,
     "./islands/ReadMore.tsx": $$$$$13,
     "./islands/SearchControls.tsx": $$$$$14,
-    "./islands/ShippingSimulation.tsx": $$$$$15,
-    "./islands/Sidebar.tsx": $$$$$16,
-    "./islands/SliderJS.tsx": $$$$$17,
-    "./islands/WishlistButton.tsx": $$$$$18,
+    "./islands/ShareButton.tsx": $$$$$15,
+    "./islands/ShippingSimulation.tsx": $$$$$16,
+    "./islands/Sidebar.tsx": $$$$$17,
+    "./islands/SizebayButtons.tsx": $$$$$18,
+    "./islands/SizebayIframe.tsx": $$$$$19,
+    "./islands/SliderJS.tsx": $$$$$20,
+    "./islands/WishlistButton.tsx": $$$$$21,
   },
   "sections": {
     "$live/sections/Conditional_Beta.tsx": i2$$$$$0,
@@ -289,8 +297,10 @@ const manifest = {
     "deco-sites/riquezzz/sections/ReadMore.tsx": $$$$$$$$23,
     "deco-sites/riquezzz/sections/SearchBreadControls.tsx": $$$$$$$$24,
     "deco-sites/riquezzz/sections/SearchResult.tsx": $$$$$$$$25,
-    "deco-sites/riquezzz/sections/WhatsApp.tsx": $$$$$$$$26,
-    "deco-sites/riquezzz/sections/WishlistGallery.tsx": $$$$$$$$27,
+    "deco-sites/riquezzz/sections/SEOPDPBaw.tsx": $$$$$$$$26,
+    "deco-sites/riquezzz/sections/SEOPLPBaw.tsx": $$$$$$$$27,
+    "deco-sites/riquezzz/sections/WhatsApp.tsx": $$$$$$$$28,
+    "deco-sites/riquezzz/sections/WishlistGallery.tsx": $$$$$$$$29,
     "deco-sites/std/sections/Analytics.tsx": i2$$$$$5,
     "deco-sites/std/sections/configButterCMS.global.tsx": i2$$$$$6,
     "deco-sites/std/sections/configLinxImpulse.global.tsx": i2$$$$$7,

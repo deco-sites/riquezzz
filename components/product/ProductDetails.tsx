@@ -364,7 +364,7 @@ function ProductInfo(
         </div>
       </div>
 
-      <div class="h-[30px] mt-2">
+      <div class="h-[30px] mt-4">
         {similarProducts.length > 1
           ? (
             <div class="flex gap-2 ">
