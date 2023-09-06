@@ -1,5 +1,5 @@
 import Image from "deco-sites/std/components/Image.tsx";
-import Avatar from "$store/components/ui/Avatar.tsx";
+import AvatarColor from "$store/components/ui/AvatarColor.tsx";
 import AddToCartAvatar from "$store/components/product/AddToCartAvatar.tsx";
 import WishlistIcon from "$store/components/wishlist/WishlistButton.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
@@ -8,6 +8,7 @@ import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/productToAnalyticsItem.ts";
 import { sendEventOnClick } from "$store/sdk/analytics.tsx";
 import type { Product } from "deco-sites/std/commerce/types.ts";
+import { useState } from "preact/hooks";
 
 interface Props {
   product: Product;
@@ -17,6 +18,13 @@ interface Props {
   /** @description used for analytics event */
   itemListName?: string;
   colorRed?: boolean;
+}
+
+interface VariantsInterface {
+  value: string;
+  lvl: number;
+  link: string;
+  productID?: string;
 }
 
 export interface Layout {
@@ -57,6 +65,70 @@ const HEIGHT = 420;
 function ProductCard(
   { product, preload = false, itemListName, colorRed = false }: Props,
 ) {
+  const [visibleProduct, setVisibleProduct] = useState(product);
+  const [similarProducts, setSimilarProducts] = useState(
+    product.isSimilarTo?.map((similar: Product) => similar).concat([
+      visibleProduct,
+    ]) || [],
+  );
+
+  const getVariants = (product: Product) => {
+    const possibilities = useVariantPossibilities(product);
+
+    const allProperties = (product.isVariantOf?.hasVariant ?? [])
+      .flatMap(({ offers = {}, url, productID }) => {
+        return (offers.offers?.map((property) => ({
+          property,
+          url,
+          productID,
+        })));
+      }).map((p) => {
+        return ({
+          lvl: p?.property.inventoryLevel.value,
+          url: p?.url,
+          productID: p?.productID,
+        });
+      });
+
+    const variants = Object.entries(Object.values(possibilities)[0] ?? {}).map(
+      (v) => {
+        const [value, [link]] = v;
+        const lvl = allProperties.find((p) => p.url === link)?.lvl;
+        const skuID = allProperties.find((p) => p.url === link)?.productID;
+        return { value, link, lvl: lvl as number, productID: skuID };
+      },
+    );
+
+    const outOfStock = variants.filter((item) => item.lvl > 0).length === 0;
+    const pppp = variants.find((sku) => sku.value === "4P");
+    const ppp = variants.find((sku) => sku.value === "3P");
+    const pp = variants.find((sku) => sku.value === "PP");
+    const p = variants.find((sku) => sku.value === "P");
+    const m = variants.find((sku) => sku.value === "M");
+    const g = variants.find((sku) => sku.value === "G");
+    const gg = variants.find((sku) => sku.value === "GG");
+    const ggg = variants.find((sku) => sku.value === "3G");
+    const gggg = variants.find((sku) => sku.value === "4G");
+
+    let newVariants = [pppp, ppp, pp, p, m, g, gg, ggg, gggg];
+    newVariants = newVariants.filter((item) => item !== undefined);
+    return { newVariants: newVariants as VariantsInterface[], outOfStock };
+  };
+
+  const [productVariants, setProductVariants] = useState(
+    getVariants(visibleProduct).newVariants,
+  );
+  const [outOfStock, setOutOfStock] = useState(false);
+  const [offer, setOffer] = useState(useOffer(visibleProduct.offers));
+  const [installmentsText, setInstallmentsText] = useState("");
+
+  const updateProduct = (product: Product) => {
+    setVisibleProduct(product);
+    setOutOfStock(getVariants(product).outOfStock);
+    setProductVariants(getVariants(product).newVariants);
+    console.log({ productVariants });
+  };
+
   const {
     url,
     productID,
@@ -64,39 +136,19 @@ function ProductCard(
     image: images,
     offers,
     isVariantOf,
-  } = product;
+    isSimilarTo,
+  } = visibleProduct;
   const fImages = images?.filter((img) =>
     img.alternateName !== "color-thumbnail"
   );
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = fImages ?? [];
-  const { listPrice, price, installments, availability, seller } = useOffer(
-    offers,
-  );
+  const { listPrice, price, installments, availability, seller } = offer;
   const installmentText = installments?.replace(" sem juros", "").replace(
     ".",
     ",",
   ).replace(" de", "");
 
-  const possibilities = useVariantPossibilities(product);
-
-  const allProperties = (isVariantOf?.hasVariant ?? [])
-    .flatMap(({ offers = {}, url, productID }) =>
-      offers.offers?.map((property) => ({ property, url, productID }))
-    ).map((p) => ({
-      lvl: p?.property.inventoryLevel.value,
-      url: p?.url,
-      productID: p?.productID,
-    }));
-
-  const variants = Object.entries(Object.values(possibilities)[0] ?? {}).map(
-    (v) => {
-      const [value, [link]] = v;
-      const lvl = allProperties.find((p) => p.url === link)?.lvl;
-      const skuID = allProperties.find((p) => p.url === link)?.productID;
-      return { value, link, lvl: lvl as number, productID: skuID };
-    },
-  );
   const clickEvent = {
     name: "select_item" as const,
     params: {
@@ -110,20 +162,6 @@ function ProductCard(
       ],
     },
   };
-
-  const outOfStock = variants.filter((item) => item.lvl > 0).length === 0;
-  const pppp = variants.find((sku) => sku.value === "4P");
-  const ppp = variants.find((sku) => sku.value === "3P");
-  const pp = variants.find((sku) => sku.value === "PP");
-  const p = variants.find((sku) => sku.value === "P");
-  const m = variants.find((sku) => sku.value === "M");
-  const g = variants.find((sku) => sku.value === "G");
-  const gg = variants.find((sku) => sku.value === "GG");
-  const ggg = variants.find((sku) => sku.value === "3G");
-  const gggg = variants.find((sku) => sku.value === "4G");
-
-  let newVariants = [pppp, ppp, pp, p, m, g, gg, ggg, gggg];
-  newVariants = newVariants.filter((item) => item !== undefined);
 
   return (
     <div
@@ -186,48 +224,25 @@ function ProductCard(
             </ul>
           </figcaption>
           {/* SKU Selector */}
-
-          {variants.length > 0
+          {productVariants.length > 0
             ? (
-              newVariants.length > 0
-                ? (
-                  <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
-                    <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
-                      {newVariants.map((item) => (
-                        <AddToCartAvatar
-                          skuId={item?.productID || productID}
-                          sellerId={seller || ""}
-                          price={price ?? 0}
-                          discount={price && listPrice ? listPrice - price : 0}
-                          name={product.name ?? ""}
-                          productGroupId={product.isVariantOf?.productGroupID ??
-                            ""}
-                          variant={item?.lvl !== 0 ? "default" : "disabled"}
-                          content={item?.value!}
-                        />
-                      ))}
-                    </ul>
-                  </figcaption>
-                )
-                : (
-                  <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
-                    <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
-                      {variants.map((item) => (
-                        <AddToCartAvatar
-                          skuId={item?.productID || productID}
-                          sellerId={seller || ""}
-                          price={price ?? 0}
-                          discount={price && listPrice ? listPrice - price : 0}
-                          name={product.name ?? ""}
-                          productGroupId={product.isVariantOf?.productGroupID ??
-                            ""}
-                          variant={item?.lvl !== 0 ? "default" : "disabled"}
-                          content={item?.value!}
-                        />
-                      ))}
-                    </ul>
-                  </figcaption>
-                )
+              <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
+                <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
+                  {productVariants.map((item) => (
+                    <AddToCartAvatar
+                      skuId={item?.productID || productID}
+                      sellerId={seller || ""}
+                      price={price ?? 0}
+                      discount={price && listPrice ? listPrice - price : 0}
+                      name={product.name ?? ""}
+                      productGroupId={product.isVariantOf?.productGroupID ??
+                        ""}
+                      variant={item?.lvl !== 0 ? "default" : "disabled"}
+                      content={item?.value!}
+                    />
+                  ))}
+                </ul>
+              </figcaption>
             )
             : ("")}
         </div>
@@ -289,6 +304,36 @@ function ProductCard(
             </span>
           </div>
         </div>
+      </div>
+      <div class="h-[30px]">
+        {similarProducts.length > 1
+          ? (
+            <div class="flex gap-1">
+              {similarProducts.map((similar) => {
+                const colorImg = similar.image?.find((img) =>
+                  img.alternateName === "color-thumbnail"
+                )?.url;
+                const availability = (similar.offers?.offers.find((of) =>
+                  of.seller === seller
+                )?.inventoryLevel.value!) > 0;
+                if (!colorImg || !availability) {
+                  return null;
+                }
+                return (
+                  <AvatarColor
+                    onClick={(e) => {
+                      updateProduct(similar);
+                    }}
+                    variant={similar.productID === visibleProduct.productID
+                      ? "active"
+                      : "default"}
+                    image={colorImg}
+                  />
+                );
+              })}
+            </div>
+          )
+          : null}
       </div>
     </div>
   );
