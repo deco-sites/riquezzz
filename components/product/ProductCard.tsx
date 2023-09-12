@@ -8,6 +8,8 @@ import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/productToAnalyticsItem.ts";
 import { sendEventOnClick } from "$store/sdk/analytics.tsx";
 import type { Product } from "deco-sites/std/commerce/types.ts";
+import ProductSelector from "./ProductVariantSelectorPLP.tsx";
+
 import { useState } from "preact/hooks";
 
 interface Props {
@@ -215,7 +217,7 @@ function ProductCard(
           />
         </a>
         <div class="group/edit">
-          <figcaption class=" card-body card-actions absolute bottom-0 left-0 w-full  transition-opacity opacity-0 group-hover:opacity-100 bg-green-600">
+          <figcaption class=" card-body card-actions  p-[10px] absolute bottom-0 left-0 w-full  transition-opacity opacity-0 group-hover:opacity-100 bg-green-600">
             {/* COMPRA */}
             <ul class="flex justify-center items-center  w-full">
               <a class="uppercase w-full text-white text-center font-bold text-xl">
@@ -224,30 +226,45 @@ function ProductCard(
             </ul>
           </figcaption>
           {/* SKU Selector */}
-          {productVariants.length > 0
-            ? (
-              <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
-                <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
-                  {productVariants.map((item) => (
-                    <AddToCartAvatar
-                      skuId={item?.productID || productID}
-                      sellerId={seller || ""}
-                      price={price ?? 0}
-                      discount={price && listPrice ? listPrice - price : 0}
-                      name={product.name ?? ""}
-                      productGroupId={product.isVariantOf?.productGroupID ??
-                        ""}
-                      variant={item?.lvl !== 0 ? "default" : "disabled"}
-                      content={item?.value!}
-                    />
-                  ))}
-                </ul>
-              </figcaption>
-            )
-            : ("")}
+          <figcaption class="card-body card-actions m-0 p-[10px] absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
+            <ProductSelector product={product} />
+          </figcaption>
+        
         </div>
       </figure>
-      {/* Prices & Name */}
+      {/* Prices & Name */}{" "}
+      <div class="mt-2">
+        {similarProducts.length > 1
+          ? (
+            <div class="flex gap-1">
+              {similarProducts.map((similar) => {
+                const colorImg = similar.image?.find((img) =>
+                  img.alternateName === "color-thumbnail"
+                )?.url;
+                const availability = (similar.offers?.offers.find((of) =>
+                  of.seller === seller
+                )?.inventoryLevel.value!) > 0;
+                if (!colorImg || !availability) {
+                  return null;
+                }
+                return (
+                  <div class="w-[20px]">
+                    <AvatarColor
+                      onClick={(e) => {
+                        updateProduct(similar);
+                      }}
+                      variant={similar.productID === visibleProduct.productID
+                        ? "active"
+                        : "default"}
+                      image={colorImg}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          )
+          : null}
+      </div>
       <div class=" flex flex-col p-0 m-0 h-[90px] max-h-[90px] justify-start items-start">
         <h2 class="card-title w-full   text-base-300 text-sm 2xl:text-lg  font-normal uppercase">
           {isVariantOf!.name}
@@ -304,36 +321,6 @@ function ProductCard(
             </span>
           </div>
         </div>
-      </div>
-      <div class="h-[30px]">
-        {similarProducts.length > 1
-          ? (
-            <div class="flex gap-1">
-              {similarProducts.map((similar) => {
-                const colorImg = similar.image?.find((img) =>
-                  img.alternateName === "color-thumbnail"
-                )?.url;
-                const availability = (similar.offers?.offers.find((of) =>
-                  of.seller === seller
-                )?.inventoryLevel.value!) > 0;
-                if (!colorImg || !availability) {
-                  return null;
-                }
-                return (
-                  <AvatarColor
-                    onClick={(e) => {
-                      updateProduct(similar);
-                    }}
-                    variant={similar.productID === visibleProduct.productID
-                      ? "active"
-                      : "default"}
-                    image={colorImg}
-                  />
-                );
-              })}
-            </div>
-          )
-          : null}
       </div>
     </div>
   );

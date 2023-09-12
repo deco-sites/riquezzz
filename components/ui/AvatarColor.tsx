@@ -37,17 +37,19 @@ const variants = {
 function AvatarColor({ variant = "default", image, onClick }: Props) {
   return (
     <div
-      class="cursor-pointer avatar placeholder flex justify-center items-center max-h-[25px] "
+      class="cursor-pointer avatar placeholder flex justify-center items-center max-w-[25px]  "
       onClick={onClick}
     >
       <div
-        class={`w-full flex justify-center  items-center  max-h-[30px] rounded-2xl overflow-hidden border  hover:border-[2px] hover:border-gray-700`}
-      >
-        <img
-          class={variant == "active"
+        class={`w-full flex justify-center p-[1px]  items-center w-full max-w-[25px] max-w-[25px] rounded-2xl overflow-hidden border ${
+          variant == "active"
             ? "rounded-2xl w-full h-full border border-black"
             : "" +
-              `rounded-2xl w-full h-full `}
+              "rounded-2xl w-full h-full hover:border-[2px] hover:border-gray-700"
+        }   `}
+      >
+        <img
+          class={"rounded-2xl w-full h-full "}
           src={image}
         />
       </div>
