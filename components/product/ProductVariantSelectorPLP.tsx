@@ -49,12 +49,12 @@ function VariantSelector(
   newVariants = newVariants.filter((item) => item !== undefined);
 
   return (
-    <li class="flex items-center justify-center  w-full pr-[10px]">
+    <li class="flex items-center justify-center  w-full ml-[-20px] ">
       {Object.keys(possibilities).map((name) => (
-        <ul class="flex flex-row gap-2  justify-center   p-[0px] ">
+        <ul class="flex flex-row flex-wrap  gap-2  justify-center  p-[0px] ">
           {newVariants.length > 0
             ? (newVariants.map((item) => (
-              <li class="card-body card-actions m-0 max-w-[40px]  max-h-[70px]  items-center p-[0px]">
+              <li class="card-body card-actions m-0 max-w-[40px]  max-h-[40px] mb-[10px]  items-center p-[0px]">
                 <a href={item?.link}>
                   <Avatar
                     variant={item?.productID === productID
@@ -67,7 +67,7 @@ function VariantSelector(
               </li>
             )))
             : (Object.entries(possibilities[name]).map(([value, [link]]) => (
-              <li class="card-body card-actions m-0 max-w-[40px]  max-h-[70px] items-center p-[0px]">
+              <li class="card-body card-actions m-0 max-w-[40px]  max-h-[40px] mb-[10px] items-center p-[0px]">
                 <a href={link}>
                   <Avatar
                     content={value}

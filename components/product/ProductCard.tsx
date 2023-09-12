@@ -73,50 +73,50 @@ function ProductCard(
       visibleProduct,
     ]) || [],
   );
-
-  const getVariants = (product: Product) => {
-    const possibilities = useVariantPossibilities(product);
-
-    const allProperties = (product.isVariantOf?.hasVariant ?? [])
-      .flatMap(({ offers = {}, url, productID }) => {
-        return (offers.offers?.map((property) => ({
-          property,
-          url,
-          productID,
-        })));
-      }).map((p) => {
-        return ({
-          lvl: p?.property.inventoryLevel.value,
-          url: p?.url,
-          productID: p?.productID,
+  
+    const getVariants = (product: Product) => {
+      const possibilities = useVariantPossibilities(product);
+  
+      const allProperties = (product.isVariantOf?.hasVariant ?? [])
+        .flatMap(({ offers = {}, url, productID }) => {
+          return (offers.offers?.map((property) => ({
+            property,
+            url,
+            productID,
+          })));
+        }).map((p) => {
+          return ({
+            lvl: p?.property.inventoryLevel.value,
+            url: p?.url,
+            productID: p?.productID,
+          });
         });
-      });
-
-    const variants = Object.entries(Object.values(possibilities)[0] ?? {}).map(
-      (v) => {
-        const [value, [link]] = v;
-        const lvl = allProperties.find((p) => p.url === link)?.lvl;
-        const skuID = allProperties.find((p) => p.url === link)?.productID;
-        return { value, link, lvl: lvl as number, productID: skuID };
-      },
-    );
-
-    const outOfStock = variants.filter((item) => item.lvl > 0).length === 0;
-    const pppp = variants.find((sku) => sku.value === "4P");
-    const ppp = variants.find((sku) => sku.value === "3P");
-    const pp = variants.find((sku) => sku.value === "PP");
-    const p = variants.find((sku) => sku.value === "P");
-    const m = variants.find((sku) => sku.value === "M");
-    const g = variants.find((sku) => sku.value === "G");
-    const gg = variants.find((sku) => sku.value === "GG");
-    const ggg = variants.find((sku) => sku.value === "3G");
-    const gggg = variants.find((sku) => sku.value === "4G");
-
-    let newVariants = [pppp, ppp, pp, p, m, g, gg, ggg, gggg];
-    newVariants = newVariants.filter((item) => item !== undefined);
-    return { newVariants: newVariants as VariantsInterface[], outOfStock };
-  };
-
+  
+      const variants = Object.entries(Object.values(possibilities)[0] ?? {}).map(
+        (v) => {
+          const [value, [link]] = v;
+          const lvl = allProperties.find((p) => p.url === link)?.lvl;
+          const skuID = allProperties.find((p) => p.url === link)?.productID;
+          return { value, link, lvl: lvl as number, productID: skuID };
+        },
+      );
+  
+      const outOfStock = variants.filter((item) => item.lvl > 0).length === 0;
+      const pppp = variants.find((sku) => sku.value === "4P");
+      const ppp = variants.find((sku) => sku.value === "3P");
+      const pp = variants.find((sku) => sku.value === "PP");
+      const p = variants.find((sku) => sku.value === "P");
+      const m = variants.find((sku) => sku.value === "M");
+      const g = variants.find((sku) => sku.value === "G");
+      const gg = variants.find((sku) => sku.value === "GG");
+      const ggg = variants.find((sku) => sku.value === "3G");
+      const gggg = variants.find((sku) => sku.value === "4G");
+  
+      let newVariants = [pppp, ppp, pp, p, m, g, gg, ggg, gggg];
+      newVariants = newVariants.filter((item) => item !== undefined);
+      return { newVariants: newVariants as VariantsInterface[], outOfStock };
+    };
+  
   const [productVariants, setProductVariants] = useState(
     getVariants(visibleProduct).newVariants,
   );
@@ -229,7 +229,6 @@ function ProductCard(
           <figcaption class="card-body card-actions m-0 p-[10px] absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
             <ProductSelector product={product} />
           </figcaption>
-        
         </div>
       </figure>
       {/* Prices & Name */}{" "}

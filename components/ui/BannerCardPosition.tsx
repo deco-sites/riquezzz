@@ -13,6 +13,7 @@ import { sendEventOnClick } from "$store/sdk/analytics.tsx";
 import type { Product } from "deco-sites/std/commerce/types.ts";
 import type { LoaderReturnType } from "$live/types.ts";
 import type { ProductListingPage } from "deco-sites/std/commerce/types.ts";
+import ProductSelector from "../product/ProductVariantSelectorPLP.tsx";
 
 export type BorderRadius =
   | "none"
@@ -399,18 +400,6 @@ function CardItem(
   };
 
   const outOfStock = variants.filter((item) => item.lvl > 0).length === 0;
-  const pppp = variants.find((sku) => sku.value === "4P");
-  const ppp = variants.find((sku) => sku.value === "3P");
-  const pp = variants.find((sku) => sku.value === "PP");
-  const p = variants.find((sku) => sku.value === "P");
-  const m = variants.find((sku) => sku.value === "M");
-  const g = variants.find((sku) => sku.value === "G");
-  const gg = variants.find((sku) => sku.value === "GG");
-  const ggg = variants.find((sku) => sku.value === "3G");
-  const gggg = variants.find((sku) => sku.value === "4G");
-
-  let newVariants = [pppp, ppp, pp, p, m, g, gg, ggg, gggg];
-  newVariants = newVariants.filter((item) => item !== undefined);
 
   const relative = (url: string) => {
     const link = new URL(url);
@@ -489,55 +478,9 @@ function CardItem(
             </figcaption>
             {/* SKU Selector */}
 
-            {variants.length > 0
-              ? (
-                newVariants.length > 0
-                  ? (
-                    <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
-                      <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
-                        {newVariants.map((item) => (
-                          <AddToCartAvatar
-                            skuId={item?.productID || productID}
-                            sellerId={seller || ""}
-                            price={price ?? 0}
-                            discount={price && listPrice
-                              ? listPrice - price
-                              : 0}
-                            name={product.name ?? ""}
-                            productGroupId={product.isVariantOf
-                              ?.productGroupID ??
-                              ""}
-                            variant={item?.lvl !== 0 ? "default" : "disabled"}
-                            content={item?.value!}
-                          />
-                        ))}
-                      </ul>
-                    </figcaption>
-                  )
-                  : (
-                    <figcaption class="card-body card-actions m-0 absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
-                      <ul class="flex flex-row flex-wrap justify-center items-center gap-2 w-full">
-                        {variants.map((item) => (
-                          <AddToCartAvatar
-                            skuId={item?.productID || productID}
-                            sellerId={seller || ""}
-                            price={price ?? 0}
-                            discount={price && listPrice
-                              ? listPrice - price
-                              : 0}
-                            name={product.name ?? ""}
-                            productGroupId={product.isVariantOf
-                              ?.productGroupID ??
-                              ""}
-                            variant={item?.lvl !== 0 ? "default" : "disabled"}
-                            content={item?.value!}
-                          />
-                        ))}
-                      </ul>
-                    </figcaption>
-                  )
-              )
-              : ("")}
+            <figcaption class="card-body card-actions m-0 p-[10px] absolute bottom-1 left-0 w-full  transition-opacity opacity-0 group-hover/edit:opacity-100 bg-white ">
+              <ProductSelector product={product} />
+            </figcaption>
           </div>
         </figure>
         {/* Prices & Name */}
