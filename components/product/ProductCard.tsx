@@ -265,7 +265,7 @@ function ProductCard(
           : null}
       </div>
       <div class=" flex flex-col p-0 m-0 h-[90px] max-h-[90px] justify-start items-start">
-        <h2 class="card-title w-full   text-base-300 text-sm 2xl:text-lg  font-normal uppercase">
+        <h2 class="card-title w-full   text-[#2f2f2f] text-sm 2xl:text-lg  font-normal uppercase">
           {isVariantOf!.name}
         </h2>
         <div class="flex flex-col  sm:flew-row items-start ">
@@ -280,7 +280,7 @@ function ProductCard(
                 : ("")}
             </span>
 
-            <span class="line-through px-1  text-xs 2xl:text-base text-base-300 sm:flex hidden">
+            <span class="line-through px-1  text-xs 2xl:text-base text-[#2f2f2f] sm:flex hidden">
               {listPrice !== price
                 ? (`${formatPrice(listPrice, offers!.priceCurrency!)} `)
                 : ("")}
@@ -300,7 +300,7 @@ function ProductCard(
           </div>
 
           <div class="flex flew-row  items-start sm:hidden flex-wrap">
-            <span class="line-through text-xs 2xl:text-base  text-base-300 px-1 ">
+            <span class="line-through text-xs 2xl:text-base  text-[#2f2f2f] px-1 ">
               {listPrice !== price
                 ? (formatPrice(listPrice, offers!.priceCurrency!))
                 : (" ")}
