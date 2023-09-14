@@ -49,6 +49,8 @@ function VariantSelector(
   newVariants = newVariants.filter((item) => item !== undefined);
 
   return (
+    <ul class="flex flex-col items-center justify-center  w-full gap-4">
+
     <li class="flex items-center justify-center  w-full ml-[-20px] ">
       {Object.keys(possibilities).map((name) => (
         <ul class="flex flex-row flex-wrap  gap-2  justify-center  p-[0px] ">
@@ -80,7 +82,10 @@ function VariantSelector(
         </ul>
       ))}
     </li>
+    </ul>
   );
+ 
+
 }
 
 export default VariantSelector;
