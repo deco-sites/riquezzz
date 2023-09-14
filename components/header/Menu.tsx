@@ -12,8 +12,8 @@ function MenuItem({ item }: { item: INavItem }) {
         item.children && item.children.length > 0 && ("collapse-arrow")
       }`}
     >
-      <input id={item.label} type="checkbox" />
       <label class="collapse-title uppercase">
+      <input id={item.label} type="checkbox" />
         {item.label}
       </label>
       <div class="collapse-content">
