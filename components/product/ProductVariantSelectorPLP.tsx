@@ -50,42 +50,39 @@ function VariantSelector(
 
   return (
     <ul class="flex flex-col items-center justify-center  w-full gap-4">
-
-    <li class="flex items-center justify-center  w-full ml-[-20px] ">
-      {Object.keys(possibilities).map((name) => (
-        <ul class="flex flex-row flex-wrap  gap-2  justify-center  p-[0px] ">
-          {newVariants.length > 0
-            ? (newVariants.map((item) => (
-              <li class="card-body card-actions m-0 max-w-[40px]  max-h-[40px] mb-[10px]  items-center p-[0px]">
-                <a href={item?.link}>
-                  <Avatar
-                    variant={item?.productID === productID
-                      ? "active"
-                      : (item?.lvl !== 0 ? "default" : "disabled")}
-                    content={item?.value!}
-                    textSize="lg"
-                  />
-                </a>
-              </li>
-            )))
-            : (Object.entries(possibilities[name]).map(([value, [link]]) => (
-              <li class="card-body card-actions m-0 max-w-[40px]  max-h-[40px] mb-[10px] items-center p-[0px]">
-                <a href={link}>
-                  <Avatar
-                    content={value}
-                    variant={link === url ? "active" : "default"}
-                    textSize="lg"
-                  />
-                </a>
-              </li>
-            )))}
-        </ul>
-      ))}
-    </li>
+      <li class="flex items-center justify-center  w-full ml-[-20px] ">
+        {Object.keys(possibilities).map((name) => (
+          <ul class="flex flex-row flex-wrap  gap-2  justify-center  p-[0px] ">
+            {newVariants.length > 0
+              ? (newVariants.map((item) => (
+                <li class="card-body card-actions m-0 max-w-[40px]  max-h-[40px] mb-[10px]  items-center p-[0px]">
+                  <a href={item?.link}>
+                    <Avatar
+                      variant={item?.productID === productID
+                        ? "active"
+                        : (item?.lvl !== 0 ? "default" : "disabled")}
+                      content={item?.value!}
+                      textSize="lg"
+                    />
+                  </a>
+                </li>
+              )))
+              : (Object.entries(possibilities[name]).map(([value, [link]]) => (
+                <li class="card-body card-actions m-0 max-w-[40px]  max-h-[40px] mb-[10px] items-center p-[0px]">
+                  <a href={link}>
+                    <Avatar
+                      content={value}
+                      variant={link === url ? "active" : "default"}
+                      textSize="lg"
+                    />
+                  </a>
+                </li>
+              )))}
+          </ul>
+        ))}
+      </li>
     </ul>
   );
- 
-
 }
 
 export default VariantSelector;
