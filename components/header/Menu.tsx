@@ -13,7 +13,7 @@ function MenuItem({ item }: { item: INavItem }) {
       }`}
     >
       <label class="collapse-title uppercase">
-      <input id={item.label} type="checkbox" />
+        <input id={item.label} type="checkbox" />
         {item.label}
       </label>
       <div class="collapse-content">
