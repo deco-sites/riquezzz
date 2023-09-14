@@ -13,9 +13,9 @@ function MenuItem({ item }: { item: INavItem }) {
       }`}
     >
       <input id={item.label} type="checkbox" />
-      <div class="collapse-title uppercase">
+      <label class="collapse-title uppercase">
         {item.label}
-      </div>
+      </label>
       <div class="collapse-content">
         <ul class="text-[20px] border-none ">
           {item.children?.map((node) => (

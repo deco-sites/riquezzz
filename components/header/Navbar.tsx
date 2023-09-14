@@ -55,9 +55,9 @@ function Navbar({ items, searchbar }: {
             />
           </a>
         </div>
-        <div class="flex justify-start uppercase mr-[auto] ml-0 shrink-0 gap-4 ">
+        <ul class="flex justify-start uppercase mr-[auto] ml-0 shrink-0 gap-4 ">
           {items.map((item) => <NavItem item={item} />)}
-        </div>
+        </ul>
         <div class="grow flex items-center justify-end max-w-[780px] bg-gray-100">
           <div class="w-full h-[70px]">
             <Searchbar {...searchbar} />
