@@ -2,7 +2,10 @@ import BawFilters from "$store/components/search/BawFilters.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import SearchControls from "$store/islands/SearchControls.tsx";
 import { SendEventOnLoad } from "$store/sdk/analytics.tsx";
-import { mapProductToAnalyticsItem, mapCategoriesToAnalyticsCategories } from "deco-sites/std/commerce/utils/productToAnalyticsItem.ts";
+import {
+  mapCategoriesToAnalyticsCategories,
+  mapProductToAnalyticsItem,
+} from "deco-sites/std/commerce/utils/productToAnalyticsItem.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import ProductGallery from "$store/islands/ProductGallery.tsx";
 import type { LoaderReturnType } from "$live/types.ts";
@@ -169,6 +172,12 @@ function Result(
           name: "view_item_list",
           params: {
             // TODO: get category name from search or cms setting
+            categories: mapCategoriesToAnalyticsCategories(
+              page.breadcrumb?.itemListElement.map(({ name: _name }) =>
+                _name ?? ""
+              ).filter(Boolean) ??
+                [],
+            ),
             item_list_name: "",
             item_list_id: "",
             items: page.products?.map((product) =>
@@ -181,24 +190,6 @@ function Result(
           },
         }}
       />
-
-      {page.breadcrumb.length
-        ? (
-          <SendEventOnLoad
-            event={{
-              name: "categoryView",
-              params: {
-                categories: mapCategoriesToAnalyticsCategories(
-                  page.breadcrumb?.itemListElement.map(({ name: _name }) =>
-                    _name ?? ""
-                  ).filter(Boolean) ??
-                    [],
-                ),
-              },
-            }}
-          />
-        )
-        : null}
     </>
   );
 }
