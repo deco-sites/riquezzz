@@ -2,7 +2,7 @@ import BawFilters from "$store/components/search/BawFilters.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import SearchControls from "$store/islands/SearchControls.tsx";
 import { SendEventOnLoad } from "$store/sdk/analytics.tsx";
-import { mapProductToAnalyticsItem } from "deco-sites/std/commerce/utils/productToAnalyticsItem.ts";
+import { mapProductToAnalyticsItem, mapCategoriesToAnalyticsCategories } from "deco-sites/std/commerce/utils/productToAnalyticsItem.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import ProductGallery from "$store/islands/ProductGallery.tsx";
 import type { LoaderReturnType } from "$live/types.ts";
@@ -97,6 +97,8 @@ function Result(
   },
 ) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
+  console.log({ breadcrumb });
+
   return (
     <>
       <div class="px-4 sm:py-10 sm:pr-14 w-full">
@@ -179,6 +181,24 @@ function Result(
           },
         }}
       />
+
+      {page.breadcrumb.length
+        ? (
+          <SendEventOnLoad
+            event={{
+              name: "categoryView",
+              params: {
+                categories: mapCategoriesToAnalyticsCategories(
+                  page.breadcrumb?.itemListElement.map(({ name: _name }) =>
+                    _name ?? ""
+                  ).filter(Boolean) ??
+                    [],
+                ),
+              },
+            }}
+          />
+        )
+        : null}
     </>
   );
 }
