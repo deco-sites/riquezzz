@@ -54,7 +54,7 @@ function CartItem({ index }: Props) {
           <span class="text-black text-base">
             Tamanho: {tamanho}
           </span>
-          <span class="line-through text-base-300 text-sm ">
+          <span class="line-through text-[#2f2f2f] text-sm ">
             {formatPrice(listPrice / 100, currencyCode!, locale)}
           </span>
           <span class="text-sm text-secondary">

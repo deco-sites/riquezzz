@@ -131,7 +131,7 @@ function Searchbar({
           </Button>
           <input
             ref={searchInputRef}
-            id="search-input"
+            id="header-search-input"
             class="flex-grow outline-none placeholder-shown:sibling:hidden bg-transparent placeholder-black "
             name={name}
             defaultValue={query}
@@ -150,7 +150,6 @@ function Searchbar({
             }}
             placeholder={placeholder}
             role="combobox"
-            aria-controls="search-suggestion"
             autocomplete="off"
           />
         </form>

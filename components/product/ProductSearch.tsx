@@ -205,7 +205,7 @@ function ProductCard(
                 : ("")}
             </span>
 
-            <span class="line-through text-xs 2xl:text-sm  text-base-300 pl-1 sm:flex hidden">
+            <span class="line-through text-xs 2xl:text-sm  text-[#2f2f2f] pl-1 sm:flex hidden">
               {listPrice !== price
                 ? (`${formatPrice(listPrice, offers!.priceCurrency!)} `)
                 : ("")}
@@ -224,7 +224,7 @@ function ProductCard(
             </span>
           </div>
           <div class="flex flew-row  items-start sm:items-end gap-1 sm:hidden">
-            <span class="line-through text-xs 2xl:text-sm  text-base-300 ">
+            <span class="line-through text-xs 2xl:text-sm  text-[#2f2f2f] ">
               {listPrice !== price
                 ? (`${formatPrice(listPrice, offers!.priceCurrency!)}`)
                 : ("")}

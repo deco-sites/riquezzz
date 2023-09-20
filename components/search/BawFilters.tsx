@@ -25,12 +25,9 @@ function ValueItem(
 ) {
   return (
     <a href={url} class="flex items-center gap-2 mb-2">
-      <div
-        aria-checked={selected}
-        class="checkbox bg-gray-200 rounded-none border-none"
-      />
+      <div class="checkbox bg-gray-200 rounded-none border-none" />
       <span class="text-sm ">{label}</span>
-      {quantity > 0 && <span class="text-sm text-base-300">({quantity})</span>}
+      {quantity > 0 && <span class="text-sm text-[#2f2f2f]">({quantity})</span>}
     </a>
   );
 }
